@@ -13,7 +13,7 @@ module:
     about:
       name: wMath
       org: noorg
-      description: This module aggregates other math modules in one.
+      description: Aggregates other math modules in single module.
       enabled: 1
       version: 0.4.0
       interpreters: &ref_2
@@ -767,7 +767,7 @@ module:
     about:
       name: wMath
       org: noorg
-      description: This module aggregates other math modules in one.
+      description: Aggregates other math modules in single module.
       enabled: 1
       version: 0.4.0
       interpreters: *ref_2
