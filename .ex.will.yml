@@ -3,7 +3,7 @@
 about :
 
   name : 'wMath'
-  description : '___'
+  description : 'This module aggregates other math modules in one.'
   version : '0.4.0'
   enabled : 1
   interpreters :
@@ -92,4 +92,3 @@ build :
       # - build::npm
       - build::proto.export
       # - build::doc.export
-
