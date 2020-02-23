@@ -3,8 +3,8 @@ root:
   - wMath.out
 consistency:
   ../.ex.will.yml: &ref_0
-    hash: e6596865ea970caac8046ce362882457
-    size: 1687
+    hash: bb04890bb78fb520b790deb28b81eb86
+    size: 1685
   ../.im.will.yml: &ref_1
     hash: 3e9ed02b9bd469d6f46477d5db587d2f
     size: 4560
@@ -1427,8 +1427,8 @@ module:
           - 'build::npm'
     consistency:
       ../.ex.will.yml:
-        hash: e6596865ea970caac8046ce362882457
-        size: 1687
+        hash: bb04890bb78fb520b790deb28b81eb86
+        size: 1685
       ../.im.will.yml:
         hash: 3e9ed02b9bd469d6f46477d5db587d2f
         size: 4560
