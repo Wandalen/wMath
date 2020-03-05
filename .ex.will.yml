@@ -1,18 +1,25 @@
 
-
 about :
 
   name : 'wMath'
   description : 'Aggregates other math modules in single module.'
-  version : '0.4.0'
+  version : '0.3.4'
   enabled : 1
   interpreters :
   - njs >= 8.0.0
   - chrome >= 60.0.0
   - firefox >= 60.0.0
   keywords :
-  - tools
   - wTools
+  - math
+  - scalar
+  - series
+  - progression
+  - vector
+  - dot product
+  - convolution
+  - matrix
+  - matrix math
   license : MIT
   author : 'Kostiantyn Wandalen <wanalen@willbe.so>'
   contributors :
@@ -27,7 +34,7 @@ path :
   repository : git+https:///github.com/Wandalen/wMath.git
   origins :
    - git+https:///github.com/Wandalen/wMath.git
-   - npm:///wMath
+   - npm:///wmath
   bugtracker : https:///github.com/Wandalen/wMath/issues
 
 step :
