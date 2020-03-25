@@ -3,7 +3,7 @@ about :
 
   name : 'wMath'
   description : 'Aggregates other math modules in single module.'
-  version : '0.3.4'
+  version : '0.4.0'
   enabled : 1
   interpreters :
   - njs >= 8.0.0
