@@ -3,7 +3,7 @@ root:
   - wMath.out
 consistency:
   ../.ex.will.yml: &ref_0
-    hash: 4799893694f96259d2b67d20787b9e5e
+    hash: 52964481154481d12bb546cf88f59fd1
     size: 1791
   ../.im.will.yml: &ref_1
     hash: f7cb3dd08f2e8ad11593a7597f3c52e6
@@ -15,7 +15,7 @@ module:
       org: noorg
       description: Aggregates other math modules in single module.
       enabled: 1
-      version: 0.3.4
+      version: 0.4.0
       interpreters: &ref_2
         - njs >= 8.0.0
         - chrome >= 60.0.0
@@ -158,12 +158,14 @@ module:
           - ../proto
           - ../proto/dwtools
           - ../proto/dwtools/Tools.s
+          - ../proto/dwtools/abase
           - ../proto/dwtools/amath
           - ../proto/dwtools/amath/l9
           - ../proto/dwtools/amath/l9/Include.s
           - ../proto/dwtools/amath/l9.test
-          - ../proto/dwtools/amath/l9.test/.Math.test.s.swp
           - ../proto/dwtools/amath/l9.test/Math.test.s
+          - ../proto/dwtools/amid
+          - ../proto/dwtools/atop
     submodule:
       wTools:
         path: 'npm:///wTools'
@@ -788,7 +790,7 @@ module:
           - 'build::npm'
     exported:
       proto.export:
-        version: 0.3.4
+        version: 0.4.0
         recursive: 0
         withIntegrated: 2
         tar: 0
@@ -808,7 +810,7 @@ module:
       org: noorg
       description: Aggregates other math modules in single module.
       enabled: 1
-      version: 0.3.4
+      version: 0.4.0
       interpreters: *ref_2
       keywords: *ref_3
       license: MIT
@@ -1494,7 +1496,7 @@ module:
           - 'build::npm'
     consistency:
       ../.ex.will.yml:
-        hash: 4799893694f96259d2b67d20787b9e5e
+        hash: 52964481154481d12bb546cf88f59fd1
         size: 1791
       ../.im.will.yml:
         hash: f7cb3dd08f2e8ad11593a7597f3c52e6
