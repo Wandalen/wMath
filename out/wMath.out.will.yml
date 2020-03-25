@@ -2,10 +2,13 @@ format: outwillfile-2.0
 root:
   - wMath.out
 consistency:
-  ../.ex.will.yml: &ref_0
+  wMath.out.will.yml: &ref_0
+    hash: daa6dbd752afab3f7854f678d6d8f338
+    size: 38614
+  ../.ex.will.yml: &ref_1
     hash: 52964481154481d12bb546cf88f59fd1
     size: 1791
-  ../.im.will.yml: &ref_1
+  ../.im.will.yml: &ref_2
     hash: f7cb3dd08f2e8ad11593a7597f3c52e6
     size: 5090
 module:
@@ -16,11 +19,11 @@ module:
       description: Aggregates other math modules in single module.
       enabled: 1
       version: 0.4.0
-      interpreters: &ref_2
+      interpreters:
         - njs >= 8.0.0
         - chrome >= 60.0.0
         - firefox >= 60.0.0
-      keywords: &ref_3
+      keywords:
         - wTools
         - math
         - scalar
@@ -33,10 +36,10 @@ module:
         - matrix math
       license: MIT
       author: Kostiantyn Wandalen <wanalen@willbe.so>
-      contributors: &ref_4
+      contributors:
         - Kostiantyn Wandalen <wanalen@willbe.so>
       npm.name: wmath
-      npm.scripts: &ref_5
+      npm.scripts:
         test: wtest .run proto/**
         docgen: wdocgen .build proto
     path:
@@ -714,6 +717,24 @@ module:
           content: prime
         inherit:
           - files.transpile
+      exported.proto.export:
+        opts:
+          reflector: 'reflector::exported.proto.export*'
+        criterion:
+          generated: 1
+          content: proto
+          export: 1
+        inherit:
+          - files.reflect
+      exported.files.proto.export:
+        opts:
+          reflector: 'reflector::exported.files.proto.export*'
+        criterion:
+          generated: 1
+          content: proto
+          export: 1
+        inherit:
+          - files.reflect
     build:
       proto.export:
         steps:
@@ -802,8 +823,9 @@ module:
           content: proto
           export: 1
     consistency:
-      ../.ex.will.yml: *ref_0
-      ../.im.will.yml: *ref_1
+      wMath.out.will.yml: *ref_0
+      ../.ex.will.yml: *ref_1
+      ../.im.will.yml: *ref_2
   ../:
     about:
       name: wMath
@@ -811,13 +833,29 @@ module:
       description: Aggregates other math modules in single module.
       enabled: 1
       version: 0.4.0
-      interpreters: *ref_2
-      keywords: *ref_3
+      interpreters:
+        - njs >= 8.0.0
+        - chrome >= 60.0.0
+        - firefox >= 60.0.0
+      keywords:
+        - wTools
+        - math
+        - scalar
+        - series
+        - progression
+        - vector
+        - dot product
+        - convolution
+        - matrix
+        - matrix math
       license: MIT
       author: Kostiantyn Wandalen <wanalen@willbe.so>
-      contributors: *ref_4
+      contributors:
+        - Kostiantyn Wandalen <wanalen@willbe.so>
       npm.name: wmath
-      npm.scripts: *ref_5
+      npm.scripts:
+        test: wtest .run proto/**
+        docgen: wdocgen .build proto
     path:
       module.willfiles:
         criterion:
@@ -1501,3 +1539,6 @@ module:
       ../.im.will.yml:
         hash: f7cb3dd08f2e8ad11593a7597f3c52e6
         size: 5090
+      wMath.out.will.yml:
+        hash: daa6dbd752afab3f7854f678d6d8f338
+        size: 38614
