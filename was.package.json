@@ -1,37 +1,37 @@
 {
-  "name" : "wmath", 
-  "version" : "0.3.35", 
-  "description" : "Aggregates other math modules in single module.", 
-  "author" : "Kostiantyn Wandalen <wanalen@willbe.so>", 
-  "license" : "MIT", 
-  "main" : "proto/dwtools/amath/l9/Include.s", 
-  "files" : [ "proto/dwtools/amath", "proto/dwtools/Tools.s" ], 
-  "scripts" : { "test" : "wtest .run proto", "docgen" : "wdocgen .build proto" }, 
-  "repository" : { "type" : "git", "url" : "https ://github.com/Wandalen/wMath.git" }, 
-  "bugs" : 
+  "name" : "wmath",
+  "version" : "0.3.36",
+  "description" : "Aggregates other math modules in single module.",
+  "author" : "Kostiantyn Wandalen <wanalen@willbe.so>",
+  "license" : "MIT",
+  "main" : "proto/dwtools/amath/l9/Include.s",
+  "files" : [ "proto/dwtools/amath", "proto/dwtools/Tools.s" ],
+  "scripts" : { "test" : "wtest .run proto", "docgen" : "wdocgen .build proto" },
+  "repository" : { "type" : "git", "url" : "https ://github.com/Wandalen/wMath.git" },
+  "bugs" :
   {
     "url" : "https ://github.com/Wandalen/wMath/issues"
-  }, 
-  "dependencies" : 
+  },
+  "dependencies" :
   {
-    "wTools" : "", 
-    "wmathscalar" : "", 
-    "wmathvector" : "", 
-    "wmathmatrix" : "", 
+    "wTools" : "",
+    "wmathscalar" : "",
+    "wmathvector" : "",
+    "wmathmatrix" : "",
     "wmathconcepts" : ""
-  }, 
-  "devDependencies" : { "wTesting" : "", "wmath" : "file:." }, 
-  "keywords" : 
+  },
+  "devDependencies" : { "wTesting" : "", "wmath" : "file:." },
+  "keywords" :
   [
-    "wTools", 
-    "math", 
-    "scalar", 
-    "series", 
-    "progression", 
-    "vector", 
-    "dot product", 
-    "convolution", 
-    "matrix", 
+    "wTools",
+    "math",
+    "scalar",
+    "series",
+    "progression",
+    "vector",
+    "dot product",
+    "convolution",
+    "matrix",
     "matrix math"
   ]
 }
