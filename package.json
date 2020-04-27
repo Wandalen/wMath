@@ -1,6 +1,6 @@
 {
   "name" : "wmath",
-  "version" : "0.3.36",
+  "version" : "0.3.37",
   "description" : "Aggregates other math modules in single module.",
   "author" : "Kostiantyn Wandalen <wanalen@willbe.so>",
   "license" : "MIT",
@@ -14,13 +14,13 @@
   },
   "dependencies" :
   {
-    "wTools" : "gamma",
-    "wmathscalar" : "gamma",
-    "wmathvector" : "gamma",
-    "wmathmatrix" : "gamma",
-    "wmathconcepts" : "gamma"
+    "wTools" : "beta",
+    "wmathscalar" : "beta",
+    "wmathvector" : "beta",
+    "wmathmatrix" : "beta",
+    "wmathconcepts" : "beta"
   },
-  "devDependencies" : { "wmath" : "file:.", "wTesting" : "gamma" },
+  "devDependencies" : { "wmath" : "file:.", "wTesting" : "beta" },
   "keywords" :
   [
     "wTools",
