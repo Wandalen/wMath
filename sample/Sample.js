@@ -44,7 +44,7 @@ var uxl = _.Matrix.mul( null,[ u,l ] );
 console.log( 'got\n' + uxl.toStr() );
 console.log( 'expected\n' + expected.toStr(), '\n' );
 
-/* wMathConcepts sample */
+/* wMathModels sample */
 
 console.log( '= Concepts' );
 var _ = wTools;

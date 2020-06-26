@@ -183,8 +183,8 @@ module:
         path: 'npm:///wmathmatrix'
         autoExporting: 0
         enabled: 0
-      wMathConcepts:
-        path: 'npm:///wmathconcepts'
+      wMathModels:
+        path: 'npm:///wmathmodels'
         autoExporting: 0
         enabled: 0
       wMath:
@@ -931,8 +931,8 @@ module:
         path: 'npm:///wmathmatrix'
         autoExporting: 0
         enabled: 0
-      wMathConcepts:
-        path: 'npm:///wmathconcepts'
+      wMathModels:
+        path: 'npm:///wmathmodels'
         autoExporting: 0
         enabled: 0
       wMath:

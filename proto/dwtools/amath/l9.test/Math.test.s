@@ -79,7 +79,7 @@ function routinesOfMathMatrix( test )
 
 //
 
-function routinesOfMathConcepts( test )
+function routinesOfMathModels( test )
 {
   test.case = 'namespace _.box';
   test.is( _.routineIs( _.box.make ) );
@@ -125,7 +125,7 @@ var Self =
     routinesOfMathScalar,
     routinesOfMathVector,
     routinesOfMathMatrix,
-    routinesOfMathConcepts,
+    routinesOfMathModels,
 
   },
 

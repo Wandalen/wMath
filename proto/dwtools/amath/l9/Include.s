@@ -10,7 +10,7 @@ if( typeof module !== 'undefined' && module !== null )
   _.include( 'wMathScalar' );
   _.include( 'wMathVector' );
   _.include( 'wMathMatrix' );
-  _.include( 'wMathConcepts' );
+  _.include( 'wMathModels' );
 }
 
 let _global = _global_;

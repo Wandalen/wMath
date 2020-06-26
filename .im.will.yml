@@ -14,8 +14,8 @@ submodule :
   wMathMatrix :
     path : npm:///wmathmatrix
     enabled : 0 # submodule
-  wMathConcepts :
-    path : npm:///wmathconcepts
+  wMathModels :
+    path : npm:///wmathmodels
     enabled : 0 # submodule
   wMath :
     path : hd://.
