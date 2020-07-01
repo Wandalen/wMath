@@ -6,7 +6,7 @@
   "license" : "MIT",
   "main" : "proto/dwtools/amath/l9/Include.s",
   "files" : [ "proto/dwtools/amath", "proto/dwtools/Tools.s" ],
-  "scripts" : { "test" : "wtest .run proto rapidity:-3", "docgen" : "wdocgen .build proto" },
+  "scripts" : { "test" : "wtest .run 'proto/**' rapidity:-3", "docgen" : "wdocgen .build proto" },
   "repository" : { "type" : "git", "url" : "https ://github.com/Wandalen/wMath.git" },
   "bugs" :
   {
