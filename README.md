@@ -1,5 +1,5 @@
 
-# wMath [![Build Status](https://travis-ci.org/Wandalen/wMath.svg?branch=master)](https://travis-ci.org/Wandalen/wMath)
+# module::Math [![Status](https://github.com/Wandalen/wMath/workflows/Test/badge.svg)](https://github.com/Wandalen/wMath}/actions?query=workflow%3ATest)
 
 Aggregates other math modules in single module.
 
