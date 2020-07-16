@@ -1,5 +1,5 @@
 if( typeof module !== undefined )
-var _ = require( 'wmath' );
+let _ = require( 'wmath' );
 
 /* wMathScalar sample */
 console.log( '= Scalar' );
@@ -47,7 +47,7 @@ console.log( 'expected\n' + expected.toStr(), '\n' );
 /* wMathModels sample */
 
 console.log( '= Concepts' );
-var _ = wTools;
+let _ = wTools;
 var got = _.box.make();
 
 console.log( '3D Box created', got );
