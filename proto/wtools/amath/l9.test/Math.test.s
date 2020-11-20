@@ -23,20 +23,20 @@ let _ = _global_.wTools;
 function routinesOfMathScalar( test ) 
 {
   test.case = 'namespace _.math';
-  test.is( _.routineIs( _.math.fract ) );
-  test.is( _.routineIs( _.math.factorial ) );
-  test.is( _.routineIs( _.math.degToRad ) );
-  test.is( _.routineIs( _.math.radToDeg ) );
-  test.is( _.routineIs( _.math.clamp ) );
-  test.is( _.routineIs( _.math.sqrt ) );
-  test.is( _.routineIs( _.math.sqr ) );
-  test.is( _.routineIs( _.math.cbd ) );
-  test.is( _.routineIs( _.math.mod ) );
-  test.is( _.routineIs( _.math.sign ) );
-  test.is( _.routineIs( _.math.sc ) );
-  test.is( _.routineIs( _.math.roundToPowerOfTwo ) );
-  test.is( _.routineIs( _.math.ceilToPowerOfTwo ) );
-  test.is( _.routineIs( _.math.floorToPowerOfTwo ) );
+  test.true( _.routineIs( _.math.fract ) );
+  test.true( _.routineIs( _.math.factorial ) );
+  test.true( _.routineIs( _.math.degToRad ) );
+  test.true( _.routineIs( _.math.radToDeg ) );
+  test.true( _.routineIs( _.math.clamp ) );
+  test.true( _.routineIs( _.math.sqrt ) );
+  test.true( _.routineIs( _.math.sqr ) );
+  test.true( _.routineIs( _.math.cbd ) );
+  test.true( _.routineIs( _.math.mod ) );
+  test.true( _.routineIs( _.math.sign ) );
+  test.true( _.routineIs( _.math.sc ) );
+  test.true( _.routineIs( _.math.roundToPowerOfTwo ) );
+  test.true( _.routineIs( _.math.ceilToPowerOfTwo ) );
+  test.true( _.routineIs( _.math.floorToPowerOfTwo ) );
 }
 
 //
@@ -44,20 +44,20 @@ function routinesOfMathScalar( test )
 function routinesOfMathVector( test ) 
 {
   test.case = 'namespace _.avector';
-  test.is( _.routineIs( _.avector.add ) );
-  test.is( _.routineIs( _.avector.sub ) );
-  test.is( _.routineIs( _.avector.mul ) );
-  test.is( _.routineIs( _.avector.div ) );
-  test.is( _.routineIs( _.avector.min ) );
-  test.is( _.routineIs( _.avector.max ) );
+  test.true( _.routineIs( _.avector.add ) );
+  test.true( _.routineIs( _.avector.sub ) );
+  test.true( _.routineIs( _.avector.mul ) );
+  test.true( _.routineIs( _.avector.div ) );
+  test.true( _.routineIs( _.avector.min ) );
+  test.true( _.routineIs( _.avector.max ) );
 
   test.case = 'namespace _.vectorAdapter';
-  test.is( _.routineIs( _.vectorAdapter.add ) );
-  test.is( _.routineIs( _.vectorAdapter.sub ) );
-  test.is( _.routineIs( _.vectorAdapter.mul ) );
-  test.is( _.routineIs( _.vectorAdapter.div ) );
-  test.is( _.routineIs( _.vectorAdapter.min ) );
-  test.is( _.routineIs( _.vectorAdapter.max ) );
+  test.true( _.routineIs( _.vectorAdapter.add ) );
+  test.true( _.routineIs( _.vectorAdapter.sub ) );
+  test.true( _.routineIs( _.vectorAdapter.mul ) );
+  test.true( _.routineIs( _.vectorAdapter.div ) );
+  test.true( _.routineIs( _.vectorAdapter.min ) );
+  test.true( _.routineIs( _.vectorAdapter.max ) );
 }
 
 //
@@ -65,16 +65,16 @@ function routinesOfMathVector( test )
 function routinesOfMathMatrix( test ) 
 {
   test.case = 'namespace _.Matrix';
-  test.is( _.routineIs( _.Matrix.make ) );
-  test.is( _.routineIs( _.Matrix.makeZero ) );
-  test.is( _.routineIs( _.Matrix.makeSquare ) );
-  test.is( _.routineIs( _.Matrix.makeCol ) );
-  test.is( _.routineIs( _.Matrix.makeColZeroed ) );
-  test.is( _.routineIs( _.Matrix.makeLine ) );
-  test.is( _.routineIs( _.Matrix.makeRow ) );
-  test.is( _.routineIs( _.Matrix.makeRowZeroed ) );
-  test.is( _.routineIs( _.Matrix.makeSimilar ) );
-  test.is( _.routineIs( _.Matrix.from ) );
+  test.true( _.routineIs( _.Matrix.make ) );
+  test.true( _.routineIs( _.Matrix.makeZero ) );
+  test.true( _.routineIs( _.Matrix.makeSquare ) );
+  test.true( _.routineIs( _.Matrix.makeCol ) );
+  test.true( _.routineIs( _.Matrix.makeColZeroed ) );
+  test.true( _.routineIs( _.Matrix.makeLine ) );
+  test.true( _.routineIs( _.Matrix.makeRow ) );
+  test.true( _.routineIs( _.Matrix.makeRowZeroed ) );
+  test.true( _.routineIs( _.Matrix.makeSimilar ) );
+  test.true( _.routineIs( _.Matrix.from ) );
 }
 
 //
@@ -82,31 +82,31 @@ function routinesOfMathMatrix( test )
 function routinesOfMathModels( test )
 {
   test.case = 'namespace _.box';
-  test.is( _.routineIs( _.box.make ) );
-  test.is( _.routineIs( _.box.makeZero ) );
-  test.is( _.routineIs( _.box.makeNil ) );
-  test.is( _.routineIs( _.box.zero ) );
-  test.is( _.routineIs( _.box.nil ) );
-  test.is( _.routineIs( _.box.centeredOfSize ) );
-  test.is( _.routineIs( _.box.from ) );
-  test.is( _.routineIs( _.box.adapterFrom ) );
-  test.is( _.routineIs( _.box.fromPoints ) );
-  test.is( _.routineIs( _.box.fromCenterAndSize ) );
-  test.is( _.routineIs( _.box.fromSphere ) );
-  test.is( _.routineIs( _.box.fromCube ) );
+  test.true( _.routineIs( _.box.make ) );
+  test.true( _.routineIs( _.box.makeZero ) );
+  test.true( _.routineIs( _.box.makeNil ) );
+  test.true( _.routineIs( _.box.zero ) );
+  test.true( _.routineIs( _.box.nil ) );
+  test.true( _.routineIs( _.box.centeredOfSize ) );
+  test.true( _.routineIs( _.box.from ) );
+  test.true( _.routineIs( _.box.adapterFrom ) );
+  test.true( _.routineIs( _.box.fromPoints ) );
+  test.true( _.routineIs( _.box.fromCenterAndSize ) );
+  test.true( _.routineIs( _.box.fromSphere ) );
+  test.true( _.routineIs( _.box.fromCube ) );
   
   test.case = 'namespace _.sphere';
-  test.is( _.routineIs( _.sphere.make ) );
-  test.is( _.routineIs( _.sphere.makeZero ) );
-  test.is( _.routineIs( _.sphere.makeNil ) );
-  test.is( _.routineIs( _.sphere.zero ) );
-  test.is( _.routineIs( _.sphere.nil ) );
-  test.is( _.routineIs( _.sphere.centeredOfRadius ) );
-  test.is( _.routineIs( _.sphere.from ) );
-  test.is( _.routineIs( _.sphere.adapterFrom ) );
-  test.is( _.routineIs( _.sphere.fromPoints ) );
-  test.is( _.routineIs( _.sphere.fromBox ) );
-  test.is( _.routineIs( _.sphere.fromCenterAndRadius ) );
+  test.true( _.routineIs( _.sphere.make ) );
+  test.true( _.routineIs( _.sphere.makeZero ) );
+  test.true( _.routineIs( _.sphere.makeNil ) );
+  test.true( _.routineIs( _.sphere.zero ) );
+  test.true( _.routineIs( _.sphere.nil ) );
+  test.true( _.routineIs( _.sphere.centeredOfRadius ) );
+  test.true( _.routineIs( _.sphere.from ) );
+  test.true( _.routineIs( _.sphere.adapterFrom ) );
+  test.true( _.routineIs( _.sphere.fromPoints ) );
+  test.true( _.routineIs( _.sphere.fromBox ) );
+  test.true( _.routineIs( _.sphere.fromCenterAndRadius ) );
 }
 
 // --
