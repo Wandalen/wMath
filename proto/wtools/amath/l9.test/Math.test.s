@@ -65,16 +65,16 @@ function routinesOfMathVector( test )
 function routinesOfMathMatrix( test ) 
 {
   test.case = 'namespace _.Matrix';
-  test.true( _.routineIs( _.Matrix.make ) );
-  test.true( _.routineIs( _.Matrix.makeZero ) );
-  test.true( _.routineIs( _.Matrix.makeSquare ) );
-  test.true( _.routineIs( _.Matrix.makeCol ) );
-  test.true( _.routineIs( _.Matrix.makeColZeroed ) );
-  test.true( _.routineIs( _.Matrix.makeLine ) );
-  test.true( _.routineIs( _.Matrix.makeRow ) );
-  test.true( _.routineIs( _.Matrix.makeRowZeroed ) );
-  test.true( _.routineIs( _.Matrix.makeSimilar ) );
-  test.true( _.routineIs( _.Matrix.from ) );
+  test.true( _.routineIs( _.Matrix.Make ) );
+  test.true( _.routineIs( _.Matrix.MakeZero ) );
+  test.true( _.routineIs( _.Matrix.MakeSquare ) );
+  test.true( _.routineIs( _.Matrix.MakeCol ) );
+  test.true( _.routineIs( _.Matrix.MakeColZeroed ) );
+  test.true( _.routineIs( _.Matrix.MakeLine ) );
+  test.true( _.routineIs( _.Matrix.MakeRow ) );
+  test.true( _.routineIs( _.Matrix.MakeRowZeroed ) );
+  test.true( _.routineIs( _.Matrix.MakeSimilar ) );
+  test.true( _.routineIs( _.Matrix.From ) );
 }
 
 //
@@ -84,7 +84,7 @@ function routinesOfMathModels( test )
   test.case = 'namespace _.box';
   test.true( _.routineIs( _.box.make ) );
   test.true( _.routineIs( _.box.makeZero ) );
-  test.true( _.routineIs( _.box.makeNil ) );
+  // test.true( _.routineIs( _.box.makeNil ) ); /* doesn't exist */
   test.true( _.routineIs( _.box.zero ) );
   test.true( _.routineIs( _.box.nil ) );
   test.true( _.routineIs( _.box.centeredOfSize ) );
@@ -98,7 +98,7 @@ function routinesOfMathModels( test )
   test.case = 'namespace _.sphere';
   test.true( _.routineIs( _.sphere.make ) );
   test.true( _.routineIs( _.sphere.makeZero ) );
-  test.true( _.routineIs( _.sphere.makeNil ) );
+  // test.true( _.routineIs( _.sphere.makeNil ) ); /* doesn't exist */
   test.true( _.routineIs( _.sphere.zero ) );
   test.true( _.routineIs( _.sphere.nil ) );
   test.true( _.routineIs( _.sphere.centeredOfRadius ) );
