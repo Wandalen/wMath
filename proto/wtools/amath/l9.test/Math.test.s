@@ -1,4 +1,5 @@
-( function _Math_test_s_() {
+( function _Math_test_s_()
+{
 
 'use strict';
 
@@ -10,7 +11,7 @@ if( typeof module !== 'undefined' )
   _.include( 'wTesting' );
 
   require( '../../amath/l9/Include.s' );
-  
+
 }
 
 let _global = _global_;
@@ -20,7 +21,7 @@ let _ = _global_.wTools;
 // tests
 // --
 
-function routinesOfMathScalar( test ) 
+function routinesOfMathScalar( test )
 {
   test.case = 'namespace _.math';
   test.true( _.routineIs( _.math.fract ) );
@@ -41,7 +42,7 @@ function routinesOfMathScalar( test )
 
 //
 
-function routinesOfMathVector( test ) 
+function routinesOfMathVector( test )
 {
   test.case = 'namespace _.avector';
   test.true( _.routineIs( _.avector.add ) );
@@ -62,7 +63,7 @@ function routinesOfMathVector( test )
 
 //
 
-function routinesOfMathMatrix( test ) 
+function routinesOfMathMatrix( test )
 {
   test.case = 'namespace _.Matrix';
   test.true( _.routineIs( _.Matrix.Make ) );
@@ -94,7 +95,7 @@ function routinesOfMathModels( test )
   test.true( _.routineIs( _.box.fromCenterAndSize ) );
   test.true( _.routineIs( _.box.fromSphere ) );
   test.true( _.routineIs( _.box.fromCube ) );
-  
+
   test.case = 'namespace _.sphere';
   test.true( _.routineIs( _.sphere.make ) );
   test.true( _.routineIs( _.sphere.makeZero ) );
