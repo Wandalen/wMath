@@ -1,6 +1,6 @@
 {
   "name" : "wmath",
-  "version" : "0.3.77",
+  "version" : "0.3.78",
   "description" : "Aggregates other math modules in single module.",
   "author" : "Kostiantyn Wandalen <wanalen@01.school>",
   "license" : "MIT",
@@ -20,7 +20,7 @@
     "wmathmatrix" : "alpha",
     "wmathmodels" : "alpha"
   },
-  "devDependencies" : { "wmath" : "file:.", "wTesting" : "alpha" },
+  "devDependencies" : { "wmath" : "file:.", "eslint" : "7.1.0", "wTesting" : "alpha" },
   "keywords" :
   [
     "wTools",
