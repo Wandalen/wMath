@@ -8,7 +8,7 @@ Aggregates other math modules in single module.
 git clone https://github.com/Wandalen/wMath
 cd wMath
 npm install
-node sample/Sample.s
+node sample/trivial/Sample.s
 ```
 
 ## To add to your project
