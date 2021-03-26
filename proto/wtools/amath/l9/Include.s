@@ -6,7 +6,7 @@
 
 if( typeof module !== 'undefined' && module !== null )
 {
-  let _ = require( '../../Tools.s' );
+  const _ = require( '../../Tools.s' );
 
   _.include( 'wMathScalar' );
   _.include( 'wMathVector' );
@@ -14,9 +14,9 @@ if( typeof module !== 'undefined' && module !== null )
   _.include( 'wMathModels' );
 }
 
-let _global = _global_;
-let _ = _global_.wTools;
-let Self = _global_.wTools;
+const _global = _global_;
+const _ = _global_.wTools;
+const Self = _global_.wTools;
 
 // --
 // export
