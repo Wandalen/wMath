@@ -5,7 +5,7 @@
   "author" : "Kostiantyn Wandalen <wanalen@01.school>",
   "license" : "MIT",
   "main" : "proto/wtools/amath/l9/Include.s",
-  "files" : [ "proto/wtools/amath", "proto/wtools/Tools.s" ],
+  "files" : [ "proto/wtools/amath", "proto/wtools/Tools.s", "proto/node_modules" ],
   "scripts" : { "test" : "wtest .run 'proto/**' rapidity:-3", "docgen" : "wdocgen .build proto" },
   "repository" : { "type" : "git", "url" : "https ://github.com/Wandalen/wMath.git" },
   "bugs" :
@@ -20,7 +20,7 @@
     "wmathmatrix" : "",
     "wmathmodels" : ""
   },
-  "devDependencies" : { "wTesting" : "", "wmath" : "file:.", "eslint" : "7.1.0" },
+  "devDependencies" : { "wTesting" : "", "eslint" : "7.1.0" },
   "keywords" :
   [
     "wTools",
