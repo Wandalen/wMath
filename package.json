@@ -1,13 +1,14 @@
 {
   "name": "wmath",
-  "version": "0.3.110",
+  "version": "0.3.111",
   "description": "Aggregates other math modules in single module.",
   "author": "Kostiantyn Wandalen <wanalen@01.school>",
   "license": "MIT",
   "main": "proto/wtools/amath/l9/Include.s",
   "files": [
     "proto/wtools/amath",
-    "proto/wtools/Tools.s"
+    "proto/wtools/Tools.s",
+    "proto/node_modules"
   ],
   "scripts": {
     "test": "wtest .run 'proto/**' rapidity:-3",
@@ -29,8 +30,7 @@
   },
   "devDependencies": {
     "eslint": "7.1.0",
-    "wTesting": "delta",
-    "wmath": "file:."
+    "wTesting": "delta"
   },
   "keywords": [
     "wTools",
