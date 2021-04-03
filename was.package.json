@@ -4,7 +4,7 @@
   "description" : "Aggregates other math modules in single module.",
   "author" : "Kostiantyn Wandalen <wanalen@01.school>",
   "license" : "MIT",
-  "main" : "/pro/module/wMath/proto/node_modules/wmath",
+  "main" : "proto/node_modules/wmath",
   "files" : [ "proto/wtools/amath", "proto/wtools/Tools.s", "proto/node_modules" ],
   "scripts" : { "test" : "wtest .run 'proto/**' rapidity:-3", "docgen" : "wdocgen .build proto" },
   "repository" : { "type" : "git", "url" : "https ://github.com/Wandalen/wMath.git" },
