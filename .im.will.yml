@@ -85,8 +85,8 @@ path:
       raw: compiled
       content: prime
   npm.proto.entry:
-    - /pro/module/wMath/proto/wtools/amath/l9/Include.s
-    - /pro/module/wMath/proto/node_modules/wmath
+    - proto/wtools/amath/l9/Include.s
+    - proto/node_modules/wmath
 reflector:
   reflect.proto:
     inherit: predefined.*
