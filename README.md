@@ -1,5 +1,5 @@
 
-# module::Math [![status](https://github.com/Wandalen/wMath/workflows/publish/badge.svg)](https://github.com/Wandalen/wMath/actions?query=workflow%3Apublish) [![experimental](https://img.shields.io/badge/stability-experimental-orange.svg)](https://github.com/emersion/stability-badges#experimental)
+# module::Math [![status](https://github.com/Wandalen/wMath/actions/workflows/StandardPublish.yml/badge.svg)](https://github.com/Wandalen/wMath/actions/workflows/StandardPublish.yml) [![experimental](https://img.shields.io/badge/stability-experimental-orange.svg)](https://github.com/emersion/stability-badges#experimental)
 
 Aggregates other math modules in single module.
 
@@ -11,7 +11,7 @@ npm install
 node sample/trivial/Sample.s
 ```
 
-## To add to your project
+### To add to your project
 ```
 npm add 'wmath@alpha'
 ```
