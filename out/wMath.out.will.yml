@@ -2,12 +2,9 @@ format: outwillfile-2.0
 root:
   - wMath.out
 consistency:
-  ../.ex.will.yml: &ref_0
-    hash: f2b18aca32d49e0a9469728b64bc0789
-    size: 1792
-  ../.im.will.yml: &ref_1
-    hash: c3358455e2ddb55c75e5b20e7c9126a4
-    size: 5135
+  ../will.yml: &ref_0
+    hash: 5673c40e26dc759b8e39b236a7205011
+    size: 6698
 module:
   wMath.out:
     about:
@@ -16,11 +13,10 @@ module:
       description: Aggregates other math modules in single module.
       enabled: 1
       version: 0.4.0
-      interpreters: &ref_2
-        - njs >= 10.0.0
-        - chrome >= 60.0.0
-        - firefox >= 60.0.0
-      keywords: &ref_3
+      license: MIT
+      npm.name: wmath
+      author: Kostiantyn Wandalen <wanalen@01.school>
+      keywords: &ref_1
         - wTools
         - math
         - scalar
@@ -31,12 +27,13 @@ module:
         - convolution
         - matrix
         - matrix math
-      license: MIT
-      author: Kostiantyn Wandalen <wanalen@01.school>
-      contributors: &ref_4
+      contributors: &ref_2
         - Kostiantyn Wandalen <wanalen@01.school>
-      npm.name: wmath
-      npm.scripts: &ref_5
+      interpreters: &ref_3
+        - njs >= 10.0.0
+        - chrome >= 60.0.0
+        - firefox >= 60.0.0
+      npm.scripts: &ref_4
         test: wtest .run proto/**
         docgen: wdocgen .build proto
     path:
@@ -51,15 +48,11 @@ module:
       module.original.willfiles:
         criterion:
           predefined: 1
-        path:
-          - ../.ex.will.yml
-          - ../.im.will.yml
+        path: ../will.yml
       module.peer.willfiles:
         criterion:
           predefined: 1
-        path:
-          - ../.ex.will.yml
-          - ../.im.will.yml
+        path: ../will.yml
       module.peer.in:
         criterion:
           predefined: 1
@@ -179,19 +172,19 @@ module:
         path: 'npm:///wTools'
         autoExporting: 0
         enabled: 0
-      wMathScalar:
+      wmathscalar:
         path: 'npm:///wmathscalar'
         autoExporting: 0
         enabled: 0
-      wMathVector:
+      wmathvector:
         path: 'npm:///wmathvector'
         autoExporting: 0
         enabled: 0
-      wMathMatrix:
+      wmathmatrix:
         path: 'npm:///wmathmatrix'
         autoExporting: 0
         enabled: 0
-      wMathModels:
+      wmathmodels:
         path: 'npm:///wmathmodels'
         autoExporting: 0
         enabled: 0
@@ -808,8 +801,7 @@ module:
           content: proto
           export: 1
     consistency:
-      ../.ex.will.yml: *ref_0
-      ../.im.will.yml: *ref_1
+      ../will.yml: *ref_0
   ../:
     about:
       name: wMath
@@ -817,26 +809,22 @@ module:
       description: Aggregates other math modules in single module.
       enabled: 1
       version: 0.4.0
-      interpreters: *ref_2
-      keywords: *ref_3
       license: MIT
-      author: Kostiantyn Wandalen <wanalen@01.school>
-      contributors: *ref_4
       npm.name: wmath
-      npm.scripts: *ref_5
+      author: Kostiantyn Wandalen <wanalen@01.school>
+      keywords: *ref_1
+      contributors: *ref_2
+      interpreters: *ref_3
+      npm.scripts: *ref_4
     path:
       module.willfiles:
         criterion:
           predefined: 1
-        path:
-          - .ex.will.yml
-          - .im.will.yml
+        path: will.yml
       module.original.willfiles:
         criterion:
           predefined: 1
-        path:
-          - .ex.will.yml
-          - .im.will.yml
+        path: will.yml
       module.peer.willfiles:
         criterion:
           predefined: 1
@@ -938,19 +926,19 @@ module:
         path: 'npm:///wTools'
         autoExporting: 0
         enabled: 0
-      wMathScalar:
+      wmathscalar:
         path: 'npm:///wmathscalar'
         autoExporting: 0
         enabled: 0
-      wMathVector:
+      wmathvector:
         path: 'npm:///wmathvector'
         autoExporting: 0
         enabled: 0
-      wMathMatrix:
+      wmathmatrix:
         path: 'npm:///wmathmatrix'
         autoExporting: 0
         enabled: 0
-      wMathModels:
+      wmathmodels:
         path: 'npm:///wmathmodels'
         autoExporting: 0
         enabled: 0
@@ -1503,9 +1491,6 @@ module:
           - 'build::release'
           - 'build::npm'
     consistency:
-      ../.ex.will.yml:
-        hash: f2b18aca32d49e0a9469728b64bc0789
-        size: 1792
-      ../.im.will.yml:
-        hash: c3358455e2ddb55c75e5b20e7c9126a4
-        size: 5135
+      ../will.yml:
+        hash: 5673c40e26dc759b8e39b236a7205011
+        size: 6698
