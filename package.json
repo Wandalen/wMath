@@ -1,11 +1,11 @@
 {
   "name" : "wmath",
-  "version" : "0.3.129",
+  "version" : "0.3.130",
   "description" : "Aggregates other math modules in single module.",
   "author" : "Kostiantyn Wandalen <wanalen@01.school>",
   "license" : "MIT",
   "main" : "proto/node_modules/wmath",
-  "files" : [ "proto/wtools/amath", "proto/node_modules" ],
+  "files" : [ "proto/wtools/amath", "proto/node_modules", "proto/node_modules/Tools", "proto/node_modules/wmath" ],
   "scripts" : { "test" : "wtest .run 'proto/**' rapidity:-3", "docgen" : "wdocgen .build proto" },
   "repository" : { "type" : "git", "url" : "https ://github.com/Wandalen/wMath.git" },
   "bugs" :
