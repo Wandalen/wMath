@@ -1,28 +1,39 @@
 {
-  "name" : "wmath",
-  "version" : "0.3.130",
-  "description" : "Aggregates other math modules in single module.",
-  "author" : "Kostiantyn Wandalen <wanalen@01.school>",
-  "license" : "MIT",
-  "main" : "proto/node_modules/wmath",
-  "files" : [ "proto/wtools/amath", "proto/node_modules", "proto/node_modules/Tools", "proto/node_modules/wmath" ],
-  "scripts" : { "test" : "wtest .run 'proto/**' rapidity:-3", "docgen" : "wdocgen .build proto" },
-  "repository" : { "type" : "git", "url" : "https ://github.com/Wandalen/wMath.git" },
-  "bugs" :
-  {
-    "url" : "https ://github.com/Wandalen/wMath/issues"
+  "name": "wmath",
+  "version": "0.3.131",
+  "description": "Aggregates other math modules in single module.",
+  "author": "Kostiantyn Wandalen <wanalen@01.school>",
+  "license": "MIT",
+  "main": "proto/node_modules/wmath",
+  "files": [
+    "proto/wtools/amath",
+    "proto/node_modules",
+    "proto/node_modules/Tools",
+    "proto/node_modules/wmath"
+  ],
+  "scripts": {
+    "test": "wtest .run 'proto/**' rapidity:-3",
+    "docgen": "wdocgen .build proto"
   },
-  "dependencies" :
-  {
-    "wTools" : "",
-    "wmathscalar" : "",
-    "wmathvector" : "",
-    "wmathmatrix" : "",
-    "wmathmodels" : ""
+  "repository": {
+    "type": "git",
+    "url": "https ://github.com/Wandalen/wMath.git"
   },
-  "devDependencies" : { "wTesting" : "", "eslint" : "7.1.0" },
-  "keywords" :
-  [
+  "bugs": {
+    "url": "https ://github.com/Wandalen/wMath/issues"
+  },
+  "dependencies": {
+    "wTools": "",
+    "wmathvector": "",
+    "wmathscalar": "",
+    "wmathmodels": "",
+    "wmathmatrix": ""
+  },
+  "devDependencies": {
+    "wTesting": "",
+    "eslint": "7.1.0"
+  },
+  "keywords": [
     "wTools",
     "math",
     "scalar",
