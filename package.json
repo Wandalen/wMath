@@ -1,12 +1,12 @@
 {
   "name": "wmath",
-  "version": "0.3.135",
+  "version": "0.3.136",
   "description": "Aggregates other math modules in single module.",
   "author": "Kostiantyn Wandalen <wanalen@01.school>",
   "license": "MIT",
   "main": "proto/node_modules/wmath",
   "files": [
-    "proto/wtools/amath",
+    "proto/wtools/amath/l9",
     "proto/node_modules",
     "proto/node_modules/Tools",
     "proto/node_modules/wmath"
