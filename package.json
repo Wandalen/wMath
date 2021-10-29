@@ -1,6 +1,6 @@
 {
   "name": "wmath",
-  "version": "0.3.151",
+  "version": "0.3.152",
   "description": "Aggregates other math modules in single module.",
   "author": "Kostiantyn Wandalen <wanalen@01.school>",
   "license": "MIT",
