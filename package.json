@@ -1,6 +1,6 @@
 {
   "name": "wmath",
-  "version": "0.3.154",
+  "version": "0.3.155",
   "description": "Aggregates other math modules in single module.",
   "author": "Kostiantyn Wandalen <wanalen@01.school>",
   "license": "MIT",
@@ -23,14 +23,14 @@
     "url": "https ://github.com/Wandalen/wMath/issues"
   },
   "dependencies": {
-    "wTools": "delta",
-    "wmathvector": "delta",
-    "wmathscalar": "delta",
-    "wmathmodels": "delta",
-    "wmathmatrix": "delta"
+    "wTools": "latest",
+    "wmathvector": "latest",
+    "wmathscalar": "latest",
+    "wmathmodels": "latest",
+    "wmathmatrix": "latest"
   },
   "devDependencies": {
-    "wTesting": "delta",
+    "wTesting": "latest",
     "eslint": "7.32.0"
   },
   "keywords": [
