@@ -3,8 +3,8 @@ root:
   - wMath.out
 consistency:
   ../will.yml: &ref_0
-    hash: 9abf7d4dd589f33caf792297c7e0bec9
-    size: 6557
+    hash: bf91cef31b498ef9f84d76e2be71e12c
+    size: 6565
 module:
   wMath.out:
     about:
@@ -1474,5 +1474,5 @@ module:
           - 'build::npm'
     consistency:
       ../will.yml:
-        hash: 9abf7d4dd589f33caf792297c7e0bec9
-        size: 6557
+        hash: bf91cef31b498ef9f84d76e2be71e12c
+        size: 6565
