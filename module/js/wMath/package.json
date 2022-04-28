@@ -1,0 +1,48 @@
+{
+  "name": "wmath",
+  "version": "0.3.160",
+  "description": "Aggregates other math modules in single module.",
+  "author": "Kostiantyn Wandalen <wandalen@obox.systems>",
+  "license": "MIT",
+  "main": "proto/node_modules/wmath",
+  "files": [
+    "proto/wtools/amath/l9",
+    "proto/node_modules",
+    "proto/node_modules/Tools",
+    "proto/node_modules/wmath"
+  ],
+  "scripts": {
+    "test": "wtest .run 'proto/**' rapidity:-3",
+    "docgen": "wdocgen .build proto"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https ://github.com/Wandalen/wMath.git"
+  },
+  "bugs": {
+    "url": "https ://github.com/Wandalen/wMath/issues"
+  },
+  "dependencies": {
+    "wTools": "alpha",
+    "wmathvector": "alpha",
+    "wmathscalar": "alpha",
+    "wmathmodels": "alpha",
+    "wmathmatrix": "alpha"
+  },
+  "devDependencies": {
+    "wTesting": "alpha",
+    "eslint": "7.32.0"
+  },
+  "keywords": [
+    "wTools",
+    "math",
+    "scalar",
+    "series",
+    "progression",
+    "vector",
+    "dot product",
+    "convolution",
+    "matrix",
+    "matrix math"
+  ]
+}
