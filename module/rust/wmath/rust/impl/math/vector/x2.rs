@@ -9,7 +9,7 @@ pub mod internal
   /// Traits any element of a vector should implement.
   ///
 
-  pub trait ElementInterface :
+  pub trait ScalarInterface :
     Debug +
     PartialEq +
     Copy +
@@ -20,7 +20,7 @@ pub mod internal
   {
   }
 
-  impl< T > ElementInterface for T
+  impl< T > ScalarInterface for T
   where
     T :
       Debug +
@@ -42,7 +42,7 @@ pub mod internal
   #[ derive( Debug, PartialEq, Copy, Clone, Hash ) ]
   pub struct x2
   <
-    E : ElementInterface,
+    E : ScalarInterface,
   >
   ( pub E, pub E );
 
@@ -54,7 +54,7 @@ pub mod internal
   pub trait x2_interface
   {
     /// Type of element.
-    type Element : ElementInterface;
+    type Element : ScalarInterface;
 
     /// Constructor.
     fn make( _0 : Self::Element, _1 : Self::Element ) -> Self;
@@ -199,7 +199,7 @@ pub mod internal
 
   impl< E > x2_interface for x2< E >
   where
-    E : ElementInterface,
+    E : ScalarInterface,
   {
     type Element = E;
 
@@ -257,7 +257,7 @@ pub mod internal
 
   impl< E > x2_canonical_interface for x2< E >
   where
-    E : ElementInterface,
+    E : ScalarInterface,
   {
 
     #[ inline ]
@@ -278,7 +278,7 @@ pub mod internal
 
   impl< Right, E > Add< Right > for x2< E >
   where
-    E : ElementInterface,
+    E : ScalarInterface,
     Right : x2_interface< Element = E >,
   {
     type Output = Self;
@@ -292,7 +292,7 @@ pub mod internal
 
   impl< Right, E > Add< &Right > for &x2< E >
   where
-    E : ElementInterface,
+    E : ScalarInterface,
     Right : x2_interface< Element = E > + Copy,
   {
     type Output = < x2< E > as Add< Right > >::Output;
@@ -310,7 +310,7 @@ pub mod internal
 pub mod exposed
 {
   use super::internal as i;
-  pub use i::ElementInterface;
+  pub use i::ScalarInterface;
   pub use i::x2;
   pub use i::x2_interface;
   pub use i::x2_canonical_interface;

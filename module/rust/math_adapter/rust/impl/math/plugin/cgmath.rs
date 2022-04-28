@@ -6,8 +6,8 @@ pub mod internal
   use crate::x2;
   use crate::ScalarInterface;
 
-  include!( "./winit_x2.rs" );
-  impl_x2_for!( winit::dpi::PhysicalSize< Scalar > );
+  include!( "./cgmath_x2.rs" );
+  impl_x2_for!( cgmath::Vector2< Scalar > );
 
 }
 

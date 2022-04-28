@@ -1,6 +1,6 @@
 [package]
 name = "math_adapter"
-version = "0.1.0"
+version = "0.1.1"
 edition = "2021"
 authors = [
   "Kostiantyn Wandalen <wandalen@obox.systems>",
@@ -30,11 +30,11 @@ all-features = true
 
 [lib]
 name = "wmath"
-path = "rust/impl/math/lib.rs"
+path = "rust/impl/math/math_adapter_lib.rs"
 
 [[test]]
 name = "wmath_test"
-path = "rust/test/math/wmath_test.rs"
+path = "rust/test/math/math_adapter_lib_test.rs"
 
 [[example]]
 name = "wmath_trivial"
