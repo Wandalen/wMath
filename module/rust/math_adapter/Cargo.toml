@@ -1,5 +1,5 @@
 [package]
-name = "wmath"
+name = "math_adapter"
 version = "0.1.0"
 edition = "2021"
 authors = [
@@ -13,7 +13,7 @@ documentation = "https://docs.rs/wmath"
 repository = "https://github.com/Wandalen/wTools/tree/master/module/rust/wmath"
 homepage = "https://github.com/Wandalen/wTools/tree/master/module/rust/wmath"
 description = """
-Tools for writing and running tests.
+Math adapters. A proper tool for decoupling from math library implementations and inter-libraries integration.
 """
 categories = [ "algorithms", "development-tools" ]
 keywords = [ "fundamental", "general-purpose", "testing" ]
@@ -43,7 +43,7 @@ path = "sample/rust/wmath_trivial/src/main.rs"
 [features]
 # cgmath = [ "cgmath" ]
 # winit = [ "winit" ]
-default = [ "cgmath", "nalgebra", "winit" ]
+default = []
 
 [dependencies]
 cgmath = { version = "~0.18", optional = true }
