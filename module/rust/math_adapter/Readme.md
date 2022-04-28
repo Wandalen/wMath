@@ -1,6 +1,6 @@
 # module::wmath
 
-Math adapters. A proper tool for decoupling from math library implementations and inter-libraries integration.
+Collection of math adapters to decouple your application from math libraries' implementations and to increase inter-libraries compatibility / exchangeability.
 
 ### Sample
 
