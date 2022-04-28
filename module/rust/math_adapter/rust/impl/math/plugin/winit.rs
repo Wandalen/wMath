@@ -5,6 +5,7 @@ pub mod internal
   use core::hash::Hash;
   use core::ops::Add;
   use core::mem::size_of;
+  use crate::prelude::*;
 
   impl< E > x2_interface for winit::dpi::PhysicalSize< E >
   where

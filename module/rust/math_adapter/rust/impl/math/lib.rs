@@ -13,8 +13,10 @@
 
 #![ doc = include_str!( concat!( env!( "CARGO_MANIFEST_DIR" ), "/Readme.md" ) ) ]
 
-/// Basics.
+/// Adapters.
 pub mod vector;
+/// Implementation of adapters for specific math libraries.
+pub mod plugin;
 
 /// Exposed namespace of the module.
 pub mod exposed
