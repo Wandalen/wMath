@@ -14,12 +14,12 @@
 #![ doc = include_str!( concat!( env!( "CARGO_MANIFEST_DIR" ), "/Readme.md" ) ) ]
 
 /// Basics.
-pub mod basic;
+pub mod vector;
 
 /// Exposed namespace of the module.
 pub mod exposed
 {
-  pub use super::basic::exposed::*;
+  pub use super::vector::exposed::*;
 }
 
 pub use exposed::*;
@@ -27,5 +27,5 @@ pub use exposed::*;
 /// Prelude to use: `use wtools::prelude::*`.
 pub mod prelude
 {
-  pub use super::basic::prelude::*;
+  pub use super::vector::prelude::*;
 }

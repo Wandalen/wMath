@@ -27,8 +27,8 @@ pub mod internal
 
   #[ allow( non_camel_case_types ) ]
   #[ repr( C ) ]
-  #[ derive( Debug, PartialEq, Eq, Copy, Clone, Hash ) ]
-  pub struct ix2< E : Debug + PartialEq + Eq + Copy + Clone + Hash + Sized >
+  #[ derive( Debug, PartialEq, Copy, Clone, Hash ) ]
+  pub struct ix2< E : Debug + PartialEq + Copy + Clone + Hash + Sized >
   ( E, E );
 
   ///
@@ -39,7 +39,7 @@ pub mod internal
   pub trait ix2_interface
   {
     /// Type of element.
-    type Element : Debug + PartialEq + Eq + Copy + Clone + Hash + Sized;
+    type Element : Debug + PartialEq + Copy + Clone + Hash + Sized;
 
     /// First element.
     fn _0( &self ) -> Self::Element;
