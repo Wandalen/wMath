@@ -13,7 +13,7 @@ documentation = "https://docs.rs/wmath"
 repository = "https://github.com/Wandalen/wTools/tree/master/module/rust/wmath"
 homepage = "https://github.com/Wandalen/wTools/tree/master/module/rust/wmath"
 description = """
-Math library aggregating several math modules.
+Tools for writing and running tests.
 """
 categories = [ "algorithms", "development-tools" ]
 keywords = [ "fundamental", "general-purpose", "testing" ]

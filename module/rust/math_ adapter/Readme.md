@@ -1,6 +1,6 @@
 # module::wmath
 
-Math library aggregating several math modules.
+Math library with adapters.
 
 ### Sample
 
