@@ -2,7 +2,7 @@
 
 use wtest_basic::*;
 use core::mem::size_of;
-use wmath::prelude::*;
+use math_adapter::prelude::*;
 use num_traits::cast::cast;
 use crate::tools::*;
 use crate::x2_with_records_test_for;
@@ -36,7 +36,7 @@ fn _basic()
     let src1 = cgmath::Vector2::< i8 >{ x : 1, y : 2 };
     let src2 = cgmath::Vector2::< i8 >{ x : 2, y : 3 };
     let got = src1.as_canonical() + src2.as_canonical();
-    let exp = wmath::x2::< i8 >( 3, 5 );
+    let exp = math_adapter::x2::< i8 >( 3, 5 );
     assert_eq!( got, exp );
   }
 

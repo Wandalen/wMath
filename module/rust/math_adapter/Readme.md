@@ -5,7 +5,7 @@ Collection of math adapters to decouple your application from math libraries' im
 ### Sample
 
 ```rust
-use wmath::*;
+use math_adapter::*;
 
 /* qqq : write */
 

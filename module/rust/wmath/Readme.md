@@ -6,7 +6,7 @@ Math library aggregating several math modules.
 
 <!-- qqq : write --> <!-- aaa : Dmytro : done -->
 ```rust
-use wmath::*;
+use math_adapter::*;
 
 fn main()
 {

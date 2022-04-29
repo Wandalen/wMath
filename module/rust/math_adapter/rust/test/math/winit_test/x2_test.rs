@@ -2,7 +2,7 @@
 
 use wtest_basic::*;
 use core::mem::size_of;
-use wmath::prelude::*;
+use math_adapter::prelude::*;
 use num_traits::cast::cast;
 use crate::tools::*;
 use crate::x2_with_records_test_for;
@@ -36,7 +36,7 @@ fn _basic()
     let src1 = winit::dpi::PhysicalSize::< i8 >{ width : 1, height : 2 };
     let src2 = winit::dpi::PhysicalSize::< i8 >{ width : 2, height : 3 };
     let got = src1.as_canonical() + src2.as_canonical();
-    let exp = wmath::x2::< i8 >( 3, 5 );
+    let exp = math_adapter::x2::< i8 >( 3, 5 );
     assert_eq!( got, exp );
   }
 
@@ -44,12 +44,11 @@ fn _basic()
 
 //
 
-fn _canonical_test()
+fn _physical_size_test()
 {
-  // x2_with_records_test_for!( winit::dpi::PhysicalSize, width, height ; i8, i16, i32, i64, i128 );
-  // x2_with_records_test_for!( winit::dpi::PhysicalSize, width, height ; u8, u16, u32, u64, u128 );
-  // x2_with_records_test_for!( winit::dpi::PhysicalSize, width, height ; f32, f64 );
-  // x2_with_records_test_for!( winit::dpi::PhysicalSize, width, height ; f32 );
+  x2_with_records_test_for!( winit::dpi::PhysicalSize, width, height ; i8, i16, i32, i64, i128 );
+  x2_with_records_test_for!( winit::dpi::PhysicalSize, width, height ; u8, u16, u32, u64, u128 );
+  x2_with_records_test_for!( winit::dpi::PhysicalSize, width, height ; f32, f64 );
 }
 
 //
@@ -57,5 +56,5 @@ fn _canonical_test()
 test_suite!
 {
   basic,
-  canonical_test,
+  physical_size_test,
 }

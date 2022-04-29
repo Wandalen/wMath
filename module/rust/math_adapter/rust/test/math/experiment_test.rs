@@ -1,6 +1,6 @@
 use wtest_basic::*;
 // use core::mem::size_of;
-// use wmath::*;
+// use math_adapter::*;
 
 //
 

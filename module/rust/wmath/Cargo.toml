@@ -34,7 +34,7 @@ path = "rust/impl/math/lib.rs"
 
 [[test]]
 name = "wmath_test"
-path = "rust/test/math/wmath_test.rs"
+path = "rust/test/math/wmath_lib_test.rs"
 
 [[example]]
 name = "wmath_trivial"
@@ -43,13 +43,14 @@ path = "sample/rust/wmath_trivial/src/main.rs"
 [features]
 # cgmath = [ "cgmath" ]
 # winit = [ "winit" ]
-default = [ "cgmath", "nalgebra", "winit" ]
+# default = [ "cgmath", "nalgebra", "winit" ]
 
 [dependencies]
-cgmath = { version = "~0.18", optional = true }
-nalgebra = { version = "~0.30", optional = true }
-winit = { version = "~0.26", optional = true }
-num-traits = "~0.2"
+math_adapter = { version = "~0.1", path = "../../rust/math_adapter" }
+# cgmath = { version = "~0.18", optional = true }
+# nalgebra = { version = "~0.30", optional = true }
+# winit = { version = "~0.26", optional = true }
+# num-traits = "~0.2"
 # paste = "~1.0"
 # anyhow = "~1.0"
 

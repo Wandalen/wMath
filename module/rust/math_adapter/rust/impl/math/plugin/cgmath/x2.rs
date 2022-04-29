@@ -86,6 +86,37 @@ macro_rules! impl_x2_for
 
     }
 
+    //
+
+    impl< Scalar, Any > crate::AsCgmathInterface< $Struct > for Any
+    where
+      Scalar : ScalarInterface,
+      Any : x2_canonical_interface< Scalar = Scalar >,
+    {
+
+      fn as_cgmath( &self ) -> &$Struct
+      {
+        unsafe
+        {
+          std::mem::transmute::< _, _ >( self )
+        }
+      }
+
+      fn as_cgmath_mut( &mut self ) -> &mut $Struct
+      {
+        unsafe
+        {
+          std::mem::transmute::< _, _ >( self )
+        }
+      }
+
+      // fn clone_as_cgmath( &self ) -> $Struct
+      // {
+      //   $Struct::from( self )
+      // }
+
+    }
+
   };
 
 }

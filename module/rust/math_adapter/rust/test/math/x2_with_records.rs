@@ -46,8 +46,8 @@ macro_rules! x2_with_records_test_for
         assert_eq!( got.$_1, $crate::val!( 2 ) );
         assert_eq!( got._0(), $crate::val!( 1 ) );
         assert_eq!( got._1(), $crate::val!( 2 ) );
-        assert_eq!( got.$_0(), $crate::val!( 1 ) );
-        assert_eq!( got.$_1(), $crate::val!( 2 ) );
+        assert_eq!( got.x(), $crate::val!( 1 ) );
+        assert_eq!( got.y(), $crate::val!( 2 ) );
         assert_eq!( *got._0_ref(), $crate::val!( 1 ) );
         assert_eq!( *got._1_ref(), $crate::val!( 2 ) );
       }
@@ -96,7 +96,7 @@ macro_rules! x2_with_records_test_for
       {
         let src = $Vec $( :: $Vec2 )* ::< T >::make( $crate::val!( 1 ), $crate::val!( 2 ) );
         let got = src.clone_as_canonical();
-        let exp = wmath::x2::< T >( $crate::val!( 1 ), $crate::val!( 2 ) );
+        let exp = math_adapter::x2::< T >( $crate::val!( 1 ), $crate::val!( 2 ) );
         assert_eq!( got, exp );
         assert!( !mem_same_ptrs( &got, &src ) );
       }
@@ -125,7 +125,7 @@ macro_rules! x2_with_records_test_for
       {
         let src = $Vec $( :: $Vec2 )* ::< T >::make( $crate::val!( 1 ), $crate::val!( 2 ) );
         let got = src.as_canonical();
-        let exp = wmath::x2::< T >( $crate::val!( 1 ), $crate::val!( 2 ) );
+        let exp = math_adapter::x2::< T >( $crate::val!( 1 ), $crate::val!( 2 ) );
         assert_eq!( got, &exp );
         assert!( mem_same( got, &src ) );
       }
@@ -182,15 +182,15 @@ macro_rules! x2_with_records_test_for
 
       // --
 
-      /* test.case = "operator add"; */
-      {
-        let src1 = $Vec $( :: $Vec2 )* ::< T >::make( $crate::val!( 1 ), $crate::val!( 2 ) );
-        let src2 = $Vec $( :: $Vec2 )* ::< T >::make( $crate::val!( 2 ), $crate::val!( 3 ) );
-        let got = src1 + src2;
-        let exp = $Vec $( :: $Vec2 )* ::< T >::make( $crate::val!( 3 ), $crate::val!( 5 ) );
-        // let exp = wmath::x2::< T >( $crate::val!( 3 ), $crate::val!( 5 ) );
-        assert_eq!( got, exp );
-      }
+      // /* test.case = "operator add"; */
+      // {
+      //   let src1 = $Vec $( :: $Vec2 )* ::< T >::make( $crate::val!( 1 ), $crate::val!( 2 ) );
+      //   let src2 = $Vec $( :: $Vec2 )* ::< T >::make( $crate::val!( 2 ), $crate::val!( 3 ) );
+      //   let got = src1 + src2;
+      //   let exp = $Vec $( :: $Vec2 )* ::< T >::make( $crate::val!( 3 ), $crate::val!( 5 ) );
+      //   // let exp = math_adapter::x2::< T >( $crate::val!( 3 ), $crate::val!( 5 ) );
+      //   assert_eq!( got, exp );
+      // }
 
     }
 

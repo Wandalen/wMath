@@ -8,6 +8,7 @@ pub mod internal
   // use crate::prelude::*;
 
   include!( "./x2_interface.rs" );
+  include!( "./x2_ops.rs" );
   include!( "./x2_struct.rs" );
 
   //
