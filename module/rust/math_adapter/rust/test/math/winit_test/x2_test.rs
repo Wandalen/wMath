@@ -46,10 +46,10 @@ fn _basic()
 
 fn _canonical_test()
 {
-  // x2_with_records_test_for!( i8, i16, i32, i64, i128 );
-  // x2_with_records_test_for!( u8, u16, u32, u64, u128 );
-  // x2_with_records_test_for!( f32, f64 );
-  // x2_with_records_test_for!( f32 );
+  // x2_with_records_test_for!( winit::dpi::PhysicalSize, width, height ; i8, i16, i32, i64, i128 );
+  // x2_with_records_test_for!( winit::dpi::PhysicalSize, width, height ; u8, u16, u32, u64, u128 );
+  // x2_with_records_test_for!( winit::dpi::PhysicalSize, width, height ; f32, f64 );
+  // x2_with_records_test_for!( winit::dpi::PhysicalSize, width, height ; f32 );
 }
 
 //

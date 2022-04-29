@@ -1,12 +1,32 @@
+
+///
+/// Required to convert integets to floats.
+///
+
+#[ macro_export ]
+macro_rules! val
+{
+
+  ( $val : expr ) =>
+  {
+    num_traits::cast::cast::< _, T >( $val ).unwrap()
+  };
+
+}
+
+///
+/// Tests for x2 in a fromat of structure with 2 fields.
+///
+
 #[ macro_export ]
 macro_rules! x2_with_records_test_for
 {
 
-  () =>
+  ( $Vec : ident $( :: $Vec2 : ident )*, $_0 : ident, $_1 : ident ; ) =>
   {
   };
 
-  ( $type : ident $(, $( $tail : ident ),* )? ) =>
+  ( $Vec : ident $( :: $Vec2 : ident )*, $_0 : ident, $_1 : ident ; $type : ident $(, $( $tail : ident ),* )? ) =>
   {
 
     {
@@ -15,68 +35,68 @@ macro_rules! x2_with_records_test_for
 
       /* test.case = "size"; */
       {
-        assert_eq!( size_of::< cgmath::Vector2::< T > >(), size_of::< ( T, T ) >() );
-        assert_eq!( size_of::< cgmath::Vector2::< T > >(), size_of::< [ T ; 2 ] >() );
+        assert_eq!( size_of::< $Vec $( :: $Vec2 )* ::< T > >(), size_of::< ( T, T ) >() );
+        assert_eq!( size_of::< $Vec $( :: $Vec2 )* ::< T > >(), size_of::< [ T ; 2 ] >() );
       }
 
       /* test.case = "value of elements"; */
       {
-        let got = cgmath::Vector2::< T >::make( cast::< _, T >( 1 ).unwrap(), cast::< _, T >( 2 ).unwrap() );
-        assert_eq!( got.x, cast::< _, T >( 1 ).unwrap() );
-        assert_eq!( got.y, cast::< _, T >( 2 ).unwrap() );
-        assert_eq!( got._0(), cast::< _, T >( 1 ).unwrap() );
-        assert_eq!( got._1(), cast::< _, T >( 2 ).unwrap() );
-        assert_eq!( got.x(), cast::< _, T >( 1 ).unwrap() );
-        assert_eq!( got.y(), cast::< _, T >( 2 ).unwrap() );
-        assert_eq!( *got._0_ref(), cast::< _, T >( 1 ).unwrap() );
-        assert_eq!( *got._1_ref(), cast::< _, T >( 2 ).unwrap() );
+        let got = $Vec $( :: $Vec2 )* ::< T >::make( $crate::val!( 1 ), $crate::val!( 2 ) );
+        assert_eq!( got.$_0, $crate::val!( 1 ) );
+        assert_eq!( got.$_1, $crate::val!( 2 ) );
+        assert_eq!( got._0(), $crate::val!( 1 ) );
+        assert_eq!( got._1(), $crate::val!( 2 ) );
+        assert_eq!( got.$_0(), $crate::val!( 1 ) );
+        assert_eq!( got.$_1(), $crate::val!( 2 ) );
+        assert_eq!( *got._0_ref(), $crate::val!( 1 ) );
+        assert_eq!( *got._1_ref(), $crate::val!( 2 ) );
       }
 
       /* test.case = "set value of elements"; */
       {
-        let mut got = cgmath::Vector2::< T >::make( cast::< _, T >( 1 ).unwrap(), cast::< _, T >( 2 ).unwrap() );
-        assert_eq!( got._0(), cast::< _, T >( 1 ).unwrap() );
-        assert_eq!( got._1(), cast::< _, T >( 2 ).unwrap() );
-        assert_eq!( *got._0_mut(), cast::< _, T >( 1 ).unwrap() );
-        assert_eq!( *got._1_mut(), cast::< _, T >( 2 ).unwrap() );
-        *got._0_mut() = cast::< _, T >( 11 ).unwrap();
-        *got._1_mut() = cast::< _, T >( 22 ).unwrap();
-        assert_eq!( got._0(), cast::< _, T >( 11 ).unwrap() );
-        assert_eq!( got._1(), cast::< _, T >( 22 ).unwrap() );
-        assert_eq!( *got._0_mut(), cast::< _, T >( 11 ).unwrap() );
-        assert_eq!( *got._1_mut(), cast::< _, T >( 22 ).unwrap() );
+        let mut got = $Vec $( :: $Vec2 )* ::< T >::make( $crate::val!( 1 ), $crate::val!( 2 ) );
+        assert_eq!( got._0(), $crate::val!( 1 ) );
+        assert_eq!( got._1(), $crate::val!( 2 ) );
+        assert_eq!( *got._0_mut(), $crate::val!( 1 ) );
+        assert_eq!( *got._1_mut(), $crate::val!( 2 ) );
+        *got._0_mut() = $crate::val!( 11 );
+        *got._1_mut() = $crate::val!( 22 );
+        assert_eq!( got._0(), $crate::val!( 11 ) );
+        assert_eq!( got._1(), $crate::val!( 22 ) );
+        assert_eq!( *got._0_mut(), $crate::val!( 11 ) );
+        assert_eq!( *got._1_mut(), $crate::val!( 22 ) );
       }
 
       /* test.case = "make"; */
       {
-        let got = cgmath::Vector2::< T >::make( cast::< _, T >( 1 ).unwrap(), cast::< _, T >( 2 ).unwrap() );
-        let exp = cgmath::Vector2::< T >{ x : cast::< _, T >( 1 ).unwrap(), y : cast::< _, T >( 2 ).unwrap() };
+        let got = $Vec $( :: $Vec2 )* ::< T >::make( $crate::val!( 1 ), $crate::val!( 2 ) );
+        let exp = $Vec $( :: $Vec2 )* ::< T >{ $_0 : $crate::val!( 1 ), $_1 : $crate::val!( 2 ) };
         assert_eq!( got, exp );
       }
 
       /* test.case = "clone_as_tuple"; */
       {
-        let src = cgmath::Vector2::< T >::make( cast::< _, T >( 1 ).unwrap(), cast::< _, T >( 2 ).unwrap() );
+        let src = $Vec $( :: $Vec2 )* ::< T >::make( $crate::val!( 1 ), $crate::val!( 2 ) );
         let got = src.clone_as_tuple();
-        let exp : ( T , T ) = ( cast::< _, T >( 1 ).unwrap(), cast::< _, T >( 2 ).unwrap() );
+        let exp : ( T , T ) = ( $crate::val!( 1 ), $crate::val!( 2 ) );
         assert_eq!( got, exp );
         assert!( !mem_same_ptrs( &got, &src ) ); /* qqq : discuss */
       }
 
       /* test.case = "clone_as_array"; */
       {
-        let src = cgmath::Vector2::< T >::make( cast::< _, T >( 1 ).unwrap(), cast::< _, T >( 2 ).unwrap() );
+        let src = $Vec $( :: $Vec2 )* ::< T >::make( $crate::val!( 1 ), $crate::val!( 2 ) );
         let got = src.clone_as_array();
-        let exp : [ T ; 2 ] = [ cast::< _, T >( 1 ).unwrap(), cast::< _, T >( 2 ).unwrap() ];
+        let exp : [ T ; 2 ] = [ $crate::val!( 1 ), $crate::val!( 2 ) ];
         assert_eq!( got, exp );
         assert!( !mem_same_ptrs( &got, &src ) );
       }
 
       /* test.case = "clone_as_canonical"; */
       {
-        let src = cgmath::Vector2::< T >::make( cast::< _, T >( 1 ).unwrap(), cast::< _, T >( 2 ).unwrap() );
+        let src = $Vec $( :: $Vec2 )* ::< T >::make( $crate::val!( 1 ), $crate::val!( 2 ) );
         let got = src.clone_as_canonical();
-        let exp = wmath::x2::< T >( cast::< _, T >( 1 ).unwrap(), cast::< _, T >( 2 ).unwrap() );
+        let exp = wmath::x2::< T >( $crate::val!( 1 ), $crate::val!( 2 ) );
         assert_eq!( got, exp );
         assert!( !mem_same_ptrs( &got, &src ) );
       }
@@ -85,36 +105,36 @@ macro_rules! x2_with_records_test_for
 
       /* test.case = "as_tuple"; */
       {
-        let src = cgmath::Vector2::< T >::make( cast::< _, T >( 1 ).unwrap(), cast::< _, T >( 2 ).unwrap() );
+        let src = $Vec $( :: $Vec2 )* ::< T >::make( $crate::val!( 1 ), $crate::val!( 2 ) );
         let got = src.as_tuple();
-        let exp : ( T , T ) = ( cast::< _, T >( 1 ).unwrap(), cast::< _, T >( 2 ).unwrap() );
+        let exp : ( T , T ) = ( $crate::val!( 1 ), $crate::val!( 2 ) );
         assert_eq!( got, &exp );
         assert!( mem_same( got, &src ) ); /* qqq : discuss */
       }
 
       /* test.case = "as_array"; */
       {
-        let src = cgmath::Vector2::< T >::make( cast::< _, T >( 1 ).unwrap(), cast::< _, T >( 2 ).unwrap() );
+        let src = $Vec $( :: $Vec2 )* ::< T >::make( $crate::val!( 1 ), $crate::val!( 2 ) );
         let got = src.as_array();
-        let exp : [ T ; 2 ] = [ cast::< _, T >( 1 ).unwrap(), cast::< _, T >( 2 ).unwrap() ];
+        let exp : [ T ; 2 ] = [ $crate::val!( 1 ), $crate::val!( 2 ) ];
         assert_eq!( got, &exp );
         assert!( mem_same( got, &src ) );
       }
 
       /* test.case = "as_canonical"; */
       {
-        let src = cgmath::Vector2::< T >::make( cast::< _, T >( 1 ).unwrap(), cast::< _, T >( 2 ).unwrap() );
+        let src = $Vec $( :: $Vec2 )* ::< T >::make( $crate::val!( 1 ), $crate::val!( 2 ) );
         let got = src.as_canonical();
-        let exp = wmath::x2::< T >( cast::< _, T >( 1 ).unwrap(), cast::< _, T >( 2 ).unwrap() );
+        let exp = wmath::x2::< T >( $crate::val!( 1 ), $crate::val!( 2 ) );
         assert_eq!( got, &exp );
         assert!( mem_same( got, &src ) );
       }
 
       /* test.case = "as_slice"; */
       {
-        let src = cgmath::Vector2::< T >::make( cast::< _, T >( 1 ).unwrap(), cast::< _, T >( 2 ).unwrap() );
+        let src = $Vec $( :: $Vec2 )* ::< T >::make( $crate::val!( 1 ), $crate::val!( 2 ) );
         let got = src.as_slice();
-        let exp = &[ cast::< _, T >( 1 ).unwrap(), cast::< _, T >( 2 ).unwrap() ][ .. ];
+        let exp = &[ $crate::val!( 1 ), $crate::val!( 2 ) ][ .. ];
         assert_eq!( got, exp );
       }
 
@@ -122,41 +142,41 @@ macro_rules! x2_with_records_test_for
 
       /* test.case = "as_tuple_mut"; */
       {
-        let mut src = cgmath::Vector2::< T >::make( cast::< _, T >( 1 ).unwrap(), cast::< _, T >( 2 ).unwrap() );
+        let mut src = $Vec $( :: $Vec2 )* ::< T >::make( $crate::val!( 1 ), $crate::val!( 2 ) );
         let got = src.as_tuple_mut();
-        got.0 = cast::< _, T >( 11 ).unwrap();
-        got.1 = cast::< _, T >( 22 ).unwrap();
-        let exp = cgmath::Vector2::< T >::make( cast::< _, T >( 11 ).unwrap(), cast::< _, T >( 22 ).unwrap() );
+        got.0 = $crate::val!( 11 );
+        got.1 = $crate::val!( 22 );
+        let exp = $Vec $( :: $Vec2 )* ::< T >::make( $crate::val!( 11 ), $crate::val!( 22 ) );
         assert_eq!( &src, &exp );
       }
 
       /* test.case = "as_array"; */
       {
-        let mut src = cgmath::Vector2::< T >::make( cast::< _, T >( 1 ).unwrap(), cast::< _, T >( 2 ).unwrap() );
+        let mut src = $Vec $( :: $Vec2 )* ::< T >::make( $crate::val!( 1 ), $crate::val!( 2 ) );
         let got = src.as_array_mut();
-        got[ 0 ] = cast::< _, T >( 11 ).unwrap();
-        got[ 1 ] = cast::< _, T >( 22 ).unwrap();
-        let exp = cgmath::Vector2::< T >::make( cast::< _, T >( 11 ).unwrap(), cast::< _, T >( 22 ).unwrap() );
+        got[ 0 ] = $crate::val!( 11 );
+        got[ 1 ] = $crate::val!( 22 );
+        let exp = $Vec $( :: $Vec2 )* ::< T >::make( $crate::val!( 11 ), $crate::val!( 22 ) );
         assert_eq!( &src, &exp );
       }
 
       /* test.case = "as_canonical"; */
       {
-        let mut src = cgmath::Vector2::< T >::make( cast::< _, T >( 1 ).unwrap(), cast::< _, T >( 2 ).unwrap() );
+        let mut src = $Vec $( :: $Vec2 )* ::< T >::make( $crate::val!( 1 ), $crate::val!( 2 ) );
         let got = src.as_canonical_mut();
-        *got._0_mut() = cast::< _, T >( 11 ).unwrap();
-        *got._1_mut() = cast::< _, T >( 22 ).unwrap();
-        let exp = cgmath::Vector2::< T >::make( cast::< _, T >( 11 ).unwrap(), cast::< _, T >( 22 ).unwrap() );
+        *got._0_mut() = $crate::val!( 11 );
+        *got._1_mut() = $crate::val!( 22 );
+        let exp = $Vec $( :: $Vec2 )* ::< T >::make( $crate::val!( 11 ), $crate::val!( 22 ) );
         assert_eq!( &src, &exp );
       }
 
       /* test.case = "as_slice"; */
       {
-        let mut src = cgmath::Vector2::< T >::make( cast::< _, T >( 1 ).unwrap(), cast::< _, T >( 2 ).unwrap() );
+        let mut src = $Vec $( :: $Vec2 )* ::< T >::make( $crate::val!( 1 ), $crate::val!( 2 ) );
         let got = src.as_slice_mut();
-        got[ 0 ] = cast::< _, T >( 11 ).unwrap();
-        got[ 1 ] = cast::< _, T >( 22 ).unwrap();
-        let exp = cgmath::Vector2::< T >::make( cast::< _, T >( 11 ).unwrap(), cast::< _, T >( 22 ).unwrap() );
+        got[ 0 ] = $crate::val!( 11 );
+        got[ 1 ] = $crate::val!( 22 );
+        let exp = $Vec $( :: $Vec2 )* ::< T >::make( $crate::val!( 11 ), $crate::val!( 22 ) );
         assert_eq!( &src, &exp );
       }
 
@@ -164,17 +184,17 @@ macro_rules! x2_with_records_test_for
 
       /* test.case = "operator add"; */
       {
-        let src1 = cgmath::Vector2::< T >::make( cast::< _, T >( 1 ).unwrap(), cast::< _, T >( 2 ).unwrap() );
-        let src2 = cgmath::Vector2::< T >::make( cast::< _, T >( 2 ).unwrap(), cast::< _, T >( 3 ).unwrap() );
+        let src1 = $Vec $( :: $Vec2 )* ::< T >::make( $crate::val!( 1 ), $crate::val!( 2 ) );
+        let src2 = $Vec $( :: $Vec2 )* ::< T >::make( $crate::val!( 2 ), $crate::val!( 3 ) );
         let got = src1 + src2;
-        let exp = cgmath::Vector2::< T >::make( cast::< _, T >( 3 ).unwrap(), cast::< _, T >( 5 ).unwrap() );
-        // let exp = wmath::x2::< T >( cast::< _, T >( 3 ).unwrap(), cast::< _, T >( 5 ).unwrap() );
+        let exp = $Vec $( :: $Vec2 )* ::< T >::make( $crate::val!( 3 ), $crate::val!( 5 ) );
+        // let exp = wmath::x2::< T >( $crate::val!( 3 ), $crate::val!( 5 ) );
         assert_eq!( got, exp );
       }
 
     }
 
-    $crate::x2_with_records_test_for!( $( $( $tail ),* )? );
+    $crate::x2_with_records_test_for!( $Vec $( :: $Vec2 )* , $_0, $_1 ; $( $( $tail ),* )? );
   };
 
 }
