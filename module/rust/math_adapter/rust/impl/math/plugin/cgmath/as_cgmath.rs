@@ -1,12 +1,6 @@
 /// Internal namespace.
 pub mod internal
 {
-  // use core::fmt::Debug;
-  // use core::hash::Hash;
-  // use core::ops::Mul;
-  // use crate::ScalarInterface;
-  // use crate::x2_canonical_interface;
-  // use crate::prelude::*;
 
   ///
   /// Trait for non-canonical structure to clone math data structures of other math libs as their analogs in cgmath to use operations of cgmath.
@@ -19,7 +13,7 @@ pub mod internal
   }
 
   ///
-  /// Trait to interpret math data structures of other math libs as their analogs in cgmath to use operations of cgmath.
+  /// Trait to interpret canonical math data structures of other math libs as their analogs in cgmath to use operations of cgmath.
   ///
 
   pub trait AsCgmathCanonicalInterface< T >
@@ -29,38 +23,6 @@ pub mod internal
     /// Interpret this data structure mutably as cgmath analog to use its operations.
     fn as_cgmath_mut( &mut self ) -> &mut T;
   }
-
-  //
-
-  // impl< Scalar, AsCgmath, Right > Mul< Right >
-  // for AsCgmath
-  // where
-  //   Scalar : ScalarInterface,
-  //   AsCgmath : AsCgmathInterface< Scalar > + x2_canonical_interface< Scalar = Scalar >,
-  //   Right : AsCgmathInterface< Scalar > + x2_canonical_interface< Scalar = Scalar >,
-  // {
-  //   type Output = Self;
-  //   fn mul( self, right : Right ) -> Self::Output
-  //   {
-  //     self.as_cgmath() * right.as_cgmath()
-  //   }
-  // }
-
-  //
-
-  // impl< Right, Scalar > Mul< &Right >
-  // for &AsCgmath< Scalar >
-  // where
-  //   AsCgmath : AsCgmathInterface< Scalar >,
-  //   Scalar : ScalarInterface,
-  //   Right : x2_interface< Scalar = Scalar > + Copy,
-  // {
-  //   type Output = < AsCgmath< Scalar > as Mul< Right > >::Output;
-  //   fn add( self, right : &Right ) -> Self::Output
-  //   {
-  //     Add::< Right >::mul( *self, *right )
-  //   }
-  // }
 
 }
 

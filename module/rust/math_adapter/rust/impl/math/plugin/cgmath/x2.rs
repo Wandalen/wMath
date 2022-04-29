@@ -1,7 +1,6 @@
 macro_rules! impl_x2_for
 {
 
-  // ( $( $Struct : tt )+ ) =>
   ( $Struct1 : ident $( :: $Struct2 : ident )* < $Params : ident > ) =>
   {
 
