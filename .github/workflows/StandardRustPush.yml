@@ -34,7 +34,7 @@ jobs:
     - name: Build
       run: cargo build --release
     - name: Run all tests
-      run: cargo test
+      run: cargo test --all-features
 
   build_fast:
     if : "!startsWith( github.event.head_commit.message, '[build]' ) && !startsWith( github.event.head_commit.message, 'Merge' )"
