@@ -4,10 +4,10 @@ use wmath::*;
 
 fn main()
 {
-  let vec2 = ix2_cgmath::new( 1, 3 );
-  println!( "{:?}", vec2 );
-  /* log : Vector2 [1, 3] */
-  let vec3 = vec2.extend( 2 );
-  println!( "{:?}", vec3 );
-  /* log : Vector3 [1, 3, 2] */
+  let x2_original = x2::< u8 >( 1, 3 );
+  println!( "{:?}", x2_original );
+  /* log : x2(1, 3) */
+  let x2_to_array = x2_original.clone_as_array();
+  println!( "{:?}", x2_to_array );
+  /* log : [1, 3] */
 }
