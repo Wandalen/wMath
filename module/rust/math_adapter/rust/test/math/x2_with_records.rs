@@ -180,6 +180,52 @@ macro_rules! x2_with_records_test_for
         assert_eq!( &src, &exp );
       }
 
+      /* test.case = "into Canonical from Vector"; */
+      {
+        let src = $Vec $( :: $Vec2 )* ::< T >::make( $crate::val!( 1 ), $crate::val!( 2 ) );
+        let got = math_adapter::x2::< T >::from2( src );
+        let exp = math_adapter::x2::< T >::make( $crate::val!( 1 ), $crate::val!( 2 ) );
+        assert_eq!( got, exp );
+      }
+
+      /* test.case = "into Vector from Canonical"; */
+      {
+        let src = math_adapter::x2::< T >::make( $crate::val!( 1 ), $crate::val!( 2 ) );
+        let got = $Vec $( :: $Vec2 )* ::< T >::from2( src );
+        let exp = $Vec $( :: $Vec2 )* ::< T >::make( $crate::val!( 1 ), $crate::val!( 2 ) );
+        assert_eq!( got, exp );
+      }
+
+//       /* test.case = "into Vector from &Canonical"; */
+//       {
+//
+//         let src = $Vec $( :: $Vec2 )* ::< T >::make( $crate::val!( 1 ), $crate::val!( 2 ) );
+//         let got = math_adapter::x2::< T >::from( &src );
+//         let exp = math_adapter::x2::< T >::make( $crate::val!( 1 ), $crate::val!( 2 ) );
+//         assert_eq!( got, exp );
+//
+//         let src = $Vec $( :: $Vec2 )* ::< T >::make( $crate::val!( 1 ), $crate::val!( 2 ) );
+//         let got : math_adapter::x2< T > = ( &src ).into();
+//         let exp = math_adapter::x2::< T >::make( $crate::val!( 1 ), $crate::val!( 2 ) );
+//         assert_eq!( got, exp );
+//
+//       }
+
+//       /* test.case = "from / into canonical"; */
+//       {
+//         let src = $Vec $( :: $Vec2 )* ::< T >::make( $crate::val!( 1 ), $crate::val!( 2 ) );
+//         let got = math_adapter::x2::< T >::from( &src );
+//         let exp = math_adapter::x2::< T >::make( $crate::val!( 1 ), $crate::val!( 2 ) );
+//         assert_eq!( got, exp );
+//
+//         // let src1 = $Vec $( :: $Vec2 )* ::< T >::make( $crate::val!( 1 ), $crate::val!( 2 ) );
+//         // let src2 = math_adapter::x2::< T >::make( $crate::val!( 1 ), $crate::val!( 2 ) );
+//         // let got2 : $Vec $( :: $Vec2 )* ::< T > = (&src2).into();
+//         // assert_eq!( got2, src1 );
+//         // let got1 : math_adapter::x2::< T > = src1.into();
+//         // assert_eq!( got1, src2 );
+//       }
+
       // --
 
       // /* test.case = "operator add"; */

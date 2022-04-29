@@ -29,6 +29,15 @@ macro_rules! impl_x2_for
 
       /* */
 
+    }
+
+    impl< Scalar > x2_canonical_interface for $Struct
+    where
+      Scalar : ScalarInterface,
+    {
+
+      /* */
+
       #[ inline ]
       fn _0_ref( &self ) -> &Self::Scalar
       {
@@ -56,13 +65,6 @@ macro_rules! impl_x2_for
       }
 
       /* */
-
-    }
-
-    impl< Scalar > x2_canonical_interface for $Struct
-    where
-      Scalar : ScalarInterface,
-    {
 
       #[ inline ]
       fn as_canonical( &self ) -> &x2< Self::Scalar >

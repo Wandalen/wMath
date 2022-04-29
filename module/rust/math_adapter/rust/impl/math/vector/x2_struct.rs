@@ -40,6 +40,17 @@ where
 
   /* */
 
+}
+
+//
+
+impl< Scalar > x2_canonical_interface for x2< Scalar >
+where
+  Scalar : ScalarInterface,
+{
+
+  /* */
+
   #[ inline ]
   fn _0_ref( &self ) -> &Self::Scalar
   {
@@ -68,15 +79,6 @@ where
 
   /* */
 
-}
-
-//
-
-impl< Scalar > x2_canonical_interface for x2< Scalar >
-where
-  Scalar : ScalarInterface,
-{
-
   #[ inline ]
   fn as_canonical( &self ) -> &x2< Self::Scalar >
   {
@@ -89,4 +91,34 @@ where
     self
   }
 
+  /* */
+
 }
+
+//
+
+// impl< Scalar, Original > From< &Original >
+// for x2< Scalar >
+// where
+//   Scalar : ScalarInterface,
+//   Original : x2_interface< Scalar = Scalar >,
+// {
+//   fn from( original : &Original ) -> Self
+//   {
+//     Self::make( original._0(), original._1() )
+//   }
+// }
+
+//
+
+// impl< Scalar, Original > From< Original >
+// for x2< Scalar >
+// where
+//   Scalar : ScalarInterface,
+//   Original : x2_interface< Scalar = Scalar >,
+// {
+//   fn from( original : Original ) -> Self
+//   {
+//     Self::make( original._0(), original._1() )
+//   }
+// }

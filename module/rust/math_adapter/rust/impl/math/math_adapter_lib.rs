@@ -16,6 +16,8 @@
 /// General math traits.
 pub use num_traits as traits;
 
+/// Local implementation of traits From / Into. Required because of limmitations of Rust.
+pub mod from;
 /// Implementation of adapters for specific math libraries.
 pub mod plugin;
 /// Define scalar interface.
@@ -23,9 +25,26 @@ pub mod scalar;
 /// Adapters.
 pub mod vector;
 
+/// Namespace with dependencies.
+pub mod dependency
+{
+  /// General math traits.
+  pub use num_traits as traits;
+  #[cfg( feature = "cgmath" )]
+  /// Math lib cgmath.
+  pub use cgmath as cgmath;
+  #[cfg( feature = "naglebra" )]
+  /// Math lib nalgebra.
+  pub use naglebra as naglebra;
+  #[cfg( feature = "winit" )]
+  /// Math lib winit.
+  pub use winit as winit;
+}
+
 /// Exposed namespace of the module.
 pub mod exposed
 {
+  pub use super::from::exposed::*;
   pub use super::plugin::exposed::*;
   pub use super::scalar::exposed::*;
   pub use super::vector::exposed::*;
@@ -36,6 +55,7 @@ pub use exposed::*;
 /// Prelude to use: `use wtools::prelude::*`.
 pub mod prelude
 {
+  pub use super::from::prelude::*;
   pub use super::plugin::prelude::*;
   pub use super::scalar::prelude::*;
   pub use super::vector::prelude::*;

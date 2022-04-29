@@ -29,6 +29,37 @@ pub trait x2_interface
     self._1()
   }
 
+  /// Clone as tuple.
+  #[ inline ]
+  fn clone_as_tuple( &self ) -> ( Self::Scalar , Self::Scalar )
+  {
+    ( self._0(), self._1() )
+  }
+  /// Clone as array.
+  #[ inline ]
+  fn clone_as_array( &self ) -> [ Self::Scalar ; 2 ]
+  {
+    [ self._0(), self._1() ]
+  }
+  /// Clone as canonical.
+  #[ inline ]
+  fn clone_as_canonical( &self ) -> x2< Self::Scalar >
+  {
+    x2::< Self::Scalar >( self._0(), self._1() )
+  }
+
+}
+
+/* xxx : implement From */
+
+///
+/// Interface of vector x2 for structures with the canonical layout.
+///
+
+#[ allow( non_camel_case_types ) ]
+pub trait x2_canonical_interface : x2_interface + Sized
+{
+
   /// First element.
   fn _0_ref( &self ) -> &Self::Scalar;
   /// Second element.
@@ -62,35 +93,6 @@ pub trait x2_interface
   {
     self._1_mut()
   }
-
-  /// Clone as tuple.
-  #[ inline ]
-  fn clone_as_tuple( &self ) -> ( Self::Scalar , Self::Scalar )
-  {
-    ( self._0(), self._1() )
-  }
-  /// Clone as array.
-  #[ inline ]
-  fn clone_as_array( &self ) -> [ Self::Scalar ; 2 ]
-  {
-    [ self._0(), self._1() ]
-  }
-  /// Clone as canonical.
-  #[ inline ]
-  fn clone_as_canonical( &self ) -> x2< Self::Scalar >
-  {
-    x2::< Self::Scalar >( self._0(), self._1() )
-  }
-
-}
-
-///
-/// Interface of vector x2 for structures with the canonical layout.
-///
-
-#[ allow( non_camel_case_types ) ]
-pub trait x2_canonical_interface : x2_interface + Sized
-{
 
   /// Interpret as tuple.
   #[ inline ]
@@ -151,3 +153,55 @@ pub trait x2_canonical_interface : x2_interface + Sized
 }
 
 /* xxx : index of methods? */
+
+//
+
+// impl< Original, Target > From< Original > for Target
+// where
+//   Original : x2_interface,
+//   Target : x2_interface,
+// {
+//   fn from( original : Original ) -> Self
+//   {
+//     Self::make( original._0(), original._1() )
+//   }
+// }
+
+//
+
+impl< Scalar, Original, Target > crate::From2< Original >
+for Target
+where
+  Scalar : ScalarInterface,
+  Original : x2_interface< Scalar = Scalar >,
+  Target : x2_interface< Scalar = Scalar >,
+{
+  fn from2( original : Original ) -> Self
+  {
+    Self::make( original._0(), original._1() )
+  }
+}
+
+// impl< Scalar, Target > crate::From2< Target >
+// for Target
+// where
+//   Scalar : ScalarInterface,
+//   Target : x2_interface< Scalar = Scalar >,
+// {
+//   fn from2( original : Target ) -> Self
+//   {
+//     < Self as crate::From2< Target > >::from2( &original )
+//   }
+// }
+
+// impl< Scalar, Target > crate::From2< &&Target >
+// for Target
+// where
+//   Scalar : ScalarInterface,
+//   Target : x2_interface< Scalar = Scalar >,
+// {
+//   fn from2( original : &&Target ) -> Self
+//   {
+//     < Self as crate::From2< Target > >::from2( *original )
+//   }
+// }

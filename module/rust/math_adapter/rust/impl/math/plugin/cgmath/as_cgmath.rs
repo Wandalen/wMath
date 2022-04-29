@@ -9,18 +9,25 @@ pub mod internal
   // use crate::prelude::*;
 
   ///
+  /// Trait for non-canonical structure to clone math data structures of other math libs as their analogs in cgmath to use operations of cgmath.
+  ///
+
+  pub trait AsCgmathNonCanonicalInterface< T >
+  {
+    /// Clone this data structure as cgmath analog to use its operations.
+    fn clone_as_cgmath( &self ) -> T;
+  }
+
+  ///
   /// Trait to interpret math data structures of other math libs as their analogs in cgmath to use operations of cgmath.
   ///
 
-  pub trait AsCgmathInterface< T >
+  pub trait AsCgmathCanonicalInterface< T >
   {
     /// Interpret this data structure as cgmath analog to use its operations.
     fn as_cgmath( &self ) -> &T;
     /// Interpret this data structure mutably as cgmath analog to use its operations.
     fn as_cgmath_mut( &mut self ) -> &mut T;
-    // /// Clone this data structure as cgmath analog to use its operations.
-    // fn clone_as_cgmath( &self ) -> T;
-    // xxx
   }
 
   //
@@ -61,7 +68,8 @@ pub mod internal
 pub mod exposed
 {
   use super::internal as i;
-  pub use i::AsCgmathInterface;
+  pub use i::AsCgmathNonCanonicalInterface;
+  pub use i::AsCgmathCanonicalInterface;
 }
 
 pub use exposed::*;
