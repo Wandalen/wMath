@@ -46,14 +46,13 @@ fn _basic()
 
 fn _canonical_test()
 {
-  // x2_with_records_test_for!( cgmath::Vector2, x, y ; i8, i16, i32, i64, i128 );
-  // x2_with_records_test_for!( cgmath::Vector2, x, y ; u8, u16, u32, u64, u128 );
-  // x2_with_records_test_for!( cgmath::Vector2, x, y ; f32, f64 );
+  x2_with_records_test_for!( cgmath::Vector2, x, y ; i8, i16, i32, i64, i128 );
+  x2_with_records_test_for!( cgmath::Vector2, x, y ; u8, u16, u32, u64, u128 );
+  x2_with_records_test_for!( cgmath::Vector2, x, y ; f32, f64 );
 
-  trace_macros!( true );
-  // x2_with_records_test_for!( ( cgmath::Vector2 ), x, y ; f32 );
-  x2_with_records_test_for!( cgmath::Vector2, x, y ; f32 );
-  trace_macros!( false );
+  // trace_macros!( true );
+  // x2_with_records_test_for!( cgmath::Vector2, x, y ; f32 );
+  // trace_macros!( false );
 
 }
 
