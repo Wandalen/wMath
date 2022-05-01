@@ -39,37 +39,21 @@ pub fn mem_same< T1, T2 >( src1 : &T1, src2 : &T2 ) -> bool
 ///
 
 #[ macro_export ]
-macro_rules! val
+macro_rules! num
 {
 
   () =>
   {
   };
 
-  ( $val : expr ) =>
+  ( $num : expr ) =>
   {
-    num_traits::cast::< _, T >( $val ).unwrap()
+    num_traits::cast::< _, T >( $num ).unwrap()
   };
 
-  ( $( $val : expr ),+ ) =>
+  ( $( $num : expr ),+ ) =>
   {(
-    $( num_traits::cast::< _, T >( $val ).unwrap() ),+
+    $( num_traits::cast::< _, T >( $num ).unwrap() ),+
   )};
-
-  // ( $val : expr $( , $( $rest : tt )+ )? ) =>
-  // {
-  //   num_traits::cast::< _, T >( $val ).unwrap()
-  //   $( , $crate::val!( $( $rest )+ ); )?
-  // };
-
-//   ( $v : expr ) =>
-//   {
-//     f1( $v )
-//   };
-//
-//   ( $( $rest : expr ),+ ) =>
-//   {(
-//     $( val!( $rest ) ),+,
-//   )};
 
 }

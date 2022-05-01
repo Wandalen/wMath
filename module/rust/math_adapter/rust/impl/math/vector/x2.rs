@@ -8,7 +8,7 @@ pub mod internal
   include!( "./x2/array.rs" );
   include!( "./x2/interface.rs" );
   include!( "./x2/ops.rs" );
-  #[ cfg( any( feature = "cgmath_ops", feature = "nalgebra_ops" ) ) ]
+  // #[ cfg( any( feature = "cgmath_ops", feature = "nalgebra_ops" ) ) ]
   include!( "./x2/rented_op.rs" );
   include!( "./x2/struct.rs" );
   include!( "./x2/tuple.rs" );

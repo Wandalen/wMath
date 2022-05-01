@@ -4,7 +4,7 @@ use math_adapter::prelude::*;
 use math_adapter::X2;
 // use num_traits::cast::cast;
 use crate::tools::*;
-use crate::val;
+use crate::num;
 
 ///
 /// One test should be ordinary to exclude possibility of problems with macro.
@@ -84,62 +84,62 @@ macro_rules! test_for
 
       /* test.case = "value of elements"; */
       {
-        let got = X2::< T >( val!( 1 ), val!( 2 ) );
-        assert_eq!( got.0, val!( 1 ) );
-        assert_eq!( got.1, val!( 2 ) );
-        assert_eq!( got._0(), val!( 1 ) );
-        assert_eq!( got._1(), val!( 2 ) );
-        assert_eq!( got.x(), val!( 1 ) );
-        assert_eq!( got.y(), val!( 2 ) );
-        assert_eq!( *got._0_ref(), val!( 1 ) );
-        assert_eq!( *got._1_ref(), val!( 2 ) );
+        let got = X2::< T >( num!( 1 ), num!( 2 ) );
+        assert_eq!( got.0, num!( 1 ) );
+        assert_eq!( got.1, num!( 2 ) );
+        assert_eq!( got._0(), num!( 1 ) );
+        assert_eq!( got._1(), num!( 2 ) );
+        assert_eq!( got.x(), num!( 1 ) );
+        assert_eq!( got.y(), num!( 2 ) );
+        assert_eq!( *got._0_ref(), num!( 1 ) );
+        assert_eq!( *got._1_ref(), num!( 2 ) );
       }
 
       /* test.case = "set value of elements"; */
       {
-        let mut got = X2::< T >( val!( 1 ), val!( 2 ) );
-        assert_eq!( got._0(), val!( 1 ) );
-        assert_eq!( got._1(), val!( 2 ) );
-        assert_eq!( *got._0_mut(), val!( 1 ) );
-        assert_eq!( *got._1_mut(), val!( 2 ) );
-        *got._0_mut() = val!( 11 );
-        *got._1_mut() = val!( 22 );
-        assert_eq!( got._0(), val!( 11 ) );
-        assert_eq!( got._1(), val!( 22 ) );
-        assert_eq!( *got._0_mut(), val!( 11 ) );
-        assert_eq!( *got._1_mut(), val!( 22 ) );
+        let mut got = X2::< T >( num!( 1 ), num!( 2 ) );
+        assert_eq!( got._0(), num!( 1 ) );
+        assert_eq!( got._1(), num!( 2 ) );
+        assert_eq!( *got._0_mut(), num!( 1 ) );
+        assert_eq!( *got._1_mut(), num!( 2 ) );
+        *got._0_mut() = num!( 11 );
+        *got._1_mut() = num!( 22 );
+        assert_eq!( got._0(), num!( 11 ) );
+        assert_eq!( got._1(), num!( 22 ) );
+        assert_eq!( *got._0_mut(), num!( 11 ) );
+        assert_eq!( *got._1_mut(), num!( 22 ) );
       }
 
       /* test.case = "make"; */
       {
-        let got = X2::< T >::make( val!( 1 ), val!( 2 ) );
-        let exp = X2::< T >( val!( 1 ), val!( 2 ) );
+        let got = X2::< T >::make( num!( 1 ), num!( 2 ) );
+        let exp = X2::< T >( num!( 1 ), num!( 2 ) );
         assert_eq!( got, exp );
       }
 
       /* test.case = "clone_as_tuple"; */
       {
-        let src = X2::< T >( val!( 1 ), val!( 2 ) );
+        let src = X2::< T >( num!( 1 ), num!( 2 ) );
         let got = src.clone_as_tuple();
-        let exp : ( T , T ) = ( val!( 1 ), val!( 2 ) );
+        let exp : ( T , T ) = ( num!( 1 ), num!( 2 ) );
         assert_eq!( got, exp );
         assert!( !mem_same_ptrs( &got, &src ) ); /* qqq : discuss */
       }
 
       /* test.case = "clone_as_array"; */
       {
-        let src = X2::< T >( val!( 1 ), val!( 2 ) );
+        let src = X2::< T >( num!( 1 ), num!( 2 ) );
         let got = src.clone_as_array();
-        let exp : [ T ; 2 ] = [ val!( 1 ), val!( 2 ) ];
+        let exp : [ T ; 2 ] = [ num!( 1 ), num!( 2 ) ];
         assert_eq!( got, exp );
         assert!( !mem_same_ptrs( &got, &src ) );
       }
 
       /* test.case = "clone_as_canonical"; */
       {
-        let src = X2::< T >( val!( 1 ), val!( 2 ) );
+        let src = X2::< T >( num!( 1 ), num!( 2 ) );
         let got = src.clone_as_canonical();
-        let exp = X2::< T >( val!( 1 ), val!( 2 ) );
+        let exp = X2::< T >( num!( 1 ), num!( 2 ) );
         assert_eq!( got, exp );
         assert!( !mem_same_ptrs( &got, &src ) );
       }
@@ -148,36 +148,36 @@ macro_rules! test_for
 
       /* test.case = "as_tuple"; */
       {
-        let src = X2::< T >( val!( 1 ), val!( 2 ) );
+        let src = X2::< T >( num!( 1 ), num!( 2 ) );
         let got = src.as_tuple();
-        let exp : ( T , T ) = ( val!( 1 ), val!( 2 ) );
+        let exp : ( T , T ) = ( num!( 1 ), num!( 2 ) );
         assert_eq!( got, &exp );
         assert!( mem_same( got, &src ) ); /* qqq : discuss */
       }
 
       /* test.case = "as_array"; */
       {
-        let src = X2::< T >( val!( 1 ), val!( 2 ) );
+        let src = X2::< T >( num!( 1 ), num!( 2 ) );
         let got = src.as_array();
-        let exp : [ T ; 2 ] = [ val!( 1 ), val!( 2 ) ];
+        let exp : [ T ; 2 ] = [ num!( 1 ), num!( 2 ) ];
         assert_eq!( got, &exp );
         assert!( mem_same( got, &src ) );
       }
 
       /* test.case = "as_canonical"; */
       {
-        let src = X2::< T >( val!( 1 ), val!( 2 ) );
+        let src = X2::< T >( num!( 1 ), num!( 2 ) );
         let got = src.as_canonical();
-        let exp = X2::< T >( val!( 1 ), val!( 2 ) );
+        let exp = X2::< T >( num!( 1 ), num!( 2 ) );
         assert_eq!( got, &exp );
         assert!( mem_same( got, &src ) );
       }
 
       /* test.case = "as_slice"; */
       {
-        let src = X2::< T >( val!( 1 ), val!( 2 ) );
+        let src = X2::< T >( num!( 1 ), num!( 2 ) );
         let got = src.as_slice();
-        let exp = &[ val!( 1 ), val!( 2 ) ][ .. ];
+        let exp = &[ num!( 1 ), num!( 2 ) ][ .. ];
         assert_eq!( got, exp );
       }
 
@@ -185,59 +185,59 @@ macro_rules! test_for
 
       /* test.case = "as_tuple_mut"; */
       {
-        let mut src = X2::< T >( val!( 1 ), val!( 2 ) );
+        let mut src = X2::< T >( num!( 1 ), num!( 2 ) );
         let got = src.as_tuple_mut();
-        got.0 = val!( 11 );
-        got.1 = val!( 22 );
-        let exp = X2::< T >( val!( 11 ), val!( 22 ) );
+        got.0 = num!( 11 );
+        got.1 = num!( 22 );
+        let exp = X2::< T >( num!( 11 ), num!( 22 ) );
         assert_eq!( src, exp );
       }
 
       /* test.case = "as_array_mut"; */
       {
-        let mut src = X2::< T >( val!( 1 ), val!( 2 ) );
+        let mut src = X2::< T >( num!( 1 ), num!( 2 ) );
         let got = src.as_array_mut();
-        got[ 0 ] = val!( 11 );
-        got[ 1 ] = val!( 22 );
-        let exp = X2::< T >( val!( 11 ), val!( 22 ) );
+        got[ 0 ] = num!( 11 );
+        got[ 1 ] = num!( 22 );
+        let exp = X2::< T >( num!( 11 ), num!( 22 ) );
         assert_eq!( src, exp );
       }
 
       /* test.case = "as_canonical_mut"; */
       {
-        let mut src = X2::< T >( val!( 1 ), val!( 2 ) );
+        let mut src = X2::< T >( num!( 1 ), num!( 2 ) );
         let got = src.as_canonical_mut();
-        *got._0_mut() = val!( 11 );
-        *got._1_mut() = val!( 22 );
-        let exp = X2::< T >( val!( 11 ), val!( 22 ) );
+        *got._0_mut() = num!( 11 );
+        *got._1_mut() = num!( 22 );
+        let exp = X2::< T >( num!( 11 ), num!( 22 ) );
         assert_eq!( src, exp );
       }
 
       /* test.case = "as_slice_mut"; */
       {
-        let mut src = X2::< T >( val!( 1 ), val!( 2 ) );
+        let mut src = X2::< T >( num!( 1 ), num!( 2 ) );
         let got = src.as_slice_mut();
-        got[ 0 ] = val!( 11 );
-        got[ 1 ] = val!( 22 );
-        let exp = X2::< T >( val!( 11 ), val!( 22 ) );
+        got[ 0 ] = num!( 11 );
+        got[ 1 ] = num!( 22 );
+        let exp = X2::< T >( num!( 11 ), num!( 22 ) );
         assert_eq!( src, exp );
       }
 
       /* test.case = "assign"; */
       {
-        let mut src = X2::< T >( val!( 1 ), val!( 2 ) );
-        let src2 = X2::< T >( val!( 11 ), val!( 22 ) );
+        let mut src = X2::< T >( num!( 1 ), num!( 2 ) );
+        let src2 = X2::< T >( num!( 11 ), num!( 22 ) );
         src.assign( src2 );
-        let exp = X2::< T >( val!( 11 ), val!( 22 ) );
+        let exp = X2::< T >( num!( 11 ), num!( 22 ) );
         assert_eq!( src, exp );
       }
 
       // /* test.case = "operator add"; */
       // {
-      //   let src1 = X2::< T >( val!( 1 ), val!( 2 ) );
-      //   let src2 = X2::< T >( val!( 2 ), val!( 3 ) );
+      //   let src1 = X2::< T >( num!( 1 ), num!( 2 ) );
+      //   let src2 = X2::< T >( num!( 2 ), num!( 3 ) );
       //   let got = src1 + src2;
-      //   let exp = X2::< T >( val!( 3 ), val!( 5 ) );
+      //   let exp = X2::< T >( num!( 3 ), num!( 5 ) );
       //   assert_eq!( got, exp );
       // }
 

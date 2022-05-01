@@ -6,7 +6,7 @@ use math_adapter::prelude::*;
 use math_adapter::X2;
 use num_traits::cast::cast;
 use crate::tools::*;
-use crate::{ x2_with_records_test_for, val };
+use crate::{ x2_with_records_test_for, num };
 
 ///
 /// One test should be ordinary to exclude possibility of problems with macro.

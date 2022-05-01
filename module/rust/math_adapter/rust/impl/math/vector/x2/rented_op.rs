@@ -1,8 +1,8 @@
-
 ///
 /// Declare operation with 1 operand renting its implementation from math lib of choice.
 ///
 
+#[ allow( unused_macros ) ]
 macro_rules! impl_x2_rented_op1
 {
 
@@ -48,6 +48,7 @@ macro_rules! impl_x2_rented_op1
 /// Declare operation with 2 operands renting its implementation from math lib of choice.
 ///
 
+#[ allow( unused_macros ) ]
 macro_rules! impl_x2_rented_op2
 {
 
@@ -92,5 +93,7 @@ macro_rules! impl_x2_rented_op2
 
 }
 
+#[ allow( unused_imports ) ]
 pub( crate ) use impl_x2_rented_op1;
+#[ allow( unused_imports ) ]
 pub( crate ) use impl_x2_rented_op2;
