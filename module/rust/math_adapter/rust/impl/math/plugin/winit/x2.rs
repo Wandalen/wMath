@@ -1,93 +1,130 @@
-macro_rules! impl_x2_for
+/// Internal namespace.
+pub mod internal
 {
-  ( $Struct : path ) =>
+  use core::mem::size_of;
+  use crate::prelude::*;
+  use crate::{ X2, ScalarInterface };
+
+  ///
+  /// Implements interfaces for vector X2;
+  ///
+
+  macro_rules! impl_x2_for
   {
-
-    impl< Scalar > X2Interface for $Struct
-    where
-      Scalar : ScalarInterface,
-    {
-      type Scalar = Scalar;
-
-      #[ inline ]
-      fn make( _0 : Self::Scalar, _1 : Self::Scalar ) -> Self
-      {
-        Self::new( _0, _1 )
-      }
-
-      #[ inline ]
-      fn _0( &self ) -> Self::Scalar
-      {
-        self.width
-      }
-
-      #[ inline ]
-      fn _1( &self ) -> Self::Scalar
-      {
-        self.height
-      }
-
-      /* */
-
-    }
-
-    impl< Scalar > X2CanonicalInterface for $Struct
-    where
-      Scalar : ScalarInterface,
+    ( $Struct : path, $_0 : ident, $_1 : ident ) =>
     {
 
-      /* */
-
-      #[ inline ]
-      fn _0_ref( &self ) -> &Self::Scalar
+      impl< Scalar > X2NominalInterface for $Struct
+      where
+        Scalar : ScalarInterface,
       {
-        &self.width
-      }
+        type Scalar = Scalar;
 
-      #[ inline ]
-      fn _1_ref( &self ) -> &Self::Scalar
-      {
-        &self.height
-      }
-
-      /* */
-
-      #[ inline ]
-      fn _0_mut( &mut self ) -> &mut Self::Scalar
-      {
-        &mut self.width
-      }
-
-      #[ inline ]
-      fn _1_mut( &mut self ) -> &mut Self::Scalar
-      {
-        &mut self.height
-      }
-
-      /* */
-
-      #[ inline ]
-      fn as_canonical( &self ) -> &X2< Self::Scalar >
-      {
-        debug_assert_eq!( size_of::< Self >(), size_of::< X2< Self::Scalar > >() );
-        unsafe
+        #[ inline ]
+        fn _0( &self ) -> Self::Scalar
         {
-          std::mem::transmute::< _, _ >( self )
+          self.$_0
         }
-      }
 
-      #[ inline ]
-      fn as_canonical_mut( &mut self ) -> &mut X2< Self::Scalar >
-      {
-        debug_assert_eq!( size_of::< Self >(), size_of::< X2< Self::Scalar > >() );
-        unsafe
+        #[ inline ]
+        fn _1( &self ) -> Self::Scalar
         {
-          std::mem::transmute::< _, _ >( self )
+          self.$_1
         }
+
       }
 
-    }
+      impl< Scalar > X2BasicInterface for $Struct
+      where
+        Scalar : ScalarInterface,
+      {
 
-  };
+        #[ inline ]
+        fn make( _0 : Self::Scalar, _1 : Self::Scalar ) -> Self
+        {
+          Self::new( _0, _1 )
+        }
 
+      }
+
+      impl< Scalar > X2CanonicalInterface for $Struct
+      where
+        Scalar : ScalarInterface,
+      {
+
+        /* */
+
+        #[ inline ]
+        fn _0_ref( &self ) -> &Self::Scalar
+        {
+          &self.$_0
+        }
+
+        #[ inline ]
+        fn _1_ref( &self ) -> &Self::Scalar
+        {
+          &self.$_1
+        }
+
+        /* */
+
+        #[ inline ]
+        fn _0_mut( &mut self ) -> &mut Self::Scalar
+        {
+          &mut self.$_0
+        }
+
+        #[ inline ]
+        fn _1_mut( &mut self ) -> &mut Self::Scalar
+        {
+          &mut self.$_1
+        }
+
+        /* */
+
+        #[ inline ]
+        fn as_canonical( &self ) -> &X2< Self::Scalar >
+        {
+          debug_assert_eq!( size_of::< Self >(), size_of::< X2< Self::Scalar > >() );
+          unsafe
+          {
+            std::mem::transmute::< _, _ >( self )
+          }
+        }
+
+        #[ inline ]
+        fn as_canonical_mut( &mut self ) -> &mut X2< Self::Scalar >
+        {
+          debug_assert_eq!( size_of::< Self >(), size_of::< X2< Self::Scalar > >() );
+          unsafe
+          {
+            std::mem::transmute::< _, _ >( self )
+          }
+        }
+
+      }
+
+    };
+
+  }
+
+  impl_x2_for!( winit::dpi::PhysicalSize< Scalar >, width, height );
+  impl_x2_for!( winit::dpi::LogicalSize< Scalar >, width, height );
+  impl_x2_for!( winit::dpi::PhysicalPosition< Scalar >, x, y );
+  impl_x2_for!( winit::dpi::LogicalPosition< Scalar >, x, y );
+
+}
+
+/// Exposed namespace of the module.
+pub mod exposed
+{
+  // use super::internal as i;
+}
+
+pub use exposed::*;
+
+/// Prelude to use: `use wtools::prelude::*`.
+pub mod prelude
+{
+  // use super::internal as i;
 }

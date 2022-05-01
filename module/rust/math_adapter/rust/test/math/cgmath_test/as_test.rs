@@ -13,20 +13,17 @@ fn _convertion()
 {
   type T = i8;
 
-  /* test.case = "into cgmath"; */
-  {
-    let src = X2::< T >::make( 1, 2 );
-    let got : cgmath::Vector2::< T > = src.into2();
-    let exp = cgmath::Vector2::< T >::make( 1, 2 );
-    assert_eq!( got, exp );
-  }
-
   /* test.case = "clone_as_cgmath"; */
   {
     let src = X2::< T >::make( 1, 2 );
     let got = src.clone_as_cgmath();
     let exp = cgmath::Vector2::< T >::make( 1, 2 );
     assert_eq!( got, exp );
+    assert!( !mem_same_ptr( &got, &src ) );
+    let got = src.clone_as_native();
+    let exp = cgmath::Vector2::< T >::make( 1, 2 );
+    assert_eq!( got, exp );
+    assert!( !mem_same_ptr( &got, &src ) );
   }
 
   /* test.case = "as_cgmath"; */
@@ -35,6 +32,11 @@ fn _convertion()
     let got = src.as_cgmath();
     let exp = cgmath::Vector2::< T >::make( 1, 2 );
     assert_eq!( *got, exp );
+    assert!( mem_same_region( got, &src ) );
+    let got = src.as_native();
+    let exp = cgmath::Vector2::< T >::make( 1, 2 );
+    assert_eq!( *got, exp );
+    assert!( mem_same_region( got, &src ) );
   }
 
   /* test.case = "as_cgmath_mut"; */
@@ -46,15 +48,22 @@ fn _convertion()
     got.assign( ( 11, 22 ) );
     let exp = X2::< T >::make( 11, 22  );
     assert_eq!( src, exp );
+    let mut src = X2::< T >::make( 1, 2 );
+    let got = src.as_native_mut();
+    let exp = cgmath::Vector2::< T >::make( 1, 2 );
+    assert_eq!( *got, exp );
+    got.assign( ( 11, 22 ) );
+    let exp = X2::< T >::make( 11, 22  );
+    assert_eq!( src, exp );
   }
 
 }
 
 ///
-/// Operations.
+/// Operations without dereferencing.
 ///
 
-#[cfg( feature = "cgmath_ops" )]
+#[ cfg( feature = "cgmath_ops" ) ]
 #[ test ]
 fn operation()
 {
@@ -83,6 +92,53 @@ fn operation()
     let src2 = X2::< T >::make( 1, 2 );
     let got = src1 - src2;
     let exp = X2::< T >::make( 3, 1 );
+    assert_eq!( got, exp );
+  }
+
+}
+
+///
+/// Operations with dereferencing.
+///
+
+#[ cfg( feature = "cgmath_ops" ) ]
+#[ test ]
+fn operation_deref()
+{
+  type T = i8;
+
+  /* test.case = "neg"; */
+  {
+    let src1 = X2::< T >::make( 4, 3 );
+    let got = - *src1;
+    let exp = math_adapter::cgmath::X2::< T >::make( -4, -3 );
+    assert_eq!( got, exp );
+  }
+
+  /* test.case = "add"; */
+  {
+    let src1 = X2::< T >::make( 4, 3 );
+    let src2 = X2::< T >::make( 2, 1 );
+    let got = *src1 + *src2;
+    let exp = math_adapter::cgmath::X2::< T >::make( 6, 4 );
+    assert_eq!( got, exp );
+  }
+
+  /* test.case = "sub"; */
+  {
+    let src1 = X2::< T >::make( 4, 3 );
+    let src2 = X2::< T >::make( 1, 2 );
+    let got = *src1 - *src2;
+    let exp = math_adapter::cgmath::X2::< T >::make( 3, 1 );
+    assert_eq!( got, exp );
+  }
+
+  /* test.case = "dereferenced method"; */
+  {
+    let src1 = X2::< T >::make( 4, 3 );
+    let src2 = X2::< T >::make( 1, 2 );
+    let got = src1.perp_dot( *src2 );
+    let exp = 5;
     assert_eq!( got, exp );
   }
 

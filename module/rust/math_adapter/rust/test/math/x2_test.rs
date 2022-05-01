@@ -2,7 +2,6 @@ use wtest_basic::*;
 use core::mem::size_of;
 use math_adapter::prelude::*;
 use math_adapter::X2;
-// use num_traits::cast::cast;
 use crate::tools::*;
 use crate::num;
 
@@ -43,25 +42,6 @@ fn _basic()
 
 //
 
-#[ cfg( all( feature = "winit", feature = "cgmath" ) ) ]
-#[ test ]
-fn cgmath_winit_interoperability_test()
-{
-
-  /* test.case = "use cgmath vectors for operations on winit vectors"; */
-  {
-    use AsCgmathInterface;
-    let src1 = winit::dpi::PhysicalSize::< i8 >::make( 3, 2 );
-    let src2 = winit::dpi::PhysicalSize::< i8 >::make( 0, 1 );
-    let got = src1.as_cgmath() - src2.as_cgmath();
-    let exp = cgmath::Vector2::< i8 >::make( 3, 1 );
-    assert_eq!( got, exp );
-  }
-
-}
-
-//
-
 macro_rules! test_for
 {
 
@@ -80,6 +60,49 @@ macro_rules! test_for
       {
         assert_eq!( size_of::< X2::< T > >(), size_of::< ( T, T ) >() );
         assert_eq!( size_of::< X2::< T > >(), size_of::< [ T ; 2 ] >() );
+      }
+
+      /* test.case = "from / into itself"; */
+      {
+        let src = X2::< T >( num!( 1 ), num!( 2 ) );
+        let got : X2< T > = src.into2();
+        assert_eq!( got, src );
+        let got = X2::< T >::from2( src );
+        assert_eq!( got, src );
+      }
+
+      /* test.case = "from / into tuple"; */
+      {
+        let src = ( num!( 1 ), num!( 2 ) );
+        let got : X2< T > = src.into2();
+        let exp = X2::< T >( num!( 1 ), num!( 2 ) );
+        assert_eq!( got, exp );
+        let got = X2::< T >::from2( src );
+        let exp = X2::< T >( num!( 1 ), num!( 2 ) );
+        assert_eq!( got, exp );
+      }
+
+      /* test.case = "from / into array"; */
+      {
+        let src = [ num!( 1 ), num!( 2 ) ];
+        let got : X2< T > = src.into2();
+        let exp = X2::< T >( num!( 1 ), num!( 2 ) );
+        assert_eq!( got, exp );
+        let got = X2::< T >::from2( src );
+        let exp = X2::< T >( num!( 1 ), num!( 2 ) );
+        assert_eq!( got, exp );
+      }
+
+      /* test.case = "from / into slice"; */
+      {
+        let _src = [ num!( 1 ), num!( 2 ) ];
+        let src = &_src[ .. ];
+        let got : X2< T > = src.into2();
+        let exp = X2::< T >( num!( 1 ), num!( 2 ) );
+        assert_eq!( got, exp );
+        let got = X2::< T >::from2( src );
+        let exp = X2::< T >( num!( 1 ), num!( 2 ) );
+        assert_eq!( got, exp );
       }
 
       /* test.case = "value of elements"; */
@@ -123,7 +146,7 @@ macro_rules! test_for
         let got = src.clone_as_tuple();
         let exp : ( T , T ) = ( num!( 1 ), num!( 2 ) );
         assert_eq!( got, exp );
-        assert!( !mem_same_ptrs( &got, &src ) ); /* qqq : discuss */
+        assert!( !mem_same_ptr( &got, &src ) ); /* qqq : discuss postfix */
       }
 
       /* test.case = "clone_as_array"; */
@@ -132,7 +155,7 @@ macro_rules! test_for
         let got = src.clone_as_array();
         let exp : [ T ; 2 ] = [ num!( 1 ), num!( 2 ) ];
         assert_eq!( got, exp );
-        assert!( !mem_same_ptrs( &got, &src ) );
+        assert!( !mem_same_ptr( &got, &src ) );
       }
 
       /* test.case = "clone_as_canonical"; */
@@ -141,7 +164,7 @@ macro_rules! test_for
         let got = src.clone_as_canonical();
         let exp = X2::< T >( num!( 1 ), num!( 2 ) );
         assert_eq!( got, exp );
-        assert!( !mem_same_ptrs( &got, &src ) );
+        assert!( !mem_same_ptr( &got, &src ) );
       }
 
       // --
@@ -152,7 +175,7 @@ macro_rules! test_for
         let got = src.as_tuple();
         let exp : ( T , T ) = ( num!( 1 ), num!( 2 ) );
         assert_eq!( got, &exp );
-        assert!( mem_same( got, &src ) ); /* qqq : discuss */
+        assert!( mem_same_region( got, &src ) ); /* qqq : discuss */
       }
 
       /* test.case = "as_array"; */
@@ -161,7 +184,7 @@ macro_rules! test_for
         let got = src.as_array();
         let exp : [ T ; 2 ] = [ num!( 1 ), num!( 2 ) ];
         assert_eq!( got, &exp );
-        assert!( mem_same( got, &src ) );
+        assert!( mem_same_region( got, &src ) );
       }
 
       /* test.case = "as_canonical"; */
@@ -170,7 +193,7 @@ macro_rules! test_for
         let got = src.as_canonical();
         let exp = X2::< T >( num!( 1 ), num!( 2 ) );
         assert_eq!( got, &exp );
-        assert!( mem_same( got, &src ) );
+        assert!( mem_same_region( got, &src ) );
       }
 
       /* test.case = "as_slice"; */
@@ -231,15 +254,6 @@ macro_rules! test_for
         let exp = X2::< T >( num!( 11 ), num!( 22 ) );
         assert_eq!( src, exp );
       }
-
-      // /* test.case = "operator add"; */
-      // {
-      //   let src1 = X2::< T >( num!( 1 ), num!( 2 ) );
-      //   let src2 = X2::< T >( num!( 2 ), num!( 3 ) );
-      //   let got = src1 + src2;
-      //   let exp = X2::< T >( num!( 3 ), num!( 5 ) );
-      //   assert_eq!( got, exp );
-      // }
 
     }
 

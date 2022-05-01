@@ -20,7 +20,6 @@ pub mod internal
     fn as_nalgebra_mut( &mut self ) -> &mut T;
     // /// Clone this data structure as nalgebra analog to use its operations.
     // fn clone_as_nalgebra( &self ) -> T;
-    // xxx
   }
 
   //

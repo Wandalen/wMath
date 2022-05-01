@@ -8,8 +8,16 @@ pub mod internal
 
   pub trait AsCgmathNonCanonicalInterface< T >
   {
+
     /// Clone this data structure as cgmath analog to use its operations.
     fn clone_as_cgmath( &self ) -> T;
+
+    /// Clone this data structure as cgmath analog to use its operations.
+    fn clone_as_native( &self ) -> T
+    {
+      self.clone_as_cgmath()
+    }
+
   }
 
   ///
@@ -22,6 +30,18 @@ pub mod internal
     fn as_cgmath( &self ) -> &T;
     /// Interpret this data structure mutably as cgmath analog to use its operations.
     fn as_cgmath_mut( &mut self ) -> &mut T;
+
+    /// Interpret this data structure as cgmath analog to use its operations.
+    fn as_native( &self ) -> &T
+    {
+      self.as_cgmath()
+    }
+    /// Interpret this data structure mutably as cgmath analog to use its operations.
+    fn as_native_mut( &mut self ) -> &mut T
+    {
+      self.as_cgmath_mut()
+    }
+
   }
 
 }

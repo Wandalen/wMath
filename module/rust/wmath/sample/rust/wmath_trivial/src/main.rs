@@ -6,4 +6,4 @@ fn main()
 {
 }
 
-/* xxx : write */
+/* zzz : write */

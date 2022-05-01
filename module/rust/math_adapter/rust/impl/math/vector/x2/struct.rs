@@ -14,17 +14,11 @@ pub struct X2
 
 //
 
-impl< Scalar > X2Interface for X2< Scalar >
+impl< Scalar > X2NominalInterface for X2< Scalar >
 where
   Scalar : ScalarInterface,
 {
   type Scalar = Scalar;
-
-  #[ inline ]
-  fn make( _0 : Self::Scalar, _1 : Self::Scalar ) -> Self
-  {
-    Self( _0, _1 )
-  }
 
   #[ inline ]
   fn _0( &self ) -> Self::Scalar
@@ -38,7 +32,20 @@ where
     self.1
   }
 
-  /* */
+}
+
+//
+
+impl< Scalar > X2BasicInterface for X2< Scalar >
+where
+  Scalar : ScalarInterface,
+{
+
+  #[ inline ]
+  fn make( _0 : Self::Scalar, _1 : Self::Scalar ) -> Self
+  {
+    Self( _0, _1 )
+  }
 
 }
 

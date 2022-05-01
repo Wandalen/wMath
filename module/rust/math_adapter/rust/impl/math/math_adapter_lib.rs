@@ -20,6 +20,7 @@ pub use num_traits as traits;
 pub mod from;
 /// Implementation of adapters for specific math libraries.
 pub mod plugin;
+pub use plugin::*;
 /// Define scalar interface.
 pub mod scalar;
 /// Adapters.

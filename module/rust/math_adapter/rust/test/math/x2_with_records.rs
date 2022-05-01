@@ -81,7 +81,7 @@ macro_rules! x2_with_records_test_for
         let got = src.clone_as_tuple();
         let exp : ( T , T ) = ( num!( 1 ), num!( 2 ) );
         assert_eq!( got, exp );
-        assert!( !mem_same_ptrs( &got, &src ) ); /* qqq : discuss */
+        assert!( !mem_same_ptr( &got, &src ) ); /* qqq : discuss */
       }
 
       /* test.case = "clone_as_array"; */
@@ -90,7 +90,7 @@ macro_rules! x2_with_records_test_for
         let got = src.clone_as_array();
         let exp : [ T ; 2 ] = [ num!( 1 ), num!( 2 ) ];
         assert_eq!( got, exp );
-        assert!( !mem_same_ptrs( &got, &src ) );
+        assert!( !mem_same_ptr( &got, &src ) );
       }
 
       /* test.case = "clone_as_canonical"; */
@@ -99,7 +99,7 @@ macro_rules! x2_with_records_test_for
         let got = src.clone_as_canonical();
         let exp = X2::< T >( num!( 1 ), num!( 2 ) );
         assert_eq!( got, exp );
-        assert!( !mem_same_ptrs( &got, &src ) );
+        assert!( !mem_same_ptr( &got, &src ) );
       }
 
       // --
@@ -110,7 +110,7 @@ macro_rules! x2_with_records_test_for
         let got = src.as_tuple();
         let exp : ( T , T ) = ( num!( 1 ), num!( 2 ) );
         assert_eq!( got, &exp );
-        assert!( mem_same( got, &src ) ); /* qqq : discuss */
+        assert!( mem_same_region( got, &src ) ); /* qqq : discuss */
       }
 
       /* test.case = "as_array"; */
@@ -119,7 +119,7 @@ macro_rules! x2_with_records_test_for
         let got = src.as_array();
         let exp : [ T ; 2 ] = [ num!( 1 ), num!( 2 ) ];
         assert_eq!( got, &exp );
-        assert!( mem_same( got, &src ) );
+        assert!( mem_same_region( got, &src ) );
       }
 
       /* test.case = "as_canonical"; */
@@ -128,7 +128,7 @@ macro_rules! x2_with_records_test_for
         let got = src.as_canonical();
         let exp = X2::< T >( num!( 1 ), num!( 2 ) );
         assert_eq!( got, &exp );
-        assert!( mem_same( got, &src ) );
+        assert!( mem_same_region( got, &src ) );
       }
 
       /* test.case = "as_slice"; */
@@ -205,15 +205,41 @@ macro_rules! x2_with_records_test_for
 
       // --
 
-      // /* test.case = "operator add"; */
-      // {
-      //   let src1 = $Va $( :: $Vb )* ::< T >::from2( num!( 1, 2 ) );
-      //   let src2 = $Va $( :: $Vb )* ::< T >::make( num!( 2 ), num!( 3 ) );
-      //   let got = src1 + src2;
-      //   let exp = $Va $( :: $Vb )* ::< T >::make( num!( 3 ), num!( 5 ) );
-      //   // let exp = X2::< T >( num!( 3 ), num!( 5 ) );
-      //   assert_eq!( got, exp );
-      // }
+      /* test.case = "from / into tuple"; */
+      {
+        let src = ( num!( 1 ), num!( 2 ) );
+        let got : $Va $( :: $Vb )*< T > = src.into2();
+        let exp = $Va $( :: $Vb )*::< T >::make( num!( 1 ), num!( 2 ) );
+        assert_eq!( got, exp );
+        let got = $Va $( :: $Vb )*::< T >::from2( src );
+        let exp = $Va $( :: $Vb )*::< T >::make( num!( 1 ), num!( 2 ) );
+        assert_eq!( got, exp );
+      }
+
+      /* test.case = "from / into array"; */
+      {
+        let src = [ num!( 1 ), num!( 2 ) ];
+        let got : $Va $( :: $Vb )*< T > = src.into2();
+        let exp = $Va $( :: $Vb )*::< T >::make( num!( 1 ), num!( 2 ) );
+        assert_eq!( got, exp );
+        let got = $Va $( :: $Vb )*::< T >::from2( src );
+        let exp = $Va $( :: $Vb )*::< T >::make( num!( 1 ), num!( 2 ) );
+        assert_eq!( got, exp );
+      }
+
+      /* test.case = "from / into slice"; */
+      {
+        let _src = [ num!( 1 ), num!( 2 ) ];
+        let src = &_src[ .. ];
+        let got : $Va $( :: $Vb )*< T > = src.into2();
+        let exp = $Va $( :: $Vb )*::< T >::make( num!( 1 ), num!( 2 ) );
+        assert_eq!( got, exp );
+        let got = $Va $( :: $Vb )*::< T >::from2( src );
+        let exp = $Va $( :: $Vb )*::< T >::make( num!( 1 ), num!( 2 ) );
+        assert_eq!( got, exp );
+      }
+
+      // --
 
     }
 

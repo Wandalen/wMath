@@ -1,16 +1,16 @@
 
 ///
-/// Interface of vector X2.
+/// Nominal interface of vector X2.
 ///
 
 #[ allow( non_camel_case_types ) ]
-pub trait X2Interface
+pub trait X2NominalInterface
 {
   /// Type of element.
   type Scalar : ScalarInterface;
 
-  /// Constructor.
-  fn make( _0 : Self::Scalar, _1 : Self::Scalar ) -> Self;
+  // /// Constructor.
+  // fn make( _0 : Self::Scalar, _1 : Self::Scalar ) -> Self;
 
   /// First element.
   fn _0( &self ) -> Self::Scalar;
@@ -50,18 +50,29 @@ pub trait X2Interface
 
 }
 
-/* xxx : implement From */
+///
+/// Standard interface of vector X2. Implements nominal interface, extending it by constructor `make`.
+///
+
+#[ allow( non_camel_case_types ) ]
+pub trait X2BasicInterface : X2NominalInterface
+{
+
+  /// Constructor.
+  fn make( _0 : Self::Scalar, _1 : Self::Scalar ) -> Self;
+
+}
 
 ///
 /// Interface of vector X2 for structures with the canonical layout.
 ///
 
 #[ allow( non_camel_case_types ) ]
-pub trait X2CanonicalInterface : X2Interface + Sized
+pub trait X2CanonicalInterface : X2BasicInterface + Sized
 {
   /// Assign value.
   #[ inline ]
-  fn assign< Src : X2Interface< Scalar = Self::Scalar > >( &mut self, src : Src )
+  fn assign< Src : X2BasicInterface< Scalar = Self::Scalar > >( &mut self, src : Src )
   {
     *self._0_mut() = src._0();
     *self._1_mut() = src._1();
@@ -159,20 +170,7 @@ pub trait X2CanonicalInterface : X2Interface + Sized
 
 }
 
-/* xxx : index of methods? */
-
-//
-
-// impl< Original, Target > From< Original > for Target
-// where
-//   Original : X2Interface,
-//   Target : X2Interface,
-// {
-//   fn from( original : Original ) -> Self
-//   {
-//     Self::make( original._0(), original._1() )
-//   }
-// }
+/* zzz : index of methods? */
 
 //
 
@@ -180,35 +178,11 @@ impl< Scalar, Original, Target > crate::From2< Original >
 for Target
 where
   Scalar : ScalarInterface,
-  Original : X2Interface< Scalar = Scalar >,
-  Target : X2Interface< Scalar = Scalar >,
+  Original : X2NominalInterface< Scalar = Scalar >,
+  Target : X2BasicInterface< Scalar = Scalar >,
 {
   fn from2( original : Original ) -> Self
   {
     Self::make( original._0(), original._1() )
   }
 }
-
-// impl< Scalar, Target > crate::From2< Target >
-// for Target
-// where
-//   Scalar : ScalarInterface,
-//   Target : X2Interface< Scalar = Scalar >,
-// {
-//   fn from2( original : Target ) -> Self
-//   {
-//     < Self as crate::From2< Target > >::from2( &original )
-//   }
-// }
-
-// impl< Scalar, Target > crate::From2< &&Target >
-// for Target
-// where
-//   Scalar : ScalarInterface,
-//   Target : X2Interface< Scalar = Scalar >,
-// {
-//   fn from2( original : &&Target ) -> Self
-//   {
-//     < Self as crate::From2< Target > >::from2( *original )
-//   }
-// }

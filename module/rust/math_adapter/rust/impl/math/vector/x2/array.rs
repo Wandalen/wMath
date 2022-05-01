@@ -1,15 +1,9 @@
 
-impl< Scalar > X2Interface for [ Scalar ; 2 ]
+impl< Scalar > X2NominalInterface for [ Scalar ; 2 ]
 where
   Scalar : ScalarInterface,
 {
   type Scalar = Scalar;
-
-  #[ inline ]
-  fn make( _0 : Self::Scalar, _1 : Self::Scalar ) -> Self
-  {
-    [ _0, _1 ]
-  }
 
   #[ inline ]
   fn _0( &self ) -> Self::Scalar
@@ -21,6 +15,21 @@ where
   fn _1( &self ) -> Self::Scalar
   {
     self[ 1 ]
+  }
+
+}
+
+//
+
+impl< Scalar > X2BasicInterface for [ Scalar ; 2 ]
+where
+  Scalar : ScalarInterface,
+{
+
+  #[ inline ]
+  fn make( _0 : Self::Scalar, _1 : Self::Scalar ) -> Self
+  {
+    [ _0, _1 ]
   }
 
 }
