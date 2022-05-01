@@ -4,7 +4,7 @@ macro_rules! impl_x2_for
   ( $Struct1 : ident $( :: $Struct2 : ident )* < $Params : ident > ) =>
   {
 
-    impl< Scalar > x2_interface for $Struct1 $( :: $Struct2 )* < $Params >
+    impl< Scalar > X2Interface for $Struct1 $( :: $Struct2 )* < $Params >
     where
       Scalar : ScalarInterface,
     {
@@ -32,7 +32,7 @@ macro_rules! impl_x2_for
 
     }
 
-    impl< Scalar > x2_canonical_interface for $Struct1 $( :: $Struct2 )* < $Params >
+    impl< Scalar > X2CanonicalInterface for $Struct1 $( :: $Struct2 )* < $Params >
     where
       Scalar : ScalarInterface,
     {
@@ -68,9 +68,9 @@ macro_rules! impl_x2_for
       /* */
 
       #[ inline ]
-      fn as_canonical( &self ) -> &x2< Self::Scalar >
+      fn as_canonical( &self ) -> &X2< Self::Scalar >
       {
-        debug_assert_eq!( size_of::< Self >(), size_of::< x2< Self::Scalar > >() );
+        debug_assert_eq!( size_of::< Self >(), size_of::< X2< Self::Scalar > >() );
         unsafe
         {
           std::mem::transmute::< _, _ >( self )
@@ -78,9 +78,9 @@ macro_rules! impl_x2_for
       }
 
       #[ inline ]
-      fn as_canonical_mut( &mut self ) -> &mut x2< Self::Scalar >
+      fn as_canonical_mut( &mut self ) -> &mut X2< Self::Scalar >
       {
-        debug_assert_eq!( size_of::< Self >(), size_of::< x2< Self::Scalar > >() );
+        debug_assert_eq!( size_of::< Self >(), size_of::< X2< Self::Scalar > >() );
         unsafe
         {
           std::mem::transmute::< _, _ >( self )
@@ -94,7 +94,7 @@ macro_rules! impl_x2_for
     impl< Scalar, Any > crate::AsCgmathNonCanonicalInterface< $Struct1 $( :: $Struct2 )* < $Params > > for Any
     where
       Scalar : ScalarInterface,
-      Any : x2_interface< Scalar = Scalar > + Copy,
+      Any : X2Interface< Scalar = Scalar > + Copy,
     {
 
       fn clone_as_cgmath( &self ) -> $Struct1 $( :: $Struct2 )* < $Params > /* xxx : cover */
@@ -109,7 +109,7 @@ macro_rules! impl_x2_for
     impl< Scalar, Any > crate::AsCgmathCanonicalInterface< $Struct1 $( :: $Struct2 )* < $Params > > for Any
     where
       Scalar : ScalarInterface,
-      Any : x2_canonical_interface< Scalar = Scalar >,
+      Any : X2CanonicalInterface< Scalar = Scalar >,
     {
 
       fn as_cgmath( &self ) -> &$Struct1 $( :: $Struct2 )* < $Params > /* xxx : cover */
@@ -140,7 +140,7 @@ macro_rules! impl_x2_for
     // impl< Scalar, X2 > From< X2< Scalar = Scalar > > for $Struct1 $( :: $Struct2 )* < $Params >
     // where
     //   Scalar : ScalarInterface,
-    //   X2 : x2_interface< Scalar = Scalar >,
+    //   X2 : X2Interface< Scalar = Scalar >,
     // {
     //   fn from( src : $Struct1 $( :: $Struct2 )* < $Params > ) -> Self
     //   {

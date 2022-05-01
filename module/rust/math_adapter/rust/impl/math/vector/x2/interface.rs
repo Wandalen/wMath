@@ -1,10 +1,10 @@
 
 ///
-/// Interface of vector x2.
+/// Interface of vector X2.
 ///
 
 #[ allow( non_camel_case_types ) ]
-pub trait x2_interface
+pub trait X2Interface
 {
   /// Type of element.
   type Scalar : ScalarInterface;
@@ -43,9 +43,9 @@ pub trait x2_interface
   }
   /// Clone as canonical.
   #[ inline ]
-  fn clone_as_canonical( &self ) -> x2< Self::Scalar >
+  fn clone_as_canonical( &self ) -> X2< Self::Scalar >
   {
-    x2::< Self::Scalar >( self._0(), self._1() )
+    X2::< Self::Scalar >( self._0(), self._1() )
   }
 
 }
@@ -53,12 +53,19 @@ pub trait x2_interface
 /* xxx : implement From */
 
 ///
-/// Interface of vector x2 for structures with the canonical layout.
+/// Interface of vector X2 for structures with the canonical layout.
 ///
 
 #[ allow( non_camel_case_types ) ]
-pub trait x2_canonical_interface : x2_interface + Sized
+pub trait X2CanonicalInterface : X2Interface + Sized
 {
+  /// Assign value.
+  #[ inline ]
+  fn assign< Src : X2Interface< Scalar = Self::Scalar > >( &mut self, src : Src )
+  {
+    *self._0_mut() = src._0();
+    *self._1_mut() = src._1();
+  }
 
   /// First element.
   fn _0_ref( &self ) -> &Self::Scalar;
@@ -120,7 +127,7 @@ pub trait x2_canonical_interface : x2_interface + Sized
     &self.as_array()[ .. ]
   }
   /// Canonical representation of the vector.
-  fn as_canonical( &self ) -> &x2< Self::Scalar >;
+  fn as_canonical( &self ) -> &X2< Self::Scalar >;
 
   /// Interpret as mutable tuple.
   #[ inline ]
@@ -148,7 +155,7 @@ pub trait x2_canonical_interface : x2_interface + Sized
     &mut self.as_array_mut()[ .. ]
   }
   /// Mutable canonical representation of the vector.
-  fn as_canonical_mut( &mut self ) -> &mut x2< Self::Scalar >;
+  fn as_canonical_mut( &mut self ) -> &mut X2< Self::Scalar >;
 
 }
 
@@ -158,8 +165,8 @@ pub trait x2_canonical_interface : x2_interface + Sized
 
 // impl< Original, Target > From< Original > for Target
 // where
-//   Original : x2_interface,
-//   Target : x2_interface,
+//   Original : X2Interface,
+//   Target : X2Interface,
 // {
 //   fn from( original : Original ) -> Self
 //   {
@@ -173,8 +180,8 @@ impl< Scalar, Original, Target > crate::From2< Original >
 for Target
 where
   Scalar : ScalarInterface,
-  Original : x2_interface< Scalar = Scalar >,
-  Target : x2_interface< Scalar = Scalar >,
+  Original : X2Interface< Scalar = Scalar >,
+  Target : X2Interface< Scalar = Scalar >,
 {
   fn from2( original : Original ) -> Self
   {
@@ -186,7 +193,7 @@ where
 // for Target
 // where
 //   Scalar : ScalarInterface,
-//   Target : x2_interface< Scalar = Scalar >,
+//   Target : X2Interface< Scalar = Scalar >,
 // {
 //   fn from2( original : Target ) -> Self
 //   {
@@ -198,7 +205,7 @@ where
 // for Target
 // where
 //   Scalar : ScalarInterface,
-//   Target : x2_interface< Scalar = Scalar >,
+//   Target : X2Interface< Scalar = Scalar >,
 // {
 //   fn from2( original : &&Target ) -> Self
 //   {

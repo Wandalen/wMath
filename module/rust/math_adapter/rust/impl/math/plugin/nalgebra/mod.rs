@@ -3,10 +3,10 @@ pub mod internal
 {
   use core::mem::size_of;
   use crate::prelude::*;
-  use crate::x2;
+  use crate::X2;
   use crate::ScalarInterface;
 
-  include!( "./x2.rs" );
+  include!( "./X2.rs" );
   impl_x2_for!( nalgebra::Vector2< Scalar > );
 
 }

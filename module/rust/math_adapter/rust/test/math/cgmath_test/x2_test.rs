@@ -2,10 +2,11 @@
 
 use wtest_basic::*;
 use core::mem::size_of;
-use math_adapter::prelude::*;
 use num_traits::cast::cast;
+use math_adapter::prelude::*;
+use math_adapter::X2;
 use crate::tools::*;
-use crate::x2_with_records_test_for;
+use crate::{ x2_with_records_test_for, val };
 
 ///
 /// One test should be ordinary to exclude possibility of problems with macro.
@@ -31,14 +32,14 @@ fn _basic()
     assert_eq!( got._1(), 2 );
   }
 
-  /* test.case = "operator add"; */
-  {
-    let src1 = cgmath::Vector2::< i8 >{ x : 1, y : 2 };
-    let src2 = cgmath::Vector2::< i8 >{ x : 2, y : 3 };
-    let got = src1.as_canonical() + src2.as_canonical();
-    let exp = math_adapter::x2::< i8 >( 3, 5 );
-    assert_eq!( got, exp );
-  }
+  // /* test.case = "operator add"; */
+  // {
+  //   let src1 = cgmath::Vector2::< i8 >{ x : 1, y : 2 };
+  //   let src2 = cgmath::Vector2::< i8 >{ x : 2, y : 3 };
+  //   let got = src1.as_canonical() + src2.as_canonical();
+  //   let exp = math_adapter::X2::< i8 >( 3, 5 );
+  //   assert_eq!( got, exp );
+  // }
 
 }
 

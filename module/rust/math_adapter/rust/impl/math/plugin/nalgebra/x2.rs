@@ -3,7 +3,7 @@ macro_rules! impl_x2_for
   ( $Struct : path ) =>
   {
 
-    impl< Scalar > x2_interface for $Struct
+    impl< Scalar > X2Interface for $Struct
     where
       Scalar : ScalarInterface,
     {
@@ -59,15 +59,15 @@ macro_rules! impl_x2_for
 
     }
 
-    impl< Scalar > x2_canonical_interface for $Struct
+    impl< Scalar > X2CanonicalInterface for $Struct
     where
       Scalar : ScalarInterface,
     {
 
       #[ inline ]
-      fn as_canonical( &self ) -> &x2< Self::Scalar >
+      fn as_canonical( &self ) -> &X2< Self::Scalar >
       {
-        debug_assert_eq!( size_of::< Self >(), size_of::< x2< Self::Scalar > >() );
+        debug_assert_eq!( size_of::< Self >(), size_of::< X2< Self::Scalar > >() );
         unsafe
         {
           std::mem::transmute::< _, _ >( self )
@@ -75,9 +75,9 @@ macro_rules! impl_x2_for
       }
 
       #[ inline ]
-      fn as_canonical_mut( &mut self ) -> &mut x2< Self::Scalar >
+      fn as_canonical_mut( &mut self ) -> &mut X2< Self::Scalar >
       {
-        debug_assert_eq!( size_of::< Self >(), size_of::< x2< Self::Scalar > >() );
+        debug_assert_eq!( size_of::< Self >(), size_of::< X2< Self::Scalar > >() );
         unsafe
         {
           std::mem::transmute::< _, _ >( self )
@@ -91,7 +91,7 @@ macro_rules! impl_x2_for
     impl< Scalar, Any > crate::AsNalgebraInterface< $Struct > for Any
     where
       Scalar : ScalarInterface,
-      Any : x2_canonical_interface< Scalar = Scalar >,
+      Any : X2CanonicalInterface< Scalar = Scalar >,
     {
 
       fn as_nalgebra( &self ) -> &$Struct

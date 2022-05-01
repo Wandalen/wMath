@@ -3,15 +3,15 @@ pub mod internal
 {
   use core::fmt::Debug;
   use core::hash::Hash;
-  use core::ops::Add;
   use crate::ScalarInterface;
-  // use crate::prelude::*;
 
-  include!( "./x2_interface.rs" );
-  include!( "./x2_ops.rs" );
-  include!( "./x2_struct.rs" );
-
-  //
+  include!( "./x2/array.rs" );
+  include!( "./x2/interface.rs" );
+  include!( "./x2/ops.rs" );
+  #[ cfg( any( feature = "cgmath_ops", feature = "nalgebra_ops" ) ) ]
+  include!( "./x2/rented_op.rs" );
+  include!( "./x2/struct.rs" );
+  include!( "./x2/tuple.rs" );
 
 }
 
@@ -19,9 +19,13 @@ pub mod internal
 pub mod exposed
 {
   use super::internal as i;
-  pub use i::x2;
-  pub use i::x2_interface;
-  pub use i::x2_canonical_interface;
+  pub use i::X2;
+  pub use i::X2Interface;
+  pub use i::X2CanonicalInterface;
+  #[ cfg( any( feature = "cgmath_ops", feature = "nalgebra_ops" ) ) ]
+  pub( crate ) use i::impl_x2_rented_op1;
+  #[ cfg( any( feature = "cgmath_ops", feature = "nalgebra_ops" ) ) ]
+  pub( crate ) use i::impl_x2_rented_op2;
 }
 
 pub use exposed::*;
@@ -30,6 +34,6 @@ pub use exposed::*;
 pub mod prelude
 {
   use super::internal as i;
-  pub use i::x2_interface;
-  pub use i::x2_canonical_interface;
+  pub use i::X2Interface;
+  pub use i::X2CanonicalInterface;
 }

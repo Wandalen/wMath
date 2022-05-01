@@ -1,12 +1,12 @@
 
 ///
-/// Vector x2
+/// Vector X2
 ///
 
 #[ allow( non_camel_case_types ) ]
 #[ repr( C ) ]
 #[ derive( Debug, PartialEq, Copy, Clone, Hash ) ]
-pub struct x2
+pub struct X2
 <
   Scalar : ScalarInterface,
 >
@@ -14,7 +14,7 @@ pub struct x2
 
 //
 
-impl< Scalar > x2_interface for x2< Scalar >
+impl< Scalar > X2Interface for X2< Scalar >
 where
   Scalar : ScalarInterface,
 {
@@ -44,7 +44,7 @@ where
 
 //
 
-impl< Scalar > x2_canonical_interface for x2< Scalar >
+impl< Scalar > X2CanonicalInterface for X2< Scalar >
 where
   Scalar : ScalarInterface,
 {
@@ -80,13 +80,13 @@ where
   /* */
 
   #[ inline ]
-  fn as_canonical( &self ) -> &x2< Self::Scalar >
+  fn as_canonical( &self ) -> &X2< Self::Scalar >
   {
     self
   }
 
   #[ inline ]
-  fn as_canonical_mut( &mut self ) -> &mut x2< Self::Scalar >
+  fn as_canonical_mut( &mut self ) -> &mut X2< Self::Scalar >
   {
     self
   }
@@ -98,10 +98,10 @@ where
 //
 
 // impl< Scalar, Original > From< &Original >
-// for x2< Scalar >
+// for X2< Scalar >
 // where
 //   Scalar : ScalarInterface,
-//   Original : x2_interface< Scalar = Scalar >,
+//   Original : X2Interface< Scalar = Scalar >,
 // {
 //   fn from( original : &Original ) -> Self
 //   {
@@ -112,10 +112,10 @@ where
 //
 
 // impl< Scalar, Original > From< Original >
-// for x2< Scalar >
+// for X2< Scalar >
 // where
 //   Scalar : ScalarInterface,
-//   Original : x2_interface< Scalar = Scalar >,
+//   Original : X2Interface< Scalar = Scalar >,
 // {
 //   fn from( original : Original ) -> Self
 //   {

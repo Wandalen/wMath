@@ -1,13 +1,15 @@
 /// Internal namespace.
 pub mod internal
 {
-  use core::mem::size_of;
+  use core::ops::{ Neg, Add, Sub };
   use crate::prelude::*;
   use crate::X2;
-  use crate::ScalarInterface;
+  use crate::impl_x2_rented_op1;
+  use crate::impl_x2_rented_op2;
 
-  include!( "./x2.rs" );
-  impl_x2_for!( winit::dpi::PhysicalSize< Scalar > );
+  impl_x2_rented_op1!( Neg, neg, cgmath::Vector2 );
+  impl_x2_rented_op2!( Add, add, cgmath::Vector2 );
+  impl_x2_rented_op2!( Sub, sub, cgmath::Vector2 );
 
 }
 

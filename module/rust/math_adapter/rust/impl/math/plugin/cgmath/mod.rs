@@ -3,7 +3,7 @@ pub mod internal
 {
   use core::mem::size_of;
   use crate::prelude::*;
-  use crate::x2;
+  use crate::X2;
   use crate::ScalarInterface;
 
   include!( "./x2.rs" );
@@ -13,6 +13,9 @@ pub mod internal
 
 /// Trait to interpret math data structures of other math libs as their analogs in cgmath to use operations of cgmath.
 pub mod as_cgmath;
+#[cfg( feature = "cgmath_ops" )]
+/// Use cgmath's operations.
+pub mod ops;
 
 /// Exposed namespace of the module.
 pub mod exposed

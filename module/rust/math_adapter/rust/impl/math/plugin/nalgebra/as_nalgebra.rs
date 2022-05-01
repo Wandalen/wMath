@@ -5,7 +5,7 @@ pub mod internal
   // use core::hash::Hash;
   // use core::ops::Mul;
   // use crate::ScalarInterface;
-  // use crate::x2_canonical_interface;
+  // use crate::X2CanonicalInterface;
   // use crate::prelude::*;
 
   ///
@@ -29,8 +29,8 @@ pub mod internal
   // for AsNalgebra
   // where
   //   Scalar : ScalarInterface,
-  //   AsNalgebra : AsNalgebraInterface< Scalar > + x2_canonical_interface< Scalar = Scalar >,
-  //   Right : AsNalgebraInterface< Scalar > + x2_canonical_interface< Scalar = Scalar >,
+  //   AsNalgebra : AsNalgebraInterface< Scalar > + X2CanonicalInterface< Scalar = Scalar >,
+  //   Right : AsNalgebraInterface< Scalar > + X2CanonicalInterface< Scalar = Scalar >,
   // {
   //   type Output = Self;
   //   fn mul( self, right : Right ) -> Self::Output
@@ -46,7 +46,7 @@ pub mod internal
   // where
   //   AsNalgebra : AsNalgebraInterface< Scalar >,
   //   Scalar : ScalarInterface,
-  //   Right : x2_interface< Scalar = Scalar > + Copy,
+  //   Right : X2Interface< Scalar = Scalar > + Copy,
   // {
   //   type Output = < AsNalgebra< Scalar > as Mul< Right > >::Output;
   //   fn add( self, right : &Right ) -> Self::Output
@@ -70,5 +70,5 @@ pub use exposed::*;
 pub mod prelude
 {
   // use super::internal as i;
-  // pub use i::x2_interface;
+  // pub use i::X2Interface;
 }

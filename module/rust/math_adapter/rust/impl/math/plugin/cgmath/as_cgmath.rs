@@ -39,6 +39,7 @@ pub use exposed::*;
 /// Prelude to use: `use wtools::prelude::*`.
 pub mod prelude
 {
-  // use super::internal as i;
-  // pub use i::x2_interface;
+  use super::internal as i;
+  pub use i::AsCgmathNonCanonicalInterface;
+  pub use i::AsCgmathCanonicalInterface;
 }

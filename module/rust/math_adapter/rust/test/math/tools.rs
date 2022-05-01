@@ -33,3 +33,43 @@ pub fn mem_same< T1, T2 >( src1 : &T1, src2 : &T2 ) -> bool
 {
   mem_same_ptrs( src1, src2 ) && mem_same_size( src1, src2 )
 }
+
+///
+/// Required to convert integets to floats.
+///
+
+#[ macro_export ]
+macro_rules! val
+{
+
+  () =>
+  {
+  };
+
+  ( $val : expr ) =>
+  {
+    num_traits::cast::< _, T >( $val ).unwrap()
+  };
+
+  ( $( $val : expr ),+ ) =>
+  {(
+    $( num_traits::cast::< _, T >( $val ).unwrap() ),+
+  )};
+
+  // ( $val : expr $( , $( $rest : tt )+ )? ) =>
+  // {
+  //   num_traits::cast::< _, T >( $val ).unwrap()
+  //   $( , $crate::val!( $( $rest )+ ); )?
+  // };
+
+//   ( $v : expr ) =>
+//   {
+//     f1( $v )
+//   };
+//
+//   ( $( $rest : expr ),+ ) =>
+//   {(
+//     $( val!( $rest ) ),+,
+//   )};
+
+}
