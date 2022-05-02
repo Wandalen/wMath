@@ -1,5 +1,5 @@
 [package]
-name = "math_dapter_sample"
+name = "math_adapter_trivial_sample"
 version = "0.0.0"
 edition = "2021"
 publish = false

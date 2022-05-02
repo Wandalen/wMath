@@ -117,7 +117,7 @@ fn inter_cgmath()
 
   /* test.case = "using either `cgmath's` and `nalgebra's` implementation of sum"; */
   {
-    use cgmath::Array;
+    // use cgmath::Array;
     let src = X2::< T >::make( 1, 2 );
     let got = src.as_cgmath().sum();
     assert_eq!( got, 3 );

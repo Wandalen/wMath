@@ -249,6 +249,8 @@ macro_rules! macro_test_x2_with_records
 
 }
 
+// xxx : use paste here
+
 // ///
 // /// Tests for X2 conversion function. Names are implementation-specific. .
 // ///

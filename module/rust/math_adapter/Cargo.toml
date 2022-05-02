@@ -34,16 +34,24 @@ name = "math_adapter_test"
 path = "rust/test/math/math_adapter_lib_test.rs"
 
 [[example]]
-name = "math_adapter_trivial"
-path = "../../../sample/rust/math_adapter_trivial/src/main.rs"
+name = "math_adapter_trivial_sample"
+path = "../../../sample/rust/math_adapter_trivial_sample/src/main.rs"
+
+[[example]]
+name = "math_adapter_operators_sample"
+path = "../../../sample/rust/math_adapter_operators_sample/src/main.rs"
+
+[[example]]
+name = "math_adapter_interoperability_sample"
+path = "../../../sample/rust/math_adapter_interoperability_sample/src/main.rs"
 
 [package.metadata.docs.rs]
 all-features = true
 
 [features]
-default_ops = [] # implement operands using default math library
-cgmath_ops = [] # implement operands using `cgmath` as math library
-nalgebra_ops = [] # implement operands using `nalgebra` as math library
+default_ops = [] # reuse operands and function of default math library
+cgmath_ops = [ "cgmath" ] # reuse operands and function of `cgmath` as math library
+nalgebra_ops = [ "nalgebra" ] # reuse operands and function of `nalgebra` as math library
 default = [] # default features
 
 [dependencies]

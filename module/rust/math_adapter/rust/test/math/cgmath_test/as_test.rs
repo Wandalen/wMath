@@ -3,7 +3,6 @@
 use wtest_basic::*;
 use crate::test_tools::*;
 use math_adapter::prelude::*;
-// use math_adapter::{ X2NominalInterface, X2BasicInterface, X2CanonicalInterface };
 use math_adapter::X2;
 use cgmath::Vector2 as X2Native;
 
@@ -92,11 +91,7 @@ fn _convertion_as_specific()
 fn operation_deref()
 {
   type T = i8;
-  // use math_adapter::cgmath::as_native::*; xxx
-  use cgmath::Array;
-
   crate::macro_test_x2_operation_deref!( X2Native ; T );
-
 }
 
 //

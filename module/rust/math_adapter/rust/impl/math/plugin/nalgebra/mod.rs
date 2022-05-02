@@ -19,6 +19,7 @@ pub mod own
 {
   use super::internal as i;
   pub use i::X2;
+  pub use nalgebra::*;
 }
 
 pub use own::*;
@@ -41,4 +42,5 @@ pub mod prelude
   #[ cfg( any( feature = "nalgebra_ops", feature = "default_ops" ) ) ]
   pub use super::ops::prelude::*;
   pub use super::x2::prelude::*;
+  // use crate::dependency::nalgebra::prelude::*;
 }

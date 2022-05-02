@@ -28,6 +28,7 @@ pub mod own
   pub use super::exposed::*;
   use super::internal as i;
   pub use i::X2;
+  pub use cgmath::*;
 }
 
 pub use own::*;
@@ -54,6 +55,7 @@ pub use exposed::*;
 /// Prelude to use: `use wtools::prelude::*`.
 pub mod prelude
 {
+  pub use crate::dependency::cgmath::prelude::*;
   pub use super::as_native::prelude::*;
   #[
     cfg( all

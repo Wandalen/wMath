@@ -1,0 +1,17 @@
+[package]
+name = "math_adapter_interoperability_sample"
+version = "0.0.0"
+edition = "2021"
+publish = false
+
+[features]
+cgmath = [ "math_adapter/cgmath" ] # use `cgmath` as math library
+nalgebra = [ "math_adapter/nalgebra" ] # use `nalgebra` as math library
+winit = [ "math_adapter/winit" ] # implement interfaces for vectors of `winit`
+default_ops = [ "math_adapter/default_ops" ] # reuse operands and function of default math library
+cgmath_ops = [ "cgmath", "math_adapter/cgmath_ops" ] # reuse operands and function of `cgmath` as math library
+nalgebra_ops = [ "nalgebra", "math_adapter/nalgebra_ops" ] # reuse operands and function of `nalgebra` as math library
+default = [ "cgmath", "nalgebra" ] # default features
+
+[dependencies]
+math_adapter = { version = "*", path = "../../../module/rust/math_adapter", features = [ "cgmath", "nalgebra" ] }

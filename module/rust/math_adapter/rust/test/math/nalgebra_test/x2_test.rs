@@ -25,7 +25,7 @@ fn _basic()
 
   /* test.case = "value of elements"; */
   {
-    let got = nalgebra::Vector2::< i8 >::make( 1, 2 );
+    let got = nalgebra::Vector2::< T >::make( 1, 2 );
 
     assert_eq!( got.x, 1 );
     assert_eq!( got.y, 2 );
@@ -35,6 +35,13 @@ fn _basic()
     // tools::inspect_type_of!( got );
     // tools::inspect_type_of!( got.x );
 
+  }
+
+  /* making a new using the module */
+  {
+    let got = math_adapter::nalgebra::Vector2::< T >::make( 1, 2 );
+    let exp = nalgebra::Vector2::< T >::new( 1, 2 );
+    assert_eq!( got, exp );
   }
 
 }

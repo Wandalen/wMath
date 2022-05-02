@@ -25,11 +25,18 @@ fn _basic()
 
   /* test.case = "value of elements"; */
   {
-    let got = cgmath::Vector2::< i8 >{ x : 1, y : 2 };
+    let got = cgmath::Vector2::< T >{ x : 1, y : 2 };
     assert_eq!( got.x, 1 );
     assert_eq!( got.y, 2 );
     assert_eq!( got._0(), 1 );
     assert_eq!( got._1(), 2 );
+  }
+
+  /* making a new using the module */
+  {
+    let got = math_adapter::cgmath::Vector2::< T >::make( 1, 2 );
+    let exp = cgmath::Vector2::< T >{ x : 1, y : 2 };
+    assert_eq!( got, exp );
   }
 
 }
