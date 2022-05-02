@@ -2,8 +2,8 @@
 #![ warn( missing_debug_implementations ) ]
 #![ warn( missing_docs ) ]
 
-#![ feature( trace_macros ) ]
-#![ feature( type_name_of_val ) ]
+// #![ feature( trace_macros ) ]
+// #![ feature( type_name_of_val ) ]
 
 mod test_tools;
 mod macro_test_x2_with_records;
