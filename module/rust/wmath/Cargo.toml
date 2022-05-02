@@ -1,6 +1,6 @@
 [package]
 name = "wmath"
-version = "0.1.0"
+version = "0.2.0"
 edition = "2021"
 authors = [
   "Kostiantyn Wandalen <wandalen@obox.systems>",
@@ -46,7 +46,7 @@ path = "sample/rust/wmath_trivial/src/main.rs"
 # default = [ "cgmath", "nalgebra", "winit" ]
 
 [dependencies]
-math_adapter = { version = "~0.1", path = "../../rust/math_adapter" }
+math_adapter = { version = "~0.2", path = "../../rust/math_adapter" }
 # cgmath = { version = "~0.18", optional = true }
 # nalgebra = { version = "~0.30", optional = true }
 # winit = { version = "~0.26", optional = true }

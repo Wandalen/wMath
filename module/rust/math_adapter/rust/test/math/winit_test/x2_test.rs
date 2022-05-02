@@ -5,7 +5,7 @@ use core::mem::size_of;
 use math_adapter::prelude::*;
 use math_adapter::X2;
 use num_traits::cast::cast;
-use crate::tools::*;
+use crate::test_tools::*;
 use crate::{ x2_with_records_test_for, num };
 
 ///
@@ -63,35 +63,6 @@ fn _physical_size_test()
   x2_with_records_test_for!( winit::dpi::LogicalPosition, x, y ; i8, i16, i32, i64, i128 );
   x2_with_records_test_for!( winit::dpi::LogicalPosition, x, y ; u8, u16, u32, u64, u128 );
   x2_with_records_test_for!( winit::dpi::LogicalPosition, x, y ; f32, f64 );
-
-}
-
-//
-
-#[ cfg( all( feature = "winit", feature = "cgmath", feature = "cgmath_ops" ) ) ]
-#[ test ]
-fn cgmath_winit_interoperability_test()
-{
-
-  /* test.case = "use cgmath vectors for operations on winit vectors"; */
-  {
-    // use AsCgmathInterface;
-    let src1 = winit::dpi::PhysicalSize::< i8 >::make( 3, 2 );
-    let src2 = winit::dpi::PhysicalSize::< i8 >::make( 0, 1 );
-    let got = src1.as_cgmath() - src2.as_cgmath();
-    let exp = cgmath::Vector2::< i8 >::make( 3, 1 );
-    assert_eq!( got, exp );
-  }
-
-  // /* test.case = "use cgmath vectors for operations on winit vectors dereferencing"; */
-  // {
-  //   // use AsCgmathInterface;
-  //   let src1 = winit::dpi::PhysicalSize::< i8 >::make( 3, 2 );
-  //   let src2 = winit::dpi::PhysicalSize::< i8 >::make( 0, 1 );
-  //   let got = *src1 - *src2;
-  //   let exp = cgmath::Vector2::< i8 >::make( 3, 1 );
-  //   assert_eq!( got, exp );
-  // }
 
 }
 

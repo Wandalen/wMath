@@ -2,7 +2,7 @@ use wtest_basic::*;
 use core::mem::size_of;
 use math_adapter::prelude::*;
 use math_adapter::X2;
-use crate::tools::*;
+use crate::test_tools::*;
 use crate::num;
 
 ///

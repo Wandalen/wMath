@@ -15,8 +15,14 @@ pub mod internal
 }
 
 /// Trait to interpret math data structures of other math libs as their analogs in cgmath to use operations of cgmath.
-pub mod as_cgmath;
-#[ cfg( feature = "cgmath_ops" ) ]
+pub mod as_native;
+#[
+  cfg( all
+  (
+    not( all( feature = "default_ops", feature = "nalgebra" ) ),
+    any( feature = "default_ops", feature = "cgmath" ),
+  ))
+]
 /// Use cgmath's operations.
 pub mod ops;
 /// Implement interfaces for objects of the math library.
@@ -34,8 +40,14 @@ pub use own::*;
 /// Exposed namespace of the module.
 pub mod exposed
 {
-  pub use super::as_cgmath::exposed::*;
-  #[ cfg( feature = "cgmath_ops" ) ]
+  pub use super::as_native::exposed::*;
+  #[
+    cfg( all
+    (
+      not( all( feature = "default_ops", feature = "nalgebra" ) ),
+      any( feature = "default_ops", feature = "cgmath" ),
+    ))
+  ]
   pub use super::ops::exposed::*;
   pub use super::x2::exposed::*;
 }
@@ -45,8 +57,14 @@ pub use exposed::*;
 /// Prelude to use: `use wtools::prelude::*`.
 pub mod prelude
 {
-  pub use super::as_cgmath::prelude::*;
-  #[ cfg( feature = "cgmath_ops" ) ]
+  pub use super::as_native::prelude::*;
+  #[
+    cfg( all
+    (
+      not( all( feature = "default_ops", feature = "nalgebra" ) ),
+      any( feature = "default_ops", feature = "cgmath" ),
+    ))
+  ]
   pub use super::ops::prelude::*;
   pub use super::x2::prelude::*;
 }

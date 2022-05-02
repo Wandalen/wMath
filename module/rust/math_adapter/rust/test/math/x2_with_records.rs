@@ -55,7 +55,8 @@ macro_rules! x2_with_records_test_for
       /* test.case = "make"; */
       {
         let got = $Va $( :: $Vb )* ::< T >::from2( num!( 1, 2 ) );
-        let exp = $Va $( :: $Vb )* ::< T >{ $_0 : num!( 1 ), $_1 : num!( 2 ) };
+        let exp = $Va $( :: $Vb )* ::< T >::make( num!( 1 ), num!( 2 ) );
+        // let exp = $Va $( :: $Vb )* ::< T >{ $_0 : num!( 1 ), $_1 : num!( 2 ) };
         assert_eq!( got, exp );
       }
 

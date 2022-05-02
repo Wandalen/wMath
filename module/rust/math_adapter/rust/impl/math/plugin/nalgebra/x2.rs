@@ -1,122 +1,185 @@
-macro_rules! impl_x2_for
+/// Internal namespace.
+pub mod internal
 {
-  ( $Struct : path ) =>
+  use core::mem::size_of;
+  use crate::prelude::*;
+  use crate::{ X2, ScalarInterface };
+
+  macro_rules! impl_x2_for
   {
 
-    impl< Scalar > X2Interface for $Struct
-    where
-      Scalar : ScalarInterface,
-    {
-      type Scalar = Scalar;
-
-      #[ inline ]
-      fn make( _0 : Self::Scalar, _1 : Self::Scalar ) -> Self
-      {
-        Self::new( _0, _1 )
-      }
-
-      #[ inline ]
-      fn _0( &self ) -> Self::Scalar
-      {
-        self.x()
-      }
-
-      #[ inline ]
-      fn _1( &self ) -> Self::Scalar
-      {
-        self.y()
-      }
-
-      /* */
-
-      #[ inline ]
-      fn _0_ref( &self ) -> &Self::Scalar
-      {
-        &self.x
-      }
-
-      #[ inline ]
-      fn _1_ref( &self ) -> &Self::Scalar
-      {
-        &self.y
-      }
-
-      /* */
-
-      #[ inline ]
-      fn _0_mut( &mut self ) -> &mut Self::Scalar
-      {
-        &mut self.x
-      }
-
-      #[ inline ]
-      fn _1_mut( &mut self ) -> &mut Self::Scalar
-      {
-        &mut self.y
-      }
-
-      /* */
-
-    }
-
-    impl< Scalar > X2CanonicalInterface for $Struct
-    where
-      Scalar : ScalarInterface,
+    ( $Struct1 : ident $( :: $Struct2 : ident )* < $Params : ident > ) =>
     {
 
-      #[ inline ]
-      fn as_canonical( &self ) -> &X2< Self::Scalar >
+      impl< Scalar > X2NominalInterface for $Struct1 $( :: $Struct2 )* < $Params >
+      where
+        Scalar : ScalarInterface,
       {
-        debug_assert_eq!( size_of::< Self >(), size_of::< X2< Self::Scalar > >() );
-        unsafe
+        type Scalar = Scalar;
+
+        #[ inline ]
+        fn _0( &self ) -> Self::Scalar
         {
-          std::mem::transmute::< _, _ >( self )
+          self.x
         }
+
+        #[ inline ]
+        fn _1( &self ) -> Self::Scalar
+        {
+          self.y
+        }
+
       }
 
-      #[ inline ]
-      fn as_canonical_mut( &mut self ) -> &mut X2< Self::Scalar >
+      impl< Scalar > X2BasicInterface for $Struct1 $( :: $Struct2 )* < $Params >
+      where
+        Scalar : ScalarInterface,
       {
-        debug_assert_eq!( size_of::< Self >(), size_of::< X2< Self::Scalar > >() );
-        unsafe
+
+        #[ inline ]
+        fn make( _0 : Self::Scalar, _1 : Self::Scalar ) -> Self
         {
-          std::mem::transmute::< _, _ >( self )
+          Self::new( _0, _1 )
         }
+
       }
 
-    }
-
-    //
-
-    impl< Scalar, Any > crate::AsNalgebraInterface< $Struct > for Any
-    where
-      Scalar : ScalarInterface,
-      Any : X2CanonicalInterface< Scalar = Scalar >,
-    {
-
-      fn as_nalgebra( &self ) -> &$Struct
+      impl< Scalar > X2CanonicalInterface for $Struct1 $( :: $Struct2 )* < $Params >
+      where
+        Scalar : ScalarInterface,
       {
-        unsafe
+
+        /* */
+
+        #[ inline ]
+        fn _0_ref( &self ) -> &Self::Scalar
         {
-          std::mem::transmute::< _, _ >( self )
+          &self.x
         }
+
+        #[ inline ]
+        fn _1_ref( &self ) -> &Self::Scalar
+        {
+          &self.y
+        }
+
+        /* */
+
+        #[ inline ]
+        fn _0_mut( &mut self ) -> &mut Self::Scalar
+        {
+          &mut self.x
+        }
+
+        #[ inline ]
+        fn _1_mut( &mut self ) -> &mut Self::Scalar
+        {
+          &mut self.y
+        }
+
+        /* */
+
+        #[ inline ]
+        fn as_canonical( &self ) -> &X2< Self::Scalar >
+        {
+          debug_assert_eq!( size_of::< Self >(), size_of::< X2< Self::Scalar > >() );
+          unsafe
+          {
+            std::mem::transmute::< _, _ >( self )
+          }
+        }
+
+        #[ inline ]
+        fn as_canonical_mut( &mut self ) -> &mut X2< Self::Scalar >
+        {
+          debug_assert_eq!( size_of::< Self >(), size_of::< X2< Self::Scalar > >() );
+          unsafe
+          {
+            std::mem::transmute::< _, _ >( self )
+          }
+        }
+
+        /* */
+
       }
 
-      fn as_nalgebra_mut( &mut self ) -> &mut $Struct
+      //
+
+      impl< Scalar, Any > crate::AsNalgebraNonCanonicalInterface< $Struct1 $( :: $Struct2 )* < $Params > > for Any
+      where
+        Scalar : ScalarInterface,
+        Any : X2Interface< Scalar = Scalar > + Copy,
       {
-        unsafe
+
+        fn clone_as_nalgebra( &self ) -> $Struct1 $( :: $Struct2 )* < $Params >
         {
-          std::mem::transmute::< _, _ >( self )
+          $Struct1 $( :: $Struct2 )* :: < $Params > :: from2( *self )
         }
+
       }
 
-      // fn clone_as_nalgebra( &self ) -> $Struct
+      //
+
+      impl< Scalar, Any > crate::AsNalgebraCanonicalInterface< $Struct1 $( :: $Struct2 )* < $Params > > for Any
+      where
+        Scalar : ScalarInterface,
+        Any : X2CanonicalInterface< Scalar = Scalar >,
+      {
+
+        fn as_nalgebra( &self ) -> &$Struct1 $( :: $Struct2 )* < $Params >
+        {
+          unsafe
+          {
+            std::mem::transmute::< _, _ >( self )
+          }
+        }
+
+        fn as_nalgebra_mut( &mut self ) -> &mut $Struct1 $( :: $Struct2 )* < $Params >
+        {
+          unsafe
+          {
+            std::mem::transmute::< _, _ >( self )
+          }
+        }
+
+      }
+
+      //
+
+      // trait x2_interface2
       // {
-      //   $Struct::from( self )
+      //   type Scalar;
       // }
 
-    }
+      // impl< Scalar, X2 > From< X2< Scalar = Scalar > > for $Struct1 $( :: $Struct2 )* < $Params >
+      // where
+      //   Scalar : ScalarInterface,
+      //   X2 : X2Interface< Scalar = Scalar >,
+      // {
+      //   fn from( src : $Struct1 $( :: $Struct2 )* < $Params > ) -> Self
+      //   {
+      //     Self::make( src._0(), src._1() )
+      //   }
+      // }
 
-  };
+    };
 
+  }
+
+  impl_x2_for!( nalgebra::Vector2< Scalar > );
+
+}
+
+/// Exposed namespace of the module.
+pub mod exposed
+{
+  // use super::internal as i;
+}
+
+pub use exposed::*;
+
+/// Prelude to use: `use wtools::prelude::*`.
+pub mod prelude
+{
+  // use super::internal as i;
 }
