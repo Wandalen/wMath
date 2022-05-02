@@ -27,7 +27,7 @@ cargo add wmath
 ### Try out from the repository
 
 ```sh
-git clone https://github.com/Wandalen/wTools
+git clone https://github.com/Wandalen/wMath
 cd wTools
 cd sample/rust/wmath_trivial
 cargo run

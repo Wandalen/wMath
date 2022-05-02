@@ -20,7 +20,7 @@ cargo add wskatch --dev
 ### Try out from the repository
 
 ```sh
-git clone https://github.com/Wandalen/wTools
+git clone https://github.com/Wandalen/wMath
 cd wTools
 cd sample/rust/wskatch_trivial
 cargo run

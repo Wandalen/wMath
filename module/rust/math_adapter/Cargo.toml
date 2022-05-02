@@ -10,8 +10,8 @@ authors = [
 license = "MIT"
 readme = "Readme.md"
 documentation = "https://docs.rs/wmath"
-repository = "https://github.com/Wandalen/wTools/tree/master/module/rust/wmath"
-homepage = "https://github.com/Wandalen/wTools/tree/master/module/rust/wmath"
+repository = "https://github.com/Wandalen/wMath/tree/master/module/rust/wmath"
+homepage = "https://github.com/Wandalen/wMath/tree/master/module/rust/wmath"
 description = """
 Collection of math adapters to decouple your application from math libraries' implementations and to increase inter-libraries compatibility / exchangeability.
 """
@@ -35,7 +35,7 @@ path = "rust/test/math/math_adapter_lib_test.rs"
 
 [[example]]
 name = "math_adapter_trivial"
-path = "sample/rust/math_adapter_trivial/src/main.rs"
+path = "../../../sample/rust/math_adapter_trivial/src/main.rs"
 
 [package.metadata.docs.rs]
 all-features = true

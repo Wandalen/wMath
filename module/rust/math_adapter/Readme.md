@@ -16,7 +16,7 @@ fn main()
   assert_eq!( src1.x(), 1 );
   assert_eq!( src1.y(), 3 );
 
-  /* using operators  */
+  /* if back-end math lib is chosen then operators and functions are available  */
   #[ cfg( any( feature = "cgmath_ops", feature = "nalgebra_ops", feature = "default_ops" ) ) ]
   {
     let src1 = X2::make( 1, 2 );
@@ -41,7 +41,7 @@ cargo add math_adapter
 ### Try out from the repository
 
 ```sh
-git clone https://github.com/Wandalen/wTools
+git clone https://github.com/Wandalen/wMath
 cd wTools
 cd module/math_adapter/sample/rust/math_adapter_trivial
 cargo run

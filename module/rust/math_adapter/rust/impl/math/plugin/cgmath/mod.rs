@@ -25,6 +25,7 @@ pub mod x2;
 /// Own namespace of the module.
 pub mod own
 {
+  pub use super::exposed::*;
   use super::internal as i;
   pub use i::X2;
 }
@@ -34,6 +35,7 @@ pub use own::*;
 /// Exposed namespace of the module.
 pub mod exposed
 {
+  pub use super::prelude::*;
   pub use super::as_native::exposed::*;
   #[
     cfg( all
@@ -66,3 +68,26 @@ pub mod prelude
 }
 
 /* zzz : implement macro mod_adopt? */
+// mod_adopt!
+// {
+//
+//   /// Trait to interpret math data structures of other math libs as their analogs in cgmath to use operations of cgmath.
+//   mod as_native;
+//
+//   #[
+//     cfg( all
+//     (
+//       not( feature = "nalgebra_ops" ),
+//       not( all( feature = "default_ops", feature = "nalgebra" ) ),
+//       any( feature = "default_ops", feature = "cgmath_ops" ),
+//     ))
+//   ]
+//   /// Use cgmath's operations.
+//   mod ops;
+//
+//   /// Implement interfaces for objects of the math library.
+//   mod x2;
+//
+//   own X2;
+//
+// }
