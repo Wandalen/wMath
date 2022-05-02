@@ -59,7 +59,22 @@ pub use exposed::*;
 /// Prelude to use: `use wtools::prelude::*`.
 pub mod prelude
 {
+  #[ allow( unused_imports ) ]
   use super::internal as i;
+  #[
+    cfg( all
+    (
+      not( all( feature = "default_ops", feature = "nalgebra" ) ),
+      any( feature = "default_ops", feature = "cgmath" ),
+    ))
+  ]
   pub use i::AsCgmathNonCanonicalInterface;
+  #[
+    cfg( all
+    (
+      not( all( feature = "default_ops", feature = "nalgebra" ) ),
+      any( feature = "default_ops", feature = "cgmath" ),
+    ))
+  ]
   pub use i::AsCgmathCanonicalInterface;
 }

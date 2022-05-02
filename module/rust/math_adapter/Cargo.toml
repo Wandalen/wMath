@@ -1,6 +1,6 @@
 [package]
 name = "math_adapter"
-version = "0.1.1"
+version = "0.2.1"
 edition = "2021"
 authors = [
   "Kostiantyn Wandalen <wandalen@obox.systems>",
@@ -25,9 +25,6 @@ include = [
   "/License",
 ]
 
-[package.metadata.docs.rs]
-all-features = true
-
 [lib]
 name = "math_adapter"
 path = "rust/impl/math/math_adapter_lib.rs"
@@ -36,27 +33,29 @@ path = "rust/impl/math/math_adapter_lib.rs"
 name = "math_adapter_test"
 path = "rust/test/math/math_adapter_lib_test.rs"
 
-# qqq : write please
-# [[example]]
-# name = "math_adapter_trivial"
-# path = "sample/rust/math_adapter_trivial/src/main.rs"
+[[example]]
+name = "math_adapter_trivial"
+path = "sample/rust/math_adapter_trivial/src/main.rs"
+
+[package.metadata.docs.rs]
+all-features = true
 
 [features]
-# cgmath = [ "cgmath" ]
-# winit = [ "winit" ]
-cgmath_ops = []
-nalgebra_ops = []
-default = []
+default_ops = [] # implement operands using default math library
+cgmath_ops = [] # implement operands using `cgmath` as math library
+nalgebra_ops = [] # implement operands using `nalgebra` as math library
+default = [] # default features
 
 [dependencies]
-cgmath = { version = "~0.18", optional = true }
-nalgebra = { version = "~0.30", optional = true }
-winit = { version = "~0.26", optional = true }
+cgmath = { version = "~0", optional = true }
+nalgebra = { version = "~0", optional = true }
+winit = { version = "~0", optional = true }
 num-traits = "~0.2"
 # paste = "~1.0"
 # anyhow = "~1.0"
 
 [dev-dependencies]
+tools = { path = "../../rust/tools" }
 wtest_basic = { version = "~0.1" }
 # paste = "1.0.5"
 # trybuild = { version = "~1.0", features = [ "diff" ] }

@@ -12,15 +12,16 @@ pub mod internal
   ///
 
   pub trait ScalarInterface :
+    'static +
     Debug +
     PartialEq +
     PartialOrd +
     Copy +
     Clone +
-    // Hash +
     Sized +
     Num +
     NumCast +
+    // Hash +
     // Not< Output = Self > +
     // Neg< Output = Self > +
     Add< Output = Self > +
@@ -39,15 +40,16 @@ pub mod internal
   impl< T > ScalarInterface for T
   where
     T :
+      'static +
       Debug +
       PartialEq +
       PartialOrd +
       Copy +
       Clone +
-      // Hash +
       Sized +
       Num +
       NumCast +
+      // Hash +
       // Not< Output = Self > +
       // Neg< Output = Self > +
       Add< Output = Self > +

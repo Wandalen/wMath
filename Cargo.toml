@@ -2,7 +2,7 @@
 resolver = "2"
 members = [
   "module/rust/*",
-  "sample/rust/*",
+  # "sample/rust/*",
 ]
 exclude = [
   "*",

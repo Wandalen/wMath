@@ -57,8 +57,10 @@ pub use exposed::*;
 pub mod prelude
 {
   use super::internal as i;
+  pub use i::X2;
   pub use i::X2NominalInterface as X2Interface;
   pub use i::X2NominalInterface;
   pub use i::X2BasicInterface;
   pub use i::X2CanonicalInterface;
+  /* xxx : explain differences */
 }
