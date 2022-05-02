@@ -36,7 +36,7 @@ use math_adapter::X2;
 fn main()
 {
 
-  /* vector of length 2 and its elements */
+  // vector of length 2 and its elements
   let src1 = X2::make( 1, 3 );
   assert_eq!( src1.x(), 1 );
   assert_eq!( src1.y(), 3 );
@@ -58,7 +58,7 @@ use math_adapter::X2;
 fn main()
 {
 
-  /* if back-end math lib is chosen then operators and functions are available */
+  // if back-end math lib is chosen then operators and functions are available
   #[ cfg( feature = "cgmath_ops" ) ]
   {
     let src1 = X2::make( 1, 2 );
@@ -69,7 +69,7 @@ fn main()
     println!( "src1 + src2 : {:?}", got );
   }
 
-  /* enable feature *_ops to get access to functions */
+  // enable feature *_ops to get access to functions
   #[ cfg( feature = "cgmath_ops" ) ]
   {
     let src = X2::make( 1, 2 );
@@ -91,13 +91,13 @@ use math_adapter::X2;
 fn main()
 {
 
-  /* ! compile time error, because if no `*_ops` feature was chosen */
+  // ! compile time error, because if no `*_ops` feature was chosen
   // {
   //   let src = X2::make( 1, 3 ); /* make a canonical 2D vector */
   //   println!( "src.sum() : {:?}", src.sum() ); /* use `sum()` of chosen math lib back-end */
   // }
 
-  /* enable feature *_ops should be enabled to get access to functions */
+  // enable feature *_ops should be enabled to get access to functions
   #[ cfg( all( feature = "cgmath", feature = "nalgebra" ) ) ]
   {
     let src = X2::make( 1, 3 ); /* make a canonical 2D vector */
@@ -105,7 +105,8 @@ fn main()
     println!( "src.as_nalgebra().sum() : {:?}", src.as_nalgebra().sum() ); /* use `sum()` of `nalgebra` */
   }
 
-  /* you can convert / reinterpret any vector. for example you can create `cgmath::Vector2`, but apply a function of `nalgebra::Vector2` */
+  // you can convert / reinterpret any vector.
+  // for example you can create `cgmath::Vector2`, but apply a function of `nalgebra::Vector2`
   #[ cfg( all( feature = "cgmath", feature = "nalgebra" ) ) ]
   {
     let src = math_adapter::cgmath::Vector2::< i32 >::make( 1, 3 ); /* make a `cgmath` 2D vector */
@@ -125,7 +126,7 @@ cargo add math_adapter
 
 ```sh
 git clone https://github.com/Wandalen/wMath
-cd wTools
+cd wMath
 cd module/math_adapter/sample/rust/math_adapter_trivial
 cargo run
 ```

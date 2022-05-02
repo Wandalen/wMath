@@ -21,7 +21,7 @@ cargo add wskatch --dev
 
 ```sh
 git clone https://github.com/Wandalen/wMath
-cd wTools
+cd wMath
 cd sample/rust/wskatch_trivial
 cargo run
 ```

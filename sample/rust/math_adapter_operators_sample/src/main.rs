@@ -9,7 +9,7 @@ use math_adapter::X2;
 fn main()
 {
 
-  /* if back-end math lib is chosen then operators and functions are available */
+  // if back-end math lib is chosen then operators and functions are available
   #[ cfg( feature = "cgmath_ops" ) ]
   {
     let src1 = X2::make( 1, 2 );
@@ -20,7 +20,7 @@ fn main()
     println!( "src1 + src2 : {:?}", got );
   }
 
-  /* enable feature *_ops to get access to functions */
+  // enable feature *_ops to get access to functions
   #[ cfg( feature = "cgmath_ops" ) ]
   {
     let src = X2::make( 1, 2 );

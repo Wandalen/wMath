@@ -11,7 +11,7 @@ use math_adapter::X2;
 fn main()
 {
 
-  /* vector of length 2 and its elements */
+  // vector of length 2 and its elements
   let src1 = X2::make( 1, 3 );
   assert_eq!( src1.x(), 1 );
   assert_eq!( src1.y(), 3 );
