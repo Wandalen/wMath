@@ -31,13 +31,13 @@ pub mod dependency
 {
   /// General math traits.
   pub use num_traits as traits;
-  #[cfg( feature = "cgmath" )]
+  #[ cfg( feature = "cgmath" )]
   /// Math lib cgmath.
   pub use cgmath as cgmath;
-  #[cfg( feature = "naglebra" )]
+  #[ cfg( feature = "naglebra" )]
   /// Math lib nalgebra.
   pub use naglebra as naglebra;
-  #[cfg( feature = "winit" )]
+  #[ cfg( feature = "winit" )]
   /// Math lib winit.
   pub use winit as winit;
 }

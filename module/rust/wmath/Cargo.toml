@@ -41,9 +41,13 @@ name = "wmath_trivial"
 path = "sample/rust/wmath_trivial/src/main.rs"
 
 [features]
-# cgmath = [ "cgmath" ]
-# winit = [ "winit" ]
-# default = [ "cgmath", "nalgebra", "winit" ]
+cgmath = [ "math_adapter/cgmath" ] # use `cgmath` as math library
+nalgebra = [ "math_adapter/nalgebra" ] # use `nalgebra` as math library
+winit = [ "math_adapter/winit" ] # implement interfaces for vectors of `winit`
+default_ops = [ "math_adapter/default_ops" ] # implement operands using default math library
+cgmath_ops = [ "math_adapter/cgmath_ops" ] # implement operands using `cgmath` as math library
+nalgebra_ops = [ "math_adapter/nalgebra_ops" ] # implement operands using `nalgebra` as math library
+default = [] # default features
 
 [dependencies]
 math_adapter = { version = "~0.2", path = "../../rust/math_adapter" }

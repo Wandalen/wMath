@@ -1,6 +1,6 @@
 [package]
 name = "math_adapter"
-version = "0.2.0"
+version = "0.2.1"
 edition = "2021"
 authors = [
   "Kostiantyn Wandalen <wandalen@obox.systems>",
@@ -33,18 +33,17 @@ path = "rust/impl/math/math_adapter_lib.rs"
 name = "math_adapter_test"
 path = "rust/test/math/math_adapter_lib_test.rs"
 
-# qqq : write please
-# [[example]]
-# name = "math_adapter_trivial"
-# path = "sample/rust/math_adapter_trivial/src/main.rs"
+[[example]]
+name = "math_adapter_trivial"
+path = "sample/rust/math_adapter_trivial/src/main.rs"
 
 [package.metadata.docs.rs]
 all-features = true
 
 [features]
 default_ops = [] # implement operands using default math library
-cgmath_ops = [] # implement operands using cgmath as math library
-nalgebra_ops = [] # implement operands using nalgebra as math library
+cgmath_ops = [] # implement operands using `cgmath` as math library
+nalgebra_ops = [] # implement operands using `nalgebra` as math library
 default = [] # default features
 
 [dependencies]

@@ -11,9 +11,9 @@ mod x2_with_records;
 mod x2_test;
 mod experiment_test;
 
-#[cfg( feature = "cgmath" )]
+#[ cfg( feature = "cgmath" )]
 mod cgmath_test;
-#[cfg( feature = "nalgebra" )]
+#[ cfg( feature = "nalgebra" )]
 mod nalgebra_test;
-#[cfg( feature = "winit" )]
+#[ cfg( feature = "winit" )]
 mod winit_test;
