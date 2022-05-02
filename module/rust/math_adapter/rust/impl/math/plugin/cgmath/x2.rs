@@ -103,10 +103,11 @@ pub mod internal
 
       //
 
-      impl< Scalar, Any > crate::AsCgmathNonCanonicalInterface< $Struct1 $( :: $Struct2 )* < $Params > > for Any
+      impl< Scalar, Any > crate::AsCgmathNonCanonicalInterface< $Struct1 $( :: $Struct2 )* < $Params > >
+      for Any
       where
         Scalar : ScalarInterface,
-        Any : X2Interface< Scalar = Scalar > + Copy,
+        Any : X2NominalInterface< Scalar = Scalar > + Copy,
       {
 
         fn clone_as_cgmath( &self ) -> $Struct1 $( :: $Struct2 )* < $Params >
@@ -118,10 +119,11 @@ pub mod internal
 
       //
 
-      impl< Scalar, Any > crate::AsCgmathCanonicalInterface< $Struct1 $( :: $Struct2 )* < $Params > > for Any
+      impl< Scalar, Any > crate::AsCgmathCanonicalInterface< $Struct1 $( :: $Struct2 )* < $Params > >
+      for Any
       where
         Scalar : ScalarInterface,
-        Any : X2CanonicalInterface< Scalar = Scalar >,
+        Any : X2CanonicalInterface< Scalar = Scalar > + Copy,
       {
 
         fn as_cgmath( &self ) -> &$Struct1 $( :: $Struct2 )* < $Params >
@@ -141,24 +143,6 @@ pub mod internal
         }
 
       }
-
-      //
-
-      // trait x2_interface2
-      // {
-      //   type Scalar;
-      // }
-
-      // impl< Scalar, X2 > From< X2< Scalar = Scalar > > for $Struct1 $( :: $Struct2 )* < $Params >
-      // where
-      //   Scalar : ScalarInterface,
-      //   X2 : X2Interface< Scalar = Scalar >,
-      // {
-      //   fn from( src : $Struct1 $( :: $Struct2 )* < $Params > ) -> Self
-      //   {
-      //     Self::make( src._0(), src._1() )
-      //   }
-      // }
 
     };
 

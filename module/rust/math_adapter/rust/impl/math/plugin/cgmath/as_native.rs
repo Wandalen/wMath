@@ -2,22 +2,41 @@
 pub mod internal
 {
 
+  #[ allow( unused_imports ) ]
+  use crate::prelude::*;
+
   ///
   /// Trait for non-canonical structure to clone math data structures of other math libs as their analogs in cgmath to use operations of cgmath.
   ///
 
   pub trait AsCgmathNonCanonicalInterface< T >
+  where
+    T : Copy,
+    Self : Copy
   {
 
     /// Clone this data structure as cgmath analog to use its operations.
     fn clone_as_cgmath( &self ) -> T;
 
-    /// Clone this data structure as cgmath analog to use its operations.
+  }
+
+  #[
+    cfg( all
+    (
+      not( feature = "nalgebra_ops" ),
+      not( all( feature = "default_ops", feature = "nalgebra" ) ),
+      any( feature = "default_ops", feature = "cgmath_ops" ),
+    ))
+  ]
+  impl< T, Any > AsNativeNonCanonicalInterface< T > for Any
+  where
+    T : Copy,
+    Any : AsCgmathNonCanonicalInterface< T > + Copy,
+  {
     fn clone_as_native( &self ) -> T
     {
       self.clone_as_cgmath()
     }
-
   }
 
   ///
@@ -25,12 +44,30 @@ pub mod internal
   ///
 
   pub trait AsCgmathCanonicalInterface< T >
+  where
+    T : Copy,
+    Self : AsCgmathNonCanonicalInterface< T > + Copy,
   {
     /// Interpret this data structure as cgmath analog to use its operations.
     fn as_cgmath( &self ) -> &T;
     /// Interpret this data structure mutably as cgmath analog to use its operations.
     fn as_cgmath_mut( &mut self ) -> &mut T;
 
+  }
+
+  #[
+    cfg( all
+    (
+      not( feature = "nalgebra_ops" ),
+      not( all( feature = "default_ops", feature = "nalgebra" ) ),
+      any( feature = "default_ops", feature = "cgmath_ops" ),
+    ))
+  ]
+  impl< T, Any > AsNativeCanonicalInterface< T > for Any
+  where
+    T : Copy,
+    Any : AsCgmathCanonicalInterface< T > + Copy,
+  {
     /// Interpret this data structure as cgmath analog to use its operations.
     fn as_native( &self ) -> &T
     {
@@ -41,7 +78,6 @@ pub mod internal
     {
       self.as_cgmath_mut()
     }
-
   }
 
 }
@@ -52,6 +88,8 @@ pub mod exposed
   use super::internal as i;
   pub use i::AsCgmathNonCanonicalInterface;
   pub use i::AsCgmathCanonicalInterface;
+  pub use crate::AsNativeNonCanonicalInterface;
+  pub use crate::AsNativeCanonicalInterface;
 }
 
 pub use exposed::*;
@@ -61,20 +99,22 @@ pub mod prelude
 {
   #[ allow( unused_imports ) ]
   use super::internal as i;
-  #[
-    cfg( all
-    (
-      not( all( feature = "default_ops", feature = "nalgebra" ) ),
-      any( feature = "default_ops", feature = "cgmath" ),
-    ))
-  ]
+  // #[
+  //   cfg( all
+  //   (
+  //     not( all( feature = "default_ops", feature = "nalgebra" ) ),
+  //     any( feature = "default_ops", feature = "cgmath_ops" ),
+  //   ))
+  // ]
   pub use i::AsCgmathNonCanonicalInterface;
-  #[
-    cfg( all
-    (
-      not( all( feature = "default_ops", feature = "nalgebra" ) ),
-      any( feature = "default_ops", feature = "cgmath" ),
-    ))
-  ]
+  // #[
+  //   cfg( all
+  //   (
+  //     not( all( feature = "default_ops", feature = "nalgebra" ) ),
+  //     any( feature = "default_ops", feature = "cgmath_ops" ),
+  //   ))
+  // ]
   pub use i::AsCgmathCanonicalInterface;
+  pub use crate::AsNativeNonCanonicalInterface;
+  pub use crate::AsNativeCanonicalInterface;
 }

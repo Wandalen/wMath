@@ -4,14 +4,14 @@ fn adapter_basic_test()
 {
   pub use wmath::adapter::prelude::*;
 
-  // test.description = "elements of a vector";
+  // test.case = "elements of a vector";
   {
     let src1 = wmath::X2::make( 1, 3 );
     assert_eq!( src1.x(), 1 );
     assert_eq!( src1.y(), 3 );
   }
 
-  // test.description = "operator add";
+  // test.case = "operator add";
   #[ cfg( any( feature = "cgmath_ops", feature = "nalgebra_ops", feature = "default_ops" ) ) ]
   {
     let src1 = wmath::X2::make( 1, 2 );

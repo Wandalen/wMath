@@ -6,7 +6,7 @@ use math_adapter::prelude::*;
 use math_adapter::X2;
 use num_traits::cast::cast;
 use crate::test_tools::*;
-use crate::{ x2_with_records_test_for, num };
+use crate::{ macro_test_x2_with_records, num };
 
 ///
 /// One test should be ordinary to exclude possibility of problems with macro.
@@ -48,21 +48,21 @@ fn _basic()
 fn _physical_size_test()
 {
 
-  x2_with_records_test_for!( winit::dpi::PhysicalSize, width, height ; i8, i16, i32, i64, i128 );
-  x2_with_records_test_for!( winit::dpi::PhysicalSize, width, height ; u8, u16, u32, u64, u128 );
-  x2_with_records_test_for!( winit::dpi::PhysicalSize, width, height ; f32, f64 );
+  macro_test_x2_with_records!( winit::dpi::PhysicalSize, width, height ; i8, i16, i32, i64, i128 );
+  macro_test_x2_with_records!( winit::dpi::PhysicalSize, width, height ; u8, u16, u32, u64, u128 );
+  macro_test_x2_with_records!( winit::dpi::PhysicalSize, width, height ; f32, f64 );
 
-  x2_with_records_test_for!( winit::dpi::LogicalSize, width, height ; i8, i16, i32, i64, i128 );
-  x2_with_records_test_for!( winit::dpi::LogicalSize, width, height ; u8, u16, u32, u64, u128 );
-  x2_with_records_test_for!( winit::dpi::LogicalSize, width, height ; f32, f64 );
+  macro_test_x2_with_records!( winit::dpi::LogicalSize, width, height ; i8, i16, i32, i64, i128 );
+  macro_test_x2_with_records!( winit::dpi::LogicalSize, width, height ; u8, u16, u32, u64, u128 );
+  macro_test_x2_with_records!( winit::dpi::LogicalSize, width, height ; f32, f64 );
 
-  x2_with_records_test_for!( winit::dpi::PhysicalPosition, x, y ; i8, i16, i32, i64, i128 );
-  x2_with_records_test_for!( winit::dpi::PhysicalPosition, x, y ; u8, u16, u32, u64, u128 );
-  x2_with_records_test_for!( winit::dpi::PhysicalPosition, x, y ; f32, f64 );
+  macro_test_x2_with_records!( winit::dpi::PhysicalPosition, x, y ; i8, i16, i32, i64, i128 );
+  macro_test_x2_with_records!( winit::dpi::PhysicalPosition, x, y ; u8, u16, u32, u64, u128 );
+  macro_test_x2_with_records!( winit::dpi::PhysicalPosition, x, y ; f32, f64 );
 
-  x2_with_records_test_for!( winit::dpi::LogicalPosition, x, y ; i8, i16, i32, i64, i128 );
-  x2_with_records_test_for!( winit::dpi::LogicalPosition, x, y ; u8, u16, u32, u64, u128 );
-  x2_with_records_test_for!( winit::dpi::LogicalPosition, x, y ; f32, f64 );
+  macro_test_x2_with_records!( winit::dpi::LogicalPosition, x, y ; i8, i16, i32, i64, i128 );
+  macro_test_x2_with_records!( winit::dpi::LogicalPosition, x, y ; u8, u16, u32, u64, u128 );
+  macro_test_x2_with_records!( winit::dpi::LogicalPosition, x, y ; f32, f64 );
 
 }
 

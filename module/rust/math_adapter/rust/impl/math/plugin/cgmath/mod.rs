@@ -1,13 +1,6 @@
 /// Internal namespace.
 pub mod internal
 {
-  // use core::mem::size_of;
-  // use crate::prelude::*;
-  // use crate::X2;
-  // use crate::ScalarInterface;
-
-  // include!( "./x2.rs" );
-  // impl_x2_for!( cgmath::Vector2< Scalar > );
 
   /// X2 Vector of cgmath
   pub type X2< Scalar > = cgmath::Vector2< Scalar >;
@@ -19,8 +12,9 @@ pub mod as_native;
 #[
   cfg( all
   (
+    not( feature = "nalgebra_ops" ),
     not( all( feature = "default_ops", feature = "nalgebra" ) ),
-    any( feature = "default_ops", feature = "cgmath" ),
+    any( feature = "default_ops", feature = "cgmath_ops" ),
   ))
 ]
 /// Use cgmath's operations.
@@ -44,8 +38,9 @@ pub mod exposed
   #[
     cfg( all
     (
+      not( feature = "nalgebra_ops" ),
       not( all( feature = "default_ops", feature = "nalgebra" ) ),
-      any( feature = "default_ops", feature = "cgmath" ),
+      any( feature = "default_ops", feature = "cgmath_ops" ),
     ))
   ]
   pub use super::ops::exposed::*;
@@ -61,10 +56,13 @@ pub mod prelude
   #[
     cfg( all
     (
+      not( feature = "nalgebra_ops" ),
       not( all( feature = "default_ops", feature = "nalgebra" ) ),
-      any( feature = "default_ops", feature = "cgmath" ),
+      any( feature = "default_ops", feature = "cgmath_ops" ),
     ))
   ]
   pub use super::ops::prelude::*;
   pub use super::x2::prelude::*;
 }
+
+/* zzz : implement macro mod_adopt? */

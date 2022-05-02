@@ -6,7 +6,7 @@
 #![ feature( type_name_of_val ) ]
 
 mod test_tools;
-mod x2_with_records;
+mod macro_test_x2_with_records;
 
 mod x2_test;
 mod experiment_test;

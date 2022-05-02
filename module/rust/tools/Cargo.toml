@@ -2,7 +2,7 @@
 name = "tools"
 version = "0.1.0"
 edition = "2021"
-publih = false
+publish = false
 authors = [
   "Kostiantyn Wandalen <wandalen@obox.systems>",
   "Dmytro Kryvoruchko <dm.vict.kr@gmail.com>",

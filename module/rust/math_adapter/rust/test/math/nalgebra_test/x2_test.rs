@@ -6,7 +6,7 @@ use num_traits::cast::cast;
 use math_adapter::prelude::*;
 use math_adapter::X2;
 use crate::test_tools::*;
-use crate::{ x2_with_records_test_for, num };
+use crate::{ macro_test_x2_with_records, num };
 
 ///
 /// One test should be ordinary to exclude possibility of problems with macro.
@@ -43,12 +43,13 @@ fn _basic()
 
 fn _canonical_test()
 {
-  x2_with_records_test_for!( nalgebra::Vector2, x, y ; i8, i16, i32, i64, i128 );
-  x2_with_records_test_for!( nalgebra::Vector2, x, y ; u8, u16, u32, u64, u128 );
-  x2_with_records_test_for!( nalgebra::Vector2, x, y ; f32, f64 );
+  macro_test_x2_with_records!( nalgebra::Vector2, x, y ; i8, i16, i32, i64, i128 );
+  macro_test_x2_with_records!( nalgebra::Vector2, x, y ; u8, u16, u32, u64, u128 );
+  macro_test_x2_with_records!( nalgebra::Vector2, x, y ; f32, f64 );
+  /* xxx : use callback instead? */
 
   // trace_macros!( true );
-  // x2_with_records_test_for!( nalgebra::Vector2, x, y ; i8 );
+  // macro_test_x2_with_records!( nalgebra::Vector2, x, y ; i8 );
   // trace_macros!( false );
 
 }

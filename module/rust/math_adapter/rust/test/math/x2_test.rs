@@ -262,11 +262,53 @@ macro_rules! test_for
 
 }
 
+///
+/// Basic test of canonical X2 vector.
+///
+
 fn _canonical_test()
 {
   test_for!( i8, i16, i32, i64, i128 );
   test_for!( u8, u16, u32, u64, u128 );
   test_for!( f32, f64 );
+}
+
+///
+/// Operations without dereferencing.
+///
+
+#[ cfg( any( feature = "cgmath_ops", feature = "nalgebra_ops", feature = "default_ops" ) ) ]
+#[ test ]
+fn operation()
+{
+  type T = i8;
+
+  /* test.case = "neg"; */
+  {
+    let src1 = X2::< T >::make( 4, 3 );
+    let got = - src1;
+    let exp = X2::< T >::make( -4, -3 );
+    assert_eq!( got, exp );
+  }
+
+  /* test.case = "add"; */
+  {
+    let src1 = X2::< T >::make( 4, 3 );
+    let src2 = X2::< T >::make( 2, 1 );
+    let got = src1 + src2;
+    let exp = X2::< T >::make( 6, 4 );
+    assert_eq!( got, exp );
+  }
+
+  /* test.case = "sub"; */
+  {
+    let src1 = X2::< T >::make( 4, 3 );
+    let src2 = X2::< T >::make( 1, 2 );
+    let got = src1 - src2;
+    let exp = X2::< T >::make( 3, 1 );
+    assert_eq!( got, exp );
+  }
+
 }
 
 //
