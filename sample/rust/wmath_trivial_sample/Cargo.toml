@@ -1,5 +1,5 @@
 [package]
-name = "wmath_sample"
+name = "wmath_trivial_sample"
 version = "0.0.0"
 edition = "2021"
 publish = false
