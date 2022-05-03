@@ -4,15 +4,15 @@ use wtest_basic::*;
 use crate::test_tools::*;
 use math_adapter::prelude::*;
 use math_adapter::X2;
-use cgmath::Vector2 as X2Native;
+use cgmath::Vector2 as X2Foreign;
 
-/* xxx : is assign test implemented for natives? */
+/* xxx : is assign test implemented for foreigns? */
 
 ///
-/// Tests for X2 conversion function as clone_as_native, as_native, as_native_mut .
+/// Tests for X2 conversion function as clone_as_foreign, as_foreign, as_foreign_mut .
 ///
 
-fn _convertion_native()
+fn _convertion_foreign()
 {
   #[ allow( dead_code ) ]
   type T = i8;
@@ -26,7 +26,7 @@ fn _convertion_native()
       any( feature = "default_ops", feature = "cgmath_ops" ),
     ))
   ]
-  crate::macro_test_x2_as_native!( X2Native ; T );
+  crate::macro_test_x2_as_foreign!( X2Foreign ; T );
 
 }
 
@@ -48,7 +48,7 @@ fn _convertion_as_specific()
   {
     let src = X2::< T >::make( 1, 2 );
     let got = src.clone_as_cgmath();
-    let exp = X2Native::< T >::make( 1, 2 );
+    let exp = X2Foreign::< T >::make( 1, 2 );
     assert_eq!( got, exp );
     assert!( !mem_same_ptr( &got, &src ) );
   }
@@ -57,7 +57,7 @@ fn _convertion_as_specific()
   {
     let src = X2::< T >::make( 1, 2 );
     let got = src.as_cgmath();
-    let exp = X2Native::< T >::make( 1, 2 );
+    let exp = X2Foreign::< T >::make( 1, 2 );
     assert_eq!( *got, exp );
     assert!( mem_same_region( got, &src ) );
   }
@@ -66,7 +66,7 @@ fn _convertion_as_specific()
   {
     let mut src = X2::< T >::make( 1, 2 );
     let got = src.as_cgmath_mut();
-    let exp = X2Native::< T >::make( 1, 2 );
+    let exp = X2Foreign::< T >::make( 1, 2 );
     assert_eq!( *got, exp );
     got.assign( ( 11, 22 ) );
     let exp = X2::< T >::make( 11, 22  );
@@ -91,7 +91,7 @@ fn _convertion_as_specific()
 fn operation_deref()
 {
   type T = i8;
-  crate::macro_test_x2_operation_deref!( X2Native ; T );
+  crate::macro_test_x2_operation_deref!( X2Foreign ; T );
 }
 
 //
@@ -106,7 +106,7 @@ fn cgmath_winit_interoperability_test()
     let src1 = winit::dpi::PhysicalSize::< i8 >::make( 3, 2 );
     let src2 = winit::dpi::PhysicalSize::< i8 >::make( 0, 1 );
     let got = src1.as_cgmath() - src2.as_cgmath();
-    let exp = X2Native::< i8 >::make( 3, 1 );
+    let exp = X2Foreign::< i8 >::make( 3, 1 );
     assert_eq!( got, exp );
   }
 
@@ -116,5 +116,5 @@ fn cgmath_winit_interoperability_test()
 
 test_suite!
 {
-  convertion_native,
+  convertion_foreign,
 }

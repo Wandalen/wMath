@@ -21,12 +21,12 @@ pub mod internal
   }
 
   #[ cfg( any( feature = "nalgebra_ops", feature = "default_ops" ) ) ]
-  impl< T, Any > AsNativeNonCanonicalInterface< T > for Any
+  impl< T, Any > AsForeignNonCanonicalInterface< T > for Any
   where
     T : Copy,
     Any : AsNalgebraNonCanonicalInterface< T > + Copy,
   {
-    fn clone_as_native( &self ) -> T
+    fn clone_as_foreign( &self ) -> T
     {
       self.clone_as_nalgebra()
     }
@@ -49,18 +49,18 @@ pub mod internal
   }
 
   #[ cfg( any( feature = "nalgebra_ops", feature = "default_ops" ) ) ]
-  impl< T, Any > AsNativeCanonicalInterface< T > for Any
+  impl< T, Any > AsForeignCanonicalInterface< T > for Any
   where
     T : Copy,
     Any : AsNalgebraCanonicalInterface< T > + Copy,
   {
     /// Interpret this data structure as nalgebra analog to use its operations.
-    fn as_native( &self ) -> &T
+    fn as_foreign( &self ) -> &T
     {
       self.as_nalgebra()
     }
     /// Interpret this data structure mutably as nalgebra analog to use its operations.
-    fn as_native_mut( &mut self ) -> &mut T
+    fn as_foreign_mut( &mut self ) -> &mut T
     {
       self.as_nalgebra_mut()
     }
@@ -74,8 +74,8 @@ pub mod exposed
   use super::internal as i;
   pub use i::AsNalgebraNonCanonicalInterface;
   pub use i::AsNalgebraCanonicalInterface;
-  pub use crate::AsNativeNonCanonicalInterface;
-  pub use crate::AsNativeCanonicalInterface;
+  pub use crate::AsForeignNonCanonicalInterface;
+  pub use crate::AsForeignCanonicalInterface;
 }
 
 pub use exposed::*;
@@ -89,6 +89,6 @@ pub mod prelude
   pub use i::AsNalgebraNonCanonicalInterface;
   #[ cfg( any( feature = "nalgebra_ops", feature = "default_ops" ) ) ]
   pub use i::AsNalgebraCanonicalInterface;
-  pub use crate::AsNativeNonCanonicalInterface;
-  pub use crate::AsNativeCanonicalInterface;
+  pub use crate::AsForeignNonCanonicalInterface;
+  pub use crate::AsForeignCanonicalInterface;
 }

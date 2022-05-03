@@ -304,11 +304,11 @@ macro_rules! macro_test_x2_with_records
 // }
 
 ///
-/// Tests for X2 conversion function as clone_as_native, as_native, as_native_mut .
+/// Tests for X2 conversion function as clone_as_foreign, as_foreign, as_foreign_mut .
 ///
 
 #[ macro_export ]
-macro_rules! macro_test_x2_as_native
+macro_rules! macro_test_x2_as_foreign
 {
 
   ( $Va : ident $( :: $Vb : ident )* ; ) =>
@@ -318,28 +318,28 @@ macro_rules! macro_test_x2_as_native
   ( $Va : ident $( :: $Vb : ident )* ; $type : ident $(, $( $tail : ident ),* )? ) =>
   {
 
-    /* test.case = "clone_as_native"; */
+    /* test.case = "clone_as_foreign"; */
     {
       let src = X2::< T >::make( 1, 2 );
-      let got = src.clone_as_native();
+      let got = src.clone_as_foreign();
       let exp = $Va $( :: $Vb )*::< T >::make( 1, 2 );
       assert_eq!( got, exp );
       assert!( !mem_same_ptr( &got, &src ) );
     }
 
-    /* test.case = "as_native"; */
+    /* test.case = "as_foreign"; */
     {
       let src = X2::< T >::make( 1, 2 );
-      let got = src.as_native();
+      let got = src.as_foreign();
       let exp = $Va $( :: $Vb )*::< T >::make( 1, 2 );
       assert_eq!( *got, exp );
       assert!( mem_same_region( got, &src ) );
     }
 
-    /* test.case = "as_native_mut"; */
+    /* test.case = "as_foreign_mut"; */
     {
       let mut src = X2::< T >::make( 1, 2 );
-      let got = src.as_native_mut();
+      let got = src.as_foreign_mut();
       let exp = $Va $( :: $Vb )*::< T >::make( 1, 2 );
       assert_eq!( *got, exp );
       got.assign( ( 11, 22 ) );
@@ -347,7 +347,7 @@ macro_rules! macro_test_x2_as_native
       assert_eq!( src, exp );
     }
 
-    $crate::macro_test_x2_as_native!( $Va $( :: $Vb )* ; $( $( $tail ),* )? );
+    $crate::macro_test_x2_as_foreign!( $Va $( :: $Vb )* ; $( $( $tail ),* )? );
   }
 }
 
@@ -421,7 +421,7 @@ macro_rules! macro_test_x2_template
   ( $Va : ident $( :: $Vb : ident )* ; $type : ident $(, $( $tail : ident ),* )? ) =>
   {
 
-    /* test.case = "clone_as_native"; */
+    /* test.case = "clone_as_foreign"; */
     {
     }
 

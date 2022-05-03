@@ -17,7 +17,7 @@
 pub use num_traits as traits;
 
 /// Interfaces to either conver or reinterpret nath data structure as analog of math lib of choice..
-pub mod as_native;
+pub mod as_foreign;
 /// Local implementation of traits From / Into. Required because of limmitations of Rust.
 pub mod from;
 /// Implementation of adapters for specific math libraries.
@@ -47,7 +47,7 @@ pub mod dependency
 /// Exposed namespace of the module.
 pub mod exposed
 {
-  pub use super::as_native::exposed::*;
+  pub use super::as_foreign::exposed::*;
   pub use super::from::exposed::*;
   pub use super::plugin::exposed::*;
   pub use super::scalar::exposed::*;
@@ -59,7 +59,7 @@ pub use exposed::*;
 /// Prelude to use: `use wtools::prelude::*`.
 pub mod prelude
 {
-  pub use super::as_native::prelude::*;
+  pub use super::as_foreign::prelude::*;
   pub use super::from::prelude::*;
   pub use super::plugin::prelude::*;
   pub use super::scalar::prelude::*;

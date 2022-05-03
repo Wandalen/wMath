@@ -4,19 +4,19 @@ use wtest_basic::*;
 use crate::test_tools::*;
 use math_adapter::prelude::*;
 use math_adapter::X2;
-use nalgebra::Vector2 as X2Native;
+use nalgebra::Vector2 as X2Foreign;
 
 ///
-/// Tests for X2 conversion function as clone_as_native, as_native, as_native_mut .
+/// Tests for X2 conversion function as clone_as_foreign, as_foreign, as_foreign_mut .
 ///
 
-fn _convertion_native()
+fn _convertion_foreign()
 {
   #[ allow( dead_code ) ]
   type T = i8;
 
   #[ cfg( any( feature = "nalgebra_ops", feature = "default_ops" ) ) ]
-  crate::macro_test_x2_as_native!( X2Native ; T );
+  crate::macro_test_x2_as_foreign!( X2Foreign ; T );
 
 }
 
@@ -33,7 +33,7 @@ fn _convertion_as_specific()
   {
     let src = X2::< T >::make( 1, 2 );
     let got = src.clone_as_nalgebra();
-    let exp = X2Native::< T >::make( 1, 2 );
+    let exp = X2Foreign::< T >::make( 1, 2 );
     assert_eq!( got, exp );
     assert!( !mem_same_ptr( &got, &src ) );
   }
@@ -42,7 +42,7 @@ fn _convertion_as_specific()
   {
     let src = X2::< T >::make( 1, 2 );
     let got = src.as_nalgebra();
-    let exp = X2Native::< T >::make( 1, 2 );
+    let exp = X2Foreign::< T >::make( 1, 2 );
     assert_eq!( *got, exp );
     assert!( mem_same_region( got, &src ) );
   }
@@ -51,7 +51,7 @@ fn _convertion_as_specific()
   {
     let mut src = X2::< T >::make( 1, 2 );
     let got = src.as_nalgebra_mut();
-    let exp = X2Native::< T >::make( 1, 2 );
+    let exp = X2Foreign::< T >::make( 1, 2 );
     assert_eq!( *got, exp );
     got.assign( ( 11, 22 ) );
     let exp = X2::< T >::make( 11, 22  );
@@ -70,7 +70,7 @@ fn operation_deref()
 {
   type T = i8;
 
-  crate::macro_test_x2_operation_deref!( X2Native ; T );
+  crate::macro_test_x2_operation_deref!( X2Foreign ; T );
 
 }
 
@@ -109,9 +109,9 @@ fn inter_cgmath()
   /* test.case = "using add operator of nalgebra"; */
   {
     let src1 = cgmath::Vector2::< T >::make( 1, 2 );
-    let src2 = X2Native::< T >::make( 3, 4 );
+    let src2 = X2Foreign::< T >::make( 3, 4 );
     let got = src1.as_nalgebra() + src2;
-    let exp = X2Native::< T >::make( 4, 6 );
+    let exp = X2Foreign::< T >::make( 4, 6 );
     assert_eq!( got, exp );
   }
 
@@ -131,7 +131,7 @@ fn inter_cgmath()
 
 test_suite!
 {
-  convertion_native,
+  convertion_foreign,
 }
 
 /* zzz : teach test_suite to understand directives */

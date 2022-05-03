@@ -7,7 +7,7 @@ pub mod internal
 }
 
 /// Trait to interpret math data structures of other math libs as their analogs in nalgebra to use operations of nalgebra.
-pub mod as_native;
+pub mod as_foreign;
 #[ cfg( any( feature = "nalgebra_ops", feature = "default_ops" ) ) ]
 /// Use nalgebra's operations.
 pub mod ops;
@@ -27,7 +27,7 @@ pub use own::*;
 /// Exposed namespace of the module.
 pub mod exposed
 {
-  pub use super::as_native::exposed::*;
+  pub use super::as_foreign::exposed::*;
   #[ cfg( any( feature = "nalgebra_ops", feature = "default_ops" ) ) ]
   pub use super::ops::exposed::*;
   pub use super::x2::exposed::*;
@@ -38,7 +38,7 @@ pub use exposed::*;
 /// Prelude to use: `use wtools::prelude::*`.
 pub mod prelude
 {
-  pub use super::as_native::prelude::*;
+  pub use super::as_foreign::prelude::*;
   #[ cfg( any( feature = "nalgebra_ops", feature = "default_ops" ) ) ]
   pub use super::ops::prelude::*;
   pub use super::x2::prelude::*;
