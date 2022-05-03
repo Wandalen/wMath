@@ -1,4 +1,4 @@
-# module::math_adapter
+# module::math_adapter [![rust-status](https://github.com/Wandalen/wMath/actions/workflows/StandardRustPush.yml/badge.svg)](https://github.com/Wandalen/wMath/actions/workflows/StandardRustPush.yml) [![experimental](https://img.shields.io/badge/stability-experimental-orange.svg)](https://github.com/emersion/stability-badges#experimental)
 
 Collection of math adapters to decouple your application from math libraries' implementations and to provide both inter-libraries compatibility and affordable exchangeability.
 

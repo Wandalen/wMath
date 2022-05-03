@@ -1,4 +1,4 @@
-# module::wmath
+# module::wmath [![rust-status](https://github.com/Wandalen/wMath/actions/workflows/StandardRustPush.yml/badge.svg)](https://github.com/Wandalen/wMath/actions/workflows/StandardRustPush.yml) [![experimental](https://img.shields.io/badge/stability-experimental-orange.svg)](https://github.com/emersion/stability-badges#experimental)
 
 Math library aggregating several math modules.
 
@@ -7,15 +7,7 @@ Math library aggregating several math modules.
 ```rust
 use wmath::adapter::prelude::*;
 
-fn main()
-{
-  let x2_original = wmath::X2::< u8 >( 1, 3 );
-  println!( "{:?}", x2_original );
-  /* log : X2(1, 3) */
-  let x2_to_array = x2_original.clone_as_array();
-  println!( "{:?}", x2_to_array );
-  /* log : [1, 3] */
-}
+/* qqq : xxx : write sample please */
 ```
 
 ### To add to your project
