@@ -39,5 +39,3 @@ pub mod prelude
   pub use super::basic::prelude::*;
   pub use super::adapter::prelude::*;
 }
-
-/* xxx : explanatory error message if wrong configuration of features */

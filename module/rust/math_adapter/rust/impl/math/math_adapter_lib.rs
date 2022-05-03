@@ -13,6 +13,13 @@
 
 #![ doc = include_str!( concat!( env!( "CARGO_MANIFEST_DIR" ), "/Readme.md" ) ) ]
 
+#[ cfg( all
+(
+  not( feature = "default_ops" ),
+  all( feature = "nalgebra_ops", feature = "cgmath_ops" ),
+))]
+compile_error!( "Only one `*_ops` feature should be enabled. Disable either `nalgebra_ops` or `cgmath_ops`" );
+
 /// General math traits.
 pub use num_traits as traits;
 
@@ -20,6 +27,8 @@ pub use num_traits as traits;
 pub mod as_foreign;
 /// Local implementation of traits From / Into. Required because of limmitations of Rust.
 pub mod from;
+/// Internal macroses.
+pub mod macroses;
 /// Implementation of adapters for specific math libraries.
 pub mod plugin;
 pub use plugin::*;

@@ -37,7 +37,6 @@ Each math libraries define its own versions of math objects. In most cases they 
 
 <!-- qqq : add readme for each sample with short explanation. make sure code frome sample run during test -->
 <!-- xxx : implement `make_nan()`, and `make_default()` -->
-<!-- xxx : implement print trait -->
 
 ### Conversion vs reinterpretation
 

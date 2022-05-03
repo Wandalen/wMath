@@ -255,6 +255,22 @@ macro_rules! test_for
         assert_eq!( src, exp );
       }
 
+      /* test.case = "debug format"; */
+      {
+        let src = X2::< T >::from2( num!( 1, 2 ) );
+        let got = format!( "{:?}", src );
+        let exp = format!( "X2< {} >( {:?}, {:?} )", stringify!( $type ), src._0(), src._1() );
+        assert_eq!( got, exp );
+      }
+
+      /* test.case = "format"; */
+      {
+        let src = X2::< T >::from2( num!( 1, 2 ) );
+        let got = format!( "{}", src );
+        let exp = format!( "X2< {} >( {}, {} )", stringify!( $type ), src._0(), src._1() );
+        assert_eq!( got, exp );
+      }
+
     }
 
     test_for!( $( $( $tail ),* )? );

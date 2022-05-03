@@ -6,7 +6,8 @@
 // #![ feature( type_name_of_val ) ]
 
 mod test_tools;
-mod macro_test_x2_with_records;
+mod macro_x2;
+pub( crate ) use macro_x2::*;
 
 mod x2_test;
 mod experiment_test;

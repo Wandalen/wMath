@@ -11,9 +11,3 @@
 //!
 
 pub use wtools::*;
-
-// pub fn f1()
-// {
-//   let got = 13;
-//   wtools::inspect_type_of!( got );
-// }

@@ -1,3 +1,4 @@
 
 mod x2_test;
-mod as_test;
+#[ cfg( any( feature = "nalgebra_ops", feature = "default_ops" ) ) ]
+mod ops_test;

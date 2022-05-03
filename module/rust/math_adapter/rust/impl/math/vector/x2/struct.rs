@@ -5,7 +5,7 @@
 
 #[ allow( non_camel_case_types ) ]
 #[ repr( C ) ]
-#[ derive( Debug, PartialEq, Copy, Clone, Hash ) ]
+#[ derive( PartialEq, Copy, Clone, Hash ) ]
 pub struct X2
 <
   Scalar : ScalarInterface,
@@ -103,6 +103,35 @@ where
 }
 
 //
+
+impl< Scalar > core::fmt::Display for X2< Scalar >
+where
+  Scalar : crate::ScalarInterface,
+{
+  fn fmt( &self, f : &mut core::fmt::Formatter< '_ > ) -> core::fmt::Result
+  {
+    write!( f, "X2< {} >( {}, {} )", type_of( &self._0() ), self._0(), self._1() )
+  }
+}
+
+//
+
+impl< Scalar > core::fmt::Debug for X2< Scalar >
+where
+  Scalar : crate::ScalarInterface,
+{
+  fn fmt( &self, f : &mut core::fmt::Formatter< '_ > ) -> core::fmt::Result
+  {
+    write!( f, "X2< {} >( {:?}, {:?} )", type_of( &self._0() ), self._0(), self._1() )
+  }
+}
+
+//
+
+fn type_of< T >( _ : &T ) -> &'static str
+{
+    std::any::type_name::< T >()
+}
 
 // impl< Scalar, Original > From< &Original >
 // for X2< Scalar >
