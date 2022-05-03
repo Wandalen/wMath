@@ -1,3 +1,4 @@
+/* xxx : put all that into macro */
 
 ///
 /// Nominal interface of vector X2.

@@ -29,34 +29,7 @@ fn _convertion_as_specific()
 {
   type T = i8;
 
-  /* test.case = "clone_as_nalgebra"; */
-  {
-    let src = X2::< T >::make( 1, 2 );
-    let got = src.clone_as_nalgebra();
-    let exp = X2Foreign::< T >::make( 1, 2 );
-    assert_eq!( got, exp );
-    assert!( !mem_same_ptr( &got, &src ) );
-  }
-
-  /* test.case = "as_nalgebra"; */
-  {
-    let src = X2::< T >::make( 1, 2 );
-    let got = src.as_nalgebra();
-    let exp = X2Foreign::< T >::make( 1, 2 );
-    assert_eq!( *got, exp );
-    assert!( mem_same_region( got, &src ) );
-  }
-
-  /* test.case = "as_nalgebra_mut"; */
-  {
-    let mut src = X2::< T >::make( 1, 2 );
-    let got = src.as_nalgebra_mut();
-    let exp = X2Foreign::< T >::make( 1, 2 );
-    assert_eq!( *got, exp );
-    got.assign( ( 11, 22 ) );
-    let exp = X2::< T >::make( 11, 22  );
-    assert_eq!( src, exp );
-  }
+  crate::macro_test_x2_as_specific!( X2Foreign, nalgebra ; T );
 
 }
 
@@ -135,6 +108,4 @@ test_suite!
 }
 
 /* zzz : teach test_suite to understand directives */
-
 /* xxx : in cgmath implement interfaces for Point2 */
-/* xxx : consolidate tests and impl where possible into macroses */

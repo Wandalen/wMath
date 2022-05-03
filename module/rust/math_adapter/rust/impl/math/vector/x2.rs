@@ -12,7 +12,6 @@ pub mod internal
 
   include!( "./x2/array.rs" );
   include!( "./x2/interface.rs" );
-  include!( "./x2/ops.rs" );
   include!( "./x2/slice.rs" );
   include!( "./x2/struct.rs" );
   include!( "./x2/tuple.rs" );
@@ -28,6 +27,7 @@ pub mod macros
   pub( crate ) use i::impl_x2_rented_op1;
   pub( crate ) use i::impl_x2_rented_op2;
 }
+/* qqq : implement alll operators */
 
 /// Own namespace of the module.
 #[ allow( unused_imports ) ]

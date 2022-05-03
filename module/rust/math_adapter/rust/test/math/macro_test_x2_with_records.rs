@@ -11,12 +11,12 @@ macro_rules! macro_test_x2_with_records
   {
   };
 
-  ( $Va : ident $( :: $Vb : ident )*, $_0 : ident, $_1 : ident ; $type : ident $(, $( $tail : ident ),* )? ) =>
+  ( $Va : ident $( :: $Vb : ident )*, $_0 : ident, $_1 : ident ; $Type : ident $(, $( $tail : ident ),* )? ) =>
   {
 
     {
-      type T = $type;
-      println!( "Testing {}", stringify!( $type ) );
+      type T = $Type;
+      println!( "Testing {}", stringify!( $Type ) );
 
       /* test.case = "size"; */
       {
@@ -62,8 +62,6 @@ macro_rules! macro_test_x2_with_records
 
       /* test.case = "assign"; */
       {
-        // dbg!( num!( 1, 2 ) );
-        // let mut dst = X2::< T >::from2(( num!( 1, 2 ) ));
         let mut dst = X2::< T >::from2( num!( 1, 2 ) );
         let src = $Va $( :: $Vb )* ::< T >::from2( num!( 11, 22 ) );
         dst.assign( src );
@@ -251,57 +249,54 @@ macro_rules! macro_test_x2_with_records
 
 // xxx : use paste here
 
-// ///
-// /// Tests for X2 conversion function. Names are implementation-specific. .
-// ///
-//
-// #[ macro_export ]
-// macro_rules! macro_test_x2_as
-// {
-//
-//   ( $Va : ident $( :: $Vb : ident )* ; ) =>
-//   {
-//   };
-//
-//   ( $Va : ident $( :: $Vb : ident )* ; $type : ident $(, $( $tail : ident ),* )? ) =>
-//   {
-//
-//     /* test.case = "clone_as_nalgebra"; */
-//     {
-//       let src = X2::< T >::make( 1, 2 );
-//       // let got = src.clone_as_nalgebra();
-//       let got = src.clone_as_nalgebra();
-//       let exp = $Va $( :: $Vb )*::< T >::make( 1, 2 );
-//       assert_eq!( got, exp );
-//       assert!( !mem_same_ptr( &got, &src ) );
-//     }
-//
-//     /* test.case = "as_nalgebra"; */
-//     {
-//       let src = X2::< T >::make( 1, 2 );
-//       // let got = src.as_nalgebra();
-//       let got = src.as_nalgebra();
-//       let exp = $Va $( :: $Vb )*::< T >::make( 1, 2 );
-//       assert_eq!( *got, exp );
-//       assert!( mem_same_region( got, &src ) );
-//     }
-//
-//     /* test.case = "as_nalgebra_mut"; */
-//     {
-//       let mut src = X2::< T >::make( 1, 2 );
-//       let got = src.as_nalgebra_mut();
-//       // let got = src.as_nalgebra_mut();
-//       let exp = $Va $( :: $Vb )*::< T >::make( 1, 2 );
-//       assert_eq!( *got, exp );
-//       got.assign( ( 11, 22 ) );
-//       let exp = X2::< T >::make( 11, 22  );
-//       assert_eq!( src, exp );
-//     }
-//
-//     $crate::macro_test_x2_as!( $Va $( :: $Vb )* ; $( $( $tail ),* )? );
-//   }
-//
-// }
+///
+/// Tests for X2 conversion function. Names are implementation-specific. .
+///
+
+#[ macro_export ]
+macro_rules! macro_test_x2_as_specific
+{
+
+  ( $Va : ident $( :: $Vb : ident )*, $Name : ident ; ) =>
+  {
+  };
+
+  ( $Va : ident $( :: $Vb : ident )*, $Name : ident ; $Type : ident $(, $( $tail : ident ),* )? ) =>
+  {
+
+    /* test.case = "clone_as_nalgebra"; */
+    {
+      let src = X2::< T >::make( 1, 2 );
+      let got = paste::paste!( src.[< clone_as_ $Name >]() );
+      let exp = $Va $( :: $Vb )*::< T >::make( 1, 2 );
+      assert_eq!( got, exp );
+      assert!( !mem_same_ptr( &got, &src ) );
+    }
+
+    /* test.case = "as_nalgebra"; */
+    {
+      let src = X2::< T >::make( 1, 2 );
+      let got = paste::paste!( src.[< as_ $Name >]() );
+      let exp = $Va $( :: $Vb )*::< T >::make( 1, 2 );
+      assert_eq!( *got, exp );
+      assert!( mem_same_region( got, &src ) );
+    }
+
+    /* test.case = "as_nalgebra_mut"; */
+    {
+      let mut src = X2::< T >::make( 1, 2 );
+      let got = paste::paste!( src.[< as_ $Name _mut>]() );
+      let exp = $Va $( :: $Vb )*::< T >::make( 1, 2 );
+      assert_eq!( *got, exp );
+      got.assign( ( 11, 22 ) );
+      let exp = X2::< T >::make( 11, 22  );
+      assert_eq!( src, exp );
+    }
+
+    $crate::macro_test_x2_as_specific!( $Va $( :: $Vb )*, $Name ; $( $( $tail ),* )? );
+  }
+
+}
 
 ///
 /// Tests for X2 conversion function as clone_as_foreign, as_foreign, as_foreign_mut .
@@ -315,7 +310,7 @@ macro_rules! macro_test_x2_as_foreign
   {
   };
 
-  ( $Va : ident $( :: $Vb : ident )* ; $type : ident $(, $( $tail : ident ),* )? ) =>
+  ( $Va : ident $( :: $Vb : ident )* ; $Type : ident $(, $( $tail : ident ),* )? ) =>
   {
 
     /* test.case = "clone_as_foreign"; */
@@ -352,7 +347,7 @@ macro_rules! macro_test_x2_as_foreign
 }
 
 ///
-/// Template of a macro
+/// Tests for X2 conversion function. Names are implementation-specific. .
 ///
 
 #[ macro_export ]
@@ -363,7 +358,7 @@ macro_rules! macro_test_x2_operation_deref
   {
   };
 
-  ( $Va : ident $( :: $Vb : ident )* ; $type : ident $(, $( $tail : ident ),* )? ) =>
+  ( $Va : ident $( :: $Vb : ident )* ; $Type : ident $(, $( $tail : ident ),* )? ) =>
   {
 
     /* test.case = "neg"; */
@@ -404,8 +399,6 @@ macro_rules! macro_test_x2_operation_deref
   }
 }
 
-// xxx : remove $Va $( :: $Vb )*?
-
 ///
 /// Template of a macro
 ///
@@ -418,7 +411,7 @@ macro_rules! macro_test_x2_template
   {
   };
 
-  ( $Va : ident $( :: $Vb : ident )* ; $type : ident $(, $( $tail : ident ),* )? ) =>
+  ( $Va : ident $( :: $Vb : ident )* ; $Type : ident $(, $( $tail : ident ),* )? ) =>
   {
 
     /* test.case = "clone_as_foreign"; */
@@ -428,3 +421,5 @@ macro_rules! macro_test_x2_template
     $crate::macro_test_x2_template!( $Va $( :: $Vb )* ; $( $( $tail ),* )? );
   }
 }
+
+// xxx : remove $Va $( :: $Vb )*?

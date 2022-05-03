@@ -32,6 +32,8 @@ Each math libraries define its own versions of math objects. In most cases they 
 - Vecotrs, they are called X1< T >, X2< T >, X3< T >, X4< T > ... Xn< T >.
 - Matrices, they are called MatX1< T >, MatX2< T >, MatX3< T > ... MatXn< T >.
 - Quaternion, it is called Quat< T >.
+- Euler's angles, it is called Euler< T >.
+- Decomposed transformation, it is called TransformationDecomposed< T >
 
 <!-- qqq : add readme for each sample with short explanation. make sure code frome sample run during test -->
 <!-- xxx : implement `make_nan()`, and `make_default()` -->

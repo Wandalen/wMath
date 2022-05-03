@@ -14,28 +14,6 @@ pub mod internal
 
   impl_x2_deref!( cgmath::Vector2 );
 
-  // impl< Scalar, Src > Deref for Src
-  // where
-  //   Src : X2Interface< Scalar = Scalar >,
-  //   Scalar : ScalarInterface,
-  // {
-  //   type Target = cgmath::Vector2< Scalar >;
-  //   fn deref( &self ) -> &Self::Target
-  //   {
-  //     self.as_foreign()
-  //   }
-  // }
-
-  // impl< Scalar > DerefMut for X2< Scalar >
-  // where
-  //   Scalar : ScalarInterface,
-  // {
-  //   fn deref_mut( &mut self ) -> &mut Self::Target
-  //   {
-  //     self.as_foreign_mut()
-  //   }
-  // }
-
 }
 
 /// Exposed namespace of the module.

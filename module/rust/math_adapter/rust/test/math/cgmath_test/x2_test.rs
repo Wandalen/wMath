@@ -49,8 +49,12 @@ fn _canonical_test()
   macro_test_x2_with_records!( cgmath::Vector2, x, y ; u8, u16, u32, u64, u128 );
   macro_test_x2_with_records!( cgmath::Vector2, x, y ; f32, f64 );
 
+  macro_test_x2_with_records!( cgmath::Point2, x, y ; i8, i16, i32, i64, i128 );
+  macro_test_x2_with_records!( cgmath::Point2, x, y ; u8, u16, u32, u64, u128 );
+  macro_test_x2_with_records!( cgmath::Point2, x, y ; f32, f64 );
+
   // trace_macros!( true );
-  // macro_test_x2_with_records!( cgmath::Vector2, x, y ; f32 );
+  // macro_test_x2_with_records!( cgmath::Point2, x, y ; f32 );
   // trace_macros!( false );
 
 }

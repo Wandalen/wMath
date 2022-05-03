@@ -1,3 +1,4 @@
+#![ allow( unused_imports ) ]
 
 //!
 //! Select a feature `*_ops` to reuse operators and function of math lib of choice.

@@ -101,6 +101,16 @@ pub mod internal
 
       }
 
+    };
+
+  }
+
+  macro_rules! impl_x2_as_for
+  {
+
+    ( $Struct1 : ident $( :: $Struct2 : ident )* < $Params : ident > ) =>
+    {
+
       //
 
       impl< Scalar, Any > crate::AsCgmathNonCanonicalInterface< $Struct1 $( :: $Struct2 )* < $Params > >
@@ -149,6 +159,9 @@ pub mod internal
   }
 
   impl_x2_for!( cgmath::Vector2< Scalar > );
+  impl_x2_as_for!( cgmath::Vector2< Scalar > );
+
+  impl_x2_for!( cgmath::Point2< Scalar > );
 
 }
 

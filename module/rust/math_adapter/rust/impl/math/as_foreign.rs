@@ -31,9 +31,6 @@ pub mod internal
     fn as_foreign_mut( &mut self ) -> &mut T;
   }
 
-  /* xxx : explain difference between nominal/basic/canonical */
-  /* xxx : check cargo links */
-
 }
 
 /// Exposed namespace of the module.
