@@ -50,7 +50,7 @@ nalgebra_ops = [ "nalgebra", "math_adapter/nalgebra_ops" ] # reuse operands and 
 default = [] # default features
 
 [dependencies]
-math_adapter = { version = "~0.2", path = "../../rust/math_adapter" }
+math_adapter = { version = "~0.3", path = "../../rust/math_adapter" }
 # cgmath = { version = "~0.18", optional = true }
 # nalgebra = { version = "~0.30", optional = true }
 # winit = { version = "~0.26", optional = true }
