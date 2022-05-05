@@ -46,61 +46,6 @@ fn _basic_test()
 
 }
 
-//
-
-// macro_rules! callback
-// {
-//   ( $callback:ident( $( $args:tt )* ) ) =>
-//   {
-//     $callback!( $( $args )* )
-//   };
-// }
-
-//
-//
-// macro_rules! primitives_numbers
-// {
-//   () =>
-//   {
-//     i8, i16, i32, i64, i128, u8, u16, u32, u64, u128, f32, f64,
-//   }
-// }
-//
-// //
-//
-// macro_rules! generate_fn
-// {
-//   ( $Type : ident ) =>
-//   {
-//     fn inc( src : $Type )
-//     {
-//       src + 1;
-//     }
-//   }
-// }
-
-//
-
-// #[ macro_export ]
-// macro_rules! apply
-// {
-//   ( $Callback:ident ( $( $Prefix:tt )* ) @Args $( $Arg:tt ),* ) =>
-//   {
-//     $( $Callback!( $( $Prefix )* $Arg ); )*
-//   }
-// }
-//
-// //
-//
-// #[ macro_export ]
-// macro_rules! for_each_number
-// {
-//   ( $Callback:ident $( $Prefix:tt )* ) =>
-//   {
-//     apply!( $Callback ( $( $Prefix )* ) @Args i8, i16, i32, i64, i128, u8, u16, u32, u64, u128, f32, f64 )
-//   }
-// }
-
 ///
 /// Parametrized test.
 ///
@@ -108,20 +53,21 @@ fn _basic_test()
 fn _canonical_test()
 {
 
-  // for_each_number!( macro_test_x2_with_records, nalgebra::Vector2, x, y ; );
+  math_adapter::for_each_number!( crate::macro_foreign_x2::macro_test_foreign_x2_number where @PREFIX( nalgebra::Vector2, x, y ) );
+  math_adapter::for_each_number!( crate::macro_foreign_x2::macro_test_foreign_x2_number where @PREFIX( nalgebra::geometry::Point2, x, y ) );
 
-  crate::macro_x2::macro_test_x2_with_records!( nalgebra::Vector2, x, y ; i8, i16, i32, i64, i128 );
-  crate::macro_x2::macro_test_x2_with_records!( nalgebra::Vector2, x, y ; u8, u16, u32, u64, u128 );
-  crate::macro_x2::macro_test_x2_with_records!( nalgebra::Vector2, x, y ; f32, f64 );
-
-  crate::macro_x2::macro_test_x2_with_records!( nalgebra::geometry::Point2, x, y ; i8, i16, i32, i64, i128 );
-  crate::macro_x2::macro_test_x2_with_records!( nalgebra::geometry::Point2, x, y ; u8, u16, u32, u64, u128 );
-  crate::macro_x2::macro_test_x2_with_records!( nalgebra::geometry::Point2, x, y ; f32, f64 );
+//   crate::macro_foreign_x2::macro_test_foreign_x2_number!( nalgebra::Vector2, x, y ; i8, i16, i32, i64, i128 );
+//   crate::macro_foreign_x2::macro_test_foreign_x2_number!( nalgebra::Vector2, x, y ; u8, u16, u32, u64, u128 );
+//   crate::macro_foreign_x2::macro_test_foreign_x2_number!( nalgebra::Vector2, x, y ; f32, f64 );
+//
+//   crate::macro_foreign_x2::macro_test_foreign_x2_number!( nalgebra::geometry::Point2, x, y ; i8, i16, i32, i64, i128 );
+//   crate::macro_foreign_x2::macro_test_foreign_x2_number!( nalgebra::geometry::Point2, x, y ; u8, u16, u32, u64, u128 );
+//   crate::macro_foreign_x2::macro_test_foreign_x2_number!( nalgebra::geometry::Point2, x, y ; f32, f64 );
 
   /* zzz : use callback instead? */
 
   // trace_macros!( true );
-  // macro_test_x2_with_records!( nalgebra::Vector2, x, y ; i8 );
+  // macro_test_foreign_x2_number!( nalgebra::Vector2, x, y ; i8 );
   // trace_macros!( false );
 
 }
@@ -135,7 +81,7 @@ fn _convertion_as_specific_test()
 {
   type T = i8;
 
-  crate::macro_x2::macro_test_x2_as_specific!( nalgebra::Vector2, nalgebra ; T );
+  crate::macro_foreign_x2::macro_test_foreign_x2_as_specific!( nalgebra::Vector2, nalgebra ; T );
 
 }
 

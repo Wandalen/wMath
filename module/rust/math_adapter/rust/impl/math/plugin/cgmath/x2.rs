@@ -44,6 +44,12 @@ pub mod internal
           Self::new( _0, _1 )
         }
 
+        // #[ inline ]
+        // fn make_nan() -> Self
+        // {
+        //   Self::make( num!( NaN ), num!( NaN ) )
+        // }
+
       }
 
       impl< Scalar > X2CanonicalInterface for $Struct1 $( :: $Struct2 )* < $Params >

@@ -5,7 +5,7 @@
 
 #[ allow( non_camel_case_types ) ]
 #[ repr( C ) ]
-#[ derive( PartialEq, Copy, Clone, Hash ) ]
+#[ derive( PartialEq, Copy, Clone, Hash, Default ) ]
 pub struct X2
 <
   Scalar : ScalarInterface,

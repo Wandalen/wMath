@@ -27,13 +27,20 @@ pub use num_traits as traits;
 pub mod as_foreign;
 /// Local implementation of traits From / Into. Required because of limmitations of Rust.
 pub mod from;
-/// Internal macroses.
-pub mod macroses;
+
+// /// Internal macroses.
+// pub mod macroses;
+/// Macro helpers, for example to enumarate number types.
+mod macro_helper;
+pub use macro_helper::*;
+
 /// Implementation of adapters for specific math libraries.
 pub mod plugin;
 pub use plugin::*;
 /// Define scalar interface.
 pub mod scalar;
+/// Define several traits like NanLikeInterface.
+pub mod interfaces;
 /// Adapters.
 pub mod vector;
 
@@ -60,6 +67,7 @@ pub mod exposed
   pub use super::from::exposed::*;
   pub use super::plugin::exposed::*;
   pub use super::scalar::exposed::*;
+  pub use super::interfaces::exposed::*;
   pub use super::vector::exposed::*;
 }
 
@@ -72,5 +80,6 @@ pub mod prelude
   pub use super::from::prelude::*;
   pub use super::plugin::prelude::*;
   pub use super::scalar::prelude::*;
+  pub use super::interfaces::prelude::*;
   pub use super::vector::prelude::*;
 }

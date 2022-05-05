@@ -12,7 +12,7 @@ use math_adapter::X2;
 fn _convertion_foreign_test()
 {
   type T = i8;
-  crate::macro_x2::macro_test_x2_as_foreign!( cgmath::Vector2 ; T );
+  crate::macro_foreign_x2::macro_test_foreign_x2_as_foreign!( cgmath::Vector2 ; T );
 }
 
 ///
@@ -22,7 +22,7 @@ fn _convertion_foreign_test()
 fn _operation_deref_test()
 {
   type T = i8;
-  crate::macro_x2::macro_test_x2_operation_deref!( cgmath::Vector2 ; T );
+  crate::macro_foreign_x2::macro_test_foreign_x2_operation_deref!( cgmath::Vector2 ; T );
 }
 
 //

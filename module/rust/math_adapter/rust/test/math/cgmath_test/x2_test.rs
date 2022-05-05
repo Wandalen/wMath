@@ -47,16 +47,20 @@ fn _basic_test()
 
 fn _canonical_test()
 {
-  crate::macro_x2::macro_test_x2_with_records!( cgmath::Vector2, x, y ; i8, i16, i32, i64, i128 );
-  crate::macro_x2::macro_test_x2_with_records!( cgmath::Vector2, x, y ; u8, u16, u32, u64, u128 );
-  crate::macro_x2::macro_test_x2_with_records!( cgmath::Vector2, x, y ; f32, f64 );
 
-  crate::macro_x2::macro_test_x2_with_records!( cgmath::Point2, x, y ; i8, i16, i32, i64, i128 );
-  crate::macro_x2::macro_test_x2_with_records!( cgmath::Point2, x, y ; u8, u16, u32, u64, u128 );
-  crate::macro_x2::macro_test_x2_with_records!( cgmath::Point2, x, y ; f32, f64 );
+  math_adapter::for_each_number!( crate::macro_foreign_x2::macro_test_foreign_x2_number where @PREFIX( cgmath::Vector2, x, y ) );
+  math_adapter::for_each_number!( crate::macro_foreign_x2::macro_test_foreign_x2_number where @PREFIX( cgmath::Point2, x, y ) );
+
+//   crate::macro_foreign_x2::macro_test_foreign_x2_number!( cgmath::Vector2, x, y ; i8, i16, i32, i64, i128 );
+//   crate::macro_foreign_x2::macro_test_foreign_x2_number!( cgmath::Vector2, x, y ; u8, u16, u32, u64, u128 );
+//   crate::macro_foreign_x2::macro_test_foreign_x2_number!( cgmath::Vector2, x, y ; f32, f64 );
+//
+//   crate::macro_foreign_x2::macro_test_foreign_x2_number!( cgmath::Point2, x, y ; i8, i16, i32, i64, i128 );
+//   crate::macro_foreign_x2::macro_test_foreign_x2_number!( cgmath::Point2, x, y ; u8, u16, u32, u64, u128 );
+//   crate::macro_foreign_x2::macro_test_foreign_x2_number!( cgmath::Point2, x, y ; f32, f64 );
 
   // trace_macros!( true );
-  // macro_test_x2_with_records!( cgmath::Point2, x, y ; f32 );
+  // macro_test_foreign_x2_number!( cgmath::Point2, x, y ; f32 );
   // trace_macros!( false );
 
 }
@@ -69,7 +73,7 @@ fn _convertion_as_specific_test()
 {
   type T = i8;
 
-  crate::macro_x2::macro_test_x2_as_specific!( cgmath::Vector2, cgmath ; T );
+  crate::macro_foreign_x2::macro_test_foreign_x2_as_specific!( cgmath::Vector2, cgmath ; T );
 
 }
 

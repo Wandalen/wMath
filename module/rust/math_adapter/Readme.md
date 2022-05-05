@@ -121,7 +121,7 @@ use math_adapter::X2;
 fn main()
 {
 
-  // ! compile time error, because if no `*_ops` feature was chosen
+  // ! compile-time error, because if no `*_ops` feature was chosen
   // {
   //   let src = X2::make( 1, 3 ); /* make a canonical 2D vector */
   //   println!( "src.sum() : {:?}", src.sum() ); /* use `sum()` of chosen math lib back-end */
@@ -160,4 +160,3 @@ cd wMath
 cd module/math_adapter/sample/rust/math_adapter_trivial_sample
 cargo run
 ```
-

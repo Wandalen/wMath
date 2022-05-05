@@ -1,6 +1,7 @@
 
 mod x2_test;
 
+/* xxx : use https://crates.io/crates/cfg_aliases */
 
 #[
   cfg( all
@@ -11,5 +12,3 @@ mod x2_test;
   ))
 ]
 mod ops_test;
-
-/* xxx : merge in */

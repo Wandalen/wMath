@@ -14,7 +14,7 @@ fn _convertion_foreign_test()
 {
   type T = i8;
 
-  crate::macro_x2::macro_test_x2_as_foreign!( nalgebra::Vector2 ; T );
+  crate::macro_foreign_x2::macro_test_foreign_x2_as_foreign!( nalgebra::Vector2 ; T );
 
 }
 
@@ -26,7 +26,7 @@ fn _operation_deref_test()
 {
   type T = i8;
 
-  crate::macro_x2::macro_test_x2_operation_deref!( nalgebra::Vector2 ; T );
+  crate::macro_foreign_x2::macro_test_foreign_x2_operation_deref!( nalgebra::Vector2 ; T );
 
 }
 
@@ -71,5 +71,3 @@ test_suite!
   operation_deref_test,
   inter_cgmath_test,
 }
-
-/* xxx : teach test_suite to understand directives */
