@@ -403,7 +403,7 @@ pub mod internal
         (
           $Callback where
           @PREFIX{ $Prefix }
-          @POSTFIX{ $Prefix }
+          @POSTFIX{ $Postfix }
           @SRC{ $Each }
         );
       )*
@@ -435,7 +435,7 @@ pub mod internal
         $crate::braces_unwrap!
         (
           $Callback where
-          @PREFIX{ $Prefix }
+          @POSTFIX{ $Postfix }
           @SRC{ $Each }
         );
       )*
@@ -519,7 +519,6 @@ pub mod internal
   pub use for_each;
   pub use for_each_int;
   pub use for_each_float;
-  // pub use for_each_float;
   pub use for_each_number;
 
 }

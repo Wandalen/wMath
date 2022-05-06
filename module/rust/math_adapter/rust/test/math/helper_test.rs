@@ -732,16 +732,16 @@ fn _for_each_test()
     math_adapter::for_each!( dbg, "a", "b", "c" );
   }
 
-  // /* test.case( "sample map-style" ) */
-  // {
-  //   math_adapter::for_each!
-  //   (
-  //     dbg where
-  //     @PREFIX { "prefix" + }
-  //     @POSTFIX { + "postfix" }
-  //     @EACH "a", "b", "c"
-  //   );
-  // }
+  /* test.case( "sample map-style" ) */
+  {
+    math_adapter::for_each!
+    (
+      dbg where
+      @PREFIX { "prefix".to_string() + }
+      @POSTFIX { + "postfix" }
+      @EACH "a", "b", "c"
+    );
+  }
 
   /* test.case( "function-style" ) */
   unsafe
@@ -848,24 +848,6 @@ fn _for_each_test()
 
 }
 
-// //
-//
-// fn _for_each_samples_test()
-// {
-//
-//   math_adapter::for_each!( dbg, "a", "b", "c" );
-//
-//   // xxx yyy
-//   // math_adapter::for_each!
-//   // (
-//   //   dbg where
-//   //   @PREFIX { "prefix" + }
-//   //   @POSTFIX { + "postfix" }
-//   //   @EACH "a", "b", "c"
-//   // );
-//
-// }
-
 //
 
 test_suite!
@@ -876,5 +858,4 @@ test_suite!
   for_each_higher_order_without_parentheses_test,
   braces_unwrap_test,
   for_each_test,
-  // for_each_samples_test,
 }
