@@ -5,6 +5,8 @@ pub mod internal
   use crate::prelude::*;
   use crate::{ X2, ScalarInterface };
 
+  //
+
   macro_rules! impl_x2_for
   {
 
@@ -41,6 +43,12 @@ pub mod internal
         {
           Self::new( _0, _1 )
         }
+
+        // #[ inline ]
+        // fn make_nan() -> Self
+        // {
+        //   Self::make( num!( NaN ), num!( NaN ) )
+        // }
 
       }
 
@@ -101,6 +109,16 @@ pub mod internal
 
       }
 
+    };
+
+  }
+
+  macro_rules! impl_x2_as_for
+  {
+
+    ( $Struct1 : ident $( :: $Struct2 : ident )* < $Params : ident > ) =>
+    {
+
       //
 
       impl< Scalar, Any > crate::AsCgmathNonCanonicalInterface< $Struct1 $( :: $Struct2 )* < $Params > >
@@ -148,7 +166,9 @@ pub mod internal
 
   }
 
+  impl_x2_as_for!( cgmath::Vector2< Scalar > );
   impl_x2_for!( cgmath::Vector2< Scalar > );
+  impl_x2_for!( cgmath::Point2< Scalar > );
 
 }
 

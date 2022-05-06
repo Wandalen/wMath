@@ -1,3 +1,5 @@
+#![ allow( unused_imports ) ]
+
 use wmath::adapter::prelude::*;
 
 fn main()

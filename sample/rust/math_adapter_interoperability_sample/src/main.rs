@@ -1,3 +1,4 @@
+#![ allow( unused_imports ) ]
 
 //!
 //! Feature `*_ops` means to request to use operators and function of math lib of choice. But instead of choosing a single back-end math lib, you may use several. Use methods `as_*_clone()`, `as_*`, `as_*_mut` to either convert or reinterpret original math object into analog of such of chosen back-end. You don't have to use the same back-end in every call, you may choose which math lib for a specific call and combine the best of each math lib.

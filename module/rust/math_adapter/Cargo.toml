@@ -1,6 +1,6 @@
 [package]
 name = "math_adapter"
-version = "0.2.3"
+version = "0.3.1"
 edition = "2021"
 authors = [
   "Kostiantyn Wandalen <wandalen@obox.systems>",
@@ -13,7 +13,7 @@ documentation = "https://docs.rs/wmath"
 repository = "https://github.com/Wandalen/wMath/tree/master/module/rust/wmath"
 homepage = "https://github.com/Wandalen/wMath/tree/master/module/rust/wmath"
 description = """
-Collection of math adapters to decouple your application from math libraries' implementations and to increase inter-libraries compatibility / exchangeability.
+Collection of math adapters to decouple your application from math libraries' implementations and to provide both inter-libraries compatibility and affordable exchangeability.
 """
 categories = [ "algorithms", "development-tools" ]
 keywords = [ "fundamental", "general-purpose", "testing" ]

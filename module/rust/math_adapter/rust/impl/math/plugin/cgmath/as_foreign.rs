@@ -28,12 +28,12 @@ pub mod internal
       any( feature = "default_ops", feature = "cgmath_ops" ),
     ))
   ]
-  impl< T, Any > AsNativeNonCanonicalInterface< T > for Any
+  impl< T, Any > AsForeignNonCanonicalInterface< T > for Any
   where
     T : Copy,
     Any : AsCgmathNonCanonicalInterface< T > + Copy,
   {
-    fn clone_as_native( &self ) -> T
+    fn clone_as_foreign( &self ) -> T
     {
       self.clone_as_cgmath()
     }
@@ -63,18 +63,18 @@ pub mod internal
       any( feature = "default_ops", feature = "cgmath_ops" ),
     ))
   ]
-  impl< T, Any > AsNativeCanonicalInterface< T > for Any
+  impl< T, Any > AsForeignCanonicalInterface< T > for Any
   where
     T : Copy,
     Any : AsCgmathCanonicalInterface< T > + Copy,
   {
     /// Interpret this data structure as cgmath analog to use its operations.
-    fn as_native( &self ) -> &T
+    fn as_foreign( &self ) -> &T
     {
       self.as_cgmath()
     }
     /// Interpret this data structure mutably as cgmath analog to use its operations.
-    fn as_native_mut( &mut self ) -> &mut T
+    fn as_foreign_mut( &mut self ) -> &mut T
     {
       self.as_cgmath_mut()
     }
@@ -88,8 +88,8 @@ pub mod exposed
   use super::internal as i;
   pub use i::AsCgmathNonCanonicalInterface;
   pub use i::AsCgmathCanonicalInterface;
-  pub use crate::AsNativeNonCanonicalInterface;
-  pub use crate::AsNativeCanonicalInterface;
+  pub use crate::AsForeignNonCanonicalInterface;
+  pub use crate::AsForeignCanonicalInterface;
 }
 
 pub use exposed::*;
@@ -101,6 +101,6 @@ pub mod prelude
   use super::internal as i;
   pub use i::AsCgmathNonCanonicalInterface;
   pub use i::AsCgmathCanonicalInterface;
-  pub use crate::AsNativeNonCanonicalInterface;
-  pub use crate::AsNativeCanonicalInterface;
+  pub use crate::AsForeignNonCanonicalInterface;
+  pub use crate::AsForeignCanonicalInterface;
 }

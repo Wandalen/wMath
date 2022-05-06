@@ -1,21 +1,20 @@
 /// Internal namespace.
 pub mod internal
 {
-  use core::fmt::Debug;
+  // use core::fmt::Debug;
   use core::hash::Hash;
   use crate::ScalarInterface;
 
   // #[ cfg( any( feature = "cgmath_ops", feature = "nalgebra_ops" ) ) ]
 
-  include!( "./x2/impl_deref.rs" );
-  include!( "./x2/impl_rented_op.rs" );
+  include!( "./impl_deref.rs" );
+  include!( "./impl_rented_op.rs" );
 
-  include!( "./x2/array.rs" );
-  include!( "./x2/interface.rs" );
-  include!( "./x2/ops.rs" );
-  include!( "./x2/slice.rs" );
-  include!( "./x2/struct.rs" );
-  include!( "./x2/tuple.rs" );
+  include!( "./array.rs" );
+  include!( "./interface.rs" );
+  include!( "./slice.rs" );
+  include!( "./struct.rs" );
+  include!( "./tuple.rs" );
 
 }
 
@@ -28,6 +27,7 @@ pub mod macros
   pub( crate ) use i::impl_x2_rented_op1;
   pub( crate ) use i::impl_x2_rented_op2;
 }
+/* qqq : implement alll operators */
 
 /// Own namespace of the module.
 #[ allow( unused_imports ) ]
@@ -62,5 +62,4 @@ pub mod prelude
   pub use i::X2NominalInterface;
   pub use i::X2BasicInterface;
   pub use i::X2CanonicalInterface;
-  /* xxx : explain differences */
 }

@@ -1,7 +1,8 @@
 /// Internal namespace.
 pub mod internal
 {
-  use core::fmt::Debug;
+  use core::fmt::{ Debug, Display };
+  use core::default::Default;
   // use core::hash::Hash;
   use core::ops::{ Add, Sub, Mul, Div, Rem, AddAssign, SubAssign, MulAssign, DivAssign, RemAssign };
   use std::cmp::PartialOrd;
@@ -14,8 +15,10 @@ pub mod internal
   pub trait ScalarInterface :
     'static +
     Debug +
+    Display +
     PartialEq +
     PartialOrd +
+    Default +
     Copy +
     Clone +
     Sized +
@@ -34,6 +37,7 @@ pub mod internal
     MulAssign< Self > +
     DivAssign< Self > +
     RemAssign< Self > +
+    crate::NanLikeInterface +
   {
   }
 
@@ -42,8 +46,10 @@ pub mod internal
     T :
       'static +
       Debug +
+      Display +
       PartialEq +
       PartialOrd +
+      Default +
       Copy +
       Clone +
       Sized +
@@ -62,6 +68,7 @@ pub mod internal
       MulAssign< Self > +
       DivAssign< Self > +
       RemAssign< Self > +
+      crate::NanLikeInterface +
   {
   }
 

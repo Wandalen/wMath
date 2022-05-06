@@ -13,18 +13,34 @@
 
 #![ doc = include_str!( concat!( env!( "CARGO_MANIFEST_DIR" ), "/Readme.md" ) ) ]
 
+#[ cfg( all
+(
+  not( feature = "default_ops" ),
+  all( feature = "nalgebra_ops", feature = "cgmath_ops" ),
+))]
+compile_error!( "Only one `*_ops` feature should be enabled. Disable either `nalgebra_ops` or `cgmath_ops`" );
+
 /// General math traits.
 pub use num_traits as traits;
 
 /// Interfaces to either conver or reinterpret nath data structure as analog of math lib of choice..
-pub mod as_native;
+pub mod as_foreign;
 /// Local implementation of traits From / Into. Required because of limmitations of Rust.
 pub mod from;
+
+// /// Internal macroses.
+// pub mod macroses;
+/// Macro helpers, for example to enumarate number types.
+mod macro_helper;
+pub use macro_helper::*;
+
 /// Implementation of adapters for specific math libraries.
 pub mod plugin;
 pub use plugin::*;
 /// Define scalar interface.
 pub mod scalar;
+/// Define several traits like NanLikeInterface.
+pub mod interfaces;
 /// Adapters.
 pub mod vector;
 
@@ -47,10 +63,11 @@ pub mod dependency
 /// Exposed namespace of the module.
 pub mod exposed
 {
-  pub use super::as_native::exposed::*;
+  pub use super::as_foreign::exposed::*;
   pub use super::from::exposed::*;
   pub use super::plugin::exposed::*;
   pub use super::scalar::exposed::*;
+  pub use super::interfaces::exposed::*;
   pub use super::vector::exposed::*;
 }
 
@@ -59,9 +76,10 @@ pub use exposed::*;
 /// Prelude to use: `use wtools::prelude::*`.
 pub mod prelude
 {
-  pub use super::as_native::prelude::*;
+  pub use super::as_foreign::prelude::*;
   pub use super::from::prelude::*;
   pub use super::plugin::prelude::*;
   pub use super::scalar::prelude::*;
+  pub use super::interfaces::prelude::*;
   pub use super::vector::prelude::*;
 }

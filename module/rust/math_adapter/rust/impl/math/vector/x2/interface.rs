@@ -1,3 +1,4 @@
+/* xxx : put all that into macro */
 
 ///
 /// Nominal interface of vector X2.
@@ -6,11 +7,25 @@
 #[ allow( non_camel_case_types ) ]
 pub trait X2NominalInterface
 {
+
   /// Type of element.
   type Scalar : ScalarInterface;
 
-  // /// Constructor.
-  // fn make( _0 : Self::Scalar, _1 : Self::Scalar ) -> Self;
+  //
+  // _0,
+  // _1,
+  // x,
+  // y,
+  //
+  // _0_mut,
+  // _1_mut,
+  // x_mut,
+  // y_mut,
+  //
+  // clone_as_tuple,
+  // clone_as_array,
+  // clone_as_canonical,
+  //
 
   /// First element.
   fn _0( &self ) -> Self::Scalar;
@@ -61,6 +76,29 @@ pub trait X2BasicInterface : X2NominalInterface
   /// Constructor.
   fn make( _0 : Self::Scalar, _1 : Self::Scalar ) -> Self;
 
+  /// Make an instance filling fields with NaN.
+  #[ inline ]
+  fn make_nan() -> Self
+  where
+    Self : Sized,
+  {
+    use crate::NanLikeInterface;
+    Self::make
+    (
+      Self::Scalar::make_nan_like(),
+      Self::Scalar::make_nan_like(),
+    )
+  }
+
+  /// Make an instance filling fields with default values.
+  #[ inline ]
+  fn make_default() -> Self
+  where
+    Self : Sized,
+  {
+    Self::make( Self::Scalar::default(), Self::Scalar::default() )
+  }
+
 }
 
 ///
@@ -70,6 +108,29 @@ pub trait X2BasicInterface : X2NominalInterface
 #[ allow( non_camel_case_types ) ]
 pub trait X2CanonicalInterface : X2BasicInterface + Sized
 {
+
+  //
+  // assign,
+  //
+  // _0_ref,
+  // _1_ref,
+  // x_ref,
+  // y_ref,
+  // _0_mut,
+  // _1_mut,
+  // x_mut,
+  // y_mut,
+  //
+  // as_tuple,
+  // as_array,
+  // as_slice,
+  // as_canonical,
+  // as_tuple_mut,
+  // as_array_mut,
+  // as_slice_mut,
+  // as_canonical_mut,
+  //
+
   /// Assign value.
   #[ inline ]
   fn assign< Src : X2BasicInterface< Scalar = Self::Scalar > >( &mut self, src : Src )
@@ -103,6 +164,7 @@ pub trait X2CanonicalInterface : X2BasicInterface + Sized
   #[ inline ]
   fn x_mut( &mut self ) -> &mut Self::Scalar
   {
+    // x_mut( self )
     self._0_mut()
   }
   /// Second element.
@@ -170,7 +232,7 @@ pub trait X2CanonicalInterface : X2BasicInterface + Sized
 
 }
 
-/* zzz : index of methods? */
+/* zzz : macro index of methods? */
 
 //
 

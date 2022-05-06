@@ -6,10 +6,12 @@
 // #![ feature( type_name_of_val ) ]
 
 mod test_tools;
-mod macro_test_x2_with_records;
+mod macro_foreign_x2;
+#[ allow( unused_imports ) ]
+pub( crate ) use macro_foreign_x2::*;
 
 mod x2_test;
-mod experiment_test;
+mod helper_test;
 
 #[ cfg( feature = "cgmath" )]
 mod cgmath_test;

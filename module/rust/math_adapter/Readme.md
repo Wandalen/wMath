@@ -2,25 +2,55 @@
 
 Collection of math adapters to decouple your application from math libraries' implementations and to provide both inter-libraries compatibility and affordable exchangeability.
 
-<!-- xxx : mention adapter pattern -->
-<!-- xxx : describe process of choosing back-end math lib -->
-<!-- xxx : explain nominal/basic/canonical difference -->
+Been decoupled from concrete implementation of math library is useful. It makes possible to interchange them and leverage interoperability between them.
+
+# Choosing back-end
+
+Currently, as beck-end you may choose either `cgmath` or `nalgebra` and both math libs are integrated into the crate. Despite that, by default, `math_adapter` does not include either of them and does not increase the size of the executable by unnecessary dependencies. To chose back-end use features:
+
+- `cgmath` - use `cgmath` as backend
+- `cgmath_ops` - use `cgmath` as backend and make adapters to derefer to its functions and operators
+- `nalgebra` - use `nalgebra` as backend
+- `nalgebra_ops` - use `nalgebra` as backend and make adapters to derefer to its functions and operators
+
+Several math libs can be used, but functions and operators of only one should be used implicitly. Even if no `*_ops` feature is selected, it is always an option to use functions and operators of math lib of choice explicitly.
+
+To make explicit conversion, use methods `clone_as_cgmath()`, `clone_as_nalgebra()`. To make explicit conversion into selected with feature `*_ops` use `clone_as_foreign()`. In this case, dereferencing works as reinterpretation. Either adapter or foreign math object may be converted/reinterpreted into analog.
+
+In the future, each back-end is going to reside in an individual crate.
+
+For example, to use `nalgebra` with operators and its function include `math_adapter` like that:
+
+```toml
+math_adapter = { version = "*", features = [ "nalgebra_ops" ] }
+```
+
+# Math objects
+
+Each math libraries define its own versions of math objects. In most cases they have the same layout, but even if so compiler treat them as different. `math_adapter` provide such math objects too, as well as means to either convert or reinterpret from foreign analogs. Among such are:
+
+- Vecotrs, they are called X1< T >, X2< T >, X3< T >, X4< T > ... Xn< T >.
+- Matrices, they are called MatX1< T >, MatX2< T >, MatX3< T > ... MatXn< T >.
+- Quaternion, it is called Quat< T >.
+- Euler's angles, it is called Euler< T >.
+- Decomposed transformation, it is called TransformationDecomposed< T >
+
 <!-- qqq : add readme for each sample with short explanation. make sure code frome sample run during test -->
-<!-- xxx : define math object -->
+<!-- xxx : implement `make_nan()`, and `make_default()` -->
 
 ### Conversion vs reinterpretation
 
 To apply functions from another library you may either convert or reinterpret math object. What is difference?
 
-Reinterpretation take place during compile-time. Reinterpretation is possible if layout( size, alignment, padding and order ) of two similar structures are the same. For example structures `cgmath::Vector2` and `nalgebra::Vector2` are different structures, but them both have exactly same layout. That's why it's safe to reinterpret one to another and vise-versa. Reinterpretation says compiler to use one data structure as if it was another. It has zero run-time and compile-time cost. Such methods as `as_native()`, `as_native_mut()`, `as_cgmath()`, `as_cgmath_mut()`, `as_nalgebra()`, `as_nalgebra_mut()` reintepret math objects.
+Reinterpretation take place during compile-time. Reinterpretation is possible if layout ( size, alignment, padding and order ) of two similar structures are the same. For example, structures `cgmath::Vector2` and `nalgebra::Vector2` are different structures, but them both have exactly same layout. That's why it's safe to reinterpret one to another and vise-versa. Reinterpretation says compiler to use one data structure as if it was another. It has zero run-time and compile-time cost. Such methods as `as_foreign()`, `as_foreign_mut()`, `as_cgmath()`, `as_cgmath_mut()`, `as_nalgebra()`, `as_nalgebra_mut()` reinterpret math objects.
 
-Conversion is different. Conversion says to rebuild a new instance of structure from components of another. It has non-zero run-time and compile-time cost. Although it is often optimized into reinterpretation by compiler. Also argument to use conversion instead of reinterpretation is safety. Thing is reinterpretation is safe based on several assumption about layout, which may be changed by either an author of a math library or by authors of the compiler. In theory! On practice it is unlikely. Even more most math objects are declared with `#[ repr( C ) ]`, what [restricts layout](https://doc.rust-lang.org/nomicon/other-reprs.html#reprc) of such structure and protects it from changes in the future.
+Conversion is different. Conversion says to rebuild a new instance of structure from components of another. It has non-zero run-time and compile-time cost. Although it is often optimized into reinterpretation by compiler. Using conversion instead of reinterpretation is safer. Thing is reinterpretation is safe based on several assumption about layout, which may be changed by either an author of a math library or by authors of the compiler. In theory! On practice it is unlikely. Even more most math libraries define objects with `#[ repr( C ) ]`, what [restricts layout](https://doc.rust-lang.org/nomicon/other-reprs.html#reprc) of such structures and protects them from changes in the future.
 
-Every structure could be converted into another semantically similar structure even with different layout, but reinterpreation is possible only in case of the same layour. Because of that severa traits are implemented.
+Every structure could be converted into another semantically similar structure even with different layout, but reinterpretation is possible only in case of the same layout. Because of that several traits are implemented.
 
-- `*NominalInterface` - interface exposing function to convert and to access elements.
-- `*BasicInterface` - interface extending `X2NominalInterface` and exposing functions to make a new instance of such.
-- `*CanonicalInterface` - interface extending `X2BasicInterface` and exposing functions of reinterpretation.
+- `*NominalInterface` - interface, exposing function to convert and to access elements.
+- `*BasicInterface` - interface, extending `X2NominalInterface` and exposing functions to make a new instance of such.
+- `*CanonicalInterface` - interface, extending `X2BasicInterface` and exposing functions of reinterpretation.
 
 Relation: `Canonical > Basic > Nominal`.
 
@@ -91,7 +121,7 @@ use math_adapter::X2;
 fn main()
 {
 
-  // ! compile time error, because if no `*_ops` feature was chosen
+  // ! compile-time error, because if no `*_ops` feature was chosen
   // {
   //   let src = X2::make( 1, 3 ); /* make a canonical 2D vector */
   //   println!( "src.sum() : {:?}", src.sum() ); /* use `sum()` of chosen math lib back-end */
@@ -127,10 +157,6 @@ cargo add math_adapter
 ```sh
 git clone https://github.com/Wandalen/wMath
 cd wMath
-cd module/math_adapter/sample/rust/math_adapter_trivial
+cd module/math_adapter/sample/rust/math_adapter_trivial_sample
 cargo run
 ```
-
-<!-- xxx : implement `make_nan()`, and `make_default()` -->
-<!-- xxx : implement print trait -->
-

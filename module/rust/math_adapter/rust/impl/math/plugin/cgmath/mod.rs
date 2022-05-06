@@ -8,7 +8,7 @@ pub mod internal
 }
 
 /// Trait to interpret math data structures of other math libs as their analogs in cgmath to use operations of cgmath.
-pub mod as_native;
+pub mod as_foreign;
 #[
   cfg( all
   (
@@ -37,7 +37,7 @@ pub use own::*;
 pub mod exposed
 {
   pub use super::prelude::*;
-  pub use super::as_native::exposed::*;
+  pub use super::as_foreign::exposed::*;
   #[
     cfg( all
     (
@@ -56,7 +56,7 @@ pub use exposed::*;
 pub mod prelude
 {
   pub use crate::dependency::cgmath::prelude::*;
-  pub use super::as_native::prelude::*;
+  pub use super::as_foreign::prelude::*;
   #[
     cfg( all
     (
@@ -74,7 +74,7 @@ pub mod prelude
 // {
 //
 //   /// Trait to interpret math data structures of other math libs as their analogs in cgmath to use operations of cgmath.
-//   mod as_native;
+//   mod as_foreign;
 //
 //   #[
 //     cfg( all

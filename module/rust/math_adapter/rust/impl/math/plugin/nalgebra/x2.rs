@@ -105,6 +105,18 @@ pub mod internal
 
       //
 
+    };
+
+  }
+
+  macro_rules! impl_x2_as_for
+  {
+
+    ( $Struct1 : ident $( :: $Struct2 : ident )* < $Params : ident > ) =>
+    {
+
+      //
+
       impl< Scalar, Any > crate::AsNalgebraNonCanonicalInterface< $Struct1 $( :: $Struct2 )* < $Params > > for Any
       where
         Scalar : ScalarInterface,
@@ -149,8 +161,8 @@ pub mod internal
   }
 
   impl_x2_for!( nalgebra::Vector2< Scalar > );
-  // impl_x2_for!( nalgebra::Point2< Scalar > ); /* xxx */
-
+  impl_x2_as_for!( nalgebra::Vector2< Scalar > );
+  impl_x2_for!( nalgebra::geometry::Point2< Scalar > );
 
 }
 

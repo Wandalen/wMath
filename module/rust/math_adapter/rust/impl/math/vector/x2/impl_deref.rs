@@ -18,7 +18,7 @@ macro_rules! impl_x2_deref
       type Target = $Va $( :: $Vb )*< Scalar >;
       fn deref( &self ) -> &Self::Target
       {
-        self.as_native()
+        self.as_foreign()
       }
     }
 
@@ -28,7 +28,7 @@ macro_rules! impl_x2_deref
     {
       fn deref_mut( &mut self ) -> &mut Self::Target
       {
-        self.as_native_mut()
+        self.as_foreign_mut()
       }
     }
 
