@@ -743,27 +743,6 @@ fn _for_each_test()
     );
   }
 
-  /* test.case( "template" ) */
-  // {
-  //   math_adapter::for_each!
-  //   (
-  //     { dbg!( "prefix".to_string() }
-  //     @FOR_EACH{ "a", "b", "c" }
-  //     { + "postfix" ) }
-  //   );
-  // }
-
-  // /* test.case( "sample map-style" ) */
-  // {
-  //   math_adapter::for_each!
-  //   (
-  //     @FOR_EACH "a", "b", "c"
-  //     { "prefix".to_string() + }
-  //     { dbg!( @FOR_EACH ) }
-  //     { + "postfix" }
-  //   );
-  // }
-
   /* test.case( "sample map-style" ) */
   {
     math_adapter::for_each!
@@ -802,47 +781,9 @@ fn _for_each_test()
     assert_eq!( GOT, exp );
   }
 
-  // with parentheses
+  // map-like
 
-//   /* test.case( "with parentheses" ) */
-//   unsafe
-//   {
-//     GOT = "".to_string();
-//     math_adapter::for_each!( test_with where @EACH( a, b, c ) );
-//     let exp = "(a)+(b)+(c)+";
-//     assert_eq!( GOT, exp );
-//   }
-//
-//   /* test.case( "with parentheses" ) + prefix */
-//   unsafe
-//   {
-//     GOT = "".to_string();
-//     math_adapter::for_each!( test_with where @PREFIX prefix @EACH( a, b, c ) );
-//     let exp = "prefix(a)+prefix(b)+prefix(c)+";
-//     assert_eq!( GOT, exp );
-//   }
-//
-//   /* test.case( "with parentheses" ) + postfix */
-//   unsafe
-//   {
-//     GOT = "".to_string();
-//     math_adapter::for_each!( test_with where @POSTFIX postfix @EACH( a, b, c ) );
-//     let exp = "(a) postfix+(b) postfix+(c) postfix+";
-//     assert_eq!( GOT, exp );
-//   }
-//
-//   /* test.case( "with parentheses" ) + prefix + postfix */
-//   unsafe
-//   {
-//     GOT = "".to_string();
-//     math_adapter::for_each!( test_with where @PREFIX prefix @POSTFIX postfix @EACH( a, b, c ) );
-//     let exp = "prefix(a) postfix+prefix(b) postfix+prefix(c) postfix+";
-//     assert_eq!( GOT, exp );
-//   }
-
-  // without parentheses
-
-  /* test.case( "without parentheses" ) */
+  /* test.case( "map-like" ) */
   unsafe
   {
     GOT = "".to_string();
@@ -851,7 +792,7 @@ fn _for_each_test()
     assert_eq!( GOT, exp );
   }
 
-  /* test.case( "without parentheses" ) + prefix */
+  /* test.case( "map-like, prefix" ) */
   unsafe
   {
     GOT = "".to_string();
@@ -860,7 +801,7 @@ fn _for_each_test()
     assert_eq!( GOT, exp );
   }
 
-  /* test.case( "without parentheses" ) + postfix */
+  /* test.case( "map-like, postfix" ) */
   unsafe
   {
     GOT = "".to_string();
@@ -869,7 +810,45 @@ fn _for_each_test()
     assert_eq!( GOT, exp );
   }
 
-  /* test.case( "without parentheses" ) + prefix + postfix */
+  /* test.case( "map-like, prefix + postfix" ) */
+  unsafe
+  {
+    GOT = "".to_string();
+    math_adapter::for_each!( test_with where @PREFIX prefix @POSTFIX postfix @EACH a, b, c );
+    let exp = "prefix a postfix+prefix b postfix+prefix c postfix+";
+    assert_eq!( GOT, exp );
+  }
+
+  // map-like, complex
+
+  /* test.case( "map-like" ) */
+  unsafe
+  {
+    GOT = "".to_string();
+    math_adapter::for_each!( test_with where @EACH { a _ a }, { b _ b }, { c _ c } );
+    let exp = "a+b+c+";
+    assert_eq!( GOT, exp );
+  }
+
+  /* test.case( "map-like, prefix" ) */
+  unsafe
+  {
+    GOT = "".to_string();
+    math_adapter::for_each!( test_with where @PREFIX prefix @EACH a, b, c );
+    let exp = "prefix a+prefix b+prefix c+";
+    assert_eq!( GOT, exp );
+  }
+
+  /* test.case( "map-like, postfix" ) */
+  unsafe
+  {
+    GOT = "".to_string();
+    math_adapter::for_each!( test_with where @POSTFIX postfix @EACH a, b, c );
+    let exp = "a postfix+b postfix+c postfix+";
+    assert_eq!( GOT, exp );
+  }
+
+  /* test.case( "map-like, prefix + postfix" ) */
   unsafe
   {
     GOT = "".to_string();
