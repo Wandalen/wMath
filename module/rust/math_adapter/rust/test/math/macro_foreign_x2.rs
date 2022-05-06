@@ -20,7 +20,7 @@ pub mod internal
     {{
 
       type T = $Type;
-      println!( "Testing {}", stringify!( $Type ) );
+      println!( "Testing {}< {} >", stringify!( $Va$(::$Vb)* ), stringify!( $Type ) );
 
       /* test.case = "size"; */
       {

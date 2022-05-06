@@ -53,8 +53,9 @@ fn _basic_test()
 fn _canonical_test()
 {
 
-  math_adapter::for_each_number!( crate::macro_foreign_x2::macro_test_foreign_x2_number where @PREFIX( nalgebra::Vector2, x, y ) );
-  math_adapter::for_each_number!( crate::macro_foreign_x2::macro_test_foreign_x2_number where @PREFIX( nalgebra::geometry::Point2, x, y ) );
+  // // xxx yyy
+  // math_adapter::for_each_number!( crate::macro_foreign_x2::macro_test_foreign_x2_number where @PREFIX( nalgebra::Vector2, x, y ) );
+  // math_adapter::for_each_number!( crate::macro_foreign_x2::macro_test_foreign_x2_number where @PREFIX( nalgebra::geometry::Point2, x, y ) );
 
 //   crate::macro_foreign_x2::macro_test_foreign_x2_number!( nalgebra::Vector2, x, y ; i8, i16, i32, i64, i128 );
 //   crate::macro_foreign_x2::macro_test_foreign_x2_number!( nalgebra::Vector2, x, y ; u8, u16, u32, u64, u128 );

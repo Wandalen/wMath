@@ -49,10 +49,31 @@ fn _physical_size_test()
 
   /* xxx : use for each of higher order */
 
-  math_adapter::for_each_number!( crate::macro_foreign_x2::macro_test_foreign_x2_number where @PREFIX( winit::dpi::PhysicalSize, width, height ) );
-  math_adapter::for_each_number!( crate::macro_foreign_x2::macro_test_foreign_x2_number where @PREFIX( winit::dpi::LogicalSize, width, height ) );
-  math_adapter::for_each_number!( crate::macro_foreign_x2::macro_test_foreign_x2_number where @PREFIX( winit::dpi::PhysicalPosition, x, y ) );
-  math_adapter::for_each_number!( crate::macro_foreign_x2::macro_test_foreign_x2_number where @PREFIX( winit::dpi::LogicalPosition, x, y ) );
+  macro_rules! test_for
+  {
+    (
+      ( $( $Arg : tt )* )
+    ) =>
+    {
+      math_adapter::for_each_number!( crate::macro_foreign_x2::macro_test_foreign_x2_number where @PREFIX( $( $Arg )* ) );
+    }
+  }
+
+  math_adapter::apply!
+  (
+    test_for,
+    ( winit::dpi::PhysicalSize, width, height ),
+    ( winit::dpi::LogicalSize, width, height ),
+    ( winit::dpi::PhysicalPosition, x, y ),
+    ( winit::dpi::LogicalPosition, x, y )
+  );
+
+  // xxx yyy
+
+  // math_adapter::for_each_number!( crate::macro_foreign_x2::macro_test_foreign_x2_number where @PREFIX( winit::dpi::PhysicalSize, width, height ) );
+  // math_adapter::for_each_number!( crate::macro_foreign_x2::macro_test_foreign_x2_number where @PREFIX( winit::dpi::LogicalSize, width, height ) );
+  // math_adapter::for_each_number!( crate::macro_foreign_x2::macro_test_foreign_x2_number where @PREFIX( winit::dpi::PhysicalPosition, x, y ) );
+  // math_adapter::for_each_number!( crate::macro_foreign_x2::macro_test_foreign_x2_number where @PREFIX( winit::dpi::LogicalPosition, x, y ) );
 
 //   crate::macro_foreign_x2::macro_test_foreign_x2_number!( winit::dpi::PhysicalSize, width, height ; i8, i16, i32, i64, i128 );
 //   crate::macro_foreign_x2::macro_test_foreign_x2_number!( winit::dpi::PhysicalSize, width, height ; u8, u16, u32, u64, u128 );

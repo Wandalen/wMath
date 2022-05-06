@@ -23,16 +23,14 @@ compile_error!( "Only one `*_ops` feature should be enabled. Disable either `nal
 /// General math traits.
 pub use num_traits as traits;
 
+/// Macro helpers, for example to enumarate number types.
+mod macro_helper;
+pub use macro_helper::*;
+
 /// Interfaces to either conver or reinterpret nath data structure as analog of math lib of choice..
 pub mod as_foreign;
 /// Local implementation of traits From / Into. Required because of limmitations of Rust.
 pub mod from;
-
-// /// Internal macroses.
-// pub mod macroses;
-/// Macro helpers, for example to enumarate number types.
-mod macro_helper;
-pub use macro_helper::*;
 
 /// Implementation of adapters for specific math libraries.
 pub mod plugin;
