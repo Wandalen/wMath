@@ -1,7 +1,7 @@
 
 mod x2_test;
 
-/* xxx : use https://crates.io/crates/cfg_aliases */
+/* zzz : use https://crates.io/crates/cfg_aliases */
 
 #[
   cfg( all

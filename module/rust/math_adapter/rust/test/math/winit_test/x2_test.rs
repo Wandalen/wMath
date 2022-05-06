@@ -47,49 +47,18 @@ fn _basic()
 fn _physical_size_test()
 {
 
-  /* xxx : use for each of higher order */
-
-  macro_rules! test_for
-  {
-    (
-      ( $( $Arg : tt )* )
-    ) =>
-    {
-      math_adapter::for_each_number!( crate::macro_foreign_x2::macro_test_foreign_x2_number where @PREFIX( $( $Arg )* ) );
-    }
-  }
-
   math_adapter::for_each!
   (
-    test_for,
-    ( winit::dpi::PhysicalSize, width, height ),
-    ( winit::dpi::LogicalSize, width, height ),
-    ( winit::dpi::PhysicalPosition, x, y ),
-    ( winit::dpi::LogicalPosition, x, y )
+    crate::macro_foreign_x2::macro_test_foreign_x2_number_for_each,
+    { winit::dpi::PhysicalSize, width, height },
+    { winit::dpi::LogicalSize, width, height },
+    { winit::dpi::PhysicalPosition, x, y },
+    { winit::dpi::LogicalPosition, x, y },
   );
 
-  // xxx yyy
-
-  // math_adapter::for_each_number!( crate::macro_foreign_x2::macro_test_foreign_x2_number where @PREFIX( winit::dpi::PhysicalSize, width, height ) );
-  // math_adapter::for_each_number!( crate::macro_foreign_x2::macro_test_foreign_x2_number where @PREFIX( winit::dpi::LogicalSize, width, height ) );
-  // math_adapter::for_each_number!( crate::macro_foreign_x2::macro_test_foreign_x2_number where @PREFIX( winit::dpi::PhysicalPosition, x, y ) );
-  // math_adapter::for_each_number!( crate::macro_foreign_x2::macro_test_foreign_x2_number where @PREFIX( winit::dpi::LogicalPosition, x, y ) );
-
-//   crate::macro_foreign_x2::macro_test_foreign_x2_number!( winit::dpi::PhysicalSize, width, height ; i8, i16, i32, i64, i128 );
-//   crate::macro_foreign_x2::macro_test_foreign_x2_number!( winit::dpi::PhysicalSize, width, height ; u8, u16, u32, u64, u128 );
-//   crate::macro_foreign_x2::macro_test_foreign_x2_number!( winit::dpi::PhysicalSize, width, height ; f32, f64 );
-//
-//   crate::macro_foreign_x2::macro_test_foreign_x2_number!( winit::dpi::LogicalSize, width, height ; i8, i16, i32, i64, i128 );
-//   crate::macro_foreign_x2::macro_test_foreign_x2_number!( winit::dpi::LogicalSize, width, height ; u8, u16, u32, u64, u128 );
-//   crate::macro_foreign_x2::macro_test_foreign_x2_number!( winit::dpi::LogicalSize, width, height ; f32, f64 );
-//
-//   crate::macro_foreign_x2::macro_test_foreign_x2_number!( winit::dpi::PhysicalPosition, x, y ; i8, i16, i32, i64, i128 );
-//   crate::macro_foreign_x2::macro_test_foreign_x2_number!( winit::dpi::PhysicalPosition, x, y ; u8, u16, u32, u64, u128 );
-//   crate::macro_foreign_x2::macro_test_foreign_x2_number!( winit::dpi::PhysicalPosition, x, y ; f32, f64 );
-//
-//   crate::macro_foreign_x2::macro_test_foreign_x2_number!( winit::dpi::LogicalPosition, x, y ; i8, i16, i32, i64, i128 );
-//   crate::macro_foreign_x2::macro_test_foreign_x2_number!( winit::dpi::LogicalPosition, x, y ; u8, u16, u32, u64, u128 );
-//   crate::macro_foreign_x2::macro_test_foreign_x2_number!( winit::dpi::LogicalPosition, x, y ; f32, f64 );
+  // trace_macros!( true );
+  // macro_test_foreign_x2_number!( ( winit::dpi::PhysicalSize, width, height ) f32 );
+  // trace_macros!( false );
 
 }
 
@@ -142,4 +111,4 @@ test_suite!
   physical_size_test,
 }
 
-/* xxx : teach test_suite to understand directives */
+/* zzz : teach test_suite to understand directives */

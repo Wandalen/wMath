@@ -20,6 +20,22 @@
 ))]
 compile_error!( "Only one `*_ops` feature should be enabled. Disable either `nalgebra_ops` or `cgmath_ops`" );
 
+use cfg_aliases::cfg_aliases;
+
+cfg_aliases!
+{
+  // Platforms
+  wasm: { target_arch = "wasm32" },
+  android: { target_os = "android" },
+  macos: { target_os = "macos" },
+  linux: { target_os = "linux" },
+  // Backends
+  surfman: { all(unix, feature = "surfman", not(wasm)) },
+  glutin: { all(feature = "glutin", not(wasm)) },
+  wgl: { all(windows, feature = "wgl", not(wasm)) },
+  dummy: { not(any(wasm, glutin, wgl, surfman)) },
+}
+
 /// General math traits.
 pub use num_traits as traits;
 

@@ -6,7 +6,21 @@ pub mod internal
 {
 
   ///
-  /// General tests for X2 and and scalar which is number.
+  /// For each number generate general tests for X2, scalar is number.
+  ///
+
+  macro_rules! macro_test_foreign_x2_number_for_each
+  {
+    (
+      $( $Arg : tt )*
+    ) =>
+    {
+      math_adapter::for_each_number!( crate::macro_foreign_x2::macro_test_foreign_x2_number where @PREFIX( $( $Arg )* ) );
+    }
+  }
+
+  ///
+  /// General tests for X2, scalar is number.
   ///
 
   macro_rules! macro_test_foreign_x2_number
@@ -434,6 +448,7 @@ pub mod internal
     }
   }
 
+  pub( crate ) use macro_test_foreign_x2_number_for_each;
   pub( crate ) use macro_test_foreign_x2_number;
   pub( crate ) use macro_test_foreign_x2_as_specific;
   pub( crate ) use macro_test_foreign_x2_as_foreign;

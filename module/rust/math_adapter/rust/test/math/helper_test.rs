@@ -124,7 +124,7 @@ fn _for_each_higher_order_without_parentheses_test()
   assert_eq!( got, exp );
 
   let mut got = String::new();
-  math_adapter::for_each!( test_with_prefix where @PREFIX got @EACH a, b, c );
+  math_adapter::for_each!( test_with_prefix where @PREFIX got @EACH a b c );
   let exp = "f32 a_f64 a_f32 b_f64 b_f32 c_f64 c_";
   assert_eq!( got, exp );
 

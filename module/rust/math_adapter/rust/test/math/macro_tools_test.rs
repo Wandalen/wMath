@@ -574,7 +574,9 @@ fn _braces_unwrap_test()
 
 }
 
-//
+///
+/// Tests macro crate::for_each!().
+///
 
 fn _for_each_test()
 {
@@ -592,31 +594,56 @@ fn _for_each_test()
 
   static mut GOT : String = String::new();
 
-  /* test.case( "sample function-style" ) */
+  /* test.case( "sample : function-style" ) */
   {
     math_adapter::for_each!( dbg, "a", "b", "c" );
+    // generates
+    dbg!( "a" );
+    dbg!( "b" );
+    dbg!( "c" );
   }
 
-  /* test.case( "sample map-style" ) */
+  /* test.case( "sample : map-style" ) */
   {
     math_adapter::for_each!
-    (
+    {
       dbg where
       @PREFIX { "prefix".to_string() + }
       @POSTFIX { + "postfix" }
-      @EACH "a", "b", "c"
-    );
+      @EACH "a" "b" "c"
+    };
+    // generates
+    dbg!( "prefix".to_string() + "a" + "postfix" );
+    dbg!( "prefix".to_string() + "b" + "postfix" );
+    dbg!( "prefix".to_string() + "c" + "postfix" );
   }
 
-  /* test.case( "sample map-style" ) */
+  /* test.case( "sample : more than single token" ) */
   {
     math_adapter::for_each!
-    (
+    {
       dbg where
       @PREFIX { "prefix".to_string() + }
       @POSTFIX { + "postfix" }
-      @EACH "a", "b", "c"
-    );
+      @EACH { "a" + "1" } { "b" + "2" } { "c" + "3" }
+    };
+    // generates
+    dbg!( "prefix".to_string() + "a" + "1" + "postfix" );
+    dbg!( "prefix".to_string() + "b" + "2" + "postfix" );
+    dbg!( "prefix".to_string() + "c" + "3" + "postfix" );
+  }
+
+  /* test.case( "sample : callbackless" ) */
+  {
+    math_adapter::for_each!
+    {
+      @PREFIX { dbg! }
+      @EACH ( "a" ) ( "b" ) ( "c" )
+    };
+    // generates
+    dbg!( "a" );
+    dbg!( "b" );
+    dbg!( "c" );
   }
 
   // function-style
@@ -666,13 +693,55 @@ fn _for_each_test()
     assert_eq!( GOT, exp );
   }
 
+  // callbackless
+
+  /* test.case( "callbackless, prefix, postfix" ) */
+  unsafe
+  {
+    GOT = "".to_string();
+    math_adapter::for_each!
+    {
+      @PREFIX { test_with! }
+      @POSTFIX { ; test_with!( postfix ); }
+      @EACH ( a ) ( b ) ( c )
+    };
+    let exp = "a+postfix+b+postfix+c+postfix+";
+    assert_eq!( GOT, exp );
+  }
+
+  /* test.case( "callbackless, prefix" ) */
+  unsafe
+  {
+    GOT = "".to_string();
+    math_adapter::for_each!
+    {
+      @PREFIX { test_with! }
+      @EACH ( a ) ( b ) ( c )
+    };
+    let exp = "a+b+c+";
+    assert_eq!( GOT, exp );
+  }
+
+  /* test.case( "callbackless, postfix" ) */
+  unsafe
+  {
+    GOT = "".to_string();
+    math_adapter::for_each!
+    {
+      @POSTFIX { ; test_with!( postfix ); }
+      @EACH { test_with!( a ) } { test_with!( b ) } { test_with!( c ) }
+    };
+    let exp = "a+postfix+b+postfix+c+postfix+";
+    assert_eq!( GOT, exp );
+  }
+
   // map-style
 
   /* test.case( "map-style" ) */
   unsafe
   {
     GOT = "".to_string();
-    math_adapter::for_each!( test_with where @EACH a, b, c );
+    math_adapter::for_each!( test_with where @EACH a b c );
     let exp = "a+b+c+";
     assert_eq!( GOT, exp );
   }
@@ -681,7 +750,7 @@ fn _for_each_test()
   unsafe
   {
     GOT = "".to_string();
-    math_adapter::for_each!( test_with where @PREFIX prefix @POSTFIX postfix @EACH a, b, c );
+    math_adapter::for_each!( test_with where @PREFIX prefix @POSTFIX postfix @EACH a b c );
     let exp = "prefix a postfix+prefix b postfix+prefix c postfix+";
     assert_eq!( GOT, exp );
   }
@@ -690,7 +759,7 @@ fn _for_each_test()
   unsafe
   {
     GOT = "".to_string();
-    math_adapter::for_each!( test_with where @PREFIX prefix @EACH a, b, c );
+    math_adapter::for_each!( test_with where @PREFIX prefix @EACH a b c );
     let exp = "prefix a+prefix b+prefix c+";
     assert_eq!( GOT, exp );
   }
@@ -699,7 +768,7 @@ fn _for_each_test()
   unsafe
   {
     GOT = "".to_string();
-    math_adapter::for_each!( test_with where @POSTFIX postfix @EACH a, b, c );
+    math_adapter::for_each!( test_with where @POSTFIX postfix @EACH a b c );
     let exp = "a postfix+b postfix+c postfix+";
     assert_eq!( GOT, exp );
   }
@@ -713,7 +782,7 @@ fn _for_each_test()
     math_adapter::for_each!
     {
       test_with where
-      @EACH { a _ a }, { b _ b }, { c _ c }
+      @EACH { a _ a } { b _ b } { c _ c }
     };
     let exp = "a _ a+b _ b+c _ c+";
     assert_eq!( GOT, exp );
@@ -728,7 +797,7 @@ fn _for_each_test()
       test_with where
       @PREFIX { pre fix }
       @POSTFIX { post fix }
-      @EACH { a _ a }, { b _ b }, { c _ c }
+      @EACH { a _ a } { b _ b } { c _ c }
     };
     let exp = "pre fix a _ a post fix+pre fix b _ b post fix+pre fix c _ c post fix+";
     assert_eq!( GOT, exp );
@@ -742,7 +811,7 @@ fn _for_each_test()
     {
       test_with where
       @PREFIX { pre fix }
-      @EACH { a _ a }, { b _ b }, { c _ c }
+      @EACH { a _ a } { b _ b } { c _ c }
     };
     let exp = "pre fix a _ a+pre fix b _ b+pre fix c _ c+";
     assert_eq!( GOT, exp );
@@ -756,7 +825,7 @@ fn _for_each_test()
     {
       test_with where
       @POSTFIX { post fix }
-      @EACH { a _ a }, { b _ b }, { c _ c }
+      @EACH { a _ a } { b _ b } { c _ c }
     };
     let exp = "a _ a post fix+b _ b post fix+c _ c post fix+";
     assert_eq!( GOT, exp );
@@ -792,7 +861,7 @@ fn _for_each_higher_order_test()
       (
         $Callback where
         $( $( $Args )* )?
-        @EACH f32, f64
+        @EACH f32 f64
       );
     };
 
@@ -816,8 +885,8 @@ fn _for_each_higher_order_test()
     {
       for_each_float where
       @EACH
-        { test_with where @PREFIX { pre fix 1 } @POSTFIX { post fix } },
-        { test_with where @PREFIX { pre fix 2 } @POSTFIX { post fix } },
+        { test_with where @PREFIX { pre fix 1 } @POSTFIX { post fix } }
+        { test_with where @PREFIX { pre fix 2 } @POSTFIX { post fix } }
     }
     let exp = "pre fix 1 f32 post fix;pre fix 1 f64 post fix;pre fix 2 f32 post fix;pre fix 2 f64 post fix;";
     assert_eq!( GOT, exp );
@@ -833,8 +902,8 @@ fn _for_each_higher_order_test()
       @PREFIX { test_with where @PREFIX }
       @POSTFIX { @POSTFIX { post fix } }
       @EACH
-        { { pre fix 1 } },
-        { { pre fix 2 } },
+        { { pre fix 1 } }
+        { { pre fix 2 } }
     }
     let exp = "pre fix 1 f32 post fix;pre fix 1 f64 post fix;pre fix 2 f32 post fix;pre fix 2 f64 post fix;";
     assert_eq!( GOT, exp );
@@ -850,6 +919,3 @@ test_suite!
   for_each_test,
   for_each_higher_order_test,
 }
-
-/* xxx : add higher order sample of for_each */
-// xxx : yyy : implement callbackless for_each

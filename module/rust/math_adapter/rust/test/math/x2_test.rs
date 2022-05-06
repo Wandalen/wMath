@@ -351,18 +351,11 @@ macro_rules! canonical_test_for_number
 
 fn _canonical_test()
 {
-  // xxx
-  // trace_macros!( true );
-  // math_adapter::for_each_int!( canonical_test_for_int );
-  // trace_macros!( false );
 
   math_adapter::for_each_int!( canonical_test_for_int );
   math_adapter::for_each_float!( canonical_test_for_float );
   math_adapter::for_each_number!( canonical_test_for_number );
 
-  // canonical_test_for_int!( i8, i16, i32, i64, i128, u8, u16, u32, u64, u128 );
-  // canonical_test_for_float!( f32, f64 );
-  // canonical_test_for_number!( i8, i16, i32, i64, i128, u8, u16, u32, u64, u128, f32, f64 );
 }
 
 ///
