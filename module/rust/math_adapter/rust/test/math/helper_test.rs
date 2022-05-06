@@ -139,104 +139,389 @@ fn _for_each_higher_order_without_parentheses_test()
 
 fn _braces_unwrap_test()
 {
-  static mut APPLY_GOT : String = String::new();
+  static mut GOT : String = String::new();
   macro_rules! test_with
   {
     (
       $( $Arg : tt )*
     ) =>
     {{
-      APPLY_GOT += stringify!( $( $Arg )* );
-      APPLY_GOT += ";";
+      GOT += stringify!( $( $Arg )* );
+      GOT += ";";
     }};
   }
 
-  /* test.case( "non-named" ) */
+  /* test.case( "sample1" ) */
+  {
+    let ( a, b, c ) = ( 1, 2, 3 );
+    math_adapter::braces_unwrap!( dbg, { a, b, c } );
+    // generates :
+    // dbg!( a, b, c );
+    math_adapter::braces_unwrap!( dbg, a, b, c );
+    // generates :
+    // dbg!( a, b, c );
+  }
+
+  /* test.case( "sample2" ) */
+  {
+    let ( prefix, a, b, c, postfix ) = ( "prefix", 1, 2, 3, "postfix" );
+    math_adapter::braces_unwrap!
+    (
+      dbg where
+      @PREFIX{ prefix, }
+      @POSTFIX{ postfix }
+      @SRC{ { a, b, c, } }
+    );
+    // generates :
+    // dbg!( prefix, a, b, c, psotfix );
+    math_adapter::braces_unwrap!
+    (
+      dbg where
+      @PREFIX{ prefix, }
+      @POSTFIX{ postfix }
+      @SRC{ a, b, c, }
+    );
+    // generates :
+    // dbg!( prefix, a, b, c, psotfix );
+  }
+
+  /* test.case( "function-style" ) */
   unsafe
   {
-    APPLY_GOT = "".to_string();
+    GOT = "".to_string();
     math_adapter::braces_unwrap!( test_with, a, b, c );
     let exp = "a, b, c;";
-    assert_eq!( APPLY_GOT, exp );
+    assert_eq!( GOT, exp );
 
-    APPLY_GOT = "".to_string();
+    GOT = "".to_string();
     math_adapter::braces_unwrap!( test_with, { a, b, c } );
     let exp = "a, b, c;";
-    assert_eq!( APPLY_GOT, exp );
+    assert_eq!( GOT, exp );
 
-    APPLY_GOT = "".to_string();
+    GOT = "".to_string();
     math_adapter::braces_unwrap!( test_with, { { a, b, c } } );
     let exp = "{ a, b, c };";
-    assert_eq!( APPLY_GOT, exp );
+    assert_eq!( GOT, exp );
 
-    APPLY_GOT = "".to_string();
+    GOT = "".to_string();
     math_adapter::braces_unwrap!( test_with, ( a, b, c ) );
     let exp = "(a, b, c);";
-    assert_eq!( APPLY_GOT, exp );
+    assert_eq!( GOT, exp );
 
-    APPLY_GOT = "".to_string();
+    GOT = "".to_string();
+    math_adapter::braces_unwrap!( test_with, ( ( a, b, c ) ) );
+    let exp = "((a, b, c));";
+    assert_eq!( GOT, exp );
+
+    GOT = "".to_string();
     math_adapter::braces_unwrap!( test_with, [ a, b, c ] );
     let exp = "[a, b, c];";
-    assert_eq!( APPLY_GOT, exp );
+    assert_eq!( GOT, exp );
+
+    GOT = "".to_string();
+    math_adapter::braces_unwrap!( test_with, [ [ a, b, c ] ] );
+    let exp = "[[a, b, c]];";
+    assert_eq!( GOT, exp );
+
+  }
+
+  /* test.case( "map-style" ) */
+  unsafe
+  {
+    GOT = "".to_string();
+    math_adapter::braces_unwrap!
+    (
+      test_with where
+      @SRC{ a, b, c }
+    );
+    let exp = "a, b, c;";
+    assert_eq!( GOT, exp );
+
+    GOT = "".to_string();
+    math_adapter::braces_unwrap!
+    (
+      test_with where
+      @SRC{ { a, b, c } }
+    );
+    let exp = "a, b, c;";
+    assert_eq!( GOT, exp );
+
+    GOT = "".to_string();
+    math_adapter::braces_unwrap!
+    (
+      test_with where
+      @SRC{ { { a, b, c } } }
+    );
+    let exp = "{ a, b, c };";
+    assert_eq!( GOT, exp );
+
+    GOT = "".to_string();
+    math_adapter::braces_unwrap!
+    (
+      test_with where
+      @SRC{ ( a, b, c ) }
+    );
+    let exp = "(a, b, c);";
+    assert_eq!( GOT, exp );
+
+    GOT = "".to_string();
+    math_adapter::braces_unwrap!
+    (
+      test_with where
+      @SRC{ ( ( a, b, c ) ) }
+    );
+    let exp = "((a, b, c));";
+    assert_eq!( GOT, exp );
+
+    GOT = "".to_string();
+    math_adapter::braces_unwrap!
+    (
+      test_with where
+      @SRC{ [ a, b, c ] }
+    );
+    let exp = "[a, b, c];";
+    assert_eq!( GOT, exp );
+
+    GOT = "".to_string();
+    math_adapter::braces_unwrap!
+    (
+      test_with where
+      @SRC{ [ [ a, b, c ] ] }
+    );
+    let exp = "[[a, b, c]];";
+    assert_eq!( GOT, exp );
   }
 
   /* test.case( "prefix and postfix" ) */
   unsafe
   {
-    APPLY_GOT = "".to_string();
+    GOT = "".to_string();
     math_adapter::braces_unwrap!
     (
       test_with where
-      @PREFIX{ postfix }
+      @PREFIX{ prefix }
       @POSTFIX{ postfix }
       @SRC{ a, b, c }
     );
     let exp = "prefix a, b, c postfix;";
-    assert_eq!( APPLY_GOT, exp );
+    assert_eq!( GOT, exp );
 
-    APPLY_GOT = "".to_string();
+    GOT = "".to_string();
     math_adapter::braces_unwrap!
     (
       test_with where
-      @PREFIX{ postfix }
+      @PREFIX{ prefix }
       @POSTFIX{ postfix }
       @SRC{ { a, b, c } }
     );
-    let exp = "a, b, c;";
-    assert_eq!( APPLY_GOT, exp );
+    let exp = "prefix a, b, c postfix;";
+    assert_eq!( GOT, exp );
 
-    APPLY_GOT = "".to_string();
+    GOT = "".to_string();
     math_adapter::braces_unwrap!
     (
       test_with where
-      @PREFIX{ postfix }
+      @PREFIX{ prefix }
       @POSTFIX{ postfix }
-      @SRC{ { a, b, c } }
+      @SRC{ { { a, b, c } } }
     );
-    let exp = "{ a, b, c };";
-    assert_eq!( APPLY_GOT, exp );
+    let exp = "prefix { a, b, c } postfix;";
+    assert_eq!( GOT, exp );
 
-    APPLY_GOT = "".to_string();
+    GOT = "".to_string();
     math_adapter::braces_unwrap!
     (
       test_with where
-      @PREFIX{ postfix }
+      @PREFIX{ prefix }
       @POSTFIX{ postfix }
       @SRC{ ( a, b, c ) }
     );
-    let exp = "(a, b, c);";
-    assert_eq!( APPLY_GOT, exp );
+    let exp = "prefix(a, b, c) postfix;";
+    assert_eq!( GOT, exp );
 
-    APPLY_GOT = "".to_string();
+    GOT = "".to_string();
     math_adapter::braces_unwrap!
     (
       test_with where
-      @PREFIX{ postfix }
+      @PREFIX{ prefix }
+      @POSTFIX{ postfix }
+      @SRC{ ( ( a, b, c ) ) }
+    );
+    let exp = "prefix((a, b, c)) postfix;";
+    assert_eq!( GOT, exp );
+
+    GOT = "".to_string();
+    math_adapter::braces_unwrap!
+    (
+      test_with where
+      @PREFIX{ prefix }
       @POSTFIX{ postfix }
       @SRC{ [ a, b, c ] }
     );
-    let exp = "[a, b, c];";
-    assert_eq!( APPLY_GOT, exp );
+    let exp = "prefix [a, b, c] postfix;";
+    assert_eq!( GOT, exp );
+
+    GOT = "".to_string();
+    math_adapter::braces_unwrap!
+    (
+      test_with where
+      @PREFIX{ prefix }
+      @POSTFIX{ postfix }
+      @SRC{ [ [ a, b, c ] ] }
+    );
+    let exp = "prefix [[a, b, c]] postfix;";
+    assert_eq!( GOT, exp );
+
+  }
+
+  /* test.case( "prefix" ) */
+  unsafe
+  {
+    GOT = "".to_string();
+    math_adapter::braces_unwrap!
+    (
+      test_with where
+      @PREFIX{ prefix }
+      @SRC{ a, b, c }
+    );
+    let exp = "prefix a, b, c;";
+    assert_eq!( GOT, exp );
+
+    GOT = "".to_string();
+    math_adapter::braces_unwrap!
+    (
+      test_with where
+      @PREFIX{ prefix }
+      @SRC{ { a, b, c } }
+    );
+    let exp = "prefix a, b, c;";
+    assert_eq!( GOT, exp );
+
+    GOT = "".to_string();
+    math_adapter::braces_unwrap!
+    (
+      test_with where
+      @PREFIX{ prefix }
+      @SRC{ { { a, b, c } } }
+    );
+    let exp = "prefix { a, b, c };";
+    assert_eq!( GOT, exp );
+
+    GOT = "".to_string();
+    math_adapter::braces_unwrap!
+    (
+      test_with where
+      @PREFIX{ prefix }
+      @SRC{ ( a, b, c ) }
+    );
+    let exp = "prefix(a, b, c);";
+    assert_eq!( GOT, exp );
+
+    GOT = "".to_string();
+    math_adapter::braces_unwrap!
+    (
+      test_with where
+      @PREFIX{ prefix }
+      @SRC{ ( ( a, b, c ) ) }
+    );
+    let exp = "prefix((a, b, c));";
+    assert_eq!( GOT, exp );
+
+    GOT = "".to_string();
+    math_adapter::braces_unwrap!
+    (
+      test_with where
+      @PREFIX{ prefix }
+      @SRC{ [ a, b, c ] }
+    );
+    let exp = "prefix [a, b, c];";
+    assert_eq!( GOT, exp );
+
+    GOT = "".to_string();
+    math_adapter::braces_unwrap!
+    (
+      test_with where
+      @PREFIX{ prefix }
+      @SRC{ [ [ a, b, c ] ] }
+    );
+    let exp = "prefix [[a, b, c]];";
+    assert_eq!( GOT, exp );
+
+  }
+
+  /* test.case( "postfix" ) */
+  unsafe
+  {
+    GOT = "".to_string();
+    math_adapter::braces_unwrap!
+    (
+      test_with where
+      @POSTFIX{ postfix }
+      @SRC{ a, b, c }
+    );
+    let exp = "a, b, c postfix;";
+    assert_eq!( GOT, exp );
+
+    GOT = "".to_string();
+    math_adapter::braces_unwrap!
+    (
+      test_with where
+      @POSTFIX{ postfix }
+      @SRC{ { a, b, c } }
+    );
+    let exp = "a, b, c postfix;";
+    assert_eq!( GOT, exp );
+
+    GOT = "".to_string();
+    math_adapter::braces_unwrap!
+    (
+      test_with where
+      @POSTFIX{ postfix }
+      @SRC{ { { a, b, c } } }
+    );
+    let exp = "{ a, b, c } postfix;";
+    assert_eq!( GOT, exp );
+
+    GOT = "".to_string();
+    math_adapter::braces_unwrap!
+    (
+      test_with where
+      @POSTFIX{ postfix }
+      @SRC{ ( a, b, c ) }
+    );
+    let exp = "(a, b, c) postfix;";
+    assert_eq!( GOT, exp );
+
+    GOT = "".to_string();
+    math_adapter::braces_unwrap!
+    (
+      test_with where
+      @POSTFIX{ postfix }
+      @SRC{ ( ( a, b, c ) ) }
+    );
+    let exp = "((a, b, c)) postfix;";
+    assert_eq!( GOT, exp );
+
+    GOT = "".to_string();
+    math_adapter::braces_unwrap!
+    (
+      test_with where
+      @POSTFIX{ postfix }
+      @SRC{ [ a, b, c ] }
+    );
+    let exp = "[a, b, c] postfix;";
+    assert_eq!( GOT, exp );
+
+    GOT = "".to_string();
+    math_adapter::braces_unwrap!
+    (
+      test_with where
+      @POSTFIX{ postfix }
+      @SRC{ [ [ a, b, c ] ] }
+    );
+    let exp = "[[a, b, c]] postfix;";
+    assert_eq!( GOT, exp );
+
   }
 
 }
@@ -252,38 +537,38 @@ fn _apply_test()
       $( $Arg : tt )*
     ) =>
     {{
-      APPLY_GOT += stringify!( $( $Arg )* );
-      APPLY_GOT += "+";
+      GOT += stringify!( $( $Arg )* );
+      GOT += "+";
     }};
   }
 
-  static mut APPLY_GOT : String = String::new();
+  static mut GOT : String = String::new();
 
-  /* test.case( "non-named" ) */
+  /* test.case( "function-style" ) */
   unsafe
   {
-    APPLY_GOT = "".to_string();
+    GOT = "".to_string();
     math_adapter::apply!( test_with, a, b, c );
     let exp = "a+b+c+";
-    assert_eq!( APPLY_GOT, exp );
+    assert_eq!( GOT, exp );
   }
 
-  /* test.case( "non-named, paths, unwrapping" ) */
+  /* test.case( "function-style, paths, unwrapping" ) */
   unsafe
   {
-    APPLY_GOT = "".to_string();
+    GOT = "".to_string();
     math_adapter::apply!( test_with, { std::collections::HashMap }, { std::collections::BTreeMap } );
     let exp = "std :: collections :: HashMap+std :: collections :: BTreeMap+";
-    assert_eq!( APPLY_GOT, exp );
+    assert_eq!( GOT, exp );
   }
 
-  /* test.case( "non-named, paths, parentheses" ) */
+  /* test.case( "function-style, paths, parentheses" ) */
   unsafe
   {
-    APPLY_GOT = "".to_string();
+    GOT = "".to_string();
     math_adapter::apply!( test_with, ( std::collections::HashMap ), ( std::collections::BTreeMap ) );
     let exp = "(std :: collections :: HashMap)+(std :: collections :: BTreeMap)+";
-    assert_eq!( APPLY_GOT, exp );
+    assert_eq!( GOT, exp );
   }
 
   // with parentheses
@@ -291,37 +576,37 @@ fn _apply_test()
 //   /* test.case( "with parentheses" ) */
 //   unsafe
 //   {
-//     APPLY_GOT = "".to_string();
+//     GOT = "".to_string();
 //     math_adapter::apply!( test_with where @EACH( a, b, c ) );
 //     let exp = "(a)+(b)+(c)+";
-//     assert_eq!( APPLY_GOT, exp );
+//     assert_eq!( GOT, exp );
 //   }
 //
 //   /* test.case( "with parentheses" ) + prefix */
 //   unsafe
 //   {
-//     APPLY_GOT = "".to_string();
+//     GOT = "".to_string();
 //     math_adapter::apply!( test_with where @PREFIX prefix @EACH( a, b, c ) );
 //     let exp = "prefix(a)+prefix(b)+prefix(c)+";
-//     assert_eq!( APPLY_GOT, exp );
+//     assert_eq!( GOT, exp );
 //   }
 //
 //   /* test.case( "with parentheses" ) + postfix */
 //   unsafe
 //   {
-//     APPLY_GOT = "".to_string();
+//     GOT = "".to_string();
 //     math_adapter::apply!( test_with where @POSTFIX postfix @EACH( a, b, c ) );
 //     let exp = "(a) postfix+(b) postfix+(c) postfix+";
-//     assert_eq!( APPLY_GOT, exp );
+//     assert_eq!( GOT, exp );
 //   }
 //
 //   /* test.case( "with parentheses" ) + prefix + postfix */
 //   unsafe
 //   {
-//     APPLY_GOT = "".to_string();
+//     GOT = "".to_string();
 //     math_adapter::apply!( test_with where @PREFIX prefix @POSTFIX postfix @EACH( a, b, c ) );
 //     let exp = "prefix(a) postfix+prefix(b) postfix+prefix(c) postfix+";
-//     assert_eq!( APPLY_GOT, exp );
+//     assert_eq!( GOT, exp );
 //   }
 
   // without parentheses
@@ -329,37 +614,37 @@ fn _apply_test()
   /* test.case( "without parentheses" ) */
   unsafe
   {
-    APPLY_GOT = "".to_string();
+    GOT = "".to_string();
     math_adapter::apply!( test_with where @EACH a, b, c );
     let exp = "a+b+c+";
-    assert_eq!( APPLY_GOT, exp );
+    assert_eq!( GOT, exp );
   }
 
   /* test.case( "without parentheses" ) + prefix */
   unsafe
   {
-    APPLY_GOT = "".to_string();
+    GOT = "".to_string();
     math_adapter::apply!( test_with where @PREFIX prefix @EACH a, b, c );
     let exp = "prefix a+prefix b+prefix c+";
-    assert_eq!( APPLY_GOT, exp );
+    assert_eq!( GOT, exp );
   }
 
   /* test.case( "without parentheses" ) + postfix */
   unsafe
   {
-    APPLY_GOT = "".to_string();
+    GOT = "".to_string();
     math_adapter::apply!( test_with where @POSTFIX postfix @EACH a, b, c );
     let exp = "a postfix+b postfix+c postfix+";
-    assert_eq!( APPLY_GOT, exp );
+    assert_eq!( GOT, exp );
   }
 
   /* test.case( "without parentheses" ) + prefix + postfix */
   unsafe
   {
-    APPLY_GOT = "".to_string();
+    GOT = "".to_string();
     math_adapter::apply!( test_with where @PREFIX prefix @POSTFIX postfix @EACH a, b, c );
     let exp = "prefix a postfix+prefix b postfix+prefix c postfix+";
-    assert_eq!( APPLY_GOT, exp );
+    assert_eq!( GOT, exp );
   }
 
 }

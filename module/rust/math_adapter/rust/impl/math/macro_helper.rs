@@ -17,6 +17,8 @@ pub mod internal
   #[macro_export]
   macro_rules! as_tts { ( $( $src : tt )* ) => { $( $src )* } }
 
+  /* xxx : extend and cover by tests */
+
   /// Unwrap parentheses.
   #[macro_export]
   macro_rules! parentheses_unwrap
@@ -39,12 +41,49 @@ pub mod internal
     };
   }
 
-  /// Unwrap braces.
+  ///
+  /// Unwrap braces of token tree and pass its content to the passed callback. If token tree in not braced then it passed to callback as is.
+  ///
+  /// # Function-style sample
+  /// ```rust
+  /// let ( a, b, c ) = ( 1, 2, 3 );
+  /// math_adapter::braces_unwrap!( dbg, { a, b, c } );
+  /// // generates :
+  /// // dbg!( a, b, c );
+  /// math_adapter::braces_unwrap!( dbg, a, b, c );
+  /// // generates :
+  /// // dbg!( a, b, c );
+  /// ```
+  ///
+  /// # Map-style sample
+  /// ```
+  /// let ( prefix, a, b, c, postfix ) = ( "prefix", 1, 2, 3, "postfix" );
+  /// math_adapter::braces_unwrap!
+  /// (
+  ///   dbg where
+  ///   @PREFIX{ prefix, }
+  ///   @POSTFIX{ postfix }
+  ///   @SRC{ { a, b, c, } }
+  /// );
+  /// // generates :
+  /// // dbg!( prefix, a, b, c, psotfix );
+  /// math_adapter::braces_unwrap!
+  /// (
+  ///   dbg where
+  ///   @PREFIX{ prefix, }
+  ///   @POSTFIX{ postfix }
+  ///   @SRC{ a, b, c, }
+  /// );
+  /// // generates :
+  /// // dbg!( prefix, a, b, c, psotfix );
+  /// ```
+  ///
+
   #[macro_export]
   macro_rules! braces_unwrap
   {
 
-    // unnamed
+    // function-style
 
     ( $Callback : path, { $( $Src : tt )* } )
     =>
@@ -60,6 +99,60 @@ pub mod internal
       $Callback!
       (
         $( $Src )*
+      );
+    };
+
+    // map-style
+
+    (
+      $Callback : path where
+      @SRC{ { $( $Src : tt )* } }
+    )
+    =>
+    {
+      $Callback!
+      (
+        $( $Src )*
+      );
+    };
+    (
+      $Callback : path where
+      @SRC{ $( $Src : tt )* }
+    )
+    =>
+    {
+      $Callback!
+      (
+        $( $Src )*
+      );
+    };
+
+    // with prefix and psotfix
+
+    (
+      $Callback : path where
+      @PREFIX{ $( $Prefix : tt )* }
+      @POSTFIX{ $( $Postfix : tt )* }
+      @SRC{ { $( $Src : tt )* } }
+    )
+    =>
+    {
+      $Callback!
+      (
+        $( $Prefix )* $( $Src )* $( $Postfix )*
+      );
+    };
+    (
+      $Callback : path where
+      @PREFIX{ $( $Prefix : tt )* }
+      @POSTFIX{ $( $Postfix : tt )* }
+      @SRC{ $( $Src : tt )* }
+    )
+    =>
+    {
+      $Callback!
+      (
+        $( $Prefix )* $( $Src )* $( $Postfix )*
       );
     };
 
@@ -117,52 +210,23 @@ pub mod internal
       );
     };
 
-    // with prefix and psotfix
-
-    (
-      $Callback : path where
-      @PREFIX{ $( $Prefix : tt )* }
-      @POSTFIX{ $( $Postfix : tt )* }
-      @SRC{ { $( $Src : tt )* } }
-    )
-    =>
-    {
-      $Callback!
-      (
-        $( $Prefix )* $( $Src )* $( $Postfix )*
-      );
-    };
-    (
-      $Callback : path where
-      @PREFIX{ $( $Prefix : tt )* }
-      @POSTFIX{ $( $Postfix : tt )* }
-      @SRC{ $( $Src : tt )* }
-    )
-    =>
-    {
-      $Callback!
-      (
-        $( $Prefix )* $( $Src )* $( $Postfix )*
-      );
-    };
-
   }
 
   ///
   /// Apply callback with prefix and postfix.
   ///
-  /// # Non-named call
+  /// # Function-style call
   /// ```rust
   /// math_adapter::apply!( dbg, "a", "b", "c" );
   /// ```
-  /// Generate:
+  /// Generates:
   /// ```rust
   /// dbg!( "a" );
   /// dbg!( "b" );
   /// dbg!( "b" );
   /// ```
   ///
-  /// # Named call
+  /// # Map-style call
   /// ```rust
   /// math_adapter::apply!
   /// (
@@ -173,7 +237,7 @@ pub mod internal
   ///   @EACH "a", "b", "c"
   /// );
   /// ```
-  /// Generate:
+  /// Generates:
   /// ```rust
   /// dbg!( "a" );
   /// dbg!( "b" );
@@ -185,7 +249,7 @@ pub mod internal
   macro_rules! apply
   {
 
-    // -- non-named
+    // -- function-style
 
     (
       $Callback : path, $( $Each : tt ),*
@@ -196,7 +260,7 @@ pub mod internal
       )*
     };
 
-    // -- named without parentheses
+    // -- map-style without parentheses
 
     (
       $Callback : path where
@@ -207,21 +271,6 @@ pub mod internal
         $crate::braces_unwrap!( $Callback, $Each );
       )*
     };
-
-    // (
-    //   $Callback : path where
-    //   @PREFIX $Prefix : tt
-    //   @EACH $( $Each : tt ),*
-    // ) =>
-    // {
-    //   $(
-    //     $Callback!
-    //     (
-    //       $Prefix
-    //       $Each
-    //     );
-    //   )*
-    // };
 
     (
       $Callback : path where
