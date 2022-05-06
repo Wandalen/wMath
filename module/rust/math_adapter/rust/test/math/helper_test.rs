@@ -191,7 +191,7 @@ fn _braces_unwrap_test()
       @POSTFIX{ postfix }
       @SRC{ a, b, c }
     );
-    let exp = "a, b, c;";
+    let exp = "prefix a, b, c postfix;";
     assert_eq!( APPLY_GOT, exp );
 
     APPLY_GOT = "".to_string();
