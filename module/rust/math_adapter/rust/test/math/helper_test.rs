@@ -834,7 +834,7 @@ fn _for_each_test()
   unsafe
   {
     GOT = "".to_string();
-    math_adapter::for_each!( test_with where @PREFIX prefix @EACH a, b, c );
+    math_adapter::for_each!( test_with where @PREFIX prefix @EACH { a _ a }, { b _ b }, { c _ c } );
     let exp = "prefix a+prefix b+prefix c+";
     assert_eq!( GOT, exp );
   }
@@ -843,7 +843,7 @@ fn _for_each_test()
   unsafe
   {
     GOT = "".to_string();
-    math_adapter::for_each!( test_with where @POSTFIX postfix @EACH a, b, c );
+    math_adapter::for_each!( test_with where @POSTFIX postfix @EACH { a _ a }, { b _ b }, { c _ c } );
     let exp = "a postfix+b postfix+c postfix+";
     assert_eq!( GOT, exp );
   }
