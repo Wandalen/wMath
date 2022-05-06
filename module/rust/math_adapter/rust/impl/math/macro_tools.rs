@@ -438,7 +438,7 @@ pub mod internal
       where
         @PREFIX $Prefix : tt
         @POSTFIX $Postfix : tt
-        @EACH $( $Each : tt ),* $(,)?
+        @EACH $( $Each : tt )*
     ) =>
     {
       $(
