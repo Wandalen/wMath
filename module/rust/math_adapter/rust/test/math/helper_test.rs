@@ -743,6 +743,38 @@ fn _for_each_test()
     );
   }
 
+  /* test.case( "template" ) */
+  // {
+  //   math_adapter::for_each!
+  //   (
+  //     { dbg!( "prefix".to_string() }
+  //     @FOR_EACH{ "a", "b", "c" }
+  //     { + "postfix" ) }
+  //   );
+  // }
+
+  // /* test.case( "sample map-style" ) */
+  // {
+  //   math_adapter::for_each!
+  //   (
+  //     @FOR_EACH "a", "b", "c"
+  //     { "prefix".to_string() + }
+  //     { dbg!( @FOR_EACH ) }
+  //     { + "postfix" }
+  //   );
+  // }
+
+  /* test.case( "sample map-style" ) */
+  {
+    math_adapter::for_each!
+    (
+      dbg where
+      @PREFIX { "prefix".to_string() + }
+      @POSTFIX { + "postfix" }
+      @EACH "a", "b", "c"
+    );
+  }
+
   /* test.case( "function-style" ) */
   unsafe
   {

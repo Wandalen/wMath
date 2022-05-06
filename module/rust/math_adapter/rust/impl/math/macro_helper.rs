@@ -330,6 +330,19 @@ pub mod internal
 
   }
 
+  /// Macro which returns its input as is.
+
+  #[macro_export]
+  macro_rules! identity
+  {
+    (
+      ( $Src : tt ),*
+    ) =>
+    {
+      ( $Src ),*
+    };
+  }
+
   ///
   /// Apply callback with prefix and postfix.
   ///
@@ -367,6 +380,25 @@ pub mod internal
   macro_rules! for_each
   {
 
+    // -- calbackless
+
+    (
+      $Prefix : tt
+      @EACH{ $( $Each : tt ),* }
+      $Postfix : tt
+    ) =>
+    {
+      $(
+        $crate::braces_unwrap!
+        (
+          $crate::identity where
+          @PREFIX{ $Prefix }
+          @POSTFIX{ $Postfix }
+          @SRC{ $Each }
+        );
+      )*
+    };
+
     // -- function-style
 
     (
@@ -378,7 +410,7 @@ pub mod internal
       )*
     };
 
-    // -- map-style without parentheses
+    // -- map-style
 
     (
       $Callback : path where
@@ -516,6 +548,7 @@ pub mod internal
 
   pub use as_path;
   pub use as_tts;
+  pub use identity;
   pub use for_each;
   pub use for_each_int;
   pub use for_each_float;
