@@ -545,22 +545,20 @@ fn _for_each_test()
   static mut GOT : String = String::new();
 
   /* test.case( "sample function-style" ) */
-  unsafe
   {
     math_adapter::for_each!( dbg, "a", "b", "c" );
   }
 
-  /* test.case( "sample map-style" ) */
-  unsafe
-  {
-    math_adapter::for_each!
-    (
-      dbg where
-      @PREFIX { "prefix" + }
-      @POSTFIX { + "postfix" }
-      @EACH "a", "b", "c"
-    );
-  }
+  // /* test.case( "sample map-style" ) */
+  // {
+  //   math_adapter::for_each!
+  //   (
+  //     dbg where
+  //     @PREFIX { "prefix" + }
+  //     @POSTFIX { + "postfix" }
+  //     @EACH "a", "b", "c"
+  //   );
+  // }
 
   /* test.case( "function-style" ) */
   unsafe
