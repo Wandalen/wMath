@@ -124,12 +124,12 @@ fn _for_each_higher_order_without_parentheses_test()
   assert_eq!( got, exp );
 
   let mut got = String::new();
-  math_adapter::apply!( test_with_prefix where @PREFIX got @EACH a, b, c );
+  math_adapter::for_each!( test_with_prefix where @PREFIX got @EACH a, b, c );
   let exp = "f32 a_f64 a_f32 b_f64 b_f32 c_f64 c_";
   assert_eq!( got, exp );
 
   // let mut got = String::new();
-  // math_adapter::apply!( test_with_postfix where @POSTFIX got @EACH ( a, b, c ) );
+  // math_adapter::for_each!( test_with_postfix where @POSTFIX got @EACH ( a, b, c ) );
   // let exp = "f32 a_f64 a_f32 b_f64 b_f32 c_f64 c_";
   // assert_eq!( got, exp );
 
@@ -528,7 +528,7 @@ fn _braces_unwrap_test()
 
 //
 
-fn _apply_test()
+fn _for_each_test()
 {
 
   macro_rules! test_with
@@ -544,11 +544,29 @@ fn _apply_test()
 
   static mut GOT : String = String::new();
 
+  /* test.case( "sample function-style" ) */
+  unsafe
+  {
+    math_adapter::for_each!( dbg, "a", "b", "c" );
+  }
+
+  /* test.case( "sample map-style" ) */
+  unsafe
+  {
+    math_adapter::for_each!
+    (
+      dbg where
+      @PREFIX { "prefix" + }
+      @POSTFIX { + "postfix" }
+      @EACH "a", "b", "c"
+    );
+  }
+
   /* test.case( "function-style" ) */
   unsafe
   {
     GOT = "".to_string();
-    math_adapter::apply!( test_with, a, b, c );
+    math_adapter::for_each!( test_with, a, b, c );
     let exp = "a+b+c+";
     assert_eq!( GOT, exp );
   }
@@ -557,7 +575,7 @@ fn _apply_test()
   unsafe
   {
     GOT = "".to_string();
-    math_adapter::apply!( test_with, { std::collections::HashMap }, { std::collections::BTreeMap } );
+    math_adapter::for_each!( test_with, { std::collections::HashMap }, { std::collections::BTreeMap } );
     let exp = "std :: collections :: HashMap+std :: collections :: BTreeMap+";
     assert_eq!( GOT, exp );
   }
@@ -566,7 +584,7 @@ fn _apply_test()
   unsafe
   {
     GOT = "".to_string();
-    math_adapter::apply!( test_with, ( std::collections::HashMap ), ( std::collections::BTreeMap ) );
+    math_adapter::for_each!( test_with, ( std::collections::HashMap ), ( std::collections::BTreeMap ) );
     let exp = "(std :: collections :: HashMap)+(std :: collections :: BTreeMap)+";
     assert_eq!( GOT, exp );
   }
@@ -577,7 +595,7 @@ fn _apply_test()
 //   unsafe
 //   {
 //     GOT = "".to_string();
-//     math_adapter::apply!( test_with where @EACH( a, b, c ) );
+//     math_adapter::for_each!( test_with where @EACH( a, b, c ) );
 //     let exp = "(a)+(b)+(c)+";
 //     assert_eq!( GOT, exp );
 //   }
@@ -586,7 +604,7 @@ fn _apply_test()
 //   unsafe
 //   {
 //     GOT = "".to_string();
-//     math_adapter::apply!( test_with where @PREFIX prefix @EACH( a, b, c ) );
+//     math_adapter::for_each!( test_with where @PREFIX prefix @EACH( a, b, c ) );
 //     let exp = "prefix(a)+prefix(b)+prefix(c)+";
 //     assert_eq!( GOT, exp );
 //   }
@@ -595,7 +613,7 @@ fn _apply_test()
 //   unsafe
 //   {
 //     GOT = "".to_string();
-//     math_adapter::apply!( test_with where @POSTFIX postfix @EACH( a, b, c ) );
+//     math_adapter::for_each!( test_with where @POSTFIX postfix @EACH( a, b, c ) );
 //     let exp = "(a) postfix+(b) postfix+(c) postfix+";
 //     assert_eq!( GOT, exp );
 //   }
@@ -604,7 +622,7 @@ fn _apply_test()
 //   unsafe
 //   {
 //     GOT = "".to_string();
-//     math_adapter::apply!( test_with where @PREFIX prefix @POSTFIX postfix @EACH( a, b, c ) );
+//     math_adapter::for_each!( test_with where @PREFIX prefix @POSTFIX postfix @EACH( a, b, c ) );
 //     let exp = "prefix(a) postfix+prefix(b) postfix+prefix(c) postfix+";
 //     assert_eq!( GOT, exp );
 //   }
@@ -615,7 +633,7 @@ fn _apply_test()
   unsafe
   {
     GOT = "".to_string();
-    math_adapter::apply!( test_with where @EACH a, b, c );
+    math_adapter::for_each!( test_with where @EACH a, b, c );
     let exp = "a+b+c+";
     assert_eq!( GOT, exp );
   }
@@ -624,7 +642,7 @@ fn _apply_test()
   unsafe
   {
     GOT = "".to_string();
-    math_adapter::apply!( test_with where @PREFIX prefix @EACH a, b, c );
+    math_adapter::for_each!( test_with where @PREFIX prefix @EACH a, b, c );
     let exp = "prefix a+prefix b+prefix c+";
     assert_eq!( GOT, exp );
   }
@@ -633,7 +651,7 @@ fn _apply_test()
   unsafe
   {
     GOT = "".to_string();
-    math_adapter::apply!( test_with where @POSTFIX postfix @EACH a, b, c );
+    math_adapter::for_each!( test_with where @POSTFIX postfix @EACH a, b, c );
     let exp = "a postfix+b postfix+c postfix+";
     assert_eq!( GOT, exp );
   }
@@ -642,30 +660,30 @@ fn _apply_test()
   unsafe
   {
     GOT = "".to_string();
-    math_adapter::apply!( test_with where @PREFIX prefix @POSTFIX postfix @EACH a, b, c );
+    math_adapter::for_each!( test_with where @PREFIX prefix @POSTFIX postfix @EACH a, b, c );
     let exp = "prefix a postfix+prefix b postfix+prefix c postfix+";
     assert_eq!( GOT, exp );
   }
 
 }
 
+// //
 //
-
-fn _apply_samples_test()
-{
-
-  math_adapter::apply!( dbg, "a", "b", "c" );
-
-  // xxx yyy
-  // math_adapter::apply!
-  // (
-  //   dbg where
-  //   @PREFIX { "prefix" + }
-  //   @POSTFIX { + "postfix" }
-  //   @EACH "a", "b", "c"
-  // );
-
-}
+// fn _for_each_samples_test()
+// {
+//
+//   math_adapter::for_each!( dbg, "a", "b", "c" );
+//
+//   // xxx yyy
+//   // math_adapter::for_each!
+//   // (
+//   //   dbg where
+//   //   @PREFIX { "prefix" + }
+//   //   @POSTFIX { + "postfix" }
+//   //   @EACH "a", "b", "c"
+//   // );
+//
+// }
 
 //
 
@@ -676,6 +694,6 @@ test_suite!
   for_each_number_test,
   for_each_higher_order_without_parentheses_test,
   braces_unwrap_test,
-  apply_test,
-  apply_samples_test,
+  for_each_test,
+  // for_each_samples_test,
 }

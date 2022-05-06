@@ -1,9 +1,9 @@
 #![ allow( unused_macros ) ]
 #![ allow( unused_imports ) ]
 
-/* zzz : qqq : move to module::macro_apply
+/* zzz : qqq : move to module::macro_for_each
 - discuss list of features of the module
-use module::macro_apply in module::macro_tools
+use module::macro_for_each in module::macro_tools
 */
 
 /// Internal namespace.
@@ -16,30 +16,6 @@ pub mod internal
   /// Reinterpret tokens as tts.
   #[macro_export]
   macro_rules! as_tts { ( $( $src : tt )* ) => { $( $src )* } }
-
-  /* xxx : extend and cover by tests */
-
-  /// Unwrap parentheses.
-  #[macro_export]
-  macro_rules! parentheses_unwrap
-  {
-    ( $Callback : path, ( $( $src : tt )* ) )
-    =>
-    {
-      $Callback!
-      (
-        $( $src )*
-      )
-    };
-    ( $Callback : path, $( $src : tt )* )
-    =>
-    {
-      $Callback!
-      (
-        $( $src )*
-      )
-    };
-  }
 
   ///
   /// Unwrap braces of token tree and pass its content to the passed callback. If token tree in not braced then it passed to callback as is.
@@ -217,7 +193,7 @@ pub mod internal
   ///
   /// # Function-style call
   /// ```rust
-  /// math_adapter::apply!( dbg, "a", "b", "c" );
+  /// math_adapter::for_each!( dbg, "a", "b", "c" );
   /// ```
   /// Generates:
   /// ```rust
@@ -228,7 +204,7 @@ pub mod internal
   ///
   /// # Map-style call
   /// ```rust
-  /// math_adapter::apply!
+  /// math_adapter::for_each!
   /// (
   ///   dbg where
   ///   // xxx
@@ -246,7 +222,7 @@ pub mod internal
   ///
 
   #[macro_export]
-  macro_rules! apply
+  macro_rules! for_each
   {
 
     // -- function-style
@@ -336,7 +312,7 @@ pub mod internal
       $( where $( $Args : tt )* )?
     ) =>
     {
-      $crate::apply!
+      $crate::for_each!
       (
         $Callback where
         $( $( $Args )* )?
@@ -359,7 +335,7 @@ pub mod internal
       $( where $( $Args : tt )* )?
     ) =>
     {
-      $crate::apply!
+      $crate::for_each!
       (
         $Callback where
         $( $( $Args )* )?
@@ -382,7 +358,7 @@ pub mod internal
       $( where $( $Args : tt )* )?
     ) =>
     {
-      $crate::apply!
+      $crate::for_each!
       (
         $Callback where
         $( $( $Args )* )?
@@ -396,7 +372,7 @@ pub mod internal
 
   pub use as_path;
   pub use as_tts;
-  pub use apply;
+  pub use for_each;
   pub use for_each_int;
   pub use for_each_float;
   // pub use for_each_float;

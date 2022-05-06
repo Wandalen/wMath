@@ -59,7 +59,7 @@ fn _physical_size_test()
     }
   }
 
-  math_adapter::apply!
+  math_adapter::for_each!
   (
     test_for,
     ( winit::dpi::PhysicalSize, width, height ),
