@@ -23,6 +23,9 @@ compile_error!( "Only one `*_ops` feature should be enabled. Disable either `nal
 /// General math traits.
 pub use num_traits as traits;
 
+/// Macro tools, to be moved out.
+mod macro_tools;
+pub use macro_tools::*;
 /// Macro helpers, for example to enumarate number types.
 mod macro_helper;
 pub use macro_helper::*;

@@ -12,6 +12,7 @@ pub( crate ) use macro_foreign_x2::*;
 
 mod x2_test;
 mod helper_test;
+mod macro_tools_test;
 
 #[ cfg( feature = "cgmath" )]
 mod cgmath_test;
