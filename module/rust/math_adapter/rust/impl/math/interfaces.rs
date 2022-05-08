@@ -51,12 +51,12 @@ pub mod internal
         #[ inline ]
         fn make_nan_like() -> Self
         {
-          $( $Args )*::NAN
+          < $( $Args )* >::NAN
         }
         #[ inline ]
         fn is_nan( &self ) -> bool
         {
-          *self == $( $Args )*::NAN
+          *self == < $( $Args )* >::NAN
         }
       }
     };

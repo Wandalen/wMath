@@ -49,7 +49,7 @@ macro_rules! canonical_test_for_int
   {
   };
 
-  ( $type : ident $(, $( $tail : ident ),* )? ) =>
+  ( $type : path $(, $( $tail : tt ),* )? ) =>
   {{
     type T = $type;
     println!( "canonical_test_for_int {}", stringify!( $type ) );
@@ -75,7 +75,7 @@ macro_rules! canonical_test_for_float
   {
   };
 
-  ( $type : ident $(, $( $tail : ident ),* )? ) =>
+  ( $type : path $(, $( $tail : tt ),* )? ) =>
   {{
     type T = $type;
     println!( "canonical_test_for_float {}", stringify!( $type ) );
@@ -101,7 +101,7 @@ macro_rules! canonical_test_for_number
   {
   };
 
-  ( $type : ident $(, $( $tail : ident ),* )? ) =>
+  ( $type : path $(, $( $tail : tt ),* )? ) =>
   {{
     type T = $type;
     println!( "canonical_test_for_number {}", stringify!( $type ) );
@@ -351,12 +351,11 @@ macro_rules! canonical_test_for_number
 
 fn _canonical_test()
 {
+
   math_adapter::for_each_int!( canonical_test_for_int );
   math_adapter::for_each_float!( canonical_test_for_float );
   math_adapter::for_each_number!( canonical_test_for_number );
-  // canonical_test_for_int!( i8, i16, i32, i64, i128, u8, u16, u32, u64, u128 );
-  // canonical_test_for_float!( f32, f64 );
-  // canonical_test_for_number!( i8, i16, i32, i64, i128, u8, u16, u32, u64, u128, f32, f64 );
+
 }
 
 ///

@@ -5,241 +5,23 @@
 pub mod internal
 {
 
-//   #[macro_export]
-//   macro_rules! apply_simple
-//   {
-//
-//     (
-//       $Callback : path, $( $Each : tt ),*
-//     ) =>
-//     {
-//       $(
-//         $Callback!
-//         (
-//           $Each
-//         );
-//       )*
-//     };
-//
-//   }
-
-  ///
-  /// Apply callback with prefix and postfix.
-  ///
-
-  #[macro_export]
-  macro_rules! apply
-  {
-
-    // -- non-named
-
-    (
-      $Callback : path, $( $Each : tt ),*
-    ) =>
-    {
-      $(
-        $Callback!
-        (
-          $Each
-        );
-      )*
-    };
-
-    // -- named with parentheses
-
-    (
-      $Callback : path
-      where
-        @EACH( $( $Each : tt ),* )
-    ) =>
-    {
-      $(
-        $Callback!
-        (
-          ( $Each )
-        );
-      )*
-    };
-
-    (
-      $Callback : path
-      where
-        @PREFIX $Prefix : tt
-        @EACH( $( $Each : tt ),* )
-    ) =>
-    {
-      $(
-        $Callback!
-        (
-          $Prefix
-          ( $Each )
-        );
-      )*
-    };
-
-    (
-      $Callback : path
-      where
-        @POSTFIX $Postfix : tt
-        @EACH( $( $Each : tt ),* )
-    ) =>
-    {
-      $(
-        $Callback!
-        (
-          ( $Each )
-          $Postfix
-        );
-      )*
-    };
-
-    (
-      $Callback : path
-      where
-        @PREFIX $Prefix : tt
-        @POSTFIX $Postfix : tt
-        @EACH( $( $Each : tt ),* )
-    ) =>
-    {
-      $(
-        $Callback!
-        (
-          $Prefix
-          ( $Each )
-          $Postfix
-        );
-      )*
-    };
-
-    // -- named without parentheses
-
-    (
-      $Callback : path
-      where
-        @EACH $( $Each : tt ),*
-    ) =>
-    {
-      $(
-        $Callback!
-        (
-          $Each
-        );
-      )*
-    };
-
-    (
-      $Callback : path
-      where
-        @PREFIX $Prefix : tt
-        @EACH $( $Each : tt ),*
-    ) =>
-    {
-      $(
-        $Callback!
-        (
-          $Prefix
-          $Each
-        );
-      )*
-    };
-
-    (
-      $Callback : path
-      where
-        @POSTFIX $Postfix : tt
-        @EACH $( $Each : tt ),*
-    ) =>
-    {
-      $(
-        $Callback!
-        (
-          $Each
-          $Postfix
-        );
-      )*
-    };
-
-    (
-      $Callback : path
-      where
-        @PREFIX $Prefix : tt
-        @POSTFIX $Postfix : tt
-        @EACH $( $Each : tt ),*
-    ) =>
-    {
-      $(
-        $Callback!
-        (
-          $Prefix
-          $Each
-          $Postfix
-        );
-      )*
-    };
-
-    // -- with @ARGS
-
-    (
-      $Callback : path =>
-      @ARGS( @PREFIX $Prefix : tt @POSTFIX $Postfix : tt  )
-      @EACH( $( $Each : tt ),* )
-    ) =>
-    {
-      $(
-        $Callback!
-        (
-          $Prefix
-          $Each
-          $Postfix
-        );
-      )*
-    };
-
-    (
-      $Callback : path =>
-      @ARGS( @PREFIX $Prefix : tt )
-      @EACH( $( $Each : tt ),* )
-    ) =>
-    {
-      $(
-        $Callback!
-        (
-          $Prefix
-          $Each
-        );
-      )*
-    };
-
-    (
-      $Callback : path =>
-      @ARGS( @POSTFIX $Postfix : tt  )
-      @EACH( $( $Each : tt ),* )
-    ) =>
-    {
-      $(
-        $Callback!
-        (
-          $Each
-          $Postfix
-        );
-      )*
-    };
-
-    (
-      $Callback : path =>
-      @ARGS()
-      @EACH( $( $Each : tt ),* )
-    ) =>
-    {
-      $(
-        $Callback!
-        (
-          $Each
-        );
-      )*
-    };
-
-  }
+  // /// Reinterpret tokens as path.
+  // #[macro_export]
+  // macro_rules! as_path { ( $src : path ) => { $src } }
+  // /// Reinterpret tokens as tts.
+  // #[macro_export]
+  // macro_rules! as_tts { ( $( $src : tt )* ) => { $( $src )* } }
+  // /// Macro which returns its input as
+  // #[macro_export]
+  // macro_rules! identity
+  // {
+  //   (
+  //     ( $Src : tt ),*
+  //   ) =>
+  //   {
+  //     ( $Src ),*
+  //   };
+  // }
 
   ///
   /// Apply callback to each integer : i8, i16, i32, i64, i128, u8, u16, u32, u64, u128.
@@ -254,11 +36,11 @@ pub mod internal
       $( where $( $Args : tt )* )?
     ) =>
     {
-      $crate::apply!
+      $crate::for_each!
       (
-        $Callback =>
-        @ARGS( $( $( $Args )* )? )
-        @EACH( i8, i16, i32, i64, i128, u8, u16, u32, u64, u128 )
+        $Callback where
+        $( $( $Args )* )?
+        @EACH i8 i16 i32 i64 i128 u8 u16 u32 u64 u128
       );
     };
 
@@ -277,11 +59,11 @@ pub mod internal
       $( where $( $Args : tt )* )?
     ) =>
     {
-      $crate::apply!
+      $crate::for_each!
       (
-        $Callback =>
-        @ARGS( $( $( $Args )* )? )
-        @EACH( f32, f64 )
+        $Callback where
+        $( $( $Args )* )?
+        @EACH f32 f64
       );
     };
 
@@ -300,11 +82,11 @@ pub mod internal
       $( where $( $Args : tt )* )?
     ) =>
     {
-      $crate::apply!
+      $crate::for_each!
       (
-        $Callback =>
-        @ARGS( $( $( $Args )* )? )
-        @EACH( i8, i16, i32, i64, i128, u8, u16, u32, u64, u128, f32, f64 )
+        $Callback where
+        $( $( $Args )* )?
+        @EACH i8 i16 i32 i64 i128 u8 u16 u32 u64 u128 f32 f64
       );
     };
 
@@ -312,7 +94,9 @@ pub mod internal
 
   //
 
-  pub use apply;
+  // pub use as_path;
+  // pub use as_tts;
+  // pub use identity;
   pub use for_each_int;
   pub use for_each_float;
   pub use for_each_number;

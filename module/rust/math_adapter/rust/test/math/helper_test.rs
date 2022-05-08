@@ -1,5 +1,4 @@
 use wtest_basic::*;
-// use math_adapter::*;
 
 //
 
@@ -106,16 +105,16 @@ fn _for_each_higher_order_without_parentheses_test()
     }
   }
 
-  macro_rules! test_with_postfix
-  {
-    (
-      ( $( $Arg : tt )* )
-      $Got : tt
-    ) =>
-    {
-      math_adapter::for_each_float!( stringify_type_name where @PREFIX $Got @POSTFIX $( $Arg )* );
-    }
-  }
+  // macro_rules! test_with_postfix
+  // {
+  //   (
+  //     ( $( $Arg : tt )* )
+  //     $Got : tt
+  //   ) =>
+  //   {
+  //     math_adapter::for_each_float!( stringify_type_name where @PREFIX $Got @POSTFIX $( $Arg )* );
+  //   }
+  // }
 
   let mut got = String::new();
   math_adapter::for_each_float!( stringify_type_name where @PREFIX got @POSTFIX a );
@@ -125,125 +124,14 @@ fn _for_each_higher_order_without_parentheses_test()
   assert_eq!( got, exp );
 
   let mut got = String::new();
-  math_adapter::apply!( test_with_prefix where @PREFIX got @EACH a, b, c );
+  math_adapter::for_each!( test_with_prefix where @PREFIX got @EACH a b c );
   let exp = "f32 a_f64 a_f32 b_f64 b_f32 c_f64 c_";
   assert_eq!( got, exp );
 
-  let mut got = String::new();
-
-  math_adapter::apply!( test_with_postfix where @POSTFIX got @EACH ( a, b, c ) );
-  let exp = "f32 a_f64 a_f32 b_f64 b_f32 c_f64 c_";
-  assert_eq!( got, exp );
-
-}
-
-//
-
-fn _apply_test()
-{
-
-  macro_rules! test_with
-  {
-    (
-      $( $Arg : tt )*
-    ) =>
-    {{
-      APPLY_GOT += stringify!( $( $Arg )* );
-      APPLY_GOT += "+";
-    }};
-  }
-
-  static mut APPLY_GOT : String = String::new();
-
-  // let got = math_adapter::apply!( test_with where @PREFIX prefix @EACH a, b, c );
-  // let got = String::new();
-  // let got = "a".to_owned() "b" "c";
-  // let got = ( math_adapter::apply!( test_with, a, b, c ) );
-
-  /* test.case( "non-named" ) */
-  unsafe
-  {
-    APPLY_GOT = "".to_string();
-    math_adapter::apply!( test_with, a, b, c );
-    let exp = "a+b+c+";
-    assert_eq!( APPLY_GOT, exp );
-  }
-
-  // with parentheses
-
-  /* test.case( "with parentheses" ) */
-  unsafe
-  {
-    APPLY_GOT = "".to_string();
-    math_adapter::apply!( test_with where @EACH( a, b, c ) );
-    let exp = "(a)+(b)+(c)+";
-    assert_eq!( APPLY_GOT, exp );
-  }
-
-  /* test.case( "with parentheses" ) + prefix */
-  unsafe
-  {
-    APPLY_GOT = "".to_string();
-    math_adapter::apply!( test_with where @PREFIX prefix @EACH( a, b, c ) );
-    let exp = "prefix(a)+prefix(b)+prefix(c)+";
-    assert_eq!( APPLY_GOT, exp );
-  }
-
-  /* test.case( "with parentheses" ) + postfix */
-  unsafe
-  {
-    APPLY_GOT = "".to_string();
-    math_adapter::apply!( test_with where @POSTFIX postfix @EACH( a, b, c ) );
-    let exp = "(a) postfix+(b) postfix+(c) postfix+";
-    assert_eq!( APPLY_GOT, exp );
-  }
-
-  /* test.case( "with parentheses" ) + prefix + postfix */
-  unsafe
-  {
-    APPLY_GOT = "".to_string();
-    math_adapter::apply!( test_with where @PREFIX prefix @POSTFIX postfix @EACH( a, b, c ) );
-    let exp = "prefix(a) postfix+prefix(b) postfix+prefix(c) postfix+";
-    assert_eq!( APPLY_GOT, exp );
-  }
-
-  // without parentheses
-
-  /* test.case( "without parentheses" ) */
-  unsafe
-  {
-    APPLY_GOT = "".to_string();
-    math_adapter::apply!( test_with where @EACH a, b, c );
-    let exp = "a+b+c+";
-    assert_eq!( APPLY_GOT, exp );
-  }
-
-  /* test.case( "without parentheses" ) + prefix */
-  unsafe
-  {
-    APPLY_GOT = "".to_string();
-    math_adapter::apply!( test_with where @PREFIX prefix @EACH a, b, c );
-    let exp = "prefix a+prefix b+prefix c+";
-    assert_eq!( APPLY_GOT, exp );
-  }
-
-  /* test.case( "without parentheses" ) + postfix */
-  unsafe
-  {
-    APPLY_GOT = "".to_string();
-    math_adapter::apply!( test_with where @POSTFIX postfix @EACH a, b, c );
-    let exp = "a postfix+b postfix+c postfix+";
-    assert_eq!( APPLY_GOT, exp );
-  }
-
-  /* test.case( "without parentheses" ) + prefix + postfix */
-  unsafe
-  {
-    APPLY_GOT = "".to_string();
-    math_adapter::apply!( test_with where @PREFIX prefix @POSTFIX postfix @EACH a, b, c );
-    let exp = "prefix a postfix+prefix b postfix+prefix c postfix+";
-    assert_eq!( APPLY_GOT, exp );
-  }
+  // let mut got = String::new();
+  // math_adapter::for_each!( test_with_postfix where @POSTFIX got @EACH ( a, b, c ) );
+  // let exp = "f32 a_f64 a_f32 b_f64 b_f32 c_f64 c_";
+  // assert_eq!( got, exp );
 
 }
 
@@ -255,5 +143,4 @@ test_suite!
   for_each_float_test,
   for_each_number_test,
   for_each_higher_order_without_parentheses_test,
-  apply_test,
 }

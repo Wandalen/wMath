@@ -413,7 +413,7 @@ rules :
     # - never
     # - allowNewlines : true
   consistent-this : off
-  prefer-named-capture-group : off
+  prefer-map-style-capture-group : off
   valid-jsdoc : error
   require-jsdoc : off
   max-statements-per-line : off

@@ -2,7 +2,7 @@
 #![ warn( missing_debug_implementations ) ]
 #![ warn( missing_docs ) ]
 
-// #![ feature( trace_macros ) ]
+#![ feature( trace_macros ) ]
 // #![ feature( type_name_of_val ) ]
 
 mod test_tools;
@@ -12,6 +12,7 @@ pub( crate ) use macro_foreign_x2::*;
 
 mod x2_test;
 mod helper_test;
+mod macro_tools_test;
 
 #[ cfg( feature = "cgmath" )]
 mod cgmath_test;
