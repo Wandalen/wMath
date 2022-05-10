@@ -3,9 +3,7 @@
 #![ warn( missing_docs ) ]
 
 // #![ feature( trait_alias ) ]
-// #![ feature( generic_associated_types ) ]
 // #![ feature( type_name_of_val ) ]
-// #![ feature( generic_associated_types ) ]
 
 //!
 //! Collection of math adapters to decouple your application from math libraries' implementations and to increase inter-libraries compatibility / exchangeability.
