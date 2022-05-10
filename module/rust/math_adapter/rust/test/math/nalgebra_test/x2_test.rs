@@ -84,6 +84,6 @@ fn _convertion_as_specific_test()
 test_suite!
 {
   basic_test,
-  // canonical_test,
-  convertion_as_specific_test
+  canonical_test,
+  convertion_as_specific_test,
 }

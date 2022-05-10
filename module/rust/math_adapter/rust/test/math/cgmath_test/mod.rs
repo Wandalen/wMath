@@ -1,8 +1,6 @@
 
 mod x2_test;
 
-/* zzz : use https://crates.io/crates/cfg_aliases */
-
 #[
   cfg( all
   (
