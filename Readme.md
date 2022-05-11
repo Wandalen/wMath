@@ -1,4 +1,4 @@
-# module::Math
+# Home :: Math
 
 Home for math modules.
 
