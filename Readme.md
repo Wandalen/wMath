@@ -1,4 +1,4 @@
-# Repository :: Math
+# Repository :: wMath
 
 Home for math modules.
 
