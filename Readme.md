@@ -1,6 +1,6 @@
 # module::Math
 
-Aggregates math modules in single module.
+Home for math modules.
 
 ### JavaScript tools
 
