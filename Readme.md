@@ -1,4 +1,4 @@
-# Home :: Math
+# Repository :: Math
 
 Home for math modules.
 
