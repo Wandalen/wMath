@@ -56,8 +56,8 @@ fn _canonical_test()
   math_adapter::for_each!
   (
     crate::macro_foreign_x2::macro_test_foreign_x2_number_for_each,
-    { nalgebra::Vector2, width, height },
-    { nalgebra::geometry::Point2, width, height },
+    { nalgebra::Vector2, x, y },
+    { nalgebra::geometry::Point2, x, y },
   );
 
   // trace_macros!( true );
@@ -85,5 +85,5 @@ test_suite!
 {
   basic_test,
   canonical_test,
-  convertion_as_specific_test
+  convertion_as_specific_test,
 }
