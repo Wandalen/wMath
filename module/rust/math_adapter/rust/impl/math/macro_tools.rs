@@ -343,7 +343,7 @@ pub mod internal
   }
 
   ///
-  /// Apply callback for each element of a list.
+  /// Apply macro for each element of a list.
   ///
   /// Macros $Callback is called for each element of passed list, optinally passing prefix $Prefix as first argument(s) and postfix $Postfix as the last argument(s).
   /// Macros could be invoked in either function call style or map call style. Prefix and postfix could be passed only in map call style.
