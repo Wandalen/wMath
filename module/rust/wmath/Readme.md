@@ -7,7 +7,15 @@ Math library aggregating several math modules.
 ```rust
 use wmath::adapter::prelude::*;
 
-/* qqq : xxx : write sample please */
+fn main()
+{
+  let x2_original = wmath::X2::< u8 >( 1, 3 );
+  println!( "{:?}", x2_original );
+  /* log : X2(1, 3) */
+  let x2_to_array = x2_original.clone_as_array();
+  println!( "{:?}", x2_to_array );
+  /* log : [1, 3] */
+}
 ```
 
 ### To add to your project
