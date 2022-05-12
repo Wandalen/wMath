@@ -1,4 +1,4 @@
-# module::math_adapter [![rust-status](https://github.com/Wandalen/wMath/actions/workflows/StandardRustPush.yml/badge.svg)](https://github.com/Wandalen/wMath/actions/workflows/StandardRustPush.yml) [![experimental](https://img.shields.io/badge/stability-experimental-orange.svg)](https://github.com/emersion/stability-badges#experimental)
+# Module :: math_adapter [![rust-status](https://github.com/Wandalen/wMath/actions/workflows/StandardRustPush.yml/badge.svg)](https://github.com/Wandalen/wMath/actions/workflows/StandardRustPush.yml) [![docs](https://img.shields.io/docsrs/math_adapter)](https://img.shields.io/docsrs/math_adapter) [![discord](https://img.shields.io/discord/872391416519737405)](https://img.shields.io/discord/872391416519737405) [![experimental](https://img.shields.io/badge/stability-experimental-orange.svg)](https://github.com/emersion/stability-badges#experimental)
 
 Collection of math adapters to decouple your application from math libraries' implementations and to provide both inter-libraries compatibility and affordable exchangeability.
 
@@ -54,7 +54,7 @@ Every structure could be converted into another semantically similar structure e
 Relation: `Canonical > Basic > Nominal`.
 
 
-### Sample : elements
+### Sample :: elements
 
 Number of elements of a vector is coded in name of type, `X2` for vector of length `2`, `X3` for vector of length 3 and so on. Each structure implements constructors `make()`, `make_nan()`, and `make_default()` to construct a new instance of the type. To get access to elements use either methods `x()`, `y()`, `z()` or `_0()`, `_1()`, `_2()`.
 
@@ -76,7 +76,7 @@ fn main()
 
 ```
 
-### Sample : operators
+### Sample :: operators
 
 Select a feature `*_ops` to reuse operators and function of math lib of choice.
 
@@ -109,7 +109,7 @@ fn main()
 }
 ```
 
-### Sample : interoperability
+### Sample :: interoperability
 
 Feature `*_ops` means to request to use operators and function of math lib of choice. But instead of choosing a single back-end math lib, you may use several. Use methods `as_*_clone()`, `as_*`, `as_*_mut` to either convert or reinterpret original math object into analog of such of chosen back-end. You don't have to use the same back-end in every call, you may choose which math lib for a specific call and combine the best of each math lib.
 
