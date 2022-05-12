@@ -7,8 +7,14 @@ env:
 
 jobs:
   build:
-    uses: Wandalen/wMath/.github/workflows/RustPushCommon.yml@master
+    if : "startsWith( github.event.head_commit.message, '[build]' ) || startsWith( github.event.head_commit.message, 'Merge' )"
+    uses: Wandalen/wMath/.github/workflows/RustFull.yml@master
     with:
-      module_name: 'math_adapter'
+      manifest_path: 'module/rust/math_adapter/Cargo.toml'
+
+  build_fast:
+    if : "!startsWith( github.event.head_commit.message, '[build]' ) && !startsWith( github.event.head_commit.message, 'Merge' ) && contains( github.event.head_commit.message, 'math_adapter' )"
+    uses: Wandalen/wMath/.github/workflows/RustFast.yml@master
+    with:
       manifest_path: 'module/rust/math_adapter/Cargo.toml'
 
