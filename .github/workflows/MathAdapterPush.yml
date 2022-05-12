@@ -1,0 +1,14 @@
+name: math_adapter
+
+on : push
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  build:
+    uses: Wandalen/wMath/.github/workflows/RustPushCommon.yml@master
+    with:
+      module_name: 'math_adapter'
+      manifest_path: 'module/rust/math_adapter/Cargo.toml'
+
