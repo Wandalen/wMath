@@ -1,5 +1,5 @@
 /// Internal namespace.
-pub mod internal
+mod internal
 {
 
   /// X2 Vector of cgmath
@@ -23,7 +23,7 @@ pub mod ops;
 pub mod x2;
 
 /// Own namespace of the module.
-pub mod own
+pub mod protected
 {
   pub use super::exposed::*;
   use super::internal as i;
@@ -31,7 +31,7 @@ pub mod own
   pub use cgmath::*;
 }
 
-pub use own::*;
+pub use protected::*;
 
 /// Exposed namespace of the module.
 pub mod exposed

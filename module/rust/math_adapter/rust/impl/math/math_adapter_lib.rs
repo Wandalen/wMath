@@ -62,11 +62,17 @@ pub mod dependency
 /// Exposed namespace of the module.
 pub mod exposed
 {
+  #[ doc( inline ) ]
   pub use super::as_foreign::exposed::*;
+  #[ doc( inline ) ]
   pub use super::from::exposed::*;
+  #[ doc( inline ) ]
   pub use super::plugin::exposed::*;
+  #[ doc( inline ) ]
   pub use super::scalar::exposed::*;
+  #[ doc( inline ) ]
   pub use super::interfaces::exposed::*;
+  #[ doc( inline ) ]
   pub use super::vector::exposed::*;
 }
 

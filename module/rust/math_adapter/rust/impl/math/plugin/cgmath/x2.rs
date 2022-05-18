@@ -1,5 +1,5 @@
 /// Internal namespace.
-pub mod internal
+mod internal
 {
   use core::mem::size_of;
   use crate::prelude::*;

@@ -2,7 +2,7 @@
 #![ allow( unused_imports ) ]
 
 /// Internal namespace.
-pub mod internal
+mod internal
 {
 
   ///

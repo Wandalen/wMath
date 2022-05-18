@@ -1,5 +1,5 @@
 /// Internal namespace.
-pub mod internal
+mod internal
 {
   use core::fmt::{ Debug, Display };
   use core::default::Default;

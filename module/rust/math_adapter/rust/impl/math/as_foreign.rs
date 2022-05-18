@@ -1,5 +1,5 @@
 /// Internal namespace.
-pub mod internal
+mod internal
 {
   // use crate::prelude::*;
 
@@ -37,10 +37,13 @@ pub mod internal
 pub mod exposed
 {
   use super::internal as i;
+  #[ doc( inline ) ]
   pub use i::AsForeignNonCanonicalInterface;
+  #[ doc( inline ) ]
   pub use i::AsForeignCanonicalInterface;
 }
 
+#[ doc( inline ) ]
 pub use exposed::*;
 
 /// Prelude to use: `use wtools::prelude::*`.

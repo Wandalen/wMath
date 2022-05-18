@@ -1,5 +1,5 @@
 /// Internal namespace.
-pub mod internal
+mod internal
 {
   use core::ops::{ Neg, Add, Sub };
   use crate::prelude::*;

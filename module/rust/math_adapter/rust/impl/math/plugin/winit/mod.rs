@@ -1,5 +1,5 @@
 /// Internal namespace.
-pub mod internal
+mod internal
 {
   // use core::mem::size_of;
   // use crate::prelude::*;
@@ -15,13 +15,13 @@ pub mod internal
 pub mod x2;
 
 /// Own namespace of the module.
-pub mod own
+pub mod protected
 {
   // use super::internal as i;
   // pub use i::X2;
 }
 
-pub use own::*;
+pub use protected::*;
 
 /// Exposed namespace of the module.
 pub mod exposed

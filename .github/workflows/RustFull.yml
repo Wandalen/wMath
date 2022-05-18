@@ -38,7 +38,9 @@ jobs:
     - uses: actions/checkout@v2
     - name: Build
       run: cargo build --manifest-path ${{ inputs.manifest_path }} --release
-    - name: Run all tests without features
+    - name: Run all tests with default features
       run: cargo test --manifest-path ${{ inputs.manifest_path }}
-    - name: Run all tests with
+    - name: Run all tests without default features
+      run: cargo test --manifest-path ${{ inputs.manifest_path }} --no-default-features
+    - name: Run all tests with all features
       run: cargo test --manifest-path ${{ inputs.manifest_path }} --all-features

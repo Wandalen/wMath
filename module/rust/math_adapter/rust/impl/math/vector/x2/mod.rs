@@ -1,5 +1,5 @@
 /// Internal namespace.
-pub mod internal
+mod internal
 {
   // use core::fmt::Debug;
   use core::hash::Hash;
@@ -31,14 +31,14 @@ pub mod macros
 
 /// Own namespace of the module.
 #[ allow( unused_imports ) ]
-pub mod own
+pub mod protected
 {
   pub use super::exposed::*;
   use super::internal as i;
   pub use super::macros::*;
 }
 
-pub use own::*;
+pub use protected::*;
 
 /// Exposed namespace of the module.
 pub mod exposed

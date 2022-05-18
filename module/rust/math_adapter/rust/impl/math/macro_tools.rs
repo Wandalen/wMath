@@ -7,7 +7,7 @@
 // */
 //
 // /// Internal namespace.
-// pub mod internal
+// mod internal
 // {
 //
 //   // /// Reinterpret tokens as path.
