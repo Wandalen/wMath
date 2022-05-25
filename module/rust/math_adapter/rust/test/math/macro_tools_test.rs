@@ -2,7 +2,7 @@ use wtest_basic::*;
 
 //
 
-fn _braces_unwrap_test()
+fn braces_unwrap_test()
 {
   static mut GOT : String = String::new();
   macro_rules! test_with
@@ -578,7 +578,7 @@ fn _braces_unwrap_test()
 /// Tests macro crate::for_each!().
 ///
 
-fn _for_each_test()
+fn for_each_test()
 {
 
   macro_rules! test_with
@@ -835,7 +835,7 @@ fn _for_each_test()
 
 //
 
-fn _for_each_higher_order_test()
+fn for_each_higher_order_test()
 {
   static mut GOT : String = String::new();
   macro_rules! test_with
@@ -915,7 +915,7 @@ fn _for_each_higher_order_test()
 
 test_suite!
 {
-  braces_unwrap_test,
-  for_each_test,
-  for_each_higher_order_test,
+  braces_unwrap,
+  for_each,
+  for_each_higher_order,
 }

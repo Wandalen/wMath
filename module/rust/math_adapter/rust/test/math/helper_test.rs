@@ -28,7 +28,7 @@ macro_rules! stringify_type_name
 
 //
 
-fn _for_each_int_test()
+fn for_each_int_test()
 {
 
   math_adapter::for_each_int!( print_type_name );
@@ -53,7 +53,7 @@ fn _for_each_int_test()
 
 //
 
-fn _for_each_float_test()
+fn for_each_float_test()
 {
 
   math_adapter::for_each_float!( print_type_name );
@@ -72,7 +72,7 @@ fn _for_each_float_test()
 
 //
 
-fn _for_each_number_test()
+fn for_each_number_test()
 {
 
   math_adapter::for_each_number!( print_type_name );
@@ -91,7 +91,7 @@ fn _for_each_number_test()
 
 //
 
-fn _for_each_higher_order_without_parentheses_test()
+fn for_each_higher_order_without_parentheses_test()
 {
 
   macro_rules! test_with_prefix
@@ -139,8 +139,8 @@ fn _for_each_higher_order_without_parentheses_test()
 
 test_suite!
 {
-  for_each_int_test,
-  for_each_float_test,
-  for_each_number_test,
-  for_each_higher_order_without_parentheses_test,
+  for_each_int,
+  for_each_float,
+  for_each_number,
+  for_each_higher_order_without_parentheses,
 }

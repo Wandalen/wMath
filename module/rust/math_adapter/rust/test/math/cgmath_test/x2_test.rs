@@ -12,7 +12,7 @@ use crate::{ num };
 /// One test should be ordinary to exclude possibility of problems with macro.
 ///
 
-fn _basic_test()
+fn basic_test()
 {
   type T = i8;
 
@@ -45,7 +45,7 @@ fn _basic_test()
 /// Parametrized test.
 ///
 
-fn _canonical_test()
+fn canonical_test()
 {
 
   math_adapter::for_each!
@@ -65,7 +65,7 @@ fn _canonical_test()
 /// Tests for X2 conversion function. Names are implementation-specific. .
 ///
 
-fn _convertion_as_specific_test()
+fn convertion_as_specific_test()
 {
   type T = i8;
 
@@ -77,7 +77,7 @@ fn _convertion_as_specific_test()
 
 test_suite!
 {
-  basic_test,
-  canonical_test,
-  convertion_as_specific_test,
+  basic,
+  canonical,
+  convertion_as_specific,
 }

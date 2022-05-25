@@ -11,7 +11,7 @@ use crate::{ num };
 /// One test should be ordinary to exclude possibility of problems with macro.
 ///
 
-fn _basic()
+fn basic_test()
 {
   type T = i8;
 
@@ -44,7 +44,7 @@ fn _basic()
 
 //
 
-fn _physical_size_test()
+fn physical_size_test()
 {
 
   math_adapter::for_each!
@@ -108,7 +108,7 @@ fn inter_winit()
 test_suite!
 {
   basic,
-  physical_size_test,
+  physical_size,
 }
 
 /* zzz : teach test_suite to understand directives */
