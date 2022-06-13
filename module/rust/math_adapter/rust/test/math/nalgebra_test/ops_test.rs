@@ -1,6 +1,6 @@
 // #![ allow( unused_imports ) ]
 
-use wtest_basic::*;
+use test_tools::*;
 use crate::test_tools::*;
 use math_adapter::prelude::*;
 use math_adapter::X2;
@@ -47,7 +47,7 @@ fn inter_cgmath_test()
       let src2 = nalgebra::Vector2::< T >::make( 3, 4 );
       let got = src1.as_nalgebra() + src2;
       let exp = nalgebra::Vector2::< T >::make( 4, 6 );
-      assert_eq!( got, exp );
+      a_id!( got, exp );
     }
 
     /* test.case = "using either `cgmath's` and `nalgebra's` implementation of sum"; */
@@ -55,9 +55,9 @@ fn inter_cgmath_test()
       // use cgmath::Array;
       let src = X2::< T >::make( 1, 2 );
       let got = src.as_cgmath().sum();
-      assert_eq!( got, 3 );
+      a_id!( got, 3 );
       let got = src.as_nalgebra().sum();
-      assert_eq!( got, 3 );
+      a_id!( got, 3 );
     }
 
   }

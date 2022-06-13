@@ -1,6 +1,6 @@
 #![ allow( unused_imports ) ]
 
-use wtest_basic::*;
+use test_tools::*;
 use core::mem::size_of;
 use num_traits::cast::cast;
 use math_adapter::prelude::*;
@@ -18,25 +18,25 @@ fn basic_test()
 
   /* test.case = "size"; */
   {
-    assert_eq!( size_of::< cgmath::Vector2::< T > >(), size_of::< ( T, T ) >() );
-    assert_eq!( size_of::< cgmath::Vector2::< T > >(), size_of::< [ T ; 2 ] >() );
-    assert_eq!( size_of::< cgmath::Vector2::< T > >(), 2 );
+    a_id!( size_of::< cgmath::Vector2::< T > >(), size_of::< ( T, T ) >() );
+    a_id!( size_of::< cgmath::Vector2::< T > >(), size_of::< [ T ; 2 ] >() );
+    a_id!( size_of::< cgmath::Vector2::< T > >(), 2 );
   }
 
   /* test.case = "value of elements"; */
   {
     let got = cgmath::Vector2::< T >{ x : 1, y : 2 };
-    assert_eq!( got.x, 1 );
-    assert_eq!( got.y, 2 );
-    assert_eq!( got._0(), 1 );
-    assert_eq!( got._1(), 2 );
+    a_id!( got.x, 1 );
+    a_id!( got.y, 2 );
+    a_id!( got._0(), 1 );
+    a_id!( got._1(), 2 );
   }
 
   /* making a new using the module */
   {
     let got = math_adapter::cgmath::Vector2::< T >::make( 1, 2 );
     let exp = cgmath::Vector2::< T >{ x : 1, y : 2 };
-    assert_eq!( got, exp );
+    a_id!( got, exp );
   }
 
 }

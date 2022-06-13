@@ -40,7 +40,7 @@ pub( crate ) mod internal
       (
         $Callback where
         $( $( $Args )* )?
-        @EACH i8 i16 i32 i64 i128 u8 u16 u32 u64 u128
+        @Each i8 i16 i32 i64 i128 u8 u16 u32 u64 u128
       );
     };
 
@@ -63,7 +63,7 @@ pub( crate ) mod internal
       (
         $Callback where
         $( $( $Args )* )?
-        @EACH f32 f64
+        @Each f32 f64
       );
     };
 
@@ -86,7 +86,7 @@ pub( crate ) mod internal
       (
         $Callback where
         $( $( $Args )* )?
-        @EACH i8 i16 i32 i64 i128 u8 u16 u32 u64 u128 f32 f64
+        @Each i8 i16 i32 i64 i128 u8 u16 u32 u64 u128 f32 f64
       );
     };
 

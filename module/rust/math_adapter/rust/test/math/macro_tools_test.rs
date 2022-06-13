@@ -1,4 +1,4 @@
-use wtest_basic::*;
+use test_tools::*;
 
 //
 
@@ -33,8 +33,8 @@ fn braces_unwrap_test()
     math_adapter::braces_unwrap!
     (
       dbg where
-      @PREFIX{ prefix, }
-      @POSTFIX{ postfix }
+      @Prefix{ prefix, }
+      @Postfix{ postfix }
       @SRC{ { a, b, c, } }
     );
     // generates :
@@ -42,8 +42,8 @@ fn braces_unwrap_test()
     math_adapter::braces_unwrap!
     (
       dbg where
-      @PREFIX{ prefix, }
-      @POSTFIX{ postfix }
+      @Prefix{ prefix, }
+      @Postfix{ postfix }
       @SRC{ a, b, c, }
     );
     // generates :
@@ -56,37 +56,37 @@ fn braces_unwrap_test()
     GOT = "".to_string();
     math_adapter::braces_unwrap!( test_with, a, b, c );
     let exp = "a, b, c;";
-    assert_eq!( GOT, exp );
+    a_id!( GOT, exp );
 
     GOT = "".to_string();
     math_adapter::braces_unwrap!( test_with, { a, b, c } );
     let exp = "a, b, c;";
-    assert_eq!( GOT, exp );
+    a_id!( GOT, exp );
 
     GOT = "".to_string();
     math_adapter::braces_unwrap!( test_with, { { a, b, c } } );
     let exp = "{ a, b, c };";
-    assert_eq!( GOT, exp );
+    a_id!( GOT, exp );
 
     GOT = "".to_string();
     math_adapter::braces_unwrap!( test_with, ( a, b, c ) );
     let exp = "(a, b, c);";
-    assert_eq!( GOT, exp );
+    a_id!( GOT, exp );
 
     GOT = "".to_string();
     math_adapter::braces_unwrap!( test_with, ( ( a, b, c ) ) );
     let exp = "((a, b, c));";
-    assert_eq!( GOT, exp );
+    a_id!( GOT, exp );
 
     GOT = "".to_string();
     math_adapter::braces_unwrap!( test_with, [ a, b, c ] );
     let exp = "[a, b, c];";
-    assert_eq!( GOT, exp );
+    a_id!( GOT, exp );
 
     GOT = "".to_string();
     math_adapter::braces_unwrap!( test_with, [ [ a, b, c ] ] );
     let exp = "[[a, b, c]];";
-    assert_eq!( GOT, exp );
+    a_id!( GOT, exp );
 
   }
 
@@ -100,7 +100,7 @@ fn braces_unwrap_test()
       @SRC{ a, b, c }
     );
     let exp = "a, b, c;";
-    assert_eq!( GOT, exp );
+    a_id!( GOT, exp );
 
     GOT = "".to_string();
     math_adapter::braces_unwrap!
@@ -109,7 +109,7 @@ fn braces_unwrap_test()
       @SRC{ { a, b, c } }
     );
     let exp = "a, b, c;";
-    assert_eq!( GOT, exp );
+    a_id!( GOT, exp );
 
     GOT = "".to_string();
     math_adapter::braces_unwrap!
@@ -118,7 +118,7 @@ fn braces_unwrap_test()
       @SRC{ { { a, b, c } } }
     );
     let exp = "{ a, b, c };";
-    assert_eq!( GOT, exp );
+    a_id!( GOT, exp );
 
     GOT = "".to_string();
     math_adapter::braces_unwrap!
@@ -127,7 +127,7 @@ fn braces_unwrap_test()
       @SRC{ ( a, b, c ) }
     );
     let exp = "(a, b, c);";
-    assert_eq!( GOT, exp );
+    a_id!( GOT, exp );
 
     GOT = "".to_string();
     math_adapter::braces_unwrap!
@@ -136,7 +136,7 @@ fn braces_unwrap_test()
       @SRC{ ( ( a, b, c ) ) }
     );
     let exp = "((a, b, c));";
-    assert_eq!( GOT, exp );
+    a_id!( GOT, exp );
 
     GOT = "".to_string();
     math_adapter::braces_unwrap!
@@ -145,7 +145,7 @@ fn braces_unwrap_test()
       @SRC{ [ a, b, c ] }
     );
     let exp = "[a, b, c];";
-    assert_eq!( GOT, exp );
+    a_id!( GOT, exp );
 
     GOT = "".to_string();
     math_adapter::braces_unwrap!
@@ -154,7 +154,7 @@ fn braces_unwrap_test()
       @SRC{ [ [ a, b, c ] ] }
     );
     let exp = "[[a, b, c]];";
-    assert_eq!( GOT, exp );
+    a_id!( GOT, exp );
   }
 
   /* test.case( "prefix and postfix" ) */
@@ -164,78 +164,78 @@ fn braces_unwrap_test()
     math_adapter::braces_unwrap!
     (
       test_with where
-      @PREFIX{ prefix }
-      @POSTFIX{ postfix }
+      @Prefix{ prefix }
+      @Postfix{ postfix }
       @SRC{ a, b, c }
     );
     let exp = "prefix a, b, c postfix;";
-    assert_eq!( GOT, exp );
+    a_id!( GOT, exp );
 
     GOT = "".to_string();
     math_adapter::braces_unwrap!
     (
       test_with where
-      @PREFIX{ prefix }
-      @POSTFIX{ postfix }
+      @Prefix{ prefix }
+      @Postfix{ postfix }
       @SRC{ { a, b, c } }
     );
     let exp = "prefix a, b, c postfix;";
-    assert_eq!( GOT, exp );
+    a_id!( GOT, exp );
 
     GOT = "".to_string();
     math_adapter::braces_unwrap!
     (
       test_with where
-      @PREFIX{ prefix }
-      @POSTFIX{ postfix }
+      @Prefix{ prefix }
+      @Postfix{ postfix }
       @SRC{ { { a, b, c } } }
     );
     let exp = "prefix { a, b, c } postfix;";
-    assert_eq!( GOT, exp );
+    a_id!( GOT, exp );
 
     GOT = "".to_string();
     math_adapter::braces_unwrap!
     (
       test_with where
-      @PREFIX{ prefix }
-      @POSTFIX{ postfix }
+      @Prefix{ prefix }
+      @Postfix{ postfix }
       @SRC{ ( a, b, c ) }
     );
     let exp = "prefix(a, b, c) postfix;";
-    assert_eq!( GOT, exp );
+    a_id!( GOT, exp );
 
     GOT = "".to_string();
     math_adapter::braces_unwrap!
     (
       test_with where
-      @PREFIX{ prefix }
-      @POSTFIX{ postfix }
+      @Prefix{ prefix }
+      @Postfix{ postfix }
       @SRC{ ( ( a, b, c ) ) }
     );
     let exp = "prefix((a, b, c)) postfix;";
-    assert_eq!( GOT, exp );
+    a_id!( GOT, exp );
 
     GOT = "".to_string();
     math_adapter::braces_unwrap!
     (
       test_with where
-      @PREFIX{ prefix }
-      @POSTFIX{ postfix }
+      @Prefix{ prefix }
+      @Postfix{ postfix }
       @SRC{ [ a, b, c ] }
     );
     let exp = "prefix [a, b, c] postfix;";
-    assert_eq!( GOT, exp );
+    a_id!( GOT, exp );
 
     GOT = "".to_string();
     math_adapter::braces_unwrap!
     (
       test_with where
-      @PREFIX{ prefix }
-      @POSTFIX{ postfix }
+      @Prefix{ prefix }
+      @Postfix{ postfix }
       @SRC{ [ [ a, b, c ] ] }
     );
     let exp = "prefix [[a, b, c]] postfix;";
-    assert_eq!( GOT, exp );
+    a_id!( GOT, exp );
 
   }
 
@@ -247,89 +247,89 @@ fn braces_unwrap_test()
     math_adapter::braces_unwrap!
     (
       test_with where
-      @PREFIX{ { prefix } }
-      @POSTFIX{ { postfix } }
+      @Prefix{ { prefix } }
+      @Postfix{ { postfix } }
       @SRC{ { a, b, c } }
     );
     let exp = "prefix a, b, c postfix;";
-    assert_eq!( GOT, exp );
+    a_id!( GOT, exp );
     /* 1 */
     GOT = "".to_string();
     math_adapter::braces_unwrap!
     (
       test_with where
-      @PREFIX{ { prefix } }
-      @POSTFIX{ { postfix } }
+      @Prefix{ { prefix } }
+      @Postfix{ { postfix } }
       @SRC{ { a, b, c } }
     );
     let exp = "prefix a, b, c postfix;";
-    assert_eq!( GOT, exp );
+    a_id!( GOT, exp );
     /* 2 */
     GOT = "".to_string();
     math_adapter::braces_unwrap!
     (
       test_with where
-      @PREFIX{ { prefix } }
-      @POSTFIX{ { postfix } }
+      @Prefix{ { prefix } }
+      @Postfix{ { postfix } }
       @SRC{ { a, b, c } }
     );
     let exp = "prefix a, b, c postfix;";
-    assert_eq!( GOT, exp );
+    a_id!( GOT, exp );
     /* 3 */
     GOT = "".to_string();
     math_adapter::braces_unwrap!
     (
       test_with where
-      @PREFIX{ { prefix } }
-      @POSTFIX{ { postfix } }
+      @Prefix{ { prefix } }
+      @Postfix{ { postfix } }
       @SRC{ { a, b, c } }
     );
     let exp = "prefix a, b, c postfix;";
-    assert_eq!( GOT, exp );
+    a_id!( GOT, exp );
     /* 4 */
     GOT = "".to_string();
     math_adapter::braces_unwrap!
     (
       test_with where
-      @PREFIX{ prefix }
-      @POSTFIX{ { postfix } }
+      @Prefix{ prefix }
+      @Postfix{ { postfix } }
       @SRC{ { a, b, c } }
     );
     let exp = "prefix a, b, c postfix;";
-    assert_eq!( GOT, exp );
+    a_id!( GOT, exp );
     /* 5 */
     GOT = "".to_string();
     math_adapter::braces_unwrap!
     (
       test_with where
-      @PREFIX{ prefix }
-      @POSTFIX{ { postfix } }
+      @Prefix{ prefix }
+      @Postfix{ { postfix } }
       @SRC{ a, b, c }
     );
     let exp = "prefix a, b, c postfix;";
-    assert_eq!( GOT, exp );
+    a_id!( GOT, exp );
     /* 6 */
     GOT = "".to_string();
     math_adapter::braces_unwrap!
     (
       test_with where
-      @PREFIX{ prefix }
-      @POSTFIX{ postfix }
+      @Prefix{ prefix }
+      @Postfix{ postfix }
       @SRC{ { a, b, c } }
     );
     let exp = "prefix a, b, c postfix;";
-    assert_eq!( GOT, exp );
+    a_id!( GOT, exp );
     /* 7 */
     GOT = "".to_string();
     math_adapter::braces_unwrap!
     (
       test_with where
-      @PREFIX{ prefix }
-      @POSTFIX{ postfix }
+      @Prefix{ prefix }
+      @Postfix{ postfix }
       @SRC{ a, b, c }
     );
     let exp = "prefix a, b, c postfix;";
-    assert_eq!( GOT, exp );
+    a_id!( GOT, exp );
   }
 
   /* test.case( "prefix" ) */
@@ -339,71 +339,71 @@ fn braces_unwrap_test()
     math_adapter::braces_unwrap!
     (
       test_with where
-      @PREFIX{ prefix }
+      @Prefix{ prefix }
       @SRC{ a, b, c }
     );
     let exp = "prefix a, b, c;";
-    assert_eq!( GOT, exp );
+    a_id!( GOT, exp );
 
     GOT = "".to_string();
     math_adapter::braces_unwrap!
     (
       test_with where
-      @PREFIX{ prefix }
+      @Prefix{ prefix }
       @SRC{ { a, b, c } }
     );
     let exp = "prefix a, b, c;";
-    assert_eq!( GOT, exp );
+    a_id!( GOT, exp );
 
     GOT = "".to_string();
     math_adapter::braces_unwrap!
     (
       test_with where
-      @PREFIX{ prefix }
+      @Prefix{ prefix }
       @SRC{ { { a, b, c } } }
     );
     let exp = "prefix { a, b, c };";
-    assert_eq!( GOT, exp );
+    a_id!( GOT, exp );
 
     GOT = "".to_string();
     math_adapter::braces_unwrap!
     (
       test_with where
-      @PREFIX{ prefix }
+      @Prefix{ prefix }
       @SRC{ ( a, b, c ) }
     );
     let exp = "prefix(a, b, c);";
-    assert_eq!( GOT, exp );
+    a_id!( GOT, exp );
 
     GOT = "".to_string();
     math_adapter::braces_unwrap!
     (
       test_with where
-      @PREFIX{ prefix }
+      @Prefix{ prefix }
       @SRC{ ( ( a, b, c ) ) }
     );
     let exp = "prefix((a, b, c));";
-    assert_eq!( GOT, exp );
+    a_id!( GOT, exp );
 
     GOT = "".to_string();
     math_adapter::braces_unwrap!
     (
       test_with where
-      @PREFIX{ prefix }
+      @Prefix{ prefix }
       @SRC{ [ a, b, c ] }
     );
     let exp = "prefix [a, b, c];";
-    assert_eq!( GOT, exp );
+    a_id!( GOT, exp );
 
     GOT = "".to_string();
     math_adapter::braces_unwrap!
     (
       test_with where
-      @PREFIX{ prefix }
+      @Prefix{ prefix }
       @SRC{ [ [ a, b, c ] ] }
     );
     let exp = "prefix [[a, b, c]];";
-    assert_eq!( GOT, exp );
+    a_id!( GOT, exp );
 
   }
 
@@ -415,41 +415,41 @@ fn braces_unwrap_test()
     math_adapter::braces_unwrap!
     (
       test_with where
-      @PREFIX{ { prefix } }
+      @Prefix{ { prefix } }
       @SRC{ { a, b, c } }
     );
     let exp = "prefix a, b, c;";
-    assert_eq!( GOT, exp );
+    a_id!( GOT, exp );
     /* 1 */
     GOT = "".to_string();
     math_adapter::braces_unwrap!
     (
       test_with where
-      @PREFIX{ { prefix } }
+      @Prefix{ { prefix } }
       @SRC{ a, b, c }
     );
     let exp = "prefix a, b, c;";
-    assert_eq!( GOT, exp );
+    a_id!( GOT, exp );
     /* 2 */
     GOT = "".to_string();
     math_adapter::braces_unwrap!
     (
       test_with where
-      @PREFIX{ prefix }
+      @Prefix{ prefix }
       @SRC{ { a, b, c } }
     );
     let exp = "prefix a, b, c;";
-    assert_eq!( GOT, exp );
+    a_id!( GOT, exp );
     /* 3 */
     GOT = "".to_string();
     math_adapter::braces_unwrap!
     (
       test_with where
-      @PREFIX{ prefix }
+      @Prefix{ prefix }
       @SRC{ a, b, c }
     );
     let exp = "prefix a, b, c;";
-    assert_eq!( GOT, exp );
+    a_id!( GOT, exp );
   }
 
   /* test.case( "postfix" ) */
@@ -459,71 +459,71 @@ fn braces_unwrap_test()
     math_adapter::braces_unwrap!
     (
       test_with where
-      @POSTFIX{ postfix }
+      @Postfix{ postfix }
       @SRC{ a, b, c }
     );
     let exp = "a, b, c postfix;";
-    assert_eq!( GOT, exp );
+    a_id!( GOT, exp );
 
     GOT = "".to_string();
     math_adapter::braces_unwrap!
     (
       test_with where
-      @POSTFIX{ postfix }
+      @Postfix{ postfix }
       @SRC{ { a, b, c } }
     );
     let exp = "a, b, c postfix;";
-    assert_eq!( GOT, exp );
+    a_id!( GOT, exp );
 
     GOT = "".to_string();
     math_adapter::braces_unwrap!
     (
       test_with where
-      @POSTFIX{ postfix }
+      @Postfix{ postfix }
       @SRC{ { { a, b, c } } }
     );
     let exp = "{ a, b, c } postfix;";
-    assert_eq!( GOT, exp );
+    a_id!( GOT, exp );
 
     GOT = "".to_string();
     math_adapter::braces_unwrap!
     (
       test_with where
-      @POSTFIX{ postfix }
+      @Postfix{ postfix }
       @SRC{ ( a, b, c ) }
     );
     let exp = "(a, b, c) postfix;";
-    assert_eq!( GOT, exp );
+    a_id!( GOT, exp );
 
     GOT = "".to_string();
     math_adapter::braces_unwrap!
     (
       test_with where
-      @POSTFIX{ postfix }
+      @Postfix{ postfix }
       @SRC{ ( ( a, b, c ) ) }
     );
     let exp = "((a, b, c)) postfix;";
-    assert_eq!( GOT, exp );
+    a_id!( GOT, exp );
 
     GOT = "".to_string();
     math_adapter::braces_unwrap!
     (
       test_with where
-      @POSTFIX{ postfix }
+      @Postfix{ postfix }
       @SRC{ [ a, b, c ] }
     );
     let exp = "[a, b, c] postfix;";
-    assert_eq!( GOT, exp );
+    a_id!( GOT, exp );
 
     GOT = "".to_string();
     math_adapter::braces_unwrap!
     (
       test_with where
-      @POSTFIX{ postfix }
+      @Postfix{ postfix }
       @SRC{ [ [ a, b, c ] ] }
     );
     let exp = "[[a, b, c]] postfix;";
-    assert_eq!( GOT, exp );
+    a_id!( GOT, exp );
 
   }
 
@@ -535,41 +535,41 @@ fn braces_unwrap_test()
     math_adapter::braces_unwrap!
     (
       test_with where
-      @POSTFIX{ { postfix } }
+      @Postfix{ { postfix } }
       @SRC{ { a, b, c } }
     );
     let exp = "a, b, c postfix;";
-    assert_eq!( GOT, exp );
+    a_id!( GOT, exp );
     /* 1 */
     GOT = "".to_string();
     math_adapter::braces_unwrap!
     (
       test_with where
-      @POSTFIX{ { postfix } }
+      @Postfix{ { postfix } }
       @SRC{ a, b, c }
     );
     let exp = "a, b, c postfix;";
-    assert_eq!( GOT, exp );
+    a_id!( GOT, exp );
     /* 2 */
     GOT = "".to_string();
     math_adapter::braces_unwrap!
     (
       test_with where
-      @POSTFIX{ postfix }
+      @Postfix{ postfix }
       @SRC{ { a, b, c } }
     );
     let exp = "a, b, c postfix;";
-    assert_eq!( GOT, exp );
+    a_id!( GOT, exp );
     /* 3 */
     GOT = "".to_string();
     math_adapter::braces_unwrap!
     (
       test_with where
-      @POSTFIX{ postfix }
+      @Postfix{ postfix }
       @SRC{ a, b, c }
     );
     let exp = "a, b, c postfix;";
-    assert_eq!( GOT, exp );
+    a_id!( GOT, exp );
   }
 
 }
@@ -608,9 +608,9 @@ fn for_each_test()
     math_adapter::for_each!
     {
       dbg where
-      @PREFIX { "prefix".to_string() + }
-      @POSTFIX { + "postfix" }
-      @EACH "a" "b" "c"
+      @Prefix { "prefix".to_string() + }
+      @Postfix { + "postfix" }
+      @Each "a" "b" "c"
     };
     // generates
     dbg!( "prefix".to_string() + "a" + "postfix" );
@@ -623,9 +623,9 @@ fn for_each_test()
     math_adapter::for_each!
     {
       dbg where
-      @PREFIX { "prefix".to_string() + }
-      @POSTFIX { + "postfix" }
-      @EACH { "a" + "1" } { "b" + "2" } { "c" + "3" }
+      @Prefix { "prefix".to_string() + }
+      @Postfix { + "postfix" }
+      @Each { "a" + "1" } { "b" + "2" } { "c" + "3" }
     };
     // generates
     dbg!( "prefix".to_string() + "a" + "1" + "postfix" );
@@ -637,8 +637,8 @@ fn for_each_test()
   {
     math_adapter::for_each!
     {
-      @PREFIX { dbg! }
-      @EACH ( "a" ) ( "b" ) ( "c" )
+      @Prefix { dbg! }
+      @Each ( "a" ) ( "b" ) ( "c" )
     };
     // generates
     dbg!( "a" );
@@ -654,7 +654,7 @@ fn for_each_test()
     GOT = "".to_string();
     math_adapter::for_each!( test_with, a, b, c );
     let exp = "a+b+c+";
-    assert_eq!( GOT, exp );
+    a_id!( GOT, exp );
   }
 
   /* test.case( "function-style, paths, unwrapping" ) */
@@ -663,7 +663,7 @@ fn for_each_test()
     GOT = "".to_string();
     math_adapter::for_each!( test_with, { std::collections::HashMap }, { std::collections::BTreeMap } );
     let exp = "std :: collections :: HashMap+std :: collections :: BTreeMap+";
-    assert_eq!( GOT, exp );
+    a_id!( GOT, exp );
   }
 
   /* test.case( "function-style, complex, unwrapping" ) */
@@ -672,7 +672,7 @@ fn for_each_test()
     GOT = "".to_string();
     math_adapter::for_each!( test_with, { a _ a }, { b _ b } );
     let exp = "a _ a+b _ b+";
-    assert_eq!( GOT, exp );
+    a_id!( GOT, exp );
   }
 
   /* test.case( "function-style, complex, unwrapping, trailing comma" ) */
@@ -681,7 +681,7 @@ fn for_each_test()
     GOT = "".to_string();
     math_adapter::for_each!( test_with, { a _ a }, { b _ b }, );
     let exp = "a _ a+b _ b+";
-    assert_eq!( GOT, exp );
+    a_id!( GOT, exp );
   }
 
   /* test.case( "function-style, paths, parentheses" ) */
@@ -690,7 +690,7 @@ fn for_each_test()
     GOT = "".to_string();
     math_adapter::for_each!( test_with, ( std::collections::HashMap ), ( std::collections::BTreeMap ) );
     let exp = "(std :: collections :: HashMap)+(std :: collections :: BTreeMap)+";
-    assert_eq!( GOT, exp );
+    a_id!( GOT, exp );
   }
 
   // callbackless
@@ -701,12 +701,12 @@ fn for_each_test()
     GOT = "".to_string();
     math_adapter::for_each!
     {
-      @PREFIX { test_with! }
-      @POSTFIX { ; test_with!( postfix ); }
-      @EACH ( a ) ( b ) ( c )
+      @Prefix { test_with! }
+      @Postfix { ; test_with!( postfix ); }
+      @Each ( a ) ( b ) ( c )
     };
     let exp = "a+postfix+b+postfix+c+postfix+";
-    assert_eq!( GOT, exp );
+    a_id!( GOT, exp );
   }
 
   /* test.case( "callbackless, prefix" ) */
@@ -715,11 +715,11 @@ fn for_each_test()
     GOT = "".to_string();
     math_adapter::for_each!
     {
-      @PREFIX { test_with! }
-      @EACH ( a ) ( b ) ( c )
+      @Prefix { test_with! }
+      @Each ( a ) ( b ) ( c )
     };
     let exp = "a+b+c+";
-    assert_eq!( GOT, exp );
+    a_id!( GOT, exp );
   }
 
   /* test.case( "callbackless, postfix" ) */
@@ -728,11 +728,11 @@ fn for_each_test()
     GOT = "".to_string();
     math_adapter::for_each!
     {
-      @POSTFIX { ; test_with!( postfix ); }
-      @EACH { test_with!( a ) } { test_with!( b ) } { test_with!( c ) }
+      @Postfix { ; test_with!( postfix ); }
+      @Each { test_with!( a ) } { test_with!( b ) } { test_with!( c ) }
     };
     let exp = "a+postfix+b+postfix+c+postfix+";
-    assert_eq!( GOT, exp );
+    a_id!( GOT, exp );
   }
 
   // map-style
@@ -741,36 +741,36 @@ fn for_each_test()
   unsafe
   {
     GOT = "".to_string();
-    math_adapter::for_each!( test_with where @EACH a b c );
+    math_adapter::for_each!( test_with where @Each a b c );
     let exp = "a+b+c+";
-    assert_eq!( GOT, exp );
+    a_id!( GOT, exp );
   }
 
   /* test.case( "map-style, prefix + postfix" ) */
   unsafe
   {
     GOT = "".to_string();
-    math_adapter::for_each!( test_with where @PREFIX prefix @POSTFIX postfix @EACH a b c );
+    math_adapter::for_each!( test_with where @Prefix prefix @Postfix postfix @Each a b c );
     let exp = "prefix a postfix+prefix b postfix+prefix c postfix+";
-    assert_eq!( GOT, exp );
+    a_id!( GOT, exp );
   }
 
   /* test.case( "map-style, prefix" ) */
   unsafe
   {
     GOT = "".to_string();
-    math_adapter::for_each!( test_with where @PREFIX prefix @EACH a b c );
+    math_adapter::for_each!( test_with where @Prefix prefix @Each a b c );
     let exp = "prefix a+prefix b+prefix c+";
-    assert_eq!( GOT, exp );
+    a_id!( GOT, exp );
   }
 
   /* test.case( "map-style, postfix" ) */
   unsafe
   {
     GOT = "".to_string();
-    math_adapter::for_each!( test_with where @POSTFIX postfix @EACH a b c );
+    math_adapter::for_each!( test_with where @Postfix postfix @Each a b c );
     let exp = "a postfix+b postfix+c postfix+";
-    assert_eq!( GOT, exp );
+    a_id!( GOT, exp );
   }
 
   // map-style, complex
@@ -782,10 +782,10 @@ fn for_each_test()
     math_adapter::for_each!
     {
       test_with where
-      @EACH { a _ a } { b _ b } { c _ c }
+      @Each { a _ a } { b _ b } { c _ c }
     };
     let exp = "a _ a+b _ b+c _ c+";
-    assert_eq!( GOT, exp );
+    a_id!( GOT, exp );
   }
 
   /* test.case( "map-style, prefix + postfix" ) */
@@ -795,12 +795,12 @@ fn for_each_test()
     math_adapter::for_each!
     {
       test_with where
-      @PREFIX { pre fix }
-      @POSTFIX { post fix }
-      @EACH { a _ a } { b _ b } { c _ c }
+      @Prefix { pre fix }
+      @Postfix { post fix }
+      @Each { a _ a } { b _ b } { c _ c }
     };
     let exp = "pre fix a _ a post fix+pre fix b _ b post fix+pre fix c _ c post fix+";
-    assert_eq!( GOT, exp );
+    a_id!( GOT, exp );
   }
 
   /* test.case( "map-style, prefix" ) */
@@ -810,11 +810,11 @@ fn for_each_test()
     math_adapter::for_each!
     {
       test_with where
-      @PREFIX { pre fix }
-      @EACH { a _ a } { b _ b } { c _ c }
+      @Prefix { pre fix }
+      @Each { a _ a } { b _ b } { c _ c }
     };
     let exp = "pre fix a _ a+pre fix b _ b+pre fix c _ c+";
-    assert_eq!( GOT, exp );
+    a_id!( GOT, exp );
   }
 
   /* test.case( "map-style, postfix" ) */
@@ -824,11 +824,11 @@ fn for_each_test()
     math_adapter::for_each!
     {
       test_with where
-      @POSTFIX { post fix }
-      @EACH { a _ a } { b _ b } { c _ c }
+      @Postfix { post fix }
+      @Each { a _ a } { b _ b } { c _ c }
     };
     let exp = "a _ a post fix+b _ b post fix+c _ c post fix+";
-    assert_eq!( GOT, exp );
+    a_id!( GOT, exp );
   }
 
 }
@@ -861,7 +861,7 @@ fn for_each_higher_order_test()
       (
         $Callback where
         $( $( $Args )* )?
-        @EACH f32 f64
+        @Each f32 f64
       );
     };
 
@@ -871,10 +871,10 @@ fn for_each_higher_order_test()
   unsafe
   {
     GOT = "".to_string();
-    for_each_float!( test_with where @PREFIX { pre fix 1 } @POSTFIX { post fix } );
-    for_each_float!( test_with where @PREFIX { pre fix 2 } @POSTFIX { post fix } );
+    for_each_float!( test_with where @Prefix { pre fix 1 } @Postfix { post fix } );
+    for_each_float!( test_with where @Prefix { pre fix 2 } @Postfix { post fix } );
     let exp = "pre fix 1 f32 post fix;pre fix 1 f64 post fix;pre fix 2 f32 post fix;pre fix 2 f64 post fix;";
-    assert_eq!( GOT, exp );
+    a_id!( GOT, exp );
   }
 
   /* test.case( "without fixes" ) */
@@ -884,12 +884,12 @@ fn for_each_higher_order_test()
     math_adapter::for_each!
     {
       for_each_float where
-      @EACH
-        { test_with where @PREFIX { pre fix 1 } @POSTFIX { post fix } }
-        { test_with where @PREFIX { pre fix 2 } @POSTFIX { post fix } }
+      @Each
+        { test_with where @Prefix { pre fix 1 } @Postfix { post fix } }
+        { test_with where @Prefix { pre fix 2 } @Postfix { post fix } }
     }
     let exp = "pre fix 1 f32 post fix;pre fix 1 f64 post fix;pre fix 2 f32 post fix;pre fix 2 f64 post fix;";
-    assert_eq!( GOT, exp );
+    a_id!( GOT, exp );
   }
 
   /* test.case( "without fixes" ) */
@@ -899,14 +899,14 @@ fn for_each_higher_order_test()
     math_adapter::for_each!
     {
       for_each_float where
-      @PREFIX { test_with where @PREFIX }
-      @POSTFIX { @POSTFIX { post fix } }
-      @EACH
+      @Prefix { test_with where @Prefix }
+      @Postfix { @Postfix { post fix } }
+      @Each
         { { pre fix 1 } }
         { { pre fix 2 } }
     }
     let exp = "pre fix 1 f32 post fix;pre fix 1 f64 post fix;pre fix 2 f32 post fix;pre fix 2 f64 post fix;";
-    assert_eq!( GOT, exp );
+    a_id!( GOT, exp );
   }
 
 }

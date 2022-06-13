@@ -1,6 +1,6 @@
 // #![ allow( unused_imports ) ]
 
-use wtest_basic::*;
+use test_tools::*;
 use core::mem::size_of;
 use math_adapter::prelude::*;
 use math_adapter::X2;
@@ -17,18 +17,18 @@ fn basic_test()
 
   /* test.case = "size"; */
   {
-    assert_eq!( size_of::< winit::dpi::PhysicalSize::< T > >(), size_of::< ( T, T ) >() );
-    assert_eq!( size_of::< winit::dpi::PhysicalSize::< T > >(), size_of::< [ T ; 2 ] >() );
-    assert_eq!( size_of::< winit::dpi::PhysicalSize::< T > >(), 2 );
+    a_id!( size_of::< winit::dpi::PhysicalSize::< T > >(), size_of::< ( T, T ) >() );
+    a_id!( size_of::< winit::dpi::PhysicalSize::< T > >(), size_of::< [ T ; 2 ] >() );
+    a_id!( size_of::< winit::dpi::PhysicalSize::< T > >(), 2 );
   }
 
   /* test.case = "value of elements"; */
   {
     let got = winit::dpi::PhysicalSize::< i8 >{ width : 1, height : 2 };
-    assert_eq!( got.width, 1 );
-    assert_eq!( got.height, 2 );
-    assert_eq!( got._0(), 1 );
-    assert_eq!( got._1(), 2 );
+    a_id!( got.width, 1 );
+    a_id!( got.height, 2 );
+    a_id!( got._0(), 1 );
+    a_id!( got._1(), 2 );
   }
 
   // /* test.case = "operator add"; */
@@ -37,7 +37,7 @@ fn basic_test()
   //   let src2 = winit::dpi::PhysicalSize::< i8 >{ width : 2, height : 3 };
   //   let got = src1.as_canonical() + src2.as_canonical();
   //   let exp = math_adapter::X2::< i8 >( 3, 5 );
-  //   assert_eq!( got, exp );
+  //   a_id!( got, exp );
   // }
 
 }
@@ -77,7 +77,7 @@ fn cgmath_winit_interoperability_test()
     let src2 = winit::dpi::PhysicalSize::< i8 >::make( 0, 1 );
     let got = src1.as_cgmath() - src2.as_cgmath();
     let exp = cgmath::Vector2::< i8 >::make( 3, 1 );
-    assert_eq!( got, exp );
+    a_id!( got, exp );
   }
 
 }
@@ -98,7 +98,7 @@ fn inter_winit()
     let src1 = winit::dpi::PhysicalSize::< T >::make( 1, 3 );
     let got = src1.as_canonical().sum();
     let exp = 4;
-    assert_eq!( got, exp );
+    a_id!( got, exp );
   }
 
 }

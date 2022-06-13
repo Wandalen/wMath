@@ -1,6 +1,6 @@
 #![ allow( unused_imports ) ]
 
-use wtest_basic::*;
+use test_tools::*;
 use crate::test_tools::*;
 use math_adapter::prelude::*;
 use math_adapter::X2;

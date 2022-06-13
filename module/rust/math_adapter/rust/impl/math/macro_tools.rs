@@ -49,8 +49,8 @@
 //   /// math_adapter::braces_unwrap!
 //   /// (
 //   ///   dbg where
-//   ///   @PREFIX{ prefix, }
-//   ///   @POSTFIX{ postfix }
+//   ///   @Prefix{ prefix, }
+//   ///   @Postfix{ postfix }
 //   ///   @SRC{ { a, b, c, } }
 //   /// );
 //   /// // generates :
@@ -58,8 +58,8 @@
 //   /// math_adapter::braces_unwrap!
 //   /// (
 //   ///   dbg where
-//   ///   @PREFIX{ prefix, }
-//   ///   @POSTFIX{ postfix }
+//   ///   @Prefix{ prefix, }
+//   ///   @Postfix{ postfix }
 //   ///   @SRC{ a, b, c, }
 //   /// );
 //   /// // generates :
@@ -120,8 +120,8 @@
 //     /* 0 */
 //     (
 //       $Callback : path where
-//       @PREFIX{ { $( $Prefix : tt )* } }
-//       @POSTFIX{ { $( $Postfix : tt )* } }
+//       @Prefix{ { $( $Prefix : tt )* } }
+//       @Postfix{ { $( $Postfix : tt )* } }
 //       @SRC{ { $( $Src : tt )* } }
 //     )
 //     =>
@@ -134,8 +134,8 @@
 //     /* 1 */
 //     (
 //       $Callback : path where
-//       @PREFIX{ { $( $Prefix : tt )* } }
-//       @POSTFIX{ { $( $Postfix : tt )* } }
+//       @Prefix{ { $( $Prefix : tt )* } }
+//       @Postfix{ { $( $Postfix : tt )* } }
 //       @SRC{ $( $Src : tt )* }
 //     )
 //     =>
@@ -148,8 +148,8 @@
 //     /* 2 */
 //     (
 //       $Callback : path where
-//       @PREFIX{ { $( $Prefix : tt )* } }
-//       @POSTFIX{ $( $Postfix : tt )* }
+//       @Prefix{ { $( $Prefix : tt )* } }
+//       @Postfix{ $( $Postfix : tt )* }
 //       @SRC{ { $( $Src : tt )* } }
 //     )
 //     =>
@@ -162,8 +162,8 @@
 //     /* 3 */
 //     (
 //       $Callback : path where
-//       @PREFIX{ { $( $Prefix : tt )* } }
-//       @POSTFIX{ $( $Postfix : tt )* }
+//       @Prefix{ { $( $Prefix : tt )* } }
+//       @Postfix{ $( $Postfix : tt )* }
 //       @SRC{ $( $Src : tt )* }
 //     )
 //     =>
@@ -176,8 +176,8 @@
 //     /* 4 */
 //     (
 //       $Callback : path where
-//       @PREFIX{ $( $Prefix : tt )* }
-//       @POSTFIX{ { $( $Postfix : tt )* } }
+//       @Prefix{ $( $Prefix : tt )* }
+//       @Postfix{ { $( $Postfix : tt )* } }
 //       @SRC{ { $( $Src : tt )* } }
 //     )
 //     =>
@@ -190,8 +190,8 @@
 //     /* 5 */
 //     (
 //       $Callback : path where
-//       @PREFIX{ $( $Prefix : tt )* }
-//       @POSTFIX{ { $( $Postfix : tt )* } }
+//       @Prefix{ $( $Prefix : tt )* }
+//       @Postfix{ { $( $Postfix : tt )* } }
 //       @SRC{ $( $Src : tt )* }
 //     )
 //     =>
@@ -204,8 +204,8 @@
 //     /* 6 */
 //     (
 //       $Callback : path where
-//       @PREFIX{ $( $Prefix : tt )* }
-//       @POSTFIX{ $( $Postfix : tt )* }
+//       @Prefix{ $( $Prefix : tt )* }
+//       @Postfix{ $( $Postfix : tt )* }
 //       @SRC{ { $( $Src : tt )* } }
 //     )
 //     =>
@@ -218,8 +218,8 @@
 //     /* 7 */
 //     (
 //       $Callback : path where
-//       @PREFIX{ $( $Prefix : tt )* }
-//       @POSTFIX{ $( $Postfix : tt )* }
+//       @Prefix{ $( $Prefix : tt )* }
+//       @Postfix{ $( $Postfix : tt )* }
 //       @SRC{ $( $Src : tt )* }
 //     )
 //     =>
@@ -235,7 +235,7 @@
 //     /* 0 */
 //     (
 //       $Callback : path where
-//       @PREFIX{ { $( $Prefix : tt )* } }
+//       @Prefix{ { $( $Prefix : tt )* } }
 //       @SRC{ { $( $Src : tt )* } }
 //     )
 //     =>
@@ -248,7 +248,7 @@
 //     /* 1 */
 //     (
 //       $Callback : path where
-//       @PREFIX{ { $( $Prefix : tt )* } }
+//       @Prefix{ { $( $Prefix : tt )* } }
 //       @SRC{ $( $Src : tt )* }
 //     )
 //     =>
@@ -261,7 +261,7 @@
 //     /* 2 */
 //     (
 //       $Callback : path where
-//       @PREFIX{ $( $Prefix : tt )* }
+//       @Prefix{ $( $Prefix : tt )* }
 //       @SRC{ { $( $Src : tt )* } }
 //     )
 //     =>
@@ -274,7 +274,7 @@
 //     /* 3 */
 //     (
 //       $Callback : path where
-//       @PREFIX{ $( $Prefix : tt )* }
+//       @Prefix{ $( $Prefix : tt )* }
 //       @SRC{ $( $Src : tt )* }
 //     )
 //     =>
@@ -290,7 +290,7 @@
 //     /* 0 */
 //     (
 //       $Callback : path where
-//       @POSTFIX{ { $( $Postfix : tt )* } }
+//       @Postfix{ { $( $Postfix : tt )* } }
 //       @SRC{ { $( $Src : tt )* } }
 //     )
 //     =>
@@ -303,7 +303,7 @@
 //     /* 1 */
 //     (
 //       $Callback : path where
-//       @POSTFIX{ { $( $Postfix : tt )* } }
+//       @Postfix{ { $( $Postfix : tt )* } }
 //       @SRC{ $( $Src : tt )* }
 //     )
 //     =>
@@ -316,7 +316,7 @@
 //     /* 2 */
 //     (
 //       $Callback : path where
-//       @POSTFIX{ $( $Postfix : tt )* }
+//       @Postfix{ $( $Postfix : tt )* }
 //       @SRC{ { $( $Src : tt )* } }
 //     )
 //     =>
@@ -329,7 +329,7 @@
 //     /* 3 */
 //     (
 //       $Callback : path where
-//       @POSTFIX{ $( $Postfix : tt )* }
+//       @Postfix{ $( $Postfix : tt )* }
 //       @SRC{ $( $Src : tt )* }
 //     )
 //     =>
@@ -374,17 +374,17 @@
 //   /// # Sample : map-style call
 //   ///
 //   /// Macro `for_each` may be called either in function-style way or in map-style way.
-//   /// Use keys @PREFIX @POSTFIX @EACH to pass options as entries of a map.
-//   /// Options @PREFIX and @POSTFIX are optional and their entries could be ommited, but entry @EACH is mandatory.
-//   /// Order of options should always be @PREFIX, @POSTFIX, @EACH.
+//   /// Use keys @Prefix @Postfix @Each to pass options as entries of a map.
+//   /// Options @Prefix and @Postfix are optional and their entries could be ommited, but entry @Each is mandatory.
+//   /// Order of options should always be @Prefix, @Postfix, @Each.
 //   ///
 //   /// ```rust
 //   /// math_adapter::for_each!
 //   /// {
 //   ///   dbg where
-//   ///   @PREFIX { "prefix".to_string() + }
-//   ///   @POSTFIX { + "postfix" }
-//   ///   @EACH "a" "b" "c"
+//   ///   @Prefix { "prefix".to_string() + }
+//   ///   @Postfix { + "postfix" }
+//   ///   @Each "a" "b" "c"
 //   /// };
 //   /// // generates
 //   /// dbg!( "prefix".to_string() + "a" + "postfix" );
@@ -407,9 +407,9 @@
 //   /// math_adapter::for_each!
 //   /// {
 //   ///   dbg where
-//   ///   @PREFIX { "prefix".to_string() + }
-//   ///   @POSTFIX { + "postfix" }
-//   ///   @EACH { "a" + "1" } { "b" + "2" } { "c" + "3" }
+//   ///   @Prefix { "prefix".to_string() + }
+//   ///   @Postfix { + "postfix" }
+//   ///   @Each { "a" + "1" } { "b" + "2" } { "c" + "3" }
 //   /// };
 //   /// // generates
 //   /// dbg!( "prefix".to_string() + "a" + "1" + "postfix" );
@@ -425,8 +425,8 @@
 //   /// ```
 //   /// math_adapter::for_each!
 //   /// {
-//   ///   @PREFIX { dbg! }
-//   ///   @EACH ( "a" ) ( "b" ) ( "c" )
+//   ///   @Prefix { dbg! }
+//   ///   @Each ( "a" ) ( "b" ) ( "c" )
 //   /// };
 //   /// // generates
 //   /// dbg!( "a" );
@@ -453,43 +453,43 @@
 //     // -- callback-less
 //
 //     (
-//       @PREFIX $Prefix : tt
-//       @POSTFIX $Postfix : tt
-//       @EACH $( $Each : tt )*
+//       @Prefix $Prefix : tt
+//       @Postfix $Postfix : tt
+//       @Each $( $Each : tt )*
 //     ) =>
 //     {
 //       $crate::for_each!
 //       {
 //         $crate::identity where
-//         @PREFIX $Prefix
-//         @POSTFIX $Postfix
-//         @EACH $( $Each )*
+//         @Prefix $Prefix
+//         @Postfix $Postfix
+//         @Each $( $Each )*
 //       }
 //     };
 //
 //     (
-//       @PREFIX $Prefix : tt
-//       @EACH $( $Each : tt )*
+//       @Prefix $Prefix : tt
+//       @Each $( $Each : tt )*
 //     ) =>
 //     {
 //       $crate::for_each!
 //       {
 //         $crate::identity where
-//         @PREFIX $Prefix
-//         @EACH $( $Each )*
+//         @Prefix $Prefix
+//         @Each $( $Each )*
 //       }
 //     };
 //
 //     (
-//       @POSTFIX $Postfix : tt
-//       @EACH $( $Each : tt )*
+//       @Postfix $Postfix : tt
+//       @Each $( $Each : tt )*
 //     ) =>
 //     {
 //       $crate::for_each!
 //       {
 //         $crate::identity where
-//         @POSTFIX $Postfix
-//         @EACH $( $Each )*
+//         @Postfix $Postfix
+//         @Each $( $Each )*
 //       }
 //     };
 //
@@ -497,7 +497,7 @@
 //
 //     (
 //       $Callback : path where
-//       @EACH $( $Each : tt )*
+//       @Each $( $Each : tt )*
 //     ) =>
 //     {
 //       $(
@@ -508,17 +508,17 @@
 //     (
 //       $Callback : path
 //       where
-//         @PREFIX $Prefix : tt
-//         @POSTFIX $Postfix : tt
-//         @EACH $( $Each : tt )*
+//         @Prefix $Prefix : tt
+//         @Postfix $Postfix : tt
+//         @Each $( $Each : tt )*
 //     ) =>
 //     {
 //       $(
 //         $crate::braces_unwrap!
 //         (
 //           $Callback where
-//           @PREFIX{ $Prefix }
-//           @POSTFIX{ $Postfix }
+//           @Prefix{ $Prefix }
+//           @Postfix{ $Postfix }
 //           @SRC{ $Each }
 //         );
 //       )*
@@ -526,15 +526,15 @@
 //
 //     (
 //       $Callback : path where
-//       @PREFIX $Prefix : tt
-//       @EACH $( $Each : tt )*
+//       @Prefix $Prefix : tt
+//       @Each $( $Each : tt )*
 //     ) =>
 //     {
 //       $(
 //         $crate::braces_unwrap!
 //         (
 //           $Callback where
-//           @PREFIX{ $Prefix }
+//           @Prefix{ $Prefix }
 //           @SRC{ $Each }
 //         );
 //       )*
@@ -542,15 +542,15 @@
 //
 //     (
 //       $Callback : path where
-//       @POSTFIX $Postfix : tt
-//       @EACH $( $Each : tt )*
+//       @Postfix $Postfix : tt
+//       @Each $( $Each : tt )*
 //     ) =>
 //     {
 //       $(
 //         $crate::braces_unwrap!
 //         (
 //           $Callback where
-//           @POSTFIX{ $Postfix }
+//           @Postfix{ $Postfix }
 //           @SRC{ $Each }
 //         );
 //       )*
