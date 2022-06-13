@@ -9,7 +9,7 @@ use crate::num;
 /// One test should be ordinary to exclude possibility of problems with macro.
 ///
 
-fn _basic_test()
+fn basic_test()
 {
   type T = i8;
 
@@ -349,7 +349,7 @@ macro_rules! canonical_test_for_number
 /// Basic test of canonical X2 vector.
 ///
 
-fn _canonical_test()
+fn canonical_test()
 {
 
   math_adapter::for_each_int!( canonical_test_for_int );
@@ -362,7 +362,7 @@ fn _canonical_test()
 /// Operations without dereferencing.
 ///
 
-fn _operation_test()
+fn operation_test()
 {
   #[ cfg( any( feature = "cgmath_ops", feature = "nalgebra_ops", feature = "default_ops" ) ) ]
   {
@@ -400,7 +400,7 @@ fn _operation_test()
 
 test_suite!
 {
-  basic_test,
-  canonical_test,
-  operation_test,
+  basic,
+  canonical,
+  operation,
 }

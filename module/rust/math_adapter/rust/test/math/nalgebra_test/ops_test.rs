@@ -10,7 +10,7 @@ use math_adapter::X2;
 /// Tests for X2 conversion function as clone_as_foreign, as_foreign, as_foreign_mut .
 ///
 
-fn _convertion_foreign_test()
+fn convertion_foreign_test()
 {
   type T = i8;
 
@@ -22,7 +22,7 @@ fn _convertion_foreign_test()
 /// Operations with dereferencing.
 ///
 
-fn _operation_deref_test()
+fn operation_deref_test()
 {
   type T = i8;
 
@@ -34,7 +34,7 @@ fn _operation_deref_test()
 /// Interoperability with cgmath.
 ///
 
-fn _inter_cgmath_test()
+fn inter_cgmath_test()
 {
   #[ cfg( feature = "cgmath" ) ]
   {
@@ -67,7 +67,7 @@ fn _inter_cgmath_test()
 
 test_suite!
 {
-  convertion_foreign_test,
-  operation_deref_test,
-  inter_cgmath_test,
+  convertion_foreign,
+  operation_deref,
+  inter_cgmath,
 }
