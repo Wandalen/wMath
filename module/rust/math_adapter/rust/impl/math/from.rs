@@ -1,5 +1,5 @@
 /// Internal namespace.
-mod internal
+pub( crate ) mod internal
 {
 
   ///
@@ -13,15 +13,6 @@ mod internal
     /// Performs the conversion.
     fn from2( _ : T ) -> Self;
   }
-
-  // impl< Target > From2< &Target >
-  // for Target
-  // {
-  //   fn from2( original : &Target ) -> Self
-  //   {
-  //     < Self as From2< Target > >::from2( *original )
-  //   }
-  // }
 
   ///
   /// Local implementation of trait Into.
@@ -57,7 +48,7 @@ pub mod exposed
 
 pub use exposed::*;
 
-/// Prelude to use: `use wtools::prelude::*`.
+/// Prelude to use essentials: `use my_module::prelude::*`.
 pub mod prelude
 {
   use super::internal as i;

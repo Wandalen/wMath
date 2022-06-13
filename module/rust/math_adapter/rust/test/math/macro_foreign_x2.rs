@@ -2,7 +2,7 @@
 #![ allow( unused_imports ) ]
 
 /// Internal namespace.
-mod internal
+pub( crate ) mod internal
 {
 
   ///

@@ -1,5 +1,5 @@
 /// Internal namespace.
-mod internal
+pub( crate ) mod internal
 {
   /// X2 Vector of nalgebra
   pub type X2< Scalar > = nalgebra::Vector2< Scalar >;
@@ -35,7 +35,7 @@ pub mod exposed
 
 pub use exposed::*;
 
-/// Prelude to use: `use wtools::prelude::*`.
+/// Prelude to use essentials: `use my_module::prelude::*`.
 pub mod prelude
 {
   pub use super::as_foreign::prelude::*;

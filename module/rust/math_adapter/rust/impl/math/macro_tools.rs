@@ -7,7 +7,7 @@
 // */
 //
 // /// Internal namespace.
-// mod internal
+// pub( crate ) mod internal
 // {
 //
 //   // /// Reinterpret tokens as path.
