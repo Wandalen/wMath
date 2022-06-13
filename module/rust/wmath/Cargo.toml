@@ -51,14 +51,6 @@ default = [] # default features
 
 [dependencies]
 math_adapter = { version = "~0.3", path = "../../rust/math_adapter" }
-# cgmath = { version = "~0.18", optional = true }
-# nalgebra = { version = "~0.30", optional = true }
-# winit = { version = "~0.26", optional = true }
-# num-traits = "~0.2"
-# paste = "~1.0"
-# anyhow = "~1.0"
 
 [dev-dependencies]
-wtest_basic = { version = "~0.1" }
-# paste = "1.0.5"
-# trybuild = { version = "~1.0", features = [ "diff" ] }
+test_tools = { version = "~0.1" }
