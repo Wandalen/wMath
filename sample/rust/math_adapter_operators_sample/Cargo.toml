@@ -14,4 +14,4 @@ nalgebra_ops = [ "nalgebra", "math_adapter/nalgebra_ops" ] # reuse operands and 
 default = [ "cgmath_ops" ] # default features
 
 [dependencies]
-math_adapter = { version = "*", path = "../../../module/rust/math_adapter", features = [ "cgmath_ops" ] }
+math_adapter = { version = "*", path = "../../../module/rust/math_adapter" }

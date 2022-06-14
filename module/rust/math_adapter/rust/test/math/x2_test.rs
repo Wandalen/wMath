@@ -2,43 +2,7 @@ use core::mem::size_of;
 use math_adapter::prelude::*;
 use math_adapter::X2;
 use test_tools::*;
-use crate::test_tools::*;
 use crate::num;
-
-///
-/// One test should be ordinary to exclude possibility of problems with macro.
-///
-
-fn basic_test()
-{
-  type T = i8;
-
-  /* test.case = "size"; */
-  {
-    a_id!( size_of::< X2::< T > >(), size_of::< ( T, T ) >() );
-    a_id!( size_of::< X2::< T > >(), size_of::< [ T ; 2 ] >() );
-    a_id!( size_of::< X2::< T > >(), 2 );
-  }
-
-  /* test.case = "value of elements"; */
-  {
-    let got = X2::< i8 >( 1, 2 );
-    a_id!( got.0, 1 );
-    a_id!( got.1, 2 );
-    a_id!( got._0(), 1 );
-    a_id!( got._1(), 2 );
-  }
-
-  // /* test.case = "operator add"; */
-  // {
-  //   let src1 = X2::< i8 >( 1, 2 );
-  //   let src2 = X2::< i8 >( 2, 3 );
-  //   let got = src1 + src2;
-  //   let exp = X2::< i8 >( 3, 5 );
-  //   a_id!( got, exp );
-  // }
-
-}
 
 //
 
@@ -345,60 +309,98 @@ macro_rules! canonical_test_for_number
 
 }
 
-///
-/// Basic test of canonical X2 vector.
-///
+//
 
-fn canonical_test()
+tests_impls!
 {
+  ///
+  /// One test should be ordinary to exclude possibility of problems with macro.
+  ///
 
-  math_adapter::for_each_int!( canonical_test_for_int );
-  math_adapter::for_each_float!( canonical_test_for_float );
-  math_adapter::for_each_number!( canonical_test_for_number );
-
-}
-
-///
-/// Operations without dereferencing.
-///
-
-fn operation_test()
-{
-  #[ cfg( any( feature = "cgmath_ops", feature = "nalgebra_ops", feature = "default_ops" ) ) ]
+  fn basic()
   {
     type T = i8;
 
-    /* test.case = "neg"; */
+    /* test.case = "size"; */
     {
-      let src1 = X2::< T >::make( 4, 3 );
-      let got = - src1;
-      let exp = X2::< T >::make( -4, -3 );
-      a_id!( got, exp );
+      a_id!( size_of::< X2::< T > >(), size_of::< ( T, T ) >() );
+      a_id!( size_of::< X2::< T > >(), size_of::< [ T ; 2 ] >() );
+      a_id!( size_of::< X2::< T > >(), 2 );
     }
 
-    /* test.case = "add"; */
+    /* test.case = "value of elements"; */
     {
-      let src1 = X2::< T >::make( 4, 3 );
-      let src2 = X2::< T >::make( 2, 1 );
-      let got = src1 + src2;
-      let exp = X2::< T >::make( 6, 4 );
-      a_id!( got, exp );
+      let got = X2::< i8 >( 1, 2 );
+      a_id!( got.0, 1 );
+      a_id!( got.1, 2 );
+      a_id!( got._0(), 1 );
+      a_id!( got._1(), 2 );
     }
 
-    /* test.case = "sub"; */
+    // /* test.case = "operator add"; */
+    // {
+    //   let src1 = X2::< i8 >( 1, 2 );
+    //   let src2 = X2::< i8 >( 2, 3 );
+    //   let got = src1 + src2;
+    //   let exp = X2::< i8 >( 3, 5 );
+    //   a_id!( got, exp );
+    // }
+
+  }
+
+  ///
+  /// Basic test of canonical X2 vector.
+  ///
+
+  fn canonical()
+  {
+    math_adapter::for_each_int!( canonical_test_for_int );
+    math_adapter::for_each_float!( canonical_test_for_float );
+    math_adapter::for_each_number!( canonical_test_for_number );
+  }
+
+  ///
+  /// Operations without dereferencing.
+  ///
+
+  fn operation()
+  {
+    #[ cfg( any( feature = "cgmath_ops", feature = "nalgebra_ops" ) ) ]
     {
-      let src1 = X2::< T >::make( 4, 3 );
-      let src2 = X2::< T >::make( 1, 2 );
-      let got = src1 - src2;
-      let exp = X2::< T >::make( 3, 1 );
-      a_id!( got, exp );
+      type T = i8;
+
+      /* test.case = "neg"; */
+      {
+        let src1 = X2::< T >::make( 4, 3 );
+        let got = - src1;
+        let exp = X2::< T >::make( -4, -3 );
+        a_id!( got, exp );
+      }
+
+      /* test.case = "add"; */
+      {
+        let src1 = X2::< T >::make( 4, 3 );
+        let src2 = X2::< T >::make( 2, 1 );
+        let got = src1 + src2;
+        let exp = X2::< T >::make( 6, 4 );
+        a_id!( got, exp );
+      }
+
+      /* test.case = "sub"; */
+      {
+        let src1 = X2::< T >::make( 4, 3 );
+        let src2 = X2::< T >::make( 1, 2 );
+        let got = src1 - src2;
+        let exp = X2::< T >::make( 3, 1 );
+        a_id!( got, exp );
+      }
     }
   }
 }
 
 //
 
-test_suite!
+tests_index!
 {
   basic,
   canonical,

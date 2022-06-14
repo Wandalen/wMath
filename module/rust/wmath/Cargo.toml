@@ -18,6 +18,9 @@ Math library aggregating several math modules.
 categories = [ "algorithms", "development-tools" ]
 keywords = [ "fundamental", "general-purpose", "testing" ]
 
+[package.metadata.docs.rs]
+all-features = true
+
 include = [
   "/rust/impl/math",
   "/Cargo.toml",
@@ -25,8 +28,18 @@ include = [
   "/License",
 ]
 
-[package.metadata.docs.rs]
-all-features = true
+[features]
+default = [ "use_std" ]
+full = [ "use_std", "use_alloc" ]
+use_std = []
+use_alloc = []
+
+cgmath = [ "math_adapter/cgmath" ] # use `cgmath` as math library
+nalgebra = [ "math_adapter/nalgebra" ] # use `nalgebra` as math library
+winit = [ "math_adapter/winit" ] # implement interfaces for vectors of `winit`
+default_ops = [ "math_adapter/default_ops" ] # reuse operands and function of default math library
+cgmath_ops = [ "cgmath", "math_adapter/cgmath_ops" ] # reuse operands and function of `cgmath` as math library
+nalgebra_ops = [ "nalgebra", "math_adapter/nalgebra_ops" ] # reuse operands and function of `nalgebra` as math library
 
 [lib]
 name = "wmath"
@@ -39,15 +52,6 @@ path = "rust/test/math/wmath_lib_test.rs"
 [[example]]
 name = "wmath_trivial_sample"
 path = "../../../sample/rust/wmath_trivial_sample/src/main.rs"
-
-[features]
-cgmath = [ "math_adapter/cgmath" ] # use `cgmath` as math library
-nalgebra = [ "math_adapter/nalgebra" ] # use `nalgebra` as math library
-winit = [ "math_adapter/winit" ] # implement interfaces for vectors of `winit`
-default_ops = [ "math_adapter/default_ops" ] # reuse operands and function of default math library
-cgmath_ops = [ "cgmath", "math_adapter/cgmath_ops" ] # reuse operands and function of `cgmath` as math library
-nalgebra_ops = [ "nalgebra", "math_adapter/nalgebra_ops" ] # reuse operands and function of `nalgebra` as math library
-default = [] # default features
 
 [dependencies]
 math_adapter = { version = "~0.3", path = "../../rust/math_adapter" }
