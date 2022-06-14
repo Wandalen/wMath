@@ -12,7 +12,7 @@ fn adapter_basic_test()
   }
 
   // test.case = "operator add";
-  #[ cfg( any( feature = "cgmath_ops", feature = "nalgebra_ops", feature = "default_ops" ) ) ]
+  #[ cfg( any( feature = "cgmath_ops", feature = "nalgebra_ops" ) ) ]
   {
     let src1 = wmath::X2::make( 1, 2 );
     let src2 = wmath::X2::make( 3, 4 );
