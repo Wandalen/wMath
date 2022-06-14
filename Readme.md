@@ -4,7 +4,7 @@
 <!-- {{# generate.main_header{} #}} -->
 
 [![discord](https://img.shields.io/discord/872391416519737405?color=eee&logo=discord&logoColor=eee&label=ask)](https://discord.gg/m3YfbXpUUY)
-[![Open in Gitpod](https://raster.shields.io/static/v1?label=try&message=online&color=eee&logo=gitpod&logoColor=eee)](https://gitpod.io/#RUN_PATH=.,SAMPLE_FILE=sample%2Frust%2Fmath_adapter_trivial_sample%2Fsrc%2Fmain.rs,RUN_POSTFIX=--example%20math_adapter_trivial_sample/https://github.com/Wandalen/wMath)
+[![Open in Gitpod](https://raster.shields.io/static/v1?label=try&message=online&color=eee&logo=gitpod&logoColor=eee)](https://gitpod.io/#RUN_PATH=.,SAMPLE_FILE=sample%2Frust%2Fwmath_trivial_sample%2Fsrc%2Fmain.rs,RUN_POSTFIX=--example%20wmath_trivial_sample/https://github.com/Wandalen/wMath)
 [![docs.rs](https://raster.shields.io/static/v1?label=docs&message=online&color=eee&logo=docsdotrs&logoColor=eee)](https://docs.rs/wmath)
 
 Home for math modules.
