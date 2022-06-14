@@ -36,17 +36,17 @@ fn for_each_int_test()
 
   let mut got = String::new();
   math_adapter::for_each_int!( stringify_type_name where @Prefix got );
-  let exp = "i8_i16_i32_i64_i128_u8_u16_u32_u64_u128_";
+  let exp = "isize_i8_i16_i32_i64_i128_usize_u8_u16_u32_u64_u128_";
   a_id!( got, exp );
 
   let mut got = String::new();
   math_adapter::for_each_int!( stringify_type_name where @Prefix got @Postfix . );
-  let exp = "i8._i16._i32._i64._i128._u8._u16._u32._u64._u128._";
+  let exp = "isize._i8._i16._i32._i64._i128._usize._u8._u16._u32._u64._u128._";
   a_id!( got, exp );
 
   let mut got = String::new();
   math_adapter::for_each_int!( stringify_type_name where @Prefix got @Postfix( a b c ) );
-  let exp = "i8(a b c)_i16(a b c)_i32(a b c)_i64(a b c)_i128(a b c)_u8(a b c)_u16(a b c)_u32(a b c)_u64(a b c)_u128(a b c)_";
+  let exp = "isize(a b c)_i8(a b c)_i16(a b c)_i32(a b c)_i64(a b c)_i128(a b c)_usize(a b c)_u8(a b c)_u16(a b c)_u32(a b c)_u64(a b c)_u128(a b c)_";
   a_id!( got, exp );
 
 }
@@ -79,12 +79,12 @@ fn for_each_number_test()
 
   let mut got = String::new();
   math_adapter::for_each_number!( stringify_type_name where @Prefix got );
-  let exp = "i8_i16_i32_i64_i128_u8_u16_u32_u64_u128_f32_f64_";
+  let exp = "isize_i8_i16_i32_i64_i128_usize_u8_u16_u32_u64_u128_f32_f64_";
   a_id!( got, exp );
 
   let mut got = String::new();
   math_adapter::for_each_number!( stringify_type_name where @Prefix got @Postfix . );
-  let exp = "i8._i16._i32._i64._i128._u8._u16._u32._u64._u128._f32._f64._";
+  let exp = "isize._i8._i16._i32._i64._i128._usize._u8._u16._u32._u64._u128._f32._f64._";
   a_id!( got, exp );
 
 }

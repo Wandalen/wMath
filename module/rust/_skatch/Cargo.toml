@@ -18,6 +18,9 @@ ___.
 categories = [ "algorithms", "development-tools" ]
 keywords = [ "fundamental", "general-purpose", "testing" ]
 
+[package.metadata.docs.rs]
+all-features = true
+
 include = [
   "/rust/impl/math",
   "/Cargo.toml",
@@ -25,22 +28,25 @@ include = [
   "/License",
 ]
 
+[features]
+default = [ "use_std" ]
+full = [ "use_std", "use_alloc" ]
+use_std = []
+use_alloc = []
+
 [lib]
 name = "wskatch"
-path = "rust/impl/math/lib.rs"
+path = "rust/impl/math/wskatch_lib.rs"
 
 [[test]]
 name = "wskatch_test"
-path = "rust/test/math/wmath_test.rs"
+path = "rust/test/math/wskatch_test.rs"
 
 # [[example]]
-# name = "wskatch_trivial"
-# path = "sample/rust/wskatch_trivial/src/main.rs"
+# name = "wskatch_trivial_sample"
+# path = "sample/rust/wskatch_trivial_sample/src/main.rs"
 
 [dependencies]
-# paste = "~1.0"
-# anyhow = "~1.0"
-wtest_basic = "~0.1"
+test_tools = "~0.1"
 
 [dev-dependencies]
-# trybuild = { version = "~1.0", features = [ "diff" ] }
