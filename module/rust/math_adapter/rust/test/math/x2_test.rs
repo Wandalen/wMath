@@ -2,7 +2,6 @@ use core::mem::size_of;
 use math_adapter::prelude::*;
 use math_adapter::X2;
 use test_tools::*;
-use crate::test_tools::*;
 use crate::num;
 
 ///
@@ -364,7 +363,7 @@ fn canonical_test()
 
 fn operation_test()
 {
-  #[ cfg( any( feature = "cgmath_ops", feature = "nalgebra_ops", feature = "default_ops" ) ) ]
+  #[ cfg( any( feature = "cgmath_ops", feature = "nalgebra_ops" ) ) ]
   {
     type T = i8;
 

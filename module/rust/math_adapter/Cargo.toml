@@ -44,7 +44,7 @@ path = "rust/impl/math/math_adapter_lib.rs"
 
 [[test]]
 name = "math_adapter_test"
-path = "rust/test/math/math_adapter_lib_test.rs"
+path = "rust/test/math/math_adapter_tests.rs"
 
 [[example]]
 name = "math_adapter_trivial_sample"
