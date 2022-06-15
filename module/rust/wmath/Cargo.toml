@@ -43,7 +43,7 @@ nalgebra_ops = [ "nalgebra", "math_adapter/nalgebra_ops" ] # reuse operands and 
 
 [lib]
 name = "wmath"
-path = "rust/impl/math/lib.rs"
+path = "rust/impl/math/wmath_lib.rs"
 
 [[test]]
 name = "wmath_test"
