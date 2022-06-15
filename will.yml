@@ -154,6 +154,7 @@ path:
         - release
       raw: compiled
       content: prime
+  npm.publish: 'module/js/{about::name}'
   npm.proto.entry:
     - proto/wtools/amath/l9/Include.s
     - proto/node_modules/wmath
