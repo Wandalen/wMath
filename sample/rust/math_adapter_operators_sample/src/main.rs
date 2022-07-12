@@ -7,7 +7,9 @@ fn main()
 {
   #[ cfg( feature = "use_std" ) ]
   {
+    #[ allow( unused_imports ) ]
     use math_adapter::prelude::*;
+    #[ allow( unused_imports ) ]
     use math_adapter::X2;
 
     // if back-end math lib is chosen then operators and functions are available
