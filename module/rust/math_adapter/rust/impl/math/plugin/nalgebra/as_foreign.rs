@@ -1,5 +1,5 @@
 /// Internal namespace.
-pub( crate ) mod internal
+pub( crate ) mod private
 {
 
   #[ allow( unused_imports ) ]
@@ -71,9 +71,9 @@ pub( crate ) mod internal
 /// Exposed namespace of the module.
 pub mod exposed
 {
-  use super::internal as i;
-  pub use i::AsNalgebraNonCanonicalInterface;
-  pub use i::AsNalgebraCanonicalInterface;
+  // use super::internal as i;
+  pub use super::private::AsNalgebraNonCanonicalInterface;
+  pub use super::private::AsNalgebraCanonicalInterface;
   pub use crate::AsForeignNonCanonicalInterface;
   pub use crate::AsForeignCanonicalInterface;
 }
@@ -84,11 +84,11 @@ pub use exposed::*;
 pub mod prelude
 {
   #[ allow( unused_imports ) ]
-  use super::internal as i;
+  // use super::internal as i;
   #[ cfg( any( feature = "nalgebra_ops", feature = "default_ops" ) ) ]
-  pub use i::AsNalgebraNonCanonicalInterface;
+  pub use super::private::AsNalgebraNonCanonicalInterface;
   #[ cfg( any( feature = "nalgebra_ops", feature = "default_ops" ) ) ]
-  pub use i::AsNalgebraCanonicalInterface;
+  pub use super::private::AsNalgebraCanonicalInterface;
   pub use crate::AsForeignNonCanonicalInterface;
   pub use crate::AsForeignCanonicalInterface;
 }

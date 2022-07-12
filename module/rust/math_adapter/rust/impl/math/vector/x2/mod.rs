@@ -1,5 +1,5 @@
 /// Internal namespace.
-pub( crate ) mod internal
+pub( crate ) mod private
 {
   // use core::fmt::Debug;
   use core::hash::Hash;
@@ -22,19 +22,31 @@ pub( crate ) mod internal
 #[ allow( unused_imports ) ]
 pub mod macros
 {
-  use super::internal as i;
+  use super::private as i;
   pub( crate ) use i::impl_x2_deref;
   pub( crate ) use i::impl_x2_rented_op1;
   pub( crate ) use i::impl_x2_rented_op2;
 }
 /* qqq : implement alll operators */
 
+// crate::mod_interface!
+// {
+//   protected use super::macros::*;
+//
+//   prelude use X2;
+//   prelude use X2NominalInterface as X2Interface;
+//   prelude use X2NominalInterface;
+//   prelude use X2BasicInterface;
+//   prelude use X2CanonicalInterface;
+//
+// }
+
 /// Own namespace of the module.
 #[ allow( unused_imports ) ]
 pub mod protected
 {
   pub use super::exposed::*;
-  use super::internal as i;
+  // use super::internal as i;
   pub use super::macros::*;
 }
 
@@ -43,12 +55,12 @@ pub use protected::*;
 /// Exposed namespace of the module.
 pub mod exposed
 {
-  use super::internal as i;
-  pub use i::X2;
-  pub use i::X2NominalInterface as X2Interface;
-  pub use i::X2NominalInterface;
-  pub use i::X2BasicInterface;
-  pub use i::X2CanonicalInterface;
+  // use super::internal as i;
+  pub use super::private::X2;
+  pub use super::private::X2NominalInterface as X2Interface;
+  pub use super::private::X2NominalInterface;
+  pub use super::private::X2BasicInterface;
+  pub use super::private::X2CanonicalInterface;
 }
 
 pub use exposed::*;
@@ -56,10 +68,10 @@ pub use exposed::*;
 /// Prelude to use essentials: `use my_module::prelude::*`.
 pub mod prelude
 {
-  use super::internal as i;
-  pub use i::X2;
-  pub use i::X2NominalInterface as X2Interface;
-  pub use i::X2NominalInterface;
-  pub use i::X2BasicInterface;
-  pub use i::X2CanonicalInterface;
+  // use super::internal as i;
+  pub use super::private::X2;
+  pub use super::private::X2NominalInterface as X2Interface;
+  pub use super::private::X2NominalInterface;
+  pub use super::private::X2BasicInterface;
+  pub use super::private::X2CanonicalInterface;
 }

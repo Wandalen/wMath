@@ -1,5 +1,5 @@
 /// Internal namespace.
-pub( crate ) mod internal
+pub( crate ) mod private
 {
 
   /// X2 Vector of cgmath
@@ -26,8 +26,8 @@ pub mod x2;
 pub mod protected
 {
   pub use super::exposed::*;
-  use super::internal as i;
-  pub use i::X2;
+  // use super::internal as i;
+  pub use super::private::X2;
   pub use cgmath::*;
 }
 

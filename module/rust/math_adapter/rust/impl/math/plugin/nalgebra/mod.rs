@@ -1,5 +1,5 @@
 /// Internal namespace.
-pub( crate ) mod internal
+pub( crate ) mod private
 {
   /// X2 Vector of nalgebra
   pub type X2< Scalar > = nalgebra::Vector2< Scalar >;
@@ -17,8 +17,8 @@ pub mod x2;
 /// Own namespace of the module.
 pub mod protected
 {
-  use super::internal as i;
-  pub use i::X2;
+  // use super::internal as i;
+  pub use super::private::X2;
   pub use nalgebra::*;
 }
 

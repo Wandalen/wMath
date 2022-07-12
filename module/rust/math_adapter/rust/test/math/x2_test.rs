@@ -3,6 +3,7 @@ use math_adapter::prelude::*;
 use math_adapter::X2;
 use test_tools::*;
 use crate::num;
+// use mem_tools::exposed::*;
 
 //
 
@@ -179,7 +180,7 @@ macro_rules! canonical_test_for_number
       let got = src.clone_as_tuple();
       let exp : ( T , T ) = ( num!( 1 ), num!( 2 ) );
       a_id!( got, exp );
-      a_true!( !mem_same_ptr( &got, &src ) ); /* qqq : discuss postfix */
+      a_true!( !mem::same_ptr( &got, &src ) ); /* qqq : discuss postfix */
     }
 
     /* test.case = "clone_as_array"; */
@@ -188,7 +189,7 @@ macro_rules! canonical_test_for_number
       let got = src.clone_as_array();
       let exp : [ T ; 2 ] = [ num!( 1 ), num!( 2 ) ];
       a_id!( got, exp );
-      a_true!( !mem_same_ptr( &got, &src ) );
+      a_true!( !mem::same_ptr( &got, &src ) );
     }
 
     /* test.case = "clone_as_canonical"; */
@@ -197,7 +198,7 @@ macro_rules! canonical_test_for_number
       let got = src.clone_as_canonical();
       let exp = X2::< T >( num!( 1 ), num!( 2 ) );
       a_id!( got, exp );
-      a_true!( !mem_same_ptr( &got, &src ) );
+      a_true!( !mem::same_ptr( &got, &src ) );
     }
 
     // --
@@ -208,7 +209,7 @@ macro_rules! canonical_test_for_number
       let got = src.as_tuple();
       let exp : ( T , T ) = ( num!( 1 ), num!( 2 ) );
       a_id!( got, &exp );
-      a_true!( mem_same_region( got, &src ) ); /* qqq : discuss */
+      a_true!( mem::same_region( got, &src ) ); /* qqq : discuss */
     }
 
     /* test.case = "as_array"; */
@@ -217,7 +218,7 @@ macro_rules! canonical_test_for_number
       let got = src.as_array();
       let exp : [ T ; 2 ] = [ num!( 1 ), num!( 2 ) ];
       a_id!( got, &exp );
-      a_true!( mem_same_region( got, &src ) );
+      a_true!( mem::same_region( got, &src ) );
     }
 
     /* test.case = "as_canonical"; */
@@ -226,7 +227,7 @@ macro_rules! canonical_test_for_number
       let got = src.as_canonical();
       let exp = X2::< T >( num!( 1 ), num!( 2 ) );
       a_id!( got, &exp );
-      a_true!( mem_same_region( got, &src ) );
+      a_true!( mem::same_region( got, &src ) );
     }
 
     /* test.case = "as_slice"; */

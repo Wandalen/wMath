@@ -1,5 +1,5 @@
 /// Internal namespace.
-pub( crate ) mod internal
+pub( crate ) mod private
 {
   use core::mem::size_of;
   use crate::prelude::*;
@@ -118,7 +118,7 @@ pub( crate ) mod internal
 /// Exposed namespace of the module.
 pub mod exposed
 {
-  // use super::internal as i;
+  // // use super::internal as i;
 }
 
 pub use exposed::*;
@@ -126,5 +126,5 @@ pub use exposed::*;
 /// Prelude to use essentials: `use my_module::prelude::*`.
 pub mod prelude
 {
-  // use super::internal as i;
+  // // use super::internal as i;
 }

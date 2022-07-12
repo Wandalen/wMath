@@ -2,7 +2,7 @@
 #![ allow( unused_imports ) ]
 
 /// Internal namespace.
-pub( crate ) mod internal
+pub( crate ) mod private
 {
 
   ///
@@ -82,4 +82,4 @@ pub( crate ) mod internal
 
 }
 
-pub use internal::*;
+pub use private::*;

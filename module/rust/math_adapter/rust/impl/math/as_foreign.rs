@@ -1,5 +1,5 @@
 /// Internal namespace.
-pub( crate ) mod internal
+pub( crate ) mod private
 {
   // use crate::prelude::*;
 
@@ -36,11 +36,11 @@ pub( crate ) mod internal
 /// Exposed namespace of the module.
 pub mod exposed
 {
-  use super::internal as i;
+  // use super::internal as i;
   #[ doc( inline ) ]
-  pub use i::AsForeignNonCanonicalInterface;
+  pub use super::private::AsForeignNonCanonicalInterface;
   #[ doc( inline ) ]
-  pub use i::AsForeignCanonicalInterface;
+  pub use super::private::AsForeignCanonicalInterface;
 }
 
 #[ doc( inline ) ]
@@ -49,7 +49,7 @@ pub use exposed::*;
 /// Prelude to use essentials: `use my_module::prelude::*`.
 pub mod prelude
 {
-  use super::internal as i;
-  pub use i::AsForeignNonCanonicalInterface;
-  pub use i::AsForeignCanonicalInterface;
+  // use super::internal as i;
+  pub use super::private::AsForeignNonCanonicalInterface;
+  pub use super::private::AsForeignCanonicalInterface;
 }

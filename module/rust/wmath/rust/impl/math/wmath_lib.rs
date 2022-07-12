@@ -17,6 +17,8 @@
 
 #![ doc = include_str!( concat!( env!( "CARGO_MANIFEST_DIR" ), "/Readme.md" ) ) ]
 
+pub use ::meta_tools::prelude::*;
+
 /// Basics.
 pub mod basic;
 
@@ -27,6 +29,7 @@ pub mod dependency
 }
 
 pub use math_adapter as adapter;
+pub use meta_tools::exposed::*;
 
 /// Exposed namespace of the module.
 pub mod exposed
