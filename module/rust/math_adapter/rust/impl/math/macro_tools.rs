@@ -1,2 +1,2 @@
 
-pub use ::meta_tools::dependencies::for_each::*;
+pub use ::meta_tools::dependency::for_each::*;
