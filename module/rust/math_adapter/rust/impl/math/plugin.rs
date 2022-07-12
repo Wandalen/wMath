@@ -9,6 +9,16 @@ pub mod nalgebra;
 /// Implement adapters for `winit`.
 pub mod winit;
 
+/// Protected namespace of the module.
+pub mod protected
+{
+}
+
+/// Orphan namespace of the module.
+pub mod orphan
+{
+}
+
 /// Exposed namespace of the module.
 pub mod exposed
 {

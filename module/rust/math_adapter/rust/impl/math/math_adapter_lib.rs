@@ -27,29 +27,10 @@ pub use ::meta_tools::prelude::*;
 
 /// Macro tools, to be moved out.
 mod macro_tools;
-pub use macro_tools::*;
+pub use macro_tools::exposed::*;
 /// Macro helpers, for example to enumarate number types.
 mod macro_helper;
 pub use macro_helper::*;
-
-/// Interfaces to either conver or reinterpret nath data structure as analog of math lib of choice..
-pub mod as_foreign;
-/// Local implementation of traits From / Into. Required because of limmitations of Rust.
-pub mod from;
-
-/// Implementation of adapters for specific math libraries.
-#[ cfg( feature = "use_std" ) ]
-pub mod plugin;
-#[ cfg( feature = "use_std" ) ]
-pub use plugin::*;
-/// Define scalar interface.
-#[ cfg( feature = "use_std" ) ]
-pub mod scalar;
-/// Define several traits like NanLikeInterface.
-pub mod interfaces;
-/// Adapters.
-#[ cfg( feature = "use_std" ) ]
-pub mod vector;
 
 /// Namespace with dependencies.
 pub mod dependency
@@ -67,38 +48,36 @@ pub mod dependency
   pub use winit as winit;
 }
 
-/// Exposed namespace of the module.
-pub mod exposed
+#[ cfg( feature = "use_std" ) ]
+meta_tools::mod_interface!
 {
-  #[ doc( inline ) ]
-  pub use super::as_foreign::exposed::*;
-  #[ doc( inline ) ]
-  pub use super::from::exposed::*;
-  #[ cfg( feature = "use_std" ) ]
-  #[ doc( inline ) ]
-  pub use super::plugin::exposed::*;
-  #[ doc( inline ) ]
-  #[ cfg( feature = "use_std" ) ]
-  pub use super::scalar::exposed::*;
-  #[ doc( inline ) ]
-  pub use super::interfaces::exposed::*;
-  #[ cfg( feature = "use_std" ) ]
-  #[ doc( inline ) ]
-  pub use super::vector::exposed::*;
+  /// Interfaces to either conver or reinterpret nath data structure as analog of math lib of choice..
+  layer as_foreign;
+  /// Local implementation of traits From / Into. Required because of limmitations of Rust.
+  layer from;
+
+  /// Implementation of adapters for specific math libraries.
+  layer plugin;
+  /// Define scalar interface.
+  layer scalar;
+  /// Define several traits like NanLikeInterface.
+  layer interfaces;
+  /// Adapters.
+  layer vector;
+}
+#[ cfg( not( feature = "use_std" ) ) ]
+meta_tools::mod_interface!
+{
+  /// Interfaces to either conver or reinterpret nath data structure as analog of math lib of choice..
+  layer as_foreign;
+  /// Local implementation of traits From / Into. Required because of limmitations of Rust.
+  layer from;
+
+  /// Define several traits like NanLikeInterface.
+  layer interfaces;
 }
 
-pub use exposed::*;
-
-/// Prelude to use essentials: `use my_module::prelude::*`.
-pub mod prelude
-{
-  pub use super::as_foreign::prelude::*;
-  pub use super::from::prelude::*;
-  #[ cfg( feature = "use_std" ) ]
-  pub use super::plugin::prelude::*;
-  #[ cfg( feature = "use_std" ) ]
-  pub use super::scalar::prelude::*;
-  pub use super::interfaces::prelude::*;
-  #[ cfg( feature = "use_std" ) ]
-  pub use super::vector::prelude::*;
-}
+#[ cfg( all( feature = "cgmath", feature = "use_std" ) ) ]
+pub use plugin::cgmath;
+#[ cfg( all( feature = "nalgebra", feature = "use_std" ) ) ]
+pub use plugin::nalgebra;

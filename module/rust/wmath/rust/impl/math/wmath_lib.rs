@@ -12,37 +12,20 @@
 // #![ feature( generic_associated_types ) ]
 
 //!
-//! .Math library with adapters.
+//! Math library with adapters.
 //!
 
 #![ doc = include_str!( concat!( env!( "CARGO_MANIFEST_DIR" ), "/Readme.md" ) ) ]
 
-pub use ::meta_tools::prelude::*;
-
-/// Basics.
-pub mod basic;
-
-/// Namespace with dependencies.
 pub mod dependency
 {
   pub use math_adapter;
 }
 
 pub use math_adapter as adapter;
-pub use meta_tools::exposed::*;
+pub use adapter::exposed::*;
 
-/// Exposed namespace of the module.
-pub mod exposed
+meta_tools::mod_interface!
 {
-  pub use super::basic::exposed::*;
-  pub use super::adapter::exposed::*;
-}
-
-pub use exposed::*;
-
-/// Prelude to use essentials: `use my_module::prelude::*`.
-pub mod prelude
-{
-  pub use super::basic::prelude::*;
-  pub use super::adapter::prelude::*;
+  layer basic;
 }
