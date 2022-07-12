@@ -38,13 +38,17 @@ pub mod as_foreign;
 pub mod from;
 
 /// Implementation of adapters for specific math libraries.
+#[ cfg( feature = "use_std" ) ]
 pub mod plugin;
+#[ cfg( feature = "use_std" ) ]
 pub use plugin::*;
 /// Define scalar interface.
+#[ cfg( feature = "use_std" ) ]
 pub mod scalar;
 /// Define several traits like NanLikeInterface.
 pub mod interfaces;
 /// Adapters.
+#[ cfg( feature = "use_std" ) ]
 pub mod vector;
 
 /// Namespace with dependencies.
@@ -70,12 +74,15 @@ pub mod exposed
   pub use super::as_foreign::exposed::*;
   #[ doc( inline ) ]
   pub use super::from::exposed::*;
+  #[ cfg( feature = "use_std" ) ]
   #[ doc( inline ) ]
   pub use super::plugin::exposed::*;
   #[ doc( inline ) ]
+  #[ cfg( feature = "use_std" ) ]
   pub use super::scalar::exposed::*;
   #[ doc( inline ) ]
   pub use super::interfaces::exposed::*;
+  #[ cfg( feature = "use_std" ) ]
   #[ doc( inline ) ]
   pub use super::vector::exposed::*;
 }
@@ -87,8 +94,11 @@ pub mod prelude
 {
   pub use super::as_foreign::prelude::*;
   pub use super::from::prelude::*;
+  #[ cfg( feature = "use_std" ) ]
   pub use super::plugin::prelude::*;
+  #[ cfg( feature = "use_std" ) ]
   pub use super::scalar::prelude::*;
   pub use super::interfaces::prelude::*;
+  #[ cfg( feature = "use_std" ) ]
   pub use super::vector::prelude::*;
 }

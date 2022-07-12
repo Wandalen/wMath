@@ -62,15 +62,18 @@ Number of elements of a vector is coded in name of type, `X2` for vector of leng
 <!-- {{# generate.module_sample{} #}} -->
 
 ```rust
-use math_adapter::prelude::*;
-use math_adapter::X2;
+#[ cfg( feature = "use_std" ) ]
+{
+  use math_adapter::prelude::*;
+  use math_adapter::X2;
 
-// vector of length 2 and its elements
-let src1 = X2::make( 1, 3 );
-assert_eq!( src1.x(), 1 );
-assert_eq!( src1.y(), 3 );
-assert_eq!( src1._0(), 1 );
-assert_eq!( src1._1(), 3 );
+  // vector of length 2 and its elements
+  let src1 = X2::make( 1, 3 );
+  assert_eq!( src1.x(), 1 );
+  assert_eq!( src1.y(), 3 );
+  assert_eq!( src1._0(), 1 );
+  assert_eq!( src1._1(), 3 );
+}
 ```
 
 ### Sample :: operators
@@ -80,25 +83,29 @@ Select a feature `*_ops` to reuse operators and function of math lib of choice.
 <!-- {{# generate.module_sample{} #}} -->
 
 ```rust
-use math_adapter::prelude::*;
-use math_adapter::X2;
-
-#[ cfg( feature = "cgmath_ops" ) ]
+#[ cfg( feature = "use_std" ) ]
 {
-  let src1 = X2::make( 1, 2 );
-  let src2 = X2::make( 3, 4 );
-  let got = src1 + src2;
-  let exp = X2::make( 4, 6 );
-  assert_eq!( got, exp );
-  println!( "src1 + src2 : {:?}", got );
-}
+  use math_adapter::prelude::*;
+  use math_adapter::X2;
 
-// enable feature *_ops to get access to functions
-#[ cfg( feature = "cgmath_ops" ) ]
-{
-  let src = X2::make( 1, 2 );
-  assert_eq!( src.sum(), 3 ); /* sum comes from `cgmath` */
-  println!( "src.sum() : {:?}", src.sum() );
+  // if back-end math lib is chosen then operators and functions are available
+  #[ cfg( feature = "cgmath_ops" ) ]
+  {
+    let src1 = X2::make( 1, 2 );
+    let src2 = X2::make( 3, 4 );
+    let got = src1 + src2;
+    let exp = X2::make( 4, 6 );
+    assert_eq!( got, exp );
+    println!( "src1 + src2 : {:?}", got );
+  }
+
+  // enable feature *_ops to get access to functions
+  #[ cfg( feature = "cgmath_ops" ) ]
+  {
+    let src = X2::make( 1, 2 );
+    assert_eq!( src.sum(), 3 ); /* sum comes from `cgmath` */
+    println!( "src.sum() : {:?}", src.sum() );
+  }
 }
 ```
 
@@ -109,29 +116,32 @@ Feature `*_ops` means to request to use operators and function of math lib of ch
 <!-- {{# generate.module_sample{} #}} -->
 
 ```rust
-use math_adapter::prelude::*;
-use math_adapter::X2;
-
-// ! compile-time error, because if no `*_ops` feature was chosen
-// {
-//   let src = X2::make( 1, 3 ); /* make a canonical 2D vector */
-//   println!( "src.sum() : {:?}", src.sum() ); /* use `sum()` of chosen math lib back-end */
-// }
-
-// enable feature *_ops should be enabled to get access to functions
-#[ cfg( all( feature = "cgmath", feature = "nalgebra" ) ) ]
+#[ cfg( feature = "use_std" ) ]
 {
-  let src = X2::make( 1, 3 ); /* make a canonical 2D vector */
-  println!( "src.as_cgmath().sum() : {:?}", src.as_cgmath().sum() ); /* use `sum()` of `cgmath` */
-  println!( "src.as_nalgebra().sum() : {:?}", src.as_nalgebra().sum() ); /* use `sum()` of `nalgebra` */
-}
+  use math_adapter::prelude::*;
+  use math_adapter::X2;
 
-// you can convert / reinterpret any vector.
-// for example you can create `cgmath::Vector2`, but apply a function of `nalgebra::Vector2`
-#[ cfg( all( feature = "cgmath", feature = "nalgebra" ) ) ]
-{
-  let src = math_adapter::cgmath::Vector2::< i32 >::make( 1, 3 ); /* make a `cgmath` 2D vector */
-  println!( "src.as_nalgebra().sum() : {:?}", src.as_nalgebra().sum() ); /* use `sum()` of `nalgebra` */
+  // ! compile-time error, because if no `*_ops` feature was chosen
+  // {
+  //   let src = X2::make( 1, 3 ); /* make a canonical 2D vector */
+  //   println!( "src.sum() : {:?}", src.sum() ); /* use `sum()` of chosen math lib back-end */
+  // }
+
+  // enable feature *_ops should be enabled to get access to functions
+  #[ cfg( all( feature = "cgmath", feature = "nalgebra" ) ) ]
+  {
+    let src = X2::make( 1, 3 ); /* make a canonical 2D vector */
+    println!( "src.as_cgmath().sum() : {:?}", src.as_cgmath().sum() ); /* use `sum()` of `cgmath` */
+    println!( "src.as_nalgebra().sum() : {:?}", src.as_nalgebra().sum() ); /* use `sum()` of `nalgebra` */
+  }
+
+  // you can convert / reinterpret any vector.
+  // for example you can create `cgmath::Vector2`, but apply a function of `nalgebra::Vector2`
+  #[ cfg( all( feature = "cgmath", feature = "nalgebra" ) ) ]
+  {
+    let src = math_adapter::cgmath::Vector2::< i32 >::make( 1, 3 ); /* make a `cgmath` 2D vector */
+    println!( "src.as_nalgebra().sum() : {:?}", src.as_nalgebra().sum() ); /* use `sum()` of `nalgebra` */
+  }
 }
 ```
 
