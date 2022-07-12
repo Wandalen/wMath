@@ -8,7 +8,7 @@ env :
 jobs :
 
   test :
-    uses : Wandalen/wTools/.github/workflows/StandardRustPush.yml@master
+    uses : Wandalen/wTools/.github/workflows/StandardRustPush.yml@alpha
     with :
       manifest_path : 'module/rust/wmath/Cargo.toml'
       module_name : 'wmath'
