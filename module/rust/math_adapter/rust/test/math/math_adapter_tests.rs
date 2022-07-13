@@ -10,6 +10,7 @@ mod macro_foreign_x2;
 #[ allow( unused_imports ) ]
 pub( crate ) use macro_foreign_x2::*;
 
+#[ cfg( feature = "use_std" ) ]
 mod x2_test;
 mod helper_test;
 mod macro_tools_test;
