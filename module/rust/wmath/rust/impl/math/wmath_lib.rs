@@ -17,6 +17,8 @@
 
 #![ doc = include_str!( concat!( env!( "CARGO_MANIFEST_DIR" ), "/Readme.md" ) ) ]
 
+use meta_tools::mod_interface;
+
 pub mod dependency
 {
   pub use math_adapter;
@@ -25,7 +27,12 @@ pub mod dependency
 pub use math_adapter as adapter;
 pub use adapter::exposed::*;
 
-meta_tools::mod_interface!
+mod_interface!
 {
+
   layer basic;
+
+  // xxx : broken
+  // use super::adapter;
+
 }
