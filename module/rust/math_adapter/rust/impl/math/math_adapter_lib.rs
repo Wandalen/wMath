@@ -65,6 +65,7 @@ meta_tools::mod_interface!
   /// Adapters.
   layer vector;
 }
+
 #[ cfg( not( feature = "use_std" ) ) ]
 meta_tools::mod_interface!
 {
@@ -72,7 +73,6 @@ meta_tools::mod_interface!
   layer as_foreign;
   /// Local implementation of traits From / Into. Required because of limmitations of Rust.
   layer from;
-
   /// Define several traits like NanLikeInterface.
   layer interfaces;
 }
