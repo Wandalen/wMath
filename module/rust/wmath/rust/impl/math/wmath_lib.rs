@@ -19,6 +19,7 @@
 
 use meta_tools::mod_interface;
 
+/// Dependencies.
 pub mod dependency
 {
   pub use math_adapter;
@@ -30,9 +31,9 @@ pub use adapter::exposed::*;
 mod_interface!
 {
 
+  /// Basic.
   layer basic;
 
-  // xxx : broken
-  // use super::adapter;
+  use ::math_adapter;
 
 }
