@@ -26,7 +26,7 @@ pub mod dependency
 }
 
 pub use math_adapter as adapter;
-pub use adapter::exposed::*;
+// pub use adapter::exposed::*;
 
 mod_interface!
 {
