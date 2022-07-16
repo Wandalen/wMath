@@ -9,7 +9,7 @@ pub( crate ) mod private
   /// Apply callback to each integer : isize, i8, i16, i32, i64, i128m, usize, u8, u16, u32, u64, u128.
   ///
 
-  #[macro_export]
+  #[ macro_export ]
   macro_rules! for_each_int
   {
 
@@ -32,7 +32,7 @@ pub( crate ) mod private
   /// Apply callback to each float : f32, f64.
   ///
 
-  #[macro_export]
+  #[ macro_export ]
   macro_rules! for_each_float
   {
 
@@ -52,10 +52,10 @@ pub( crate ) mod private
   }
 
   ///
-  /// Apply callback to each number : i8, i16, i32, i64, i128, u8, u16, u32, u64, u128, f32, f64.
+  /// Apply callback to each number : isize, i8, i16, i32, i64, i128, u8, u16, u32, u64, u128, f32, f64.
   ///
 
-  #[macro_export]
+  #[ macro_export ]
   macro_rules! for_each_number
   {
 
@@ -82,4 +82,13 @@ pub( crate ) mod private
 
 }
 
-pub use private::*;
+// pub use private::*;
+crate::mod_interface!
+{
+  exposed use
+  {
+    for_each_int,
+    for_each_float,
+    for_each_number,
+  };
+}

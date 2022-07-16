@@ -79,6 +79,7 @@ macro_rules! canonical_test_for_number
       a_id!( size_of::< X2::< T > >(), size_of::< [ T ; 2 ] >() );
     }
 
+    // xxx
     // /* test.case = "from / into tuple"; */
     // {
     //   let src = ( num!( 1 ), num!( 2 ) );

@@ -19,18 +19,11 @@
 ))]
 compile_error!( "Only one `*_ops` feature should be enabled. Disable either `nalgebra_ops` or `cgmath_ops`" );
 
-/// General math traits.
-pub use num_traits as traits;
+use ::meta_tools::exposed::*;
+use core::hash::Hash;
+use crate::ScalarInterface;
 
-pub use ::meta_tools::prelude::*;
-// pub use meta_tools::mod_interface;
-
-/// Macro tools, to be moved out.
-mod macro_tools;
-pub use macro_tools::exposed::*;
-/// Macro helpers, for example to enumarate number types.
-mod macro_helper;
-pub use macro_helper::*;
+//
 
 /// Namespace with dependencies.
 pub mod dependency
@@ -48,36 +41,34 @@ pub mod dependency
   pub use winit as winit;
 }
 
-#[ cfg( feature = "use_std" ) ]
-meta_tools::mod_interface!
+crate::mod_interface!
 {
-  /// Interfaces to either conver or reinterpret nath data structure as analog of math lib of choice..
-  layer as_foreign;
-  /// Local implementation of traits From / Into. Required because of limmitations of Rust.
-  layer from;
 
+  exposed use ::num_traits as traits;
+  exposed use ::meta_tools::{ for_each, braces_unwrap };
+
+  #[ cfg( all( feature = "cgmath", feature = "use_std" ) ) ]
+  exposed use plugin::cgmath;
+  #[ cfg( all( feature = "nalgebra", feature = "use_std" ) ) ]
+  exposed use plugin::nalgebra;
+
+  /// Meta tools.
+  layer meta;
+  /// Abstractions.
+  layer abs;
+
+  #[ cfg( feature = "use_std" ) ]
   /// Implementation of adapters for specific math libraries.
   layer plugin;
+  #[ cfg( feature = "use_std" ) ]
   /// Define scalar interface.
   layer scalar;
-  /// Define several traits like NanLikeInterface.
-  layer interfaces;
+  #[ cfg( feature = "use_std" ) ]
   /// Adapters.
   layer vector;
+
 }
 
-#[ cfg( not( feature = "use_std" ) ) ]
-meta_tools::mod_interface!
-{
-  /// Interfaces to either conver or reinterpret nath data structure as analog of math lib of choice..
-  layer as_foreign;
-  /// Local implementation of traits From / Into. Required because of limmitations of Rust.
-  layer from;
-  /// Define several traits like NanLikeInterface.
-  layer interfaces;
-}
-
-#[ cfg( all( feature = "cgmath", feature = "use_std" ) ) ]
-pub use plugin::cgmath;
-#[ cfg( all( feature = "nalgebra", feature = "use_std" ) ) ]
-pub use plugin::nalgebra;
+// pub use for_each_int;
+// pub use for_each_float;
+// pub use for_each_number;

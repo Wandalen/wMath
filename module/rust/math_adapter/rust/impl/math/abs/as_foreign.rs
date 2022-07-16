@@ -33,33 +33,8 @@ pub( crate ) mod private
 
 }
 
-/// Protected namespace of the module.
-pub mod protected
+crate::mod_interface!
 {
-}
-
-/// Orphan namespace of the module.
-pub mod orphan
-{
-}
-
-/// Exposed namespace of the module.
-pub mod exposed
-{
-  // use super::internal as i;
-  #[ doc( inline ) ]
-  pub use super::private::AsForeignNonCanonicalInterface;
-  #[ doc( inline ) ]
-  pub use super::private::AsForeignCanonicalInterface;
-}
-
-#[ doc( inline ) ]
-pub use exposed::*;
-
-/// Prelude to use essentials: `use my_module::prelude::*`.
-pub mod prelude
-{
-  // use super::internal as i;
-  pub use super::private::AsForeignNonCanonicalInterface;
-  pub use super::private::AsForeignCanonicalInterface;
+  prelude use AsForeignNonCanonicalInterface;
+  prelude use AsForeignCanonicalInterface;
 }

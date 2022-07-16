@@ -76,28 +76,7 @@ pub( crate ) mod private
 
 }
 
-/// Protected namespace of the module.
-pub mod protected
+crate::mod_interface!
 {
-}
-
-/// Orphan namespace of the module.
-pub mod orphan
-{
-}
-
-/// Exposed namespace of the module.
-pub mod exposed
-{
-  // use super::internal as i;
-  pub use super::private::ScalarInterface;
-}
-
-pub use exposed::*;
-
-/// Prelude to use essentials: `use my_module::prelude::*`.
-pub mod prelude
-{
-  // use super::internal as i;
-  pub use super::private::ScalarInterface;
+  prelude use ScalarInterface;
 }
