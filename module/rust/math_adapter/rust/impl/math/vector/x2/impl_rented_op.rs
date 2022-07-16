@@ -111,7 +111,6 @@ pub( crate ) mod private
 
 crate::mod_interface!
 {
-  // xxx : not exposed
   #[ allow( unused_imports )]
   protected( crate ) use
   {
