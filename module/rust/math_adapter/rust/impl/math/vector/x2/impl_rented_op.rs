@@ -113,7 +113,7 @@ crate::mod_interface!
 {
   // xxx : not exposed
   #[ allow( unused_imports )]
-  exposed( crate ) use
+  protected( crate ) use
   {
     impl_x2_rented_op1,
     impl_x2_rented_op2,
