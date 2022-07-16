@@ -79,7 +79,19 @@ macro_rules! canonical_test_for_number
       a_id!( size_of::< X2::< T > >(), size_of::< [ T ; 2 ] >() );
     }
 
-    /* test.case = "from / into itself"; */
+    // /* test.case = "from / into tuple"; */
+    // {
+    //   let src = ( num!( 1 ), num!( 2 ) );
+    //   let got : X2< T > = src.into();
+    //   let exp = X2::< T >( num!( 1 ), num!( 2 ) );
+    //   a_id!( got, exp );
+    //   let src = ( num!( 1 ), num!( 2 ) );
+    //   let got = X2::< T >::from( src );
+    //   let exp = X2::< T >( num!( 1 ), num!( 2 ) );
+    //   a_id!( got, exp );
+    // }
+
+    /* test.case = "from2 / into2 itself"; */
     {
       let src = X2::< T >( num!( 1 ), num!( 2 ) );
       let got : X2< T > = src.into2();
@@ -88,7 +100,7 @@ macro_rules! canonical_test_for_number
       a_id!( got, src );
     }
 
-    /* test.case = "from / into tuple"; */
+    /* test.case = "from2 / into2 tuple"; */
     {
       let src = ( num!( 1 ), num!( 2 ) );
       let got : X2< T > = src.into2();
@@ -99,7 +111,7 @@ macro_rules! canonical_test_for_number
       a_id!( got, exp );
     }
 
-    /* test.case = "from / into array"; */
+    /* test.case = "from2 / into2 array"; */
     {
       let src = [ num!( 1 ), num!( 2 ) ];
       let got : X2< T > = src.into2();
@@ -110,7 +122,7 @@ macro_rules! canonical_test_for_number
       a_id!( got, exp );
     }
 
-    /* test.case = "from / into slice"; */
+    /* test.case = "from2 / into2 slice"; */
     {
       let _src = [ num!( 1 ), num!( 2 ) ];
       let src = &_src[ .. ];

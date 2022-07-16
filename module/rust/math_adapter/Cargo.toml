@@ -43,7 +43,7 @@ name = "math_adapter"
 path = "rust/impl/math/math_adapter_lib.rs"
 
 [[test]]
-name = "math_adapter_test"
+name = "math_adapter_tests"
 path = "rust/test/math/math_adapter_tests.rs"
 
 [[example]]
