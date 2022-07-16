@@ -1,44 +1,12 @@
-
-#[ cfg( feature = "cgmath" ) ]
-/// Implement adapters for `cgmath`.
-pub mod cgmath;
-#[ cfg( feature = "nalgebra" ) ]
-/// Implement adapters for `nalgebra`.
-pub mod nalgebra;
-#[ cfg( feature = "winit" ) ]
-/// Implement adapters for `winit`.
-pub mod winit;
-
-/// Protected namespace of the module.
-pub mod protected
+meta_tools::mod_interface!
 {
-}
-
-/// Orphan namespace of the module.
-pub mod orphan
-{
-}
-
-/// Exposed namespace of the module.
-pub mod exposed
-{
+  /// Implement adapters for `cgmath`.
   #[ cfg( feature = "cgmath" ) ]
-  pub use super::cgmath::exposed::*;
+  layer cgmath;
+  /// Implement adapters for `nalgebra`.
   #[ cfg( feature = "nalgebra" ) ]
-  pub use super::nalgebra::exposed::*;
+  layer nalgebra;
+  /// Implement adapters for `winit`.
   #[ cfg( feature = "winit" ) ]
-  pub use super::winit::exposed::*;
-}
-
-pub use exposed::*;
-
-/// Prelude to use essentials: `use my_module::prelude::*`.
-pub mod prelude
-{
-  #[ cfg( feature = "cgmath" ) ]
-  pub use super::cgmath::prelude::*;
-  #[ cfg( feature = "nalgebra" ) ]
-  pub use super::nalgebra::exposed::*;
-  #[ cfg( feature = "winit" ) ]
-  pub use super::winit::prelude::*;
+  layer winit;
 }
