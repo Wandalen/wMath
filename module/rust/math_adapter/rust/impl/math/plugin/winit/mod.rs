@@ -21,6 +21,12 @@ pub mod protected
   // pub use super::private::X2;
 }
 
+/// Orphan namespace of the module.
+pub mod orphan
+{
+  pub use super::exposed::*;
+}
+
 pub use protected::*;
 
 /// Exposed namespace of the module.
