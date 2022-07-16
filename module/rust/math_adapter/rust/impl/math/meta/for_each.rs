@@ -85,7 +85,7 @@ pub( crate ) mod private
 // pub use private::*;
 crate::mod_interface!
 {
-  exposed use
+  orphan use
   {
     for_each_int,
     for_each_float,

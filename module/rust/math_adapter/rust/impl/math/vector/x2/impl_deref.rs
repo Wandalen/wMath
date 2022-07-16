@@ -53,5 +53,5 @@ pub( crate ) mod private
 
 crate::mod_interface!
 {
-  exposed( crate ) use impl_x2_deref;
+  protected( crate ) use impl_x2_deref;
 }
