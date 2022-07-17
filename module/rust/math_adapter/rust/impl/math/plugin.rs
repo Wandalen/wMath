@@ -1,5 +1,7 @@
 meta_tools::mod_interface!
 {
+  // #![ debug ]
+
   /// Implement adapters for `cgmath`.
   #[ cfg( feature = "cgmath" ) ]
   layer cgmath;

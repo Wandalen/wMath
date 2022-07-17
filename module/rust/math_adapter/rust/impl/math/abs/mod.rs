@@ -9,6 +9,6 @@ meta_tools::mod_interface!
   layer nan_like;
 
   /// Interfaces.
-  layer x2_interface; // xxx : move to abstract
+  layer x2_interface;
 
 }

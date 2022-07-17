@@ -25,7 +25,4 @@ crate::mod_interface!
   /// Tuple.
   layer tuple;
 
-  // /// Interfaces.
-  // layer x2_interface; // xxx : move to abstract
-
 }

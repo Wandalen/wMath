@@ -44,14 +44,6 @@ pub mod dependency
 crate::mod_interface!
 {
 
-  exposed use ::num_traits as traits;
-  exposed use ::meta_tools::{ for_each, braces_unwrap };
-
-  #[ cfg( all( feature = "cgmath", feature = "use_std" ) ) ]
-  exposed use plugin::cgmath;
-  #[ cfg( all( feature = "nalgebra", feature = "use_std" ) ) ]
-  exposed use plugin::nalgebra;
-
   /// Meta tools.
   layer meta;
   /// Abstractions.
@@ -66,6 +58,14 @@ crate::mod_interface!
   #[ cfg( feature = "use_std" ) ]
   /// Adapters.
   layer vector;
+
+  exposed use ::num_traits as traits;
+  exposed use ::meta_tools::{ for_each, braces_unwrap };
+
+  #[ cfg( all( feature = "cgmath", feature = "use_std" ) ) ]
+  exposed use plugin::cgmath;
+  #[ cfg( all( feature = "nalgebra", feature = "use_std" ) ) ]
+  exposed use plugin::nalgebra;
 
 }
 

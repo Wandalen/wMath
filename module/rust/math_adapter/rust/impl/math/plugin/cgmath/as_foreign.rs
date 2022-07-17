@@ -82,25 +82,36 @@ pub( crate ) mod private
 
 }
 
-/// Exposed namespace of the module.
-pub mod exposed
+crate::mod_interface!
 {
-  // use super::internal as i;
-  pub use super::private::AsCgmathNonCanonicalInterface;
-  pub use super::private::AsCgmathCanonicalInterface;
-  pub use crate::AsForeignNonCanonicalInterface;
-  pub use crate::AsForeignCanonicalInterface;
+
+  prelude use AsCgmathNonCanonicalInterface;
+  prelude use AsCgmathCanonicalInterface;
+
+  prelude use crate::AsForeignNonCanonicalInterface;
+  prelude use crate::AsForeignCanonicalInterface;
+
 }
 
-pub use exposed::*;
-
-/// Prelude to use essentials: `use my_module::prelude::*`.
-pub mod prelude
-{
-  #[ allow( unused_imports ) ]
-  // use super::internal as i;
-  pub use super::private::AsCgmathNonCanonicalInterface;
-  pub use super::private::AsCgmathCanonicalInterface;
-  pub use crate::AsForeignNonCanonicalInterface;
-  pub use crate::AsForeignCanonicalInterface;
-}
+// /// Exposed namespace of the module.
+// pub mod exposed
+// {
+//   // use super::internal as i;
+//   pub use super::private::AsCgmathNonCanonicalInterface;
+//   pub use super::private::AsCgmathCanonicalInterface;
+//   pub use crate::AsForeignNonCanonicalInterface;
+//   pub use crate::AsForeignCanonicalInterface;
+// }
+//
+// pub use exposed::*;
+//
+// /// Prelude to use essentials: `use my_module::prelude::*`.
+// pub mod prelude
+// {
+//   #[ allow( unused_imports ) ]
+//   // use super::internal as i;
+//   pub use super::private::AsCgmathNonCanonicalInterface;
+//   pub use super::private::AsCgmathCanonicalInterface;
+//   pub use crate::AsForeignNonCanonicalInterface;
+//   pub use crate::AsForeignCanonicalInterface;
+// }
