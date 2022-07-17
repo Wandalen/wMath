@@ -1,3 +1,7 @@
+//!
+//! Use nalgebra's operations.
+//!
+
 /// Internal namespace.
 pub( crate ) mod private
 {
@@ -38,16 +42,6 @@ pub( crate ) mod private
 
 }
 
-/// Exposed namespace of the module.
-pub mod exposed
+crate::mod_interface!
 {
-  // // use super::internal as i;
-}
-
-pub use exposed::*;
-
-/// Prelude to use essentials: `use my_module::prelude::*`.
-pub mod prelude
-{
-  // // use super::internal as i;
 }

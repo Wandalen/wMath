@@ -43,6 +43,7 @@ pub mod dependency
 
 crate::mod_interface!
 {
+  // #![ debug ]
 
   /// Meta tools.
   layer meta;
@@ -63,9 +64,9 @@ crate::mod_interface!
   exposed use ::meta_tools::{ for_each, braces_unwrap };
 
   #[ cfg( all( feature = "cgmath", feature = "use_std" ) ) ]
-  exposed use plugin::cgmath;
+  exposed use super::plugin::cgmath;
   #[ cfg( all( feature = "nalgebra", feature = "use_std" ) ) ]
-  exposed use plugin::nalgebra;
+  exposed use super::plugin::nalgebra;
 
 }
 

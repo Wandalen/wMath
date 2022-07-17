@@ -1,3 +1,7 @@
+//!
+//! Trait to interpret math data structures of other math libs as their analogs in nalgebra to use operations of nalgebra.
+//!
+
 /// Internal namespace.
 pub( crate ) mod private
 {
@@ -68,27 +72,26 @@ pub( crate ) mod private
 
 }
 
-/// Exposed namespace of the module.
-pub mod exposed
+crate::mod_interface!
 {
-  // use super::internal as i;
-  pub use super::private::AsNalgebraNonCanonicalInterface;
-  pub use super::private::AsNalgebraCanonicalInterface;
-  pub use crate::AsForeignNonCanonicalInterface;
-  pub use crate::AsForeignCanonicalInterface;
-}
 
-pub use exposed::*;
+  exposed use
+  {
+    AsNalgebraNonCanonicalInterface,
+    AsNalgebraCanonicalInterface,
+  };
 
-/// Prelude to use essentials: `use my_module::prelude::*`.
-pub mod prelude
-{
-  #[ allow( unused_imports ) ]
-  // use super::internal as i;
-  #[ cfg( any( feature = "nalgebra_ops", feature = "default_ops" ) ) ]
-  pub use super::private::AsNalgebraNonCanonicalInterface;
-  #[ cfg( any( feature = "nalgebra_ops", feature = "default_ops" ) ) ]
-  pub use super::private::AsNalgebraCanonicalInterface;
-  pub use crate::AsForeignNonCanonicalInterface;
-  pub use crate::AsForeignCanonicalInterface;
+  // #[ cfg( any( feature = "nalgebra_ops", feature = "default_ops" ) ) ]
+  prelude use
+  {
+    AsNalgebraNonCanonicalInterface,
+    AsNalgebraCanonicalInterface,
+  };
+
+  prelude use crate::
+  {
+    AsForeignNonCanonicalInterface,
+    AsForeignCanonicalInterface,
+  };
+
 }
