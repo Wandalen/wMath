@@ -16,7 +16,6 @@ pub( crate ) mod private
 
 }
 
-crate::mod_adopt!
+crate::mod_interface!
 {
-
 }

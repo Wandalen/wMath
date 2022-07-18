@@ -24,7 +24,7 @@ pub( crate ) mod private
 
   }
 
-  #[ cfg( any( feature = "nalgebra_ops", feature = "default_ops" ) ) ]
+  #[ cfg( nalgebra_ops ) ]
   impl< T, Any > AsForeignNonCanonicalInterface< T > for Any
   where
     T : Copy,
@@ -52,7 +52,7 @@ pub( crate ) mod private
 
   }
 
-  #[ cfg( any( feature = "nalgebra_ops", feature = "default_ops" ) ) ]
+  #[ cfg( nalgebra_ops ) ]
   impl< T, Any > AsForeignCanonicalInterface< T > for Any
   where
     T : Copy,
@@ -75,23 +75,23 @@ pub( crate ) mod private
 crate::mod_interface!
 {
 
-  exposed use
-  {
-    AsNalgebraNonCanonicalInterface,
-    AsNalgebraCanonicalInterface,
-  };
+  // exposed use
+  // {
+  //   AsNalgebraNonCanonicalInterface,
+  //   AsNalgebraCanonicalInterface,
+  // };
 
-  // #[ cfg( any( feature = "nalgebra_ops", feature = "default_ops" ) ) ]
+  // #[ cfg( nalgebra_ops ) ]
   prelude use
   {
     AsNalgebraNonCanonicalInterface,
     AsNalgebraCanonicalInterface,
   };
 
-  prelude use crate::
-  {
-    AsForeignNonCanonicalInterface,
-    AsForeignCanonicalInterface,
-  };
+  // prelude use crate::
+  // {
+  //   AsForeignNonCanonicalInterface,
+  //   AsForeignCanonicalInterface,
+  // };
 
 }

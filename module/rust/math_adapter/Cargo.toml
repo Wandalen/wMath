@@ -1,6 +1,6 @@
 [package]
 name = "math_adapter"
-version = "0.3.5"
+version = "0.3.6"
 edition = "2021"
 authors = [
   "Kostiantyn Wandalen <wandalen@obox.systems>",
@@ -17,6 +17,7 @@ Collection of math adapters to decouple your application from math libraries' im
 """
 categories = [ "algorithms", "development-tools" ]
 keywords = [ "fundamental", "general-purpose", "testing" ]
+build = "rust/impl/math/math_adapter_build.rs"
 
 [package.metadata.docs.rs]
 all-features = true

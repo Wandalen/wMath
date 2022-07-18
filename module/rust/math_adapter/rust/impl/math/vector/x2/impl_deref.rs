@@ -45,7 +45,7 @@ pub( crate ) mod private
   }
 
   #[ allow( unused_imports ) ]
-  pub( crate ) use impl_x2_deref;
+  pub use impl_x2_deref;
 
 }
 
@@ -53,5 +53,5 @@ pub( crate ) mod private
 
 crate::mod_interface!
 {
-  protected( crate ) use impl_x2_deref;
+  exposed use impl_x2_deref;
 }

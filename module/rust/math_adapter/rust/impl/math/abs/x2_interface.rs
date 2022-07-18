@@ -1,5 +1,4 @@
 /* zzz : put all that into macro */
-// xxx : move
 
 /// Internal namespace.
 pub( crate ) mod private

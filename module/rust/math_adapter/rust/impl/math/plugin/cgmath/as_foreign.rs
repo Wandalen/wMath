@@ -20,14 +20,7 @@ pub( crate ) mod private
 
   }
 
-  #[
-    cfg( all
-    (
-      not( feature = "nalgebra_ops" ),
-      not( all( feature = "default_ops", feature = "nalgebra" ) ),
-      any( feature = "default_ops", feature = "cgmath_ops" ),
-    ))
-  ]
+  #[ cfg( cgmath_ops ) ]
   impl< T, Any > AsForeignNonCanonicalInterface< T > for Any
   where
     T : Copy,
@@ -55,14 +48,7 @@ pub( crate ) mod private
 
   }
 
-  #[
-    cfg( all
-    (
-      not( feature = "nalgebra_ops" ),
-      not( all( feature = "default_ops", feature = "nalgebra" ) ),
-      any( feature = "default_ops", feature = "cgmath_ops" ),
-    ))
-  ]
+  #[ cfg( cgmath_ops ) ]
   impl< T, Any > AsForeignCanonicalInterface< T > for Any
   where
     T : Copy,
@@ -85,33 +71,22 @@ pub( crate ) mod private
 crate::mod_interface!
 {
 
-  prelude use AsCgmathNonCanonicalInterface;
-  prelude use AsCgmathCanonicalInterface;
+  // exposed use
+  // {
+  //   AsCgmathNonCanonicalInterface,
+  //   AsCgmathCanonicalInterface,
+  // };
 
-  prelude use crate::AsForeignNonCanonicalInterface;
-  prelude use crate::AsForeignCanonicalInterface;
+  // #[ cfg( cgmath_ops ) ]
+  prelude use
+  {
+    AsCgmathNonCanonicalInterface,
+    AsCgmathCanonicalInterface,
+  };
+
+  // prelude use AsCgmathNonCanonicalInterface;
+  // prelude use AsCgmathCanonicalInterface;
+  // prelude use crate::AsForeignNonCanonicalInterface;
+  // prelude use crate::AsForeignCanonicalInterface;
 
 }
-
-// /// Exposed namespace of the module.
-// pub mod exposed
-// {
-//   // use super::internal as i;
-//   pub use super::private::AsCgmathNonCanonicalInterface;
-//   pub use super::private::AsCgmathCanonicalInterface;
-//   pub use crate::AsForeignNonCanonicalInterface;
-//   pub use crate::AsForeignCanonicalInterface;
-// }
-//
-// pub use exposed::*;
-//
-// /// Prelude to use essentials: `use my_module::prelude::*`.
-// pub mod prelude
-// {
-//   #[ allow( unused_imports ) ]
-//   // use super::internal as i;
-//   pub use super::private::AsCgmathNonCanonicalInterface;
-//   pub use super::private::AsCgmathCanonicalInterface;
-//   pub use crate::AsForeignNonCanonicalInterface;
-//   pub use crate::AsForeignCanonicalInterface;
-// }

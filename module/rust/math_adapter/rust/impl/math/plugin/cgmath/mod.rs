@@ -20,15 +20,7 @@ crate::mod_interface!
   /// Trait to interpret math data structures of other math libs as their analogs in cgmath to use operations of cgmath.
   layer as_foreign;
 
-  // xxx : use build script
-  #[
-    cfg( all
-    (
-      not( feature = "nalgebra_ops" ),
-      not( all( feature = "default_ops", feature = "nalgebra" ) ),
-      any( feature = "default_ops", feature = "cgmath_ops" ),
-    ))
-  ]
+  #[ cfg( cgmath_ops ) ]
   /// Use cgmath's operations.
   layer ops;
 
@@ -37,7 +29,9 @@ crate::mod_interface!
 
   protected use X2;
   protected use ::cgmath::*;
+  prelude use ::cgmath::Array;
 
+  // #[ cfg( cgmath_ops ) ]
   // exposed use X2;
 
 }

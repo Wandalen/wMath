@@ -101,9 +101,9 @@ pub( crate ) mod private
   }
 
   #[ allow( unused_imports ) ]
-  pub( crate ) use impl_x2_rented_op1;
+  pub use impl_x2_rented_op1;
   #[ allow( unused_imports ) ]
-  pub( crate ) use impl_x2_rented_op2;
+  pub use impl_x2_rented_op2;
 
 }
 
@@ -112,7 +112,7 @@ pub( crate ) mod private
 crate::mod_interface!
 {
   #[ allow( unused_imports )]
-  protected( crate ) use
+  exposed use
   {
     impl_x2_rented_op1,
     impl_x2_rented_op2,
