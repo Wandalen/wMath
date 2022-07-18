@@ -1,3 +1,7 @@
+//!
+//! Define several traits like NanLikeInterface.
+//!
+
 /// Internal namespace.
 pub( crate ) mod private
 {

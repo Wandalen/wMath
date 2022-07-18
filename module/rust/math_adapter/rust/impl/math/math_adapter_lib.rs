@@ -21,43 +21,37 @@ compile_error!( "Only one `*_ops` feature should be enabled. Disable either `nal
 
 use ::meta_tools::exposed::*;
 use core::hash::Hash;
-use crate::ScalarInterface;
+// use crate::ScalarInterface;
 
 //
 
 /// Namespace with dependencies.
 pub mod dependency
 {
-  /// General math traits.
+  #[ doc( inline ) ]
   pub use num_traits as traits;
   #[ cfg( feature = "cgmath" )]
-  /// Math lib cgmath.
+  #[ doc( inline ) ]
   pub use cgmath as cgmath;
   #[ cfg( feature = "naglebra" )]
-  /// Math lib nalgebra.
+  #[ doc( inline ) ]
   pub use naglebra as naglebra;
   #[ cfg( feature = "winit" )]
-  /// Math lib winit.
+  #[ doc( inline ) ]
   pub use winit as winit;
 }
 
 crate::mod_interface!
 {
-  // #![ debug ]
 
-  /// Meta tools.
   layer meta;
-  /// Abstractions.
   layer abs;
 
   #[ cfg( feature = "use_std" ) ]
-  /// Implementation of adapters for specific math libraries.
   layer plugin;
   #[ cfg( feature = "use_std" ) ]
-  /// Define scalar interface.
   layer scalar;
   #[ cfg( feature = "use_std" ) ]
-  /// Adapters.
   layer vector;
 
   exposed use ::num_traits as traits;
@@ -69,7 +63,3 @@ crate::mod_interface!
   exposed use super::plugin::nalgebra;
 
 }
-
-// pub use for_each_int;
-// pub use for_each_float;
-// pub use for_each_number;

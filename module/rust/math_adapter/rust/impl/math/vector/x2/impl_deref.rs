@@ -8,7 +8,6 @@ pub( crate ) mod private
   /// Implement dereferencing of regular math object to math objects of math lib of choice.
   ///
 
-  // xxx : rename
   #[ allow( unused_macros ) ]
   #[ macro_export ]
   macro_rules! impl_vector_deref

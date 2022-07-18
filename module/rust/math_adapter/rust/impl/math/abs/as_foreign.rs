@@ -1,3 +1,7 @@
+//!
+//! Interfaces to either conver or reinterpret nath data structure as analog of math lib of choice..
+//!
+
 /// Internal namespace.
 pub( crate ) mod private
 {

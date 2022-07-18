@@ -1,3 +1,7 @@
+//!
+//! Implementation of adapters for specific math libraries.
+//!
+
 meta_tools::mod_interface!
 {
   #[ cfg( feature = "cgmath" ) ]

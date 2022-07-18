@@ -1,3 +1,7 @@
+//!
+//! Interfaces.
+//!
+
 /* zzz : put all that into macro */
 
 /// Internal namespace.

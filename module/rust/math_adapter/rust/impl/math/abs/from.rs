@@ -1,3 +1,7 @@
+//!
+//! Local implementation of traits From / Into. Required because of limmitations of Rust.
+//!
+
 /// Internal namespace.
 pub( crate ) mod private
 {
