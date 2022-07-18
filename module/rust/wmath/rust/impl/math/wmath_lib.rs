@@ -15,20 +15,19 @@
 //! Math library with adapters.
 //!
 
-#![ doc = include_str!( concat!( env!( "CARGO_MANIFEST_DIR" ), "/Readme.md" ) ) ]
+#![ doc = include_str!( concat!( env!( "CARGO_MANIFEST_DIR" ), "/", "Readme.md" ) ) ]
 
 use meta_tools::mod_interface;
 
 /// Dependencies.
 pub mod dependency
 {
-  pub use math_adapter;
+  pub use ::math_adapter;
 }
 
-pub use math_adapter as adapter;
-// pub use adapter::exposed::*;
+pub use ::math_adapter as adapter;
 
-mod_interface!
+crate::mod_interface!
 {
 
   /// Basic.
