@@ -4,7 +4,6 @@
 
 meta_tools::mod_interface!
 {
-  /// Basics.
   layer x2;
 }
 

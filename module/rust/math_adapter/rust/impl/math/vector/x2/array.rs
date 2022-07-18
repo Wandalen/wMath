@@ -1,10 +1,14 @@
+//!
+//! Array.
+//!
+
 /// Internal namespace.
 pub( crate ) mod private
 {
   use crate::*;
+  use super::super::LENGTH;
 
-
-  impl< Scalar > X2NominalInterface for [ Scalar ; 2 ]
+  impl< Scalar > X2NominalInterface for [ Scalar ; LENGTH ]
   where
     Scalar : ScalarInterface,
   {
@@ -26,7 +30,7 @@ pub( crate ) mod private
 
   //
 
-  impl< Scalar > X2BasicInterface for [ Scalar ; 2 ]
+  impl< Scalar > X2BasicInterface for [ Scalar ; LENGTH ]
   where
     Scalar : ScalarInterface,
   {
@@ -41,7 +45,7 @@ pub( crate ) mod private
 
   //
 
-  impl< Scalar > X2CanonicalInterface for [ Scalar ; 2 ]
+  impl< Scalar > X2CanonicalInterface for [ Scalar ; LENGTH ]
   where
     Scalar : ScalarInterface,
   {

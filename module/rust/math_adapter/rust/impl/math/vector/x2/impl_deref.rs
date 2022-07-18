@@ -1,3 +1,7 @@
+//!
+//! Macro to implement deref trait.
+//!
+
 /// Internal namespace.
 pub( crate ) mod private
 {

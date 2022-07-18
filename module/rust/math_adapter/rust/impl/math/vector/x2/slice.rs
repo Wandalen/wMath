@@ -1,3 +1,7 @@
+//!
+//! Slice.
+//!
+
 /// Internal namespace.
 pub( crate ) mod private
 {

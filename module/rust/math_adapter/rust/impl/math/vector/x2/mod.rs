@@ -1,3 +1,7 @@
+//!
+//! Vector of length 2.
+//!
+
 /// Internal namespace.
 pub( crate ) mod private
 {
@@ -6,23 +10,19 @@ pub( crate ) mod private
 
 }
 
-/* qqq : implement all operators */
+const LENGTH : usize = 2;
 
 crate::mod_interface!
 {
 
-  /// Macro to implement deref trait.
   layer impl_deref;
-  /// Macro to implement rented operators.
   layer impl_rented_op;
 
-  /// Array.
   layer array;
-  /// Slice.
   layer slice;
-  /// Struct.
-  layer structure;
-  /// Tuple.
   layer tuple;
+  layer structure;
 
 }
+
+/* qqq : implement all operators */

@@ -1,3 +1,7 @@
+//!
+//! Implement interfaces for tuple.
+//!
+
 /// Internal namespace.
 pub( crate ) mod private
 {

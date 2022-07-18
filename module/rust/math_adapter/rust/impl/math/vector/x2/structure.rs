@@ -1,8 +1,11 @@
+//!
+//! Implement canonical X2 strcture.
+//!
+
 /// Internal namespace.
 pub( crate ) mod private
 {
   use crate::*;
-
 
   ///
   /// Vector X2
@@ -135,7 +138,7 @@ pub( crate ) mod private
 
   fn type_of< T >( _ : &T ) -> &'static str
   {
-      std::any::type_name::< T >()
+    std::any::type_name::< T >()
   }
 
   // impl< Scalar, Original > From< &Original >
@@ -144,6 +147,7 @@ pub( crate ) mod private
   //   Scalar : ScalarInterface,
   //   Original : X2Interface< Scalar = Scalar >,
   // {
+  //   #[ inline ]
   //   fn from( original : &Original ) -> Self
   //   {
   //     Self::make( original._0(), original._1() )
@@ -158,6 +162,7 @@ pub( crate ) mod private
   //   Scalar : ScalarInterface,
   //   Original : X2Interface< Scalar = Scalar >,
   // {
+  //   #[ inline ]
   //   fn from( original : Original ) -> Self
   //   {
   //     Self::make( original._0(), original._1() )

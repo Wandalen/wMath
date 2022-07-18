@@ -1,3 +1,7 @@
+//!
+//! Macro to implement rented operators.
+//!
+
 /// Internal namespace.
 pub( crate ) mod private
 {
@@ -9,15 +13,22 @@ pub( crate ) mod private
 
   #[ allow( unused_macros ) ]
   #[ macro_export ]
-  macro_rules! impl_x2_rented_op1
+  macro_rules! impl_rented_op1
   {
 
     () => {};
 
-    ( $Op : ident, $op : ident, $Va : ident $( :: $Vb : ident )* ) =>
+    (
+      $Op : ident,
+      $op : ident,
+      $Va : ident $( :: $Vb : ident )* ,
+      $For : ident $(,)?
+    )
+    =>
+    // ( $Op : ident, $op : ident, $Va : ident $( :: $Vb : ident )* ) =>
     {
 
-      impl< Scalar > $Op for X2< Scalar >
+      impl< Scalar > $Op for $For< Scalar >
       where
         Scalar : ScalarInterface + $Op< Output = Scalar >,
       {
@@ -34,11 +45,11 @@ pub( crate ) mod private
 
       //
 
-      impl< Scalar > $Op for &X2< Scalar >
+      impl< Scalar > $Op for &$For< Scalar >
       where
         Scalar : ScalarInterface + $Op< Output = Scalar >,
       {
-        type Output = < X2< Scalar > as $Op >::Output;
+        type Output = < $For< Scalar > as $Op >::Output;
         #[ inline ]
         fn $op( self ) -> Self::Output
         {
@@ -56,18 +67,28 @@ pub( crate ) mod private
 
   #[ allow( unused_macros ) ]
   #[ macro_export ]
-  macro_rules! impl_x2_rented_op2
+  macro_rules! impl_rented_op2
   {
 
     () => {};
 
-    ( $Op : ident, $op : ident, $Va : ident $( :: $Vb : ident )* ) =>
+    (
+      $Op : ident,
+      $op : ident,
+      $Va : ident $( :: $Vb : ident )*,
+      $For : ident $(,)?
+    )
+    =>
+    // ( $Op : ident, $op : ident, $Va : ident $( :: $Vb : ident )* ) =>
     {
 
-      impl< Right, Scalar > $Op< Right > for X2< Scalar >
+      impl< Right, Scalar > $Op< Right > for $For< Scalar >
       where
         Scalar : ScalarInterface + $Op< Output = Scalar >,
         Right : X2Interface< Scalar = Scalar > + Copy,
+        // Right : paste::paste!([< $For Interface >])< Scalar = Scalar > + Copy,
+        // Right : paste::paste!( [< $For Interface >] < Scalar = Scalar > + Copy ),
+        // paste::paste!( src.[< clone_as_ $Name >]() )
       {
         type Output = Self;
         #[ inline ]
@@ -83,12 +104,14 @@ pub( crate ) mod private
 
       //
 
-      impl< Right, Scalar > $Op< &Right > for &X2< Scalar >
+      impl< Right, Scalar > $Op< &Right > for &$For< Scalar >
       where
         Scalar : ScalarInterface + $Op< Output = Scalar >,
         Right : X2Interface< Scalar = Scalar > + Copy,
+        // Right : paste::paste!([< $For Interface >])< Scalar = Scalar > + Copy,
+        // Right : paste::paste!( [< $For Interface >] < Scalar = Scalar > + Copy ),
       {
-        type Output = < X2< Scalar > as $Op::< X2< Scalar > > >::Output;
+        type Output = < $For< Scalar > as $Op::< $For< Scalar > > >::Output;
         #[ inline ]
         fn $op( self, right : &Right ) -> Self::Output
         {
@@ -101,9 +124,9 @@ pub( crate ) mod private
   }
 
   #[ allow( unused_imports ) ]
-  pub use impl_x2_rented_op1;
+  pub use impl_rented_op1;
   #[ allow( unused_imports ) ]
-  pub use impl_x2_rented_op2;
+  pub use impl_rented_op2;
 
 }
 
@@ -114,7 +137,7 @@ crate::mod_interface!
   #[ allow( unused_imports )]
   exposed use
   {
-    impl_x2_rented_op1,
-    impl_x2_rented_op2,
+    impl_rented_op1,
+    impl_rented_op2,
   };
 }

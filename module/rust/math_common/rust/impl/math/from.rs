@@ -6,8 +6,6 @@
 pub( crate ) mod private
 {
 
-  // pub use ::math_common::{ From2, Into2 };
-
   ///
   /// Local implementation of trait From.
   ///
@@ -49,6 +47,6 @@ crate::mod_interface!
   prelude use
   {
     From2,
-    Into2,
+    Into2
   };
 }
