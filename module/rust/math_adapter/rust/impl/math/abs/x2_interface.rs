@@ -1,5 +1,5 @@
 //!
-//! Interfaces.
+//! X2 interfaces.
 //!
 
 /* zzz : put all that into macro */

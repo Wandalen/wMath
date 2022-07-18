@@ -7,7 +7,6 @@ pub( crate ) mod private
 {
   use crate::*;
 
-
   ///
   /// Implement dereferencing of regular math object to math objects of math lib of choice.
   ///

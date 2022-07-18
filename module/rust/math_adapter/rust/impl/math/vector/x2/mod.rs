@@ -24,5 +24,3 @@ crate::mod_interface!
   layer structure;
 
 }
-
-/* qqq : implement all operators */
