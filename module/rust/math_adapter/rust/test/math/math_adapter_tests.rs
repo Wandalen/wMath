@@ -5,13 +5,17 @@
 // #![ feature( trace_macros ) ]
 // #![ feature( type_name_of_val ) ]
 
-mod test_tools;
+use core::mem::size_of;
+use math_adapter::prelude::*;
+use test_tools::exposed::*;
+
+mod local_test_tools;
 mod macro_foreign_x2;
 #[ allow( unused_imports ) ]
 pub( crate ) use macro_foreign_x2::*;
 
 #[ cfg( feature = "use_std" ) ]
-mod x2_test;
+mod canonical_x2_test;
 mod helper_test;
 mod macro_tools_test;
 
