@@ -25,6 +25,7 @@ pub mod dependency
   pub use math_adapter;
 }
 
+#[ doc( inline ) ]
 pub use math_adapter as adapter;
 // pub use adapter::exposed::*;
 
