@@ -1,6 +1,7 @@
 #![ allow( unused_imports ) ]
 
 use wmath::adapter::prelude::*;
+use wmath::adapter::X2;
 
 fn main()
 {
