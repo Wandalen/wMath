@@ -11,15 +11,19 @@ pub( crate ) mod private
   // xxx : rename
   #[ allow( unused_macros ) ]
   #[ macro_export ]
-  macro_rules! impl_x2_deref
+  macro_rules! impl_vector_deref
   {
 
     () => {};
 
-    ( $Va : ident $( :: $Vb : ident )* ) =>
+    (
+      $Va : ident $( :: $Vb : ident )* ,
+      $For : ident $(,)?
+    )
+    =>
     {
 
-      impl< Scalar > Deref for X2< Scalar >
+      impl< Scalar > Deref for $For< Scalar >
       where
         Scalar : ScalarInterface,
       {
@@ -30,7 +34,7 @@ pub( crate ) mod private
         }
       }
 
-      impl< Scalar > DerefMut for X2< Scalar >
+      impl< Scalar > DerefMut for $For< Scalar >
       where
         Scalar : ScalarInterface,
       {
@@ -45,7 +49,7 @@ pub( crate ) mod private
   }
 
   #[ allow( unused_imports ) ]
-  pub use impl_x2_deref;
+  pub use impl_vector_deref;
 
 }
 
@@ -53,5 +57,5 @@ pub( crate ) mod private
 
 crate::mod_interface!
 {
-  exposed use impl_x2_deref;
+  exposed use impl_vector_deref;
 }

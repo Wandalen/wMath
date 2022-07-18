@@ -8,7 +8,7 @@ pub( crate ) mod private
   use core::ops::{ Neg, Add, Sub };
   use crate::prelude::*;
   use crate::X2;
-  use crate::vector::{ impl_x2_rented_op1, impl_x2_rented_op2, impl_x2_deref };
+  use crate::vector::{ impl_x2_rented_op1, impl_x2_rented_op2, impl_vector_deref };
   use core::ops::{ Deref, DerefMut };
 
   impl_x2_rented_op1!( Neg, neg, nalgebra::Vector2 );
@@ -16,7 +16,7 @@ pub( crate ) mod private
   impl_x2_rented_op2!( Sub, sub, nalgebra::Vector2 );
   /* qqq : implement more operators. don't forget about tests */
 
-  impl_x2_deref!( nalgebra::Vector2 );
+  impl_vector_deref!( nalgebra::Vector2, X2 );
 
   // impl< Scalar, Src > Deref for Src
   // where
