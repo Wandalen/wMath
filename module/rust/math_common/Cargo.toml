@@ -17,7 +17,7 @@ A math module for experimenting.
 """
 categories = [ "algorithms", "development-tools" ]
 keywords = [ "fundamental", "general-purpose", "testing" ]
-build = "rust/impl/math/math_common_build.rs"
+build = "rust/impl/math/common/math_common_build.rs"
 
 [package.metadata.docs.rs]
 all-features = true
@@ -37,7 +37,7 @@ use_alloc = []
 
 [lib]
 name = "math_common"
-path = "rust/impl/math/math_common_lib.rs"
+path = "rust/impl/math/common/math_common_lib.rs"
 
 [[test]]
 name = "math_common_tests"
