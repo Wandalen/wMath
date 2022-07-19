@@ -17,7 +17,7 @@ Collection of math adapters to decouple your application from math libraries' im
 """
 categories = [ "algorithms", "development-tools" ]
 keywords = [ "fundamental", "general-purpose", "testing" ]
-build = "rust/impl/math/math_adapter_build.rs"
+build = "rust/impl/math/adapter/math_adapter_build.rs"
 
 [package.metadata.docs.rs]
 all-features = true
@@ -41,7 +41,7 @@ nalgebra_ops = [ "nalgebra" ] # reuse operands and function of `nalgebra` as mat
 
 [lib]
 name = "math_adapter"
-path = "rust/impl/math/math_adapter_lib.rs"
+path = "rust/impl/math/adapter/math_adapter_lib.rs"
 
 [[test]]
 name = "math_adapter_tests"
