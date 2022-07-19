@@ -1,6 +1,6 @@
 [package]
 name = "wmath"
-version = "0.3.2"
+version = "0.3.8"
 edition = "2021"
 authors = [
   "Kostiantyn Wandalen <wandalen@obox.systems>",
@@ -43,7 +43,7 @@ nalgebra_ops = [ "nalgebra", "math_adapter/nalgebra_ops" ] # reuse operands and 
 
 [lib]
 name = "wmath"
-path = "rust/impl/math/lib.rs"
+path = "rust/impl/math/wmath_lib.rs"
 
 [[test]]
 name = "wmath_test"
@@ -55,6 +55,7 @@ path = "../../../sample/rust/wmath_trivial_sample/src/main.rs"
 
 [dependencies]
 math_adapter = { version = "~0.3", path = "../../rust/math_adapter" }
+meta_tools = "~0.2"
 
 [dev-dependencies]
 test_tools = { version = "~0.1" }

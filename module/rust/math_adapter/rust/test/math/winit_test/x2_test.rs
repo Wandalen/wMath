@@ -88,7 +88,7 @@ tests_impls!
   ///
 
   #[ cfg( all( feature = "winit" ) ) ]
-  #[ cfg( any( feature = "nalgebra_ops", feature = "default_ops" ) ) ]
+  #[ cfg( nalgebra_ops ) ]
   fn inter_winit()
   {
     type T = i8;

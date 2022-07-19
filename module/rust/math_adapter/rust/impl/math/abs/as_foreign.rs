@@ -1,5 +1,9 @@
+//!
+//! Interfaces to either conver or reinterpret nath data structure as analog of math lib of choice..
+//!
+
 /// Internal namespace.
-pub( crate ) mod internal
+pub( crate ) mod private
 {
   // use crate::prelude::*;
 
@@ -33,23 +37,8 @@ pub( crate ) mod internal
 
 }
 
-/// Exposed namespace of the module.
-pub mod exposed
+crate::mod_interface!
 {
-  use super::internal as i;
-  #[ doc( inline ) ]
-  pub use i::AsForeignNonCanonicalInterface;
-  #[ doc( inline ) ]
-  pub use i::AsForeignCanonicalInterface;
-}
-
-#[ doc( inline ) ]
-pub use exposed::*;
-
-/// Prelude to use essentials: `use my_module::prelude::*`.
-pub mod prelude
-{
-  use super::internal as i;
-  pub use i::AsForeignNonCanonicalInterface;
-  pub use i::AsForeignCanonicalInterface;
+  prelude use AsForeignNonCanonicalInterface;
+  prelude use AsForeignCanonicalInterface;
 }

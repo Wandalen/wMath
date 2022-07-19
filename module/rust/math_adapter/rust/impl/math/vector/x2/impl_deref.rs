@@ -1,40 +1,63 @@
-///
-/// Implement dereferencing of regular math object to math objects of math lib of choice.
-///
+//!
+//! Macro to implement deref trait.
+//!
 
-#[ allow( unused_macros ) ]
-macro_rules! impl_x2_deref
+/// Internal namespace.
+pub( crate ) mod private
 {
+  use crate::*;
 
-  () => {};
+  ///
+  /// Implement dereferencing of regular math object to math objects of math lib of choice.
+  ///
 
-  ( $Va : ident $( :: $Vb : ident )* ) =>
+  #[ allow( unused_macros ) ]
+  #[ macro_export ]
+  macro_rules! impl_vector_deref
   {
 
-    impl< Scalar > Deref for X2< Scalar >
-    where
-      Scalar : ScalarInterface,
-    {
-      type Target = $Va $( :: $Vb )*< Scalar >;
-      fn deref( &self ) -> &Self::Target
-      {
-        self.as_foreign()
-      }
-    }
+    () => {};
 
-    impl< Scalar > DerefMut for X2< Scalar >
-    where
-      Scalar : ScalarInterface,
+    (
+      $Va : ident $( :: $Vb : ident )* ,
+      $For : ident $(,)?
+    )
+    =>
     {
-      fn deref_mut( &mut self ) -> &mut Self::Target
-      {
-        self.as_foreign_mut()
-      }
-    }
 
-  };
+      impl< Scalar > Deref for $For< Scalar >
+      where
+        Scalar : ScalarInterface,
+      {
+        type Target = $Va $( :: $Vb )*< Scalar >;
+        fn deref( &self ) -> &Self::Target
+        {
+          self.as_foreign()
+        }
+      }
+
+      impl< Scalar > DerefMut for $For< Scalar >
+      where
+        Scalar : ScalarInterface,
+      {
+        fn deref_mut( &mut self ) -> &mut Self::Target
+        {
+          self.as_foreign_mut()
+        }
+      }
+
+    };
+
+  }
+
+  #[ allow( unused_imports ) ]
+  pub use impl_vector_deref;
 
 }
 
-#[ allow( unused_imports ) ]
-pub( crate ) use impl_x2_deref;
+//
+
+crate::mod_interface!
+{
+  exposed use impl_vector_deref;
+}

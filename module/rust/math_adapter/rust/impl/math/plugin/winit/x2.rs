@@ -1,5 +1,10 @@
+
+//!
+//! Implement X2 interfaces for vectors of the math lib.
+//!
+
 /// Internal namespace.
-pub( crate ) mod internal
+pub( crate ) mod private
 {
   use core::mem::size_of;
   use crate::prelude::*;
@@ -115,16 +120,8 @@ pub( crate ) mod internal
 
 }
 
-/// Exposed namespace of the module.
-pub mod exposed
-{
-  // use super::internal as i;
-}
+//
 
-pub use exposed::*;
-
-/// Prelude to use essentials: `use my_module::prelude::*`.
-pub mod prelude
+crate::mod_interface!
 {
-  // use super::internal as i;
 }

@@ -1,6 +1,6 @@
 [package]
 name = "math_adapter"
-version = "0.3.3"
+version = "0.3.7"
 edition = "2021"
 authors = [
   "Kostiantyn Wandalen <wandalen@obox.systems>",
@@ -17,6 +17,7 @@ Collection of math adapters to decouple your application from math libraries' im
 """
 categories = [ "algorithms", "development-tools" ]
 keywords = [ "fundamental", "general-purpose", "testing" ]
+build = "rust/impl/math/math_adapter_build.rs"
 
 [package.metadata.docs.rs]
 all-features = true
@@ -43,7 +44,7 @@ name = "math_adapter"
 path = "rust/impl/math/math_adapter_lib.rs"
 
 [[test]]
-name = "math_adapter_test"
+name = "math_adapter_tests"
 path = "rust/test/math/math_adapter_tests.rs"
 
 [[example]]
@@ -66,8 +67,10 @@ cgmath = { version = "~0", optional = true }
 nalgebra = { version = "~0", optional = true }
 winit = { version = "~0", optional = true }
 num-traits = "~0.2"
-for_each = "~0.1"
+meta_tools = "~0.2"
+mem_tools = "~0.1"
+# math_common = { path = "../../rust/math_common" }
 
 [dev-dependencies]
-tools = { path = "../../rust/tools" }
+# tools = { path = "../../rust/tools" }
 test_tools = { version = "~0.1" }

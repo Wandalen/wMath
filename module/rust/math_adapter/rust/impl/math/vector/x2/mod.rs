@@ -1,65 +1,26 @@
+//!
+//! Vector of length 2.
+//!
+
 /// Internal namespace.
-pub( crate ) mod internal
+pub( crate ) mod private
 {
-  // use core::fmt::Debug;
-  use core::hash::Hash;
-  use crate::ScalarInterface;
+  // use crate::*;
 
-  // #[ cfg( any( feature = "cgmath_ops", feature = "nalgebra_ops" ) ) ]
-
-  include!( "./impl_deref.rs" );
-  include!( "./impl_rented_op.rs" );
-
-  include!( "./array.rs" );
-  include!( "./interface.rs" );
-  include!( "./slice.rs" );
-  include!( "./struct.rs" );
-  include!( "./tuple.rs" );
 
 }
 
-/// Own namespace of the module.
-#[ allow( unused_imports ) ]
-pub mod macros
+const LENGTH : usize = 2;
+
+crate::mod_interface!
 {
-  use super::internal as i;
-  pub( crate ) use i::impl_x2_deref;
-  pub( crate ) use i::impl_x2_rented_op1;
-  pub( crate ) use i::impl_x2_rented_op2;
-}
-/* qqq : implement alll operators */
 
-/// Own namespace of the module.
-#[ allow( unused_imports ) ]
-pub mod protected
-{
-  pub use super::exposed::*;
-  use super::internal as i;
-  pub use super::macros::*;
-}
+  layer impl_deref;
+  layer impl_rented_op;
 
-pub use protected::*;
+  layer array;
+  layer slice;
+  layer tuple;
+  layer structure;
 
-/// Exposed namespace of the module.
-pub mod exposed
-{
-  use super::internal as i;
-  pub use i::X2;
-  pub use i::X2NominalInterface as X2Interface;
-  pub use i::X2NominalInterface;
-  pub use i::X2BasicInterface;
-  pub use i::X2CanonicalInterface;
-}
-
-pub use exposed::*;
-
-/// Prelude to use essentials: `use my_module::prelude::*`.
-pub mod prelude
-{
-  use super::internal as i;
-  pub use i::X2;
-  pub use i::X2NominalInterface as X2Interface;
-  pub use i::X2NominalInterface;
-  pub use i::X2BasicInterface;
-  pub use i::X2CanonicalInterface;
 }

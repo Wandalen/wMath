@@ -2,7 +2,7 @@
 #![ allow( unused_imports ) ]
 
 /// Internal namespace.
-pub( crate ) mod internal
+pub( crate ) mod private
 {
 
   ///
@@ -104,7 +104,7 @@ pub( crate ) mod internal
         let got = src.clone_as_tuple();
         let exp : ( T , T ) = ( num!( 1 ), num!( 2 ) );
         a_id!( got, exp );
-        a_true!( !mem_same_ptr( &got, &src ) ); /* qqq : discuss */
+        a_true!( !mem_tools::mem::same_ptr( &got, &src ) ); /* qqq : discuss */
       }
 
       /* test.case = "clone_as_array"; */
@@ -113,7 +113,7 @@ pub( crate ) mod internal
         let got = src.clone_as_array();
         let exp : [ T ; 2 ] = [ num!( 1 ), num!( 2 ) ];
         a_id!( got, exp );
-        a_true!( !mem_same_ptr( &got, &src ) );
+        a_true!( !mem_tools::mem::same_ptr( &got, &src ) );
       }
 
       /* test.case = "clone_as_canonical"; */
@@ -122,7 +122,7 @@ pub( crate ) mod internal
         let got = src.clone_as_canonical();
         let exp = X2::< T >( num!( 1 ), num!( 2 ) );
         a_id!( got, exp );
-        a_true!( !mem_same_ptr( &got, &src ) );
+        a_true!( !mem_tools::mem::same_ptr( &got, &src ) );
       }
 
       // --
@@ -133,7 +133,7 @@ pub( crate ) mod internal
         let got = src.as_tuple();
         let exp : ( T , T ) = ( num!( 1 ), num!( 2 ) );
         a_id!( got, &exp );
-        a_true!( mem_same_region( got, &src ) ); /* qqq : discuss */
+        a_true!( mem_tools::mem::same_region( got, &src ) ); /* qqq : discuss */
       }
 
       /* test.case = "as_array"; */
@@ -142,7 +142,7 @@ pub( crate ) mod internal
         let got = src.as_array();
         let exp : [ T ; 2 ] = [ num!( 1 ), num!( 2 ) ];
         a_id!( got, &exp );
-        a_true!( mem_same_region( got, &src ) );
+        a_true!( mem_tools::mem::same_region( got, &src ) );
       }
 
       /* test.case = "as_canonical"; */
@@ -151,7 +151,7 @@ pub( crate ) mod internal
         let got = src.as_canonical();
         let exp = X2::< T >( num!( 1 ), num!( 2 ) );
         a_id!( got, &exp );
-        a_true!( mem_same_region( got, &src ) );
+        a_true!( mem_tools::mem::same_region( got, &src ) );
       }
 
       /* test.case = "as_slice"; */
@@ -297,7 +297,7 @@ pub( crate ) mod internal
         let got = paste::paste!( src.[< clone_as_ $Name >]() );
         let exp = $Va $( :: $Vb )*::< T >::make( 1, 2 );
         a_id!( got, exp );
-        a_true!( !mem_same_ptr( &got, &src ) );
+        a_true!( !mem_tools::mem::same_ptr( &got, &src ) );
       }
 
       /* test.case = "as_nalgebra"; */
@@ -306,7 +306,7 @@ pub( crate ) mod internal
         let got = paste::paste!( src.[< as_ $Name >]() );
         let exp = $Va $( :: $Vb )*::< T >::make( 1, 2 );
         a_id!( *got, exp );
-        a_true!( mem_same_region( got, &src ) );
+        a_true!( mem_tools::mem::same_region( got, &src ) );
       }
 
       /* test.case = "as_nalgebra_mut"; */
@@ -346,7 +346,7 @@ pub( crate ) mod internal
         let got = src.clone_as_foreign();
         let exp = $Va $( :: $Vb )*::< T >::make( 1, 2 );
         a_id!( got, exp );
-        a_true!( !mem_same_ptr( &got, &src ) );
+        a_true!( !mem_tools::mem::same_ptr( &got, &src ) );
       }
 
       /* test.case = "as_foreign"; */
@@ -355,7 +355,7 @@ pub( crate ) mod internal
         let got = src.as_foreign();
         let exp = $Va $( :: $Vb )*::< T >::make( 1, 2 );
         a_id!( *got, exp );
-        a_true!( mem_same_region( got, &src ) );
+        a_true!( mem_tools::mem::same_region( got, &src ) );
       }
 
       /* test.case = "as_foreign_mut"; */
@@ -457,4 +457,4 @@ pub( crate ) mod internal
 
 }
 
-pub( crate ) use internal::*;
+pub( crate ) use private::*;
