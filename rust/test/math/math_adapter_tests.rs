@@ -32,4 +32,3 @@ mod nalgebra_test;
 #[ cfg( feature = "winit" ) ]
 #[ path = "adapter/winit_test/mod.rs" ]
 mod winit_test;
-
