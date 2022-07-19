@@ -20,7 +20,7 @@
 compile_error!( "Only one `*_ops` feature should be enabled. Disable either `nalgebra_ops` or `cgmath_ops`" );
 
 use ::meta_tools::exposed::*;
-use core::hash::Hash;
+// use core::hash::Hash;
 // use crate::ScalarInterface;
 
 //
