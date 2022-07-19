@@ -3,8 +3,8 @@ root:
   - wMath.out
 consistency:
   ../will.yml: &ref_0
-    hash: bf91cef31b498ef9f84d76e2be71e12c
-    size: 6565
+    hash: d18278c4a04029b96aa7630ece819785
+    size: 6606
 module:
   wMath.out:
     about:
@@ -137,6 +137,8 @@ module:
           raw: compiled
           content: prime
         path: '{path::out.*=}/source/Index.s'
+      npm.publish:
+        path: '../module/js/{about::name}'
       npm.proto.entry:
         path:
           - ../proto/wtools/amath/l9/Include.s
@@ -908,6 +910,8 @@ module:
           raw: compiled
           content: prime
         path: '{path::out.*=}/source/Index.s'
+      npm.publish:
+        path: 'module/js/{about::name}'
       npm.proto.entry:
         path:
           - proto/wtools/amath/l9/Include.s
@@ -1474,5 +1478,5 @@ module:
           - 'build::npm'
     consistency:
       ../will.yml:
-        hash: bf91cef31b498ef9f84d76e2be71e12c
-        size: 6565
+        hash: d18278c4a04029b96aa7630ece819785
+        size: 6606

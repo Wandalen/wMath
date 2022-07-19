@@ -1,6 +1,11 @@
+//!
+//! Define several traits like NanLikeInterface.
+//!
+
 /// Internal namespace.
-pub( crate ) mod internal
+pub( crate ) mod private
 {
+  use crate::*;
 
   ///
   /// Implement check is it nan and constructor with NAN value.
@@ -62,23 +67,12 @@ pub( crate ) mod internal
     };
   }
 
-  crate::for_each_int!( impl_nan_like_for_integer );
-  crate::for_each_float!( impl_nan_like_for_float );
+  for_each_int!( impl_nan_like_for_integer );
+  for_each_float!( impl_nan_like_for_float );
 
 }
 
-/// Exposed namespace of the module.
-pub mod exposed
+crate::mod_interface!
 {
-  use super::internal as i;
-  pub use i::NanLikeInterface;
-}
-
-pub use exposed::*;
-
-/// Prelude to use essentials: `use my_module::prelude::*`.
-pub mod prelude
-{
-  // use super::internal as i;
-  // pub use i::NanLikeInterface;
+  prelude use NanLikeInterface;
 }

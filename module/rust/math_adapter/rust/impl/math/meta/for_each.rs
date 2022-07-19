@@ -2,14 +2,14 @@
 #![ allow( unused_imports ) ]
 
 /// Internal namespace.
-pub( crate ) mod internal
+pub( crate ) mod private
 {
 
   ///
   /// Apply callback to each integer : isize, i8, i16, i32, i64, i128m, usize, u8, u16, u32, u64, u128.
   ///
 
-  #[macro_export]
+  #[ macro_export ]
   macro_rules! for_each_int
   {
 
@@ -32,7 +32,7 @@ pub( crate ) mod internal
   /// Apply callback to each float : f32, f64.
   ///
 
-  #[macro_export]
+  #[ macro_export ]
   macro_rules! for_each_float
   {
 
@@ -52,10 +52,10 @@ pub( crate ) mod internal
   }
 
   ///
-  /// Apply callback to each number : i8, i16, i32, i64, i128, u8, u16, u32, u64, u128, f32, f64.
+  /// Apply callback to each number : isize, i8, i16, i32, i64, i128, u8, u16, u32, u64, u128, f32, f64.
   ///
 
-  #[macro_export]
+  #[ macro_export ]
   macro_rules! for_each_number
   {
 
@@ -82,4 +82,13 @@ pub( crate ) mod internal
 
 }
 
-pub use internal::*;
+// pub use private::*;
+crate::mod_interface!
+{
+  orphan use
+  {
+    for_each_int,
+    for_each_float,
+    for_each_number,
+  };
+}

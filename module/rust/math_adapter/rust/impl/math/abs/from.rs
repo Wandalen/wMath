@@ -1,6 +1,12 @@
+//!
+//! Local implementation of traits From / Into. Required because of limmitations of Rust.
+//!
+
 /// Internal namespace.
-pub( crate ) mod internal
+pub( crate ) mod private
 {
+
+  // pub use ::math_common::{ From2, Into2 };
 
   ///
   /// Local implementation of trait From.
@@ -38,20 +44,11 @@ pub( crate ) mod internal
 
 }
 
-/// Exposed namespace of the module.
-pub mod exposed
+crate::mod_interface!
 {
-  use super::internal as i;
-  pub use i::From2;
-  pub use i::Into2;
-}
-
-pub use exposed::*;
-
-/// Prelude to use essentials: `use my_module::prelude::*`.
-pub mod prelude
-{
-  use super::internal as i;
-  pub use i::From2;
-  pub use i::Into2;
+  prelude use
+  {
+    From2,
+    Into2,
+  };
 }

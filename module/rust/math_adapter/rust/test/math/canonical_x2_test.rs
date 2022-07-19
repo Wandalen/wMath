@@ -1,8 +1,10 @@
-use core::mem::size_of;
-use math_adapter::prelude::*;
+// use core::mem::size_of;
+// use math_adapter::prelude::*;
+// use test_tools::*;
+// use crate::num;
+
 use math_adapter::X2;
-use test_tools::*;
-use crate::num;
+use super::*;
 
 //
 
@@ -78,7 +80,20 @@ macro_rules! canonical_test_for_number
       a_id!( size_of::< X2::< T > >(), size_of::< [ T ; 2 ] >() );
     }
 
-    /* test.case = "from / into itself"; */
+    // xxx
+    // /* test.case = "from / into tuple"; */
+    // {
+    //   let src = ( num!( 1 ), num!( 2 ) );
+    //   let got : X2< T > = src.into();
+    //   let exp = X2::< T >( num!( 1 ), num!( 2 ) );
+    //   a_id!( got, exp );
+    //   let src = ( num!( 1 ), num!( 2 ) );
+    //   let got = X2::< T >::from( src );
+    //   let exp = X2::< T >( num!( 1 ), num!( 2 ) );
+    //   a_id!( got, exp );
+    // }
+
+    /* test.case = "from2 / into2 itself"; */
     {
       let src = X2::< T >( num!( 1 ), num!( 2 ) );
       let got : X2< T > = src.into2();
@@ -87,7 +102,7 @@ macro_rules! canonical_test_for_number
       a_id!( got, src );
     }
 
-    /* test.case = "from / into tuple"; */
+    /* test.case = "from2 / into2 tuple"; */
     {
       let src = ( num!( 1 ), num!( 2 ) );
       let got : X2< T > = src.into2();
@@ -98,7 +113,7 @@ macro_rules! canonical_test_for_number
       a_id!( got, exp );
     }
 
-    /* test.case = "from / into array"; */
+    /* test.case = "from2 / into2 array"; */
     {
       let src = [ num!( 1 ), num!( 2 ) ];
       let got : X2< T > = src.into2();
@@ -109,7 +124,7 @@ macro_rules! canonical_test_for_number
       a_id!( got, exp );
     }
 
-    /* test.case = "from / into slice"; */
+    /* test.case = "from2 / into2 slice"; */
     {
       let _src = [ num!( 1 ), num!( 2 ) ];
       let src = &_src[ .. ];
@@ -179,7 +194,7 @@ macro_rules! canonical_test_for_number
       let got = src.clone_as_tuple();
       let exp : ( T , T ) = ( num!( 1 ), num!( 2 ) );
       a_id!( got, exp );
-      a_true!( !mem_same_ptr( &got, &src ) ); /* qqq : discuss postfix */
+      a_true!( !mem::same_ptr( &got, &src ) ); /* qqq : discuss postfix */
     }
 
     /* test.case = "clone_as_array"; */
@@ -188,7 +203,7 @@ macro_rules! canonical_test_for_number
       let got = src.clone_as_array();
       let exp : [ T ; 2 ] = [ num!( 1 ), num!( 2 ) ];
       a_id!( got, exp );
-      a_true!( !mem_same_ptr( &got, &src ) );
+      a_true!( !mem::same_ptr( &got, &src ) );
     }
 
     /* test.case = "clone_as_canonical"; */
@@ -197,7 +212,7 @@ macro_rules! canonical_test_for_number
       let got = src.clone_as_canonical();
       let exp = X2::< T >( num!( 1 ), num!( 2 ) );
       a_id!( got, exp );
-      a_true!( !mem_same_ptr( &got, &src ) );
+      a_true!( !mem::same_ptr( &got, &src ) );
     }
 
     // --
@@ -208,7 +223,7 @@ macro_rules! canonical_test_for_number
       let got = src.as_tuple();
       let exp : ( T , T ) = ( num!( 1 ), num!( 2 ) );
       a_id!( got, &exp );
-      a_true!( mem_same_region( got, &src ) ); /* qqq : discuss */
+      a_true!( mem::same_region( got, &src ) ); /* qqq : discuss */
     }
 
     /* test.case = "as_array"; */
@@ -217,7 +232,7 @@ macro_rules! canonical_test_for_number
       let got = src.as_array();
       let exp : [ T ; 2 ] = [ num!( 1 ), num!( 2 ) ];
       a_id!( got, &exp );
-      a_true!( mem_same_region( got, &src ) );
+      a_true!( mem::same_region( got, &src ) );
     }
 
     /* test.case = "as_canonical"; */
@@ -226,7 +241,7 @@ macro_rules! canonical_test_for_number
       let got = src.as_canonical();
       let exp = X2::< T >( num!( 1 ), num!( 2 ) );
       a_id!( got, &exp );
-      a_true!( mem_same_region( got, &src ) );
+      a_true!( mem::same_region( got, &src ) );
     }
 
     /* test.case = "as_slice"; */

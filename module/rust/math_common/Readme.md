@@ -1,0 +1,4 @@
+<!-- {{# generate.module_header{} #}} -->
+# Module :: math_common [![experimental](https://img.shields.io/badge/stability-experimental-orange.svg)](https://github.com/emersion/stability-badges#experimental) [![rust-status](https://github.com/Wandalen/wMath/actions/workflows/ModuleMathCommonPush.yml/badge.svg)](https://github.com/Wandalen/wMath/actions/workflows/ModuleMathCommonPush.yml) [![docs.rs](https://img.shields.io/docsrs/math_common?color=e3e8f0&logo=docs.rs)](https://docs.rs/math_common) [![Open in Gitpod](https://raster.shields.io/static/v1?label=try&message=online&color=eee&logo=gitpod&logoColor=eee)](https://gitpod.io/#RUN_PATH=.,SAMPLE_FILE=sample%2Frust%2Fmath_common_trivial_sample%2Fsrc%2Fmain.rs,RUN_POSTFIX=--example%20math_common_trivial_sample/https://github.com/Wandalen/wMath) [![discord](https://img.shields.io/discord/872391416519737405?color=e3e8f0&logo=discord&logoColor=e3e8f0)](https://discord.gg/JwTG6d2b)
+
+A math module for experimenting

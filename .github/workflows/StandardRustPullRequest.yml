@@ -7,7 +7,7 @@ env :
   CARGO_TERM_COLOR : always
 
 concurrency :
-  group : standard_rust_pull_request_${{ github.base_ref }}
+  group : standard_rust_pull_request_${{ github.event.base.ref }}_${{ github.event.number }}
   cancel-in-progress : true
 
 jobs :
@@ -43,8 +43,8 @@ jobs :
   tested :
     needs: check
     if : ${{ needs.check.outputs.should_run == 'true' }}
-    uses : Wandalen/wTools/.github/workflows/StandardRustPush.yml@master
+    uses : Wandalen/wTools/.github/workflows/StandardRustPush.yml@alpha
     with :
       manifest_path : './Cargo.toml'
-      module_name : ${{ needs.check.outputs.commit_message }}
-      commit_message : ${{ needs.check.outputs.commit_message }}
+      module_name : ${{ github.event.base.ref }}_${{ github.event.number }}
+      commit_message : ${{ github.event.base.ref }}_${{ github.event.number }}
