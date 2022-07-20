@@ -82,40 +82,43 @@ pub( crate ) mod private
     // ( $Op : ident, $op : ident, $Va : ident $( :: $Vb : ident )* ) =>
     {
 
-      impl< Right, Scalar > $Op< Right > for $For< Scalar >
-      where
-        Scalar : ScalarInterface + $Op< Output = Scalar >,
-        Right : X2Interface< Scalar = Scalar > + Copy,
-        // Right : paste::paste!([< $For Interface >])< Scalar = Scalar > + Copy,
-        // Right : paste::paste!( [< $For Interface >] < Scalar = Scalar > + Copy ),
-        // paste::paste!( src.[< clone_as_ $Name >]() )
+      crate::idents_concat!
       {
-        type Output = Self;
-        #[ inline ]
-        fn $op( self, right : Right ) -> Self::Output
+        impl< Right, Scalar > $Op< Right > for $For< Scalar >
+        where
+          Scalar : ScalarInterface + $Op< Output = Scalar >,
+          Right : [< $For Interface >]< Scalar = Scalar > + Copy,
+          // Right : X2Interface< Scalar = Scalar > + Copy,
         {
-          $Op::< $Va $( :: $Vb )*< Scalar > >::$op
-          (
-            $Va $( :: $Vb )*::< Scalar >::from2( self ),
-            $Va $( :: $Vb )*::< Scalar >::from2( right ),
-          ).into2()
+          type Output = Self;
+          #[ inline ]
+          fn $op( self, right : Right ) -> Self::Output
+          {
+            $Op::< $Va $( :: $Vb )*< Scalar > >::$op
+            (
+              $Va $( :: $Vb )*::< Scalar >::from2( self ),
+              $Va $( :: $Vb )*::< Scalar >::from2( right ),
+            ).into2()
+          }
         }
       }
 
       //
 
-      impl< Right, Scalar > $Op< &Right > for &$For< Scalar >
-      where
-        Scalar : ScalarInterface + $Op< Output = Scalar >,
-        Right : X2Interface< Scalar = Scalar > + Copy,
-        // Right : paste::paste!([< $For Interface >])< Scalar = Scalar > + Copy,
-        // Right : paste::paste!( [< $For Interface >] < Scalar = Scalar > + Copy ),
+      crate::idents_concat!
       {
-        type Output = < $For< Scalar > as $Op::< $For< Scalar > > >::Output;
-        #[ inline ]
-        fn $op( self, right : &Right ) -> Self::Output
+        impl< Right, Scalar > $Op< &Right > for &$For< Scalar >
+        where
+          Scalar : ScalarInterface + $Op< Output = Scalar >,
+          Right : [< $For Interface >]< Scalar = Scalar > + Copy,
+          // Right : X2Interface< Scalar = Scalar > + Copy,
         {
-          $Op::< Right >::$op( *self, *right )
+          type Output = < $For< Scalar > as $Op::< $For< Scalar > > >::Output;
+          #[ inline ]
+          fn $op( self, right : &Right ) -> Self::Output
+          {
+            $Op::< Right >::$op( *self, *right )
+          }
         }
       }
 
