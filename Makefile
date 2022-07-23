@@ -21,7 +21,7 @@ VERSION ?= $(strip $(shell grep -m1 'version = "' Cargo.toml | cut -d '"' -f2))
 
 # Sync local repostiry.
 #
-# Usage:
+# Usage :
 #	make git.sync [message='description of changes']
 
 git.sync :
@@ -35,10 +35,10 @@ sync : git.sync
 
 # Generate crates documentation from Rust sources.
 #
-# Usage:
+# Usage :
 #	make doc [private=(yes|no)] [open=(yes|no)] [clean=(no|yes)]
 
-doc:
+doc :
 ifeq ($(clean),yes)
 	@rm -rf target/doc/
 endif
@@ -48,47 +48,55 @@ endif
 
 # Format Rust sources with rustfmt.
 #
-# Usage:
+# Usage :
 #	make fmt [check=(no|yes)]
 
-fmt:
+fmt :
+	{ find -L module -name *.rs -print0 ; } | xargs -0 rustfmt $(if $(call eq,$(check),yes),-- --check,)
 	cargo +nightly fmt --all $(if $(call eq,$(check),yes),-- --check,)
 
 # Lint Rust sources with Clippy.
 #
-# Usage:
+# Usage :
 #	make lint
 
-lint:
+lint :
 	cargo clippy --all-features -- -D warnings
+
+# Format nad lint Rust sources.
+#
+# Usage :
+#	make lint
+
+normalize : fmt lint
 
 # Run project Rust sources with Cargo.
 #
-# Usage:
+# Usage :
 #	make up
 
-up:
+up :
 	cargo up
 
 # Run project Rust sources with Cargo.
 #
-# Usage:
+# Usage :
 #	make clean
 
-clean:
+clean :
 	cargo clean && rm -rf Cargo.lock && cargo cache -a && cargo update
 
 # Run Rust tests of project.
 #
-# Usage:
+# Usage :
 #	make test
 
-test:
+test :
 	cargo test --all-features
 
 # Run format link test and tests.
 #
-# Usage:
+# Usage :
 #	make all
 
 all : fmt lint test
@@ -96,7 +104,7 @@ all : fmt lint test
 # === .PHONY section
 #
 
-.PHONY: \
+.PHONY : \
 	all \
 	docs \
 	fmt \
