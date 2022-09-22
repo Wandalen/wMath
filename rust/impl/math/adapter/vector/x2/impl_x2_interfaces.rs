@@ -33,96 +33,11 @@ pub ( crate ) mod private
     )
     =>
     {
-      impl_x2_interfaces!( $_type, [ $first ], [ $second ] );
+      nominal!( X2NominalInterface, $_type, _0 _1, [ $first ] [ $second ] );
 
-      //
+      base!( X2BasicInterface, $_type, $make, _0 _1 );
 
-      impl< Scalar > X2BasicInterface for $_type
-      where
-        Scalar : ScalarInterface,
-      {
-        #[ inline ]
-        fn make( _0 : Self::Scalar, _1 : Self::Scalar ) -> Self
-        {
-          $make( _0, _1 )
-        }
-      }
-
-      //
-
-      impl< Scalar > X2CanonicalInterface for $_type
-      where
-        Scalar : ScalarInterface,
-      {
-
-        /* */
-
-        #[ inline ]
-        fn _0_ref( &self ) -> &Self::Scalar
-        {
-          &self[ $first ]
-        }
-
-        #[ inline ]
-        fn _1_ref( &self ) -> &Self::Scalar
-        {
-          &self[ $second ]
-        }
-
-        /* */
-
-        #[ inline ]
-        fn _0_mut( &mut self ) -> &mut Self::Scalar
-        {
-          &mut self[ $first ]
-        }
-
-        #[ inline ]
-        fn _1_mut( &mut self ) -> &mut Self::Scalar
-        {
-          &mut self[ $second ]
-        }
-
-        /* */
-
-        #[ inline ]
-        fn as_canonical( &self ) -> &X2< Self::Scalar >
-        {
-          $as_canonical( self )
-        }
-
-        #[ inline ]
-        fn as_canonical_mut( &mut self ) -> &mut X2< Self::Scalar >
-        {
-          $as_canonical( self )
-        }
-
-        /* */
-
-      }
-    };
-
-    ( $_type:ty, [ $first:expr ], [ $second:expr ] )
-    =>
-    {
-      impl< Scalar > X2NominalInterface for $_type
-      where
-        Scalar : ScalarInterface,
-      {
-        type Scalar = Scalar;
-
-        #[ inline ]
-        fn _0( &self ) -> Self::Scalar
-        {
-          self[ $first ]
-        }
-
-        #[ inline ]
-        fn _1( &self ) -> Self::Scalar
-        {
-          self[ $second ]
-        }
-      }
+      canonical!( X2CanonicalInterface, $_type, $as_canonical, _0_ref _1_ref, _0_mut _1_mut, [ 0 ] [ 1 ] );
     };
 
     //
@@ -136,57 +51,108 @@ pub ( crate ) mod private
     )
     =>
     {
-      impl_x2_interfaces!( $_type, .$first, .$second );
+      nominal!( X2NominalInterface, $_type, _0 _1, .$first .$second );
 
-      //
+      base!( X2BasicInterface, $_type, $make, _0 _1 );
 
-      impl< Scalar > X2BasicInterface for $_type
+      canonical!( X2CanonicalInterface, $_type, $as_canonical, _0_ref _1_ref, _0_mut _1_mut, .0 .1 );
+    };
+
+    //
+
+    ( $_type:ty, [ $first:literal ], [ $second:literal ] )
+    =>
+    {
+      nominal!( X2NominalInterface, $_type, _0 _1, [ $first ] [ $second ] );
+    }
+  }
+
+  #[ macro_export ]
+  macro_rules! nominal
+  {
+    ( $interface:ident, $_type:ty, $( $name:ident )*, $( .$getter:tt )* )
+    =>
+    {
+      impl< Scalar > $interface for $_type
+      where
+        Scalar : ScalarInterface,
+      {
+        type Scalar = Scalar;
+
+        $(
+          #[ inline ]
+          fn $name( &self ) -> Self::Scalar
+          {
+            self. $getter
+          }
+        )*
+      }
+    };
+
+    //
+
+    ( $interface:ident, $_type:ty, $( $name:ident )*, $( [ $getter:literal ] )* )
+    =>
+    {
+      impl< Scalar > $interface for $_type
+      where
+        Scalar : ScalarInterface,
+      {
+        type Scalar = Scalar;
+
+        $(
+          #[ inline ]
+          fn $name( &self ) -> Self::Scalar
+          {
+            self[ $getter ]
+          }
+        )*
+      }
+    };
+  }
+
+  #[ macro_export ]
+  macro_rules! base
+  {
+    ( $interface:ident, $_type:ty, $make:expr, $( $name:ident )* )
+    =>
+    {
+      impl< Scalar > $interface for $_type
       where
         Scalar : ScalarInterface,
       {
         #[ inline ]
-        fn make( _0 : Self::Scalar, _1 : Self::Scalar ) -> Self
+        fn make( $( $name : Self::Scalar, )* ) -> Self
         {
-          $make( _0, _1 )
+          $make( $( $name, )* )
         }
       }
+    }
+  }
 
-      //
-
-      impl< Scalar > X2CanonicalInterface for $_type
+  #[ macro_export ]
+  macro_rules! canonical
+  {
+    ( $interface:ident, $_type:ty, $as_canonical:expr, $( $ref_name:ident )*, $( $mut_name:ident )*, $( .$getter:tt )* )
+    =>
+    {
+      impl< Scalar > $interface for $_type
       where
         Scalar : ScalarInterface,
       {
+        $(
+          #[ inline ]
+          fn $ref_name( &self ) -> &Self::Scalar
+          {
+            &self. $getter
+          }
 
-        /* */
-
-        #[ inline ]
-        fn _0_ref( &self ) -> &Self::Scalar
-        {
-          &self. $first
-        }
-
-        #[ inline ]
-        fn _1_ref( &self ) -> &Self::Scalar
-        {
-          &self. $second
-        }
-
-        /* */
-
-        #[ inline ]
-        fn _0_mut( &mut self ) -> &mut Self::Scalar
-        {
-          &mut self. $first
-        }
-
-        #[ inline ]
-        fn _1_mut( &mut self ) -> &mut Self::Scalar
-        {
-          &mut self. $second
-        }
-
-        /* */
+          #[ inline ]
+          fn $mut_name( &mut self ) -> &mut Self::Scalar
+          {
+            &mut self. $getter
+          }
+        )*
 
         #[ inline ]
         fn as_canonical( &self ) -> &X2< Self::Scalar >
@@ -199,31 +165,42 @@ pub ( crate ) mod private
         {
           $as_canonical( self )
         }
-
-        /* */
-
       }
     };
 
-    ( $_type:ty, .$first:tt, .$second:tt )
+    //
+
+    ( $interface:ident, $_type:ty, $as_canonical:expr, $( $ref_name:ident )*, $( $mut_name:ident )*, $( [ $getter:tt ] )* )
     =>
     {
-      impl< Scalar > X2NominalInterface for $_type
+      impl< Scalar > $interface for $_type
       where
         Scalar : ScalarInterface,
       {
-        type Scalar = Scalar;
+        $(
+          #[ inline ]
+          fn $ref_name( &self ) -> &Self::Scalar
+          {
+            &self[ $getter ]
+          }
+
+          #[ inline ]
+          fn $mut_name( &mut self ) -> &mut Self::Scalar
+          {
+            &mut self[ $getter ]
+          }
+        )*
 
         #[ inline ]
-        fn _0( &self ) -> Self::Scalar
+        fn as_canonical( &self ) -> &X2< Self::Scalar >
         {
-          self. $first
+          $as_canonical( self )
         }
 
         #[ inline ]
-        fn _1( &self ) -> Self::Scalar
+        fn as_canonical_mut( &mut self ) -> &mut X2< Self::Scalar >
         {
-          self. $second
+          $as_canonical( self )
         }
       }
     };
