@@ -1,5 +1,5 @@
 //!
-//! Macro to implement traits in the x2_interface module.
+//! Macro to implement XnNominalInterface, XnBasicInterface, XnCanonicalInterface traits for an arbitrary type.
 //!
 
 /// Internal namespace.
@@ -8,21 +8,36 @@ pub ( crate ) mod private
   use crate::*;
 
   ///
-  /// Implement traits in the x2_interface module for an arbitrary type.
+  /// Implement XnNominalInterface, XnBasicInterface, XnCanonicalInterface traits for an arbitrary type.
   /// Arguments :
   /// Type with the 'Scalar' generic;
   /// Getter for x (the index syntax (e.g. '[ value ]') and the dot syntax (e.g. '.value') are supported );
-  /// Getter for y (the index syntax (e.g. '[ value ]') and the dot syntax (e.g. '.value') are supported );
-  /// Closure, which takes two scalars and returns a new instance of the Type;
-  /// Closure ,which takes the ref to the current instance and returns the &X2< Scalar > representation;
-  /// If only the first three arguments are provided, only X2BasicInterface will be implemented.
+  /// Getter for y;
+  /// Getter for z (optional);
+  /// Getter for w (optional);
+  /// Closure, which takes scalars and returns a new instance of the type;
+  /// Closure, which takes the ref to the current instance and returns the '&Xn< Scalar >' representation;
+  /// If the last two arguments are not provided, only XnNominalInterface will be implemented.
   ///
 
   #[ macro_export ]
-  macro_rules! impl_x2_interfaces
+  macro_rules! impl_interfaces
   {
-
     () => {};
+
+    //
+
+    (
+      $_type:ty,
+      [ $first:literal ],
+      [ $second:literal ]
+    )
+    =>
+    {
+      nominal!( X2NominalInterface, $_type, _0 _1, [ $first ] [ $second ] );
+    };
+
+    //
 
     (
       $_type:ty,
@@ -35,7 +50,7 @@ pub ( crate ) mod private
     {
       nominal!( X2NominalInterface, $_type, _0 _1, [ $first ] [ $second ] );
 
-      base!( X2BasicInterface, $_type, $make, _0 _1 );
+      basic!( X2BasicInterface, $_type, $make, _0 _1 );
 
       canonical!( X2CanonicalInterface, $_type, $as_canonical, _0_ref _1_ref, _0_mut _1_mut, [ 0 ] [ 1 ] );
     };
@@ -53,19 +68,152 @@ pub ( crate ) mod private
     {
       nominal!( X2NominalInterface, $_type, _0 _1, .$first .$second );
 
-      base!( X2BasicInterface, $_type, $make, _0 _1 );
+      basic!( X2BasicInterface, $_type, $make, _0 _1 );
 
       canonical!( X2CanonicalInterface, $_type, $as_canonical, _0_ref _1_ref, _0_mut _1_mut, .0 .1 );
     };
 
     //
 
-    ( $_type:ty, [ $first:literal ], [ $second:literal ] )
+    (
+      $_type:ty,
+      [ $first:literal ],
+      [ $second:literal ],
+      [ $third:literal ]
+    )
     =>
     {
-      nominal!( X2NominalInterface, $_type, _0 _1, [ $first ] [ $second ] );
-    }
+      nominal!( X3NominalInterface, $_type, _0 _1 _2, [ $first ] [ $second ] [ $third ] );
+    };
+
+    //
+
+    (
+      $_type:ty,
+      [ $first:literal ],
+      [ $second:literal ],
+      [ $third:literal ],
+      $make:expr,
+      $as_canonical:expr
+    )
+    =>
+    {
+      nominal!( X3NominalInterface, $_type, _0 _1 _2, [ $first ] [ $second ] [ $third ] );
+
+      basic!( X3BasicInterface, $_type, $make, _0 _1 _2 );
+
+      canonical!
+      (
+        X3CanonicalInterface,
+        $_type,
+        $as_canonical,
+        _0_ref _1_ref _2_ref,
+        _0_mut _1_mut _2_mut,
+        [ 0 ] [ 1 ] [ 2 ],
+      );
+    };
+
+    //
+
+    (
+      $_type:ty,
+      .$first:tt,
+      .$second:tt,
+      .$third:tt,
+      $make:expr,
+      $as_canonical:expr
+    )
+    =>
+    {
+      nominal!( X3NominalInterface, $_type, _0 _1 _2, .$first .$second, .$third );
+
+      basic!( X3BasicInterface, $_type, $make, _0 _1 _2 );
+
+      canonical!
+      (
+        X3CanonicalInterface,
+        $_type,
+        $as_canonical,
+        _0_ref _1_ref _2_ref,
+        _0_mut _1_mut _2_mut,
+        .0 .1 .2
+      );
+    };
+
+    //
+
+    (
+      $_type:ty,
+      [ $first:literal ],
+      [ $second:literal ],
+      [ $third:literal ],
+      [ $fourth:literal ]
+    )
+    =>
+    {
+      nominal!( X4NominalInterface, $_type, _0 _1 _2 _3, [ $first ] [ $second ] [ $third ] [ $fourth ] );
+    };
+
+    //
+
+    (
+      $_type:ty,
+      [ $first:literal ],
+      [ $second:literal ],
+      [ $third:literal ],
+      [ $fourth:literal ],
+      $make:expr,
+      $as_canonical:expr
+    )
+    =>
+    {
+      nominal!( X4NominalInterface, $_type, _0 _1 _2 _3, [ $first ] [ $second ] [ $third ] [ $fourth ] );
+
+      basic!( X4BasicInterface, $_type, $make, _0 _1 _2 _3 );
+
+      canonical!
+      (
+        X4CanonicalInterface,
+        $_type,
+        $as_canonical,
+        _0_ref _1_ref _2_ref _3_ref,
+        _0_mut _1_mut _2_mut _3_mut,
+        [ 0 ] [ 1 ] [ 2 ] [ 3 ],
+      );
+    };
+
+    //
+
+    (
+      $_type:ty,
+      .$first:tt,
+      .$second:tt,
+      .$third:tt,
+      .$fourth:tt,
+      $make:expr,
+      $as_canonical:expr
+    )
+    =>
+    {
+      nominal!( X4NominalInterface, $_type, _0 _1 _2 _3, .$first .$second, .$third .$fourth );
+
+      basic!( X4BasicInterface, $_type, $make, _0 _1 _2 _3 );
+
+      canonical!
+      (
+        X4CanonicalInterface,
+        $_type,
+        $as_canonical,
+        _0_ref _1_ref _2_ref _3_ref,
+        _0_mut _1_mut _2_mut _2_mut,
+        .0 .1 .2 .3
+      );
+    };
   }
+
+  ///
+  /// Implement nominal vector interface for a type.
+  ///
 
   #[ macro_export ]
   macro_rules! nominal
@@ -111,8 +259,12 @@ pub ( crate ) mod private
     };
   }
 
+  ///
+  /// Implement basic vector interface for a type.
+  ///
+
   #[ macro_export ]
-  macro_rules! base
+  macro_rules! basic
   {
     ( $interface:ident, $_type:ty, $make:expr, $( $name:ident )* )
     =>
@@ -129,6 +281,10 @@ pub ( crate ) mod private
       }
     }
   }
+
+  ///
+  /// Implement canonical vector interface for a type.
+  ///
 
   #[ macro_export ]
   macro_rules! canonical
@@ -206,13 +362,12 @@ pub ( crate ) mod private
     };
   }
 
-  pub use impl_x2_interfaces;
-
+  pub use impl_interfaces;
 }
 
 //
 
 crate::mod_interface!
 {
-  exposed use impl_x2_interfaces;
+  exposed use impl_interfaces;
 }

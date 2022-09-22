@@ -22,7 +22,7 @@ pub( crate ) mod private
 
   //
 
-  impl_x2_interfaces!
+  impl_interfaces!
   (
     X2< Scalar >,
     .0,

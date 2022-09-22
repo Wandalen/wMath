@@ -8,7 +8,7 @@ pub( crate ) mod private
   use crate::*;
   use super::super::LENGTH;
 
-  impl_x2_interfaces!
+  impl_interfaces!
   (
     [ Scalar ; LENGTH ],
     [ 0 ],

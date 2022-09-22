@@ -7,7 +7,7 @@ pub( crate ) mod private
 {
   use crate::*;
 
-  impl_x2_interfaces!
+  impl_interfaces!
   (
     ( Scalar, Scalar ),
     .0,
