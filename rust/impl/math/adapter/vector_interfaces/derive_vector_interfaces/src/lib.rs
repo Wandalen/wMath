@@ -50,7 +50,7 @@ impl Parse for Input
         {
           named = false;
           element_type = fields.unnamed.first().unwrap().ty.clone();
-          (0..fields.unnamed.len()).map( | idx | TokenTree::Literal( Literal::usize_unsuffixed( idx ) ) ).collect()
+          ( 0..fields.unnamed.len() ).map( | idx | TokenTree::Literal( Literal::usize_unsuffixed( idx ) ) ).collect()
         },
       _ => return Err( input.error( "Expected struct with fields" ) ),
     };
@@ -88,7 +88,7 @@ pub fn derive_vector_interfaces( input : TokenStream ) -> TokenStream
 fn impl_nominal( interface_name : Ident, input : &Input ) -> proc_macro2::TokenStream
 {
   let Input { ident, identifiers, with_generic, named : _, element_type } = input;
-  let function_names : Vec< Ident > = (0..identifiers.len()).into_iter().map( | idx |  format_ident!( "_{}", idx ) ).collect();
+  let function_names : Vec< Ident > = ( 0..identifiers.len() ).into_iter().map( | idx |  format_ident!( "_{}", idx ) ).collect();
   let methods = quote!
   (
     #(
