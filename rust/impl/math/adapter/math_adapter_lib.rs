@@ -53,6 +53,8 @@ crate::mod_interface!
   layer scalar;
   #[ cfg( feature = "use_std" ) ]
   layer vector;
+  #[ cfg( feature = "use_std" ) ]
+  layer vector_interfaces;
 
   exposed use ::num_traits as traits;
   exposed use ::meta_tools::{ for_each, braces_unwrap };
