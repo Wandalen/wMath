@@ -1,6 +1,7 @@
 //!
 //! Array.
 //!
+#![ allow( clippy::just_underscores_and_digits ) ]
 
 /// Internal namespace.
 pub( crate ) mod private
@@ -34,7 +35,6 @@ pub( crate ) mod private
   where
     Scalar : ScalarInterface,
   {
-
     #[ inline ]
     fn make( _0 : Self::Scalar, _1 : Self::Scalar ) -> Self
     {

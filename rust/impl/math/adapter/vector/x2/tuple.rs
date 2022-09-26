@@ -1,6 +1,7 @@
 //!
 //! Implement interfaces for tuple.
 //!
+#![ allow( clippy::just_underscores_and_digits ) ]
 
 /// Internal namespace.
 pub( crate ) mod private
