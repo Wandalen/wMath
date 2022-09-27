@@ -1,13 +1,14 @@
 //!
 //! Array.
 //!
+#![ allow( clippy::just_underscores_and_digits ) ]
 
 /// Internal namespace.
 pub( crate ) mod private
 {
   use crate::*;
   use super::super::LENGTH;
-
+  
   impl_interfaces!
   (
     [ Scalar ; LENGTH ],

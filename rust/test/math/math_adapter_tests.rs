@@ -24,6 +24,8 @@ mod helper_test;
 mod macro_tools_test;
 #[ path = "adapter/impl_interfaces_macro_test.rs" ]
 mod impl_interfaces_macro_test;
+#[ path = "adapter/derive_vector_interfaces_test.rs"]
+mod derive_vector_interfaces_test;
 
 #[ cfg( feature = "cgmath" ) ]
 #[ path = "adapter/cgmath_test/mod.rs" ]

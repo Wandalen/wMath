@@ -25,7 +25,11 @@ VERSION ?= $(strip $(shell grep -m1 'version = "' Cargo.toml | cut -d '"' -f2))
 #	make git.sync [message='description of changes']
 
 git.sync :
-	git add --all && git commit -am $(message) && git pull
+ifeq ("$(message)","")
+	@echo "\033[0;31mWrong commit message. Please, pass parameter \"message=...\"\033[0m"
+else
+	git add --all && git commit -am "$(message)" && git pull
+endif
 
 sync : git.sync
 

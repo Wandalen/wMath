@@ -49,6 +49,10 @@ path = "rust/impl/math/wmath_lib.rs"
 name = "wmath_test"
 path = "rust/test/math/wmath_lib_tests.rs"
 
+[[test]]
+name = "wmath_smoke_test"
+path = "rust/test/_integration_test/smoke_test.rs"
+
 [[example]]
 name = "wmath_trivial_sample"
 path = "../../../sample/rust/wmath_trivial_sample/src/main.rs"
