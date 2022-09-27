@@ -13,6 +13,9 @@ pub( crate ) mod private
   /// X3 Vector of cgmath
   pub type X3< Scalar > = cgmath::Vector3< Scalar >;
 
+  /// X4 Vector of cgmath
+  pub type X4< Scalar > = cgmath::Vector4< Scalar >;
+
 }
 
 crate::mod_interface!
@@ -31,9 +34,12 @@ crate::mod_interface!
   layer x2;
   /// Implement 3 dimension interfaces for objects of the math library.
   layer x3;
+  /// Implement 4 dimension interfaces for objects of the math library.
+  layer x4;
 
   protected use X2;
   protected use X3;
+  protected use X4;
   protected use ::cgmath::*;
   prelude use ::cgmath::Array;
 
