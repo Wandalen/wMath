@@ -2,7 +2,11 @@
 
 use test_tools::*;
 use math_adapter::prelude::*;
-use math_adapter::X2;
+use math_adapter::
+{
+  X2,
+  X3,
+};
 
 tests_impls!
 {
@@ -10,7 +14,7 @@ tests_impls!
   /// Tests for X2 conversion function as clone_as_foreign, as_foreign, as_foreign_mut .
   ///
 
-  fn convertion_foreign()
+  fn x2_convertion_foreign()
   {
     type T = i8;
     crate::macro_foreign_x2::macro_test_foreign_x2_as_foreign!( cgmath::Vector2 ; T );
@@ -20,10 +24,30 @@ tests_impls!
   /// Operations with dereferencing.
   ///
 
-  fn operation_deref()
+  fn x2_operation_deref()
   {
     type T = i8;
     crate::macro_foreign_x2::macro_test_foreign_x2_operation_deref!( cgmath::Vector2 ; T );
+  }
+
+  ///
+  /// Tests for X3 conversion function as clone_as_foreign, as_foreign, as_foreign_mut .
+  ///
+
+  fn x3_convertion_foreign()
+  {
+    type T = i8;
+    crate::macro_foreign_x3::macro_test_foreign_x3_as_foreign!( cgmath::Vector3 ; T );
+  }
+
+  ///
+  /// Operations with dereferencing.
+  ///
+
+  fn x3_operation_deref()
+  {
+    type T = i8;
+    crate::macro_foreign_x3::macro_test_foreign_x3_operation_deref!( cgmath::Vector3 ; T );
   }
 }
 
@@ -31,6 +55,8 @@ tests_impls!
 
 tests_index!
 {
-  convertion_foreign,
-  operation_deref,
+  x2_convertion_foreign,
+  x2_operation_deref,
+  x3_convertion_foreign,
+  x3_operation_deref,
 }
