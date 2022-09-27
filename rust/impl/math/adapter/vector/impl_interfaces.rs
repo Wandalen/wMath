@@ -52,7 +52,7 @@ pub ( crate ) mod private
 
       basic!( X2BasicInterface, $_type, $make, _0 _1 );
 
-      canonical!( X2CanonicalInterface, $_type, $as_canonical, _0_ref _1_ref, _0_mut _1_mut, [ 0 ] [ 1 ] );
+      canonical!( X2CanonicalInterface, $_type, X2, $as_canonical, _0_ref _1_ref, _0_mut _1_mut, [ 0 ] [ 1 ] );
     };
 
     //
@@ -70,7 +70,7 @@ pub ( crate ) mod private
 
       basic!( X2BasicInterface, $_type, $make, _0 _1 );
 
-      canonical!( X2CanonicalInterface, $_type, $as_canonical, _0_ref _1_ref, _0_mut _1_mut, .0 .1 );
+      canonical!( X2CanonicalInterface, $_type, X2, $as_canonical, _0_ref _1_ref, _0_mut _1_mut, .0 .1 );
     };
 
     //
@@ -106,6 +106,7 @@ pub ( crate ) mod private
       (
         X3CanonicalInterface,
         $_type,
+        X3,
         $as_canonical,
         _0_ref _1_ref _2_ref,
         _0_mut _1_mut _2_mut,
@@ -133,6 +134,7 @@ pub ( crate ) mod private
       (
         X3CanonicalInterface,
         $_type,
+        X3,
         $as_canonical,
         _0_ref _1_ref _2_ref,
         _0_mut _1_mut _2_mut,
@@ -175,6 +177,7 @@ pub ( crate ) mod private
       (
         X4CanonicalInterface,
         $_type,
+        X4,
         $as_canonical,
         _0_ref _1_ref _2_ref _3_ref,
         _0_mut _1_mut _2_mut _3_mut,
@@ -203,6 +206,7 @@ pub ( crate ) mod private
       (
         X4CanonicalInterface,
         $_type,
+        X4,
         $as_canonical,
         _0_ref _1_ref _2_ref _3_ref,
         _0_mut _1_mut _2_mut _2_mut,
@@ -289,7 +293,7 @@ pub ( crate ) mod private
   #[ macro_export ]
   macro_rules! canonical
   {
-    ( $interface:ident, $_type:ty, $as_canonical:expr, $( $ref_name:ident )*, $( $mut_name:ident )*, $( .$getter:tt )* )
+    ( $interface:ident, $_type:ty, $canonical_type:ident, $as_canonical:expr, $( $ref_name:ident )*, $( $mut_name:ident )*, $( .$getter:tt )* )
     =>
     {
       impl< Scalar > $interface for $_type
@@ -311,13 +315,13 @@ pub ( crate ) mod private
         )*
 
         #[ inline ]
-        fn as_canonical( &self ) -> &X2< Self::Scalar >
+        fn as_canonical( &self ) -> &$canonical_type< Self::Scalar >
         {
           $as_canonical( self )
         }
 
         #[ inline ]
-        fn as_canonical_mut( &mut self ) -> &mut X2< Self::Scalar >
+        fn as_canonical_mut( &mut self ) -> &mut $canonical_type< Self::Scalar >
         {
           $as_canonical( self )
         }
@@ -326,7 +330,7 @@ pub ( crate ) mod private
 
     //
 
-    ( $interface:ident, $_type:ty, $as_canonical:expr, $( $ref_name:ident )*, $( $mut_name:ident )*, $( [ $getter:tt ] )* )
+    ( $interface:ident, $_type:ty, $canonical_type:ident, $as_canonical:expr, $( $ref_name:ident )*, $( $mut_name:ident )*, $( [ $getter:tt ] )* )
     =>
     {
       impl< Scalar > $interface for $_type
@@ -348,13 +352,13 @@ pub ( crate ) mod private
         )*
 
         #[ inline ]
-        fn as_canonical( &self ) -> &X2< Self::Scalar >
+        fn as_canonical( &self ) -> & $canonical_type < Self::Scalar >
         {
           $as_canonical( self )
         }
 
         #[ inline ]
-        fn as_canonical_mut( &mut self ) -> &mut X2< Self::Scalar >
+        fn as_canonical_mut( &mut self ) -> &mut $canonical_type < Self::Scalar >
         {
           $as_canonical( self )
         }
