@@ -26,6 +26,8 @@ pub( crate ) mod private
     fn _0( &self ) -> Self::Scalar;
     /// Second element.
     fn _1( &self ) -> Self::Scalar;
+    /// Third element.
+    fn _2( &self ) -> Self::Scalar;
     /// First element.
     #[ inline ]
     fn x( &self ) -> Self::Scalar
@@ -47,7 +49,7 @@ pub( crate ) mod private
 
     /// Clone as tuple.
     #[ inline ]
-    fn clone_as_tuple( &self ) -> ( Self::Scalar , Self::Scalar )
+    fn clone_as_tuple( &self ) -> ( Self::Scalar , Self::Scalar, Self::Scalar )
     {
       ( self._0(), self._1(), self._2() )
     }
@@ -230,23 +232,22 @@ pub( crate ) mod private
 
   }
 
-  /* zzz : macro index of methods? */
-
   //
 
-  impl< Scalar, Original, Target > crate::From2< Original >
-  for Target
-  where
-    Scalar : ScalarInterface,
-    Original : X3NominalInterface< Scalar = Scalar >,
-    Target : X3BasicInterface< Scalar = Scalar >,
-  {
-    #[ inline ]
-    fn from2( original : Original ) -> Self
-    {
-      Self::make( original._0(), original._1() )
-    }
-  }
+  // NOTE: Conflicting implementation
+  // impl< Scalar, Original, Target > crate::From2< Original >
+  // for Target
+  //   where
+  //     Scalar : ScalarInterface,
+  //     Original : X3NominalInterface< Scalar = Scalar >,
+  //     Target : X3BasicInterface< Scalar = Scalar >,
+  // {
+  //   #[ inline ]
+  //   fn from2( original : Original ) -> Self
+  //   {
+  //     Self::make( original._0(), original._1(), original._2() )
+  //   }
+  // }
 
 }
 
