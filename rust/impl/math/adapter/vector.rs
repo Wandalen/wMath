@@ -5,6 +5,7 @@
 meta_tools::mod_interface!
 {
   layer x2;
+  layer x3;
   layer impl_interfaces;
 }
 
