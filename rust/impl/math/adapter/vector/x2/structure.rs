@@ -1,6 +1,7 @@
 //!
 //! Implement canonical X2 strcture.
 //!
+#![ allow( clippy::just_underscores_and_digits ) ]
 
 /// Internal namespace.
 pub( crate ) mod private
@@ -13,7 +14,7 @@ pub( crate ) mod private
 
   #[ allow( non_camel_case_types ) ]
   #[ repr( C ) ]
-  #[ derive( PartialEq, Copy, Clone, Hash, Default, VectorInterfaces ) ]
+  #[ derive( PartialEq, Eq, Copy, Clone, Hash, Default, VectorInterfaces ) ]
   pub struct X2
   <
     Scalar : ScalarInterface,
