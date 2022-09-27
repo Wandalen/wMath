@@ -22,6 +22,8 @@ mod canonical_x2_test;
 mod helper_test;
 #[ path = "adapter/macro_tools_test.rs" ]
 mod macro_tools_test;
+#[ path = "adapter/impl_interfaces_macro_test.rs" ]
+mod impl_interfaces_macro_test;
 
 #[ cfg( feature = "cgmath" ) ]
 #[ path = "adapter/cgmath_test/mod.rs" ]
