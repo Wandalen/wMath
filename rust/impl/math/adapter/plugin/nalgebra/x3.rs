@@ -7,106 +7,45 @@ pub( crate ) mod private
 {
   use core::mem::size_of;
   use crate::prelude::*;
-  use crate::{ X3, ScalarInterface };
-
-  impl< Scalar > X3NominalInterface for nalgebra::Vector3< Scalar >
-  where
-    Scalar : ScalarInterface,
+  use crate::
   {
-    type Scalar = Scalar;
+    X3,
+    ScalarInterface
+  };
 
-    #[ inline ]
-    fn _0( &self ) -> Self::Scalar
+  impl_interfaces!
+  (
+    nalgebra::Vector3< Scalar >,
+    .x,
+    .y,
+    .z,
+    | _0, _1, _2 | Self::new( _0, _1, _2 ),
+    | _self |
     {
-      self.x
-    }
-
-    #[ inline ]
-    fn _1( &self ) -> Self::Scalar
-    {
-      self.y
-    }
-
-    #[ inline ]
-    fn _2( &self ) -> Self::Scalar
-    {
-      self.z
-    }
-  }
-
-  impl< Scalar > X3BasicInterface for nalgebra::Vector3< Scalar >
-  where
-    Scalar : ScalarInterface,
-  {
-    #[ inline ]
-    fn make( _0 : Self::Scalar, _1 : Self::Scalar, _2 : Self::Scalar ) -> Self
-    {
-      Self::new( _0, _1, _2 )
-    }
-  }
-
-  impl< Scalar > X3CanonicalInterface for nalgebra::Vector3< Scalar >
-  where
-    Scalar : ScalarInterface,
-  {
-    #[ inline ]
-    fn _0_ref( &self ) -> &Self::Scalar
-    {
-      &self.x
-    }
-
-    #[ inline ]
-    fn _1_ref( &self ) -> &Self::Scalar
-    {
-      &self.y
-    }
-
-    #[ inline ]
-    fn _2_ref( &self ) -> &Self::Scalar
-    {
-      &self.z
-    }
-
-    /* */
-
-    #[ inline ]
-    fn _0_mut( &mut self ) -> &mut Self::Scalar
-    {
-      &mut self.x
-    }
-
-    #[ inline ]
-    fn _1_mut( &mut self ) -> &mut Self::Scalar
-    {
-      &mut self.y
-    }
-
-    #[ inline ]
-    fn _2_mut( &mut self ) -> &mut Self::Scalar
-    {
-      &mut self.z
-    }
-
-    #[ inline ]
-    fn as_canonical( &self ) -> &X3< Self::Scalar >
-    {
-      debug_assert_eq!( size_of::< Self >(), size_of::< X3< Self::Scalar > >() );
+      debug_assert_eq!( size_of::< nalgebra::Vector3< Scalar > >(), size_of::< X3< Scalar > >() );
       unsafe
       {
-        std::mem::transmute::< _, _ >( self )
+        std::mem::transmute::< _, _ >( _self )
       }
     }
+  );
 
-    #[ inline ]
-    fn as_canonical_mut( &mut self ) -> &mut X3< Self::Scalar >
+  impl_interfaces!
+  (
+    nalgebra::geometry::Point3< Scalar >,
+    .x,
+    .y,
+    .z,
+    | _0, _1, _2 | Self::new( _0, _1, _2 ),
+    | _self |
     {
-      debug_assert_eq!( size_of::< Self >(), size_of::< X3< Self::Scalar > >() );
+      debug_assert_eq!( size_of::< nalgebra::geometry::Point3< Scalar > >(), size_of::< X3< Scalar > >() );
       unsafe
       {
-        std::mem::transmute::< _, _ >( self )
+        std::mem::transmute::< _, _ >( _self )
       }
     }
-  }
+  );
 
   //
 
@@ -146,111 +85,10 @@ pub( crate ) mod private
     }
   }
 
-  //
-
-  impl< Scalar > X3NominalInterface for nalgebra::geometry::Point3< Scalar >
-    where
-      Scalar : ScalarInterface,
-  {
-    type Scalar = Scalar;
-
-    #[ inline ]
-    fn _0( &self ) -> Self::Scalar
-    {
-      self.x
-    }
-
-    #[ inline ]
-    fn _1( &self ) -> Self::Scalar
-    {
-      self.y
-    }
-
-    #[ inline ]
-    fn _2( &self ) -> Self::Scalar
-    {
-      self.z
-    }
-  }
-
-  impl< Scalar > X3BasicInterface for nalgebra::geometry::Point3< Scalar >
-    where
-      Scalar : ScalarInterface,
-  {
-    #[ inline ]
-    fn make( _0 : Self::Scalar, _1 : Self::Scalar, _2 : Self::Scalar ) -> Self
-    {
-      Self::new( _0, _1, _2 )
-    }
-  }
-
-  impl< Scalar > X3CanonicalInterface for nalgebra::geometry::Point3< Scalar >
-    where
-      Scalar : ScalarInterface,
-  {
-    #[ inline ]
-    fn _0_ref( &self ) -> &Self::Scalar
-    {
-      &self.x
-    }
-
-    #[ inline ]
-    fn _1_ref( &self ) -> &Self::Scalar
-    {
-      &self.y
-    }
-
-    #[ inline ]
-    fn _2_ref( &self ) -> &Self::Scalar
-    {
-      &self.z
-    }
-
-    /* */
-
-    #[ inline ]
-    fn _0_mut( &mut self ) -> &mut Self::Scalar
-    {
-      &mut self.x
-    }
-
-    #[ inline ]
-    fn _1_mut( &mut self ) -> &mut Self::Scalar
-    {
-      &mut self.y
-    }
-
-    #[ inline ]
-    fn _2_mut( &mut self ) -> &mut Self::Scalar
-    {
-      &mut self.z
-    }
-
-    #[ inline ]
-    fn as_canonical( &self ) -> &X3< Self::Scalar >
-    {
-      debug_assert_eq!( size_of::< Self >(), size_of::< X3< Self::Scalar > >() );
-      unsafe
-      {
-        std::mem::transmute::< _, _ >( self )
-      }
-    }
-
-    #[ inline ]
-    fn as_canonical_mut( &mut self ) -> &mut X3< Self::Scalar >
-    {
-      debug_assert_eq!( size_of::< Self >(), size_of::< X3< Self::Scalar > >() );
-      unsafe
-      {
-        std::mem::transmute::< _, _ >( self )
-      }
-    }
-  }
-
   impl< Scalar, Original > crate::From2< Original > for nalgebra::Vector3< Scalar >
-    where
-      Scalar : ScalarInterface,
-      Original : X3NominalInterface< Scalar = Scalar >,
+  where
+    Scalar : ScalarInterface,
+    Original : X3NominalInterface< Scalar = Scalar >,
   {
     #[ inline ]
     fn from2( original : Original ) -> Self
@@ -260,9 +98,9 @@ pub( crate ) mod private
   }
 
   impl< Scalar, Original > crate::From2< Original > for nalgebra::geometry::Point3< Scalar >
-    where
-      Scalar : ScalarInterface,
-      Original : X3NominalInterface< Scalar = Scalar >,
+  where
+    Scalar : ScalarInterface,
+    Original : X3NominalInterface< Scalar = Scalar >,
   {
     #[ inline ]
     fn from2( original : Original ) -> Self
