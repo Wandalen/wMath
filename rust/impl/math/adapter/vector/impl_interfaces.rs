@@ -43,6 +43,33 @@ pub ( crate ) mod private
       $_type:ty,
       [ $first:literal ],
       [ $second:literal ],
+      [ $third:literal ]
+    )
+    =>
+    {
+      impl_vector_nominal_interface!( X3NominalInterface, $_type, _0 _1 _2, [ $first ] [ $second ] [ $third ] );
+    };
+
+    //
+
+    (
+      $_type:ty,
+      [ $first:literal ],
+      [ $second:literal ],
+      [ $third:literal ],
+      [ $fourth:literal ]
+    )
+    =>
+    {
+      impl_vector_nominal_interface!( X4NominalInterface, $_type, _0 _1 _2 _3, [ $first ] [ $second ] [ $third ] [ $fourth ] );
+    };
+
+    //
+
+    (
+      $_type:ty,
+      [ $first:literal ],
+      [ $second:literal ],
       $make:expr,
       $as_canonical:expr
     )
@@ -71,19 +98,6 @@ pub ( crate ) mod private
       impl_vector_basic_interface!( X2BasicInterface, $_type, $make, _0 _1 );
 
       impl_vector_canonical_interface!( X2CanonicalInterface, $_type, X2, $as_canonical, _0_ref _1_ref, _0_mut _1_mut, .$first .$second );
-    };
-
-    //
-
-    (
-      $_type:ty,
-      [ $first:literal ],
-      [ $second:literal ],
-      [ $third:literal ]
-    )
-    =>
-    {
-      impl_vector_nominal_interface!( X3NominalInterface, $_type, _0 _1 _2, [ $first ] [ $second ] [ $third ] );
     };
 
     //
@@ -149,20 +163,6 @@ pub ( crate ) mod private
       [ $first:literal ],
       [ $second:literal ],
       [ $third:literal ],
-      [ $fourth:literal ]
-    )
-    =>
-    {
-      impl_vector_nominal_interface!( X4NominalInterface, $_type, _0 _1 _2 _3, [ $first ] [ $second ] [ $third ] [ $fourth ] );
-    };
-
-    //
-
-    (
-      $_type:ty,
-      [ $first:literal ],
-      [ $second:literal ],
-      [ $third:literal ],
       [ $fourth:literal ],
       $make:expr,
       $as_canonical:expr
@@ -209,7 +209,7 @@ pub ( crate ) mod private
         X4,
         $as_canonical,
         _0_ref _1_ref _2_ref _3_ref,
-        _0_mut _1_mut _2_mut _2_mut,
+        _0_mut _1_mut _2_mut _3_mut,
         .$first .$second .$third .$fourth
       );
     };
