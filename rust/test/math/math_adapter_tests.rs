@@ -22,6 +22,12 @@ mod canonical_x2_test;
 mod helper_test;
 #[ path = "adapter/macro_tools_test.rs" ]
 mod macro_tools_test;
+#[ cfg( feature = "use_std" ) ]
+#[ path = "adapter/impl_interfaces_macro_test.rs" ]
+mod impl_interfaces_macro_test;
+#[ cfg( feature = "use_std" ) ]
+#[ path = "adapter/derive_vector_interfaces_test.rs"]
+mod derive_vector_interfaces_test;
 
 #[ cfg( feature = "cgmath" ) ]
 #[ path = "adapter/cgmath_test/mod.rs" ]
@@ -32,5 +38,4 @@ mod nalgebra_test;
 #[ cfg( feature = "winit" ) ]
 #[ path = "adapter/winit_test/mod.rs" ]
 mod winit_test;
-
 

@@ -82,7 +82,7 @@ pub( crate ) mod private
     // ( $Op : ident, $op : ident, $Va : ident $( :: $Vb : ident )* ) =>
     {
 
-      crate::idents_concat!
+      $crate::idents_concat!
       {
         impl< Right, Scalar > $Op< Right > for $For< Scalar >
         where
@@ -105,7 +105,7 @@ pub( crate ) mod private
 
       //
 
-      crate::idents_concat!
+      $crate::idents_concat!
       {
         impl< Right, Scalar > $Op< &Right > for &$For< Scalar >
         where

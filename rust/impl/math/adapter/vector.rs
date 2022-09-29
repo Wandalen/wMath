@@ -5,6 +5,7 @@
 meta_tools::mod_interface!
 {
   layer x2;
+  layer impl_interfaces;
 }
 
 // pub use x2::macros;
