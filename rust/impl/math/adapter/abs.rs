@@ -11,7 +11,7 @@ meta_tools::mod_interface!
 
   #[ cfg( feature = "use_std" ) ]
   layer x2_interface;
-  // layer x3_interface;
+  layer x3_interface;
   // xxx
 
   // layer box2_interface;

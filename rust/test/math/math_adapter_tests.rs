@@ -12,12 +12,19 @@ use test_tools::exposed::*;
 mod local_test_tools;
 #[ path = "adapter/macro_foreign_x2.rs" ]
 mod macro_foreign_x2;
+#[ path = "adapter/macro_foreign_x3.rs" ]
+mod macro_foreign_x3;
 #[ allow( unused_imports ) ]
 pub( crate ) use macro_foreign_x2::*;
+#[ allow( unused_imports ) ]
+pub( crate ) use macro_foreign_x3::*;
 
 #[ cfg( feature = "use_std" ) ]
 #[ path = "adapter/canonical_x2_test.rs" ]
 mod canonical_x2_test;
+#[ cfg( feature = "use_std" ) ]
+#[ path = "adapter/canonical_x3_test.rs" ]
+mod canonical_x3_test;
 #[ path = "adapter/helper_test.rs" ]
 mod helper_test;
 #[ path = "adapter/macro_tools_test.rs" ]
