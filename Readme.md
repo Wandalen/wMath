@@ -25,4 +25,4 @@ Home for math modules.
 
 | Module | Stability | Test |
 |--------|-----------|------|
-| [wMath](./module/js/wMath) | [![experimental](https://raster.shields.io/static/v1?label=&message=experimental&color=orange)](https://github.com/emersion/stability-badges#experimental) | [![js-status](https://img.shields.io/github/actions/workflow/status/Wandalen/wMath/StandardJsPublish.yml?label=&branch=master)](https://github.com/Wandalen/wMath/actions/workflows/StandardJsPublish.yml) |
+| [wMath](./module/js/wMath) | [![experimental](https://raster.shields.io/static/v1?label=&message=experimental&color=orange)](https://github.com/emersion/stability-badges#experimental) | [![js-status](https://img.shields.io/github/actions/workflow/status/Wandalen/wMath/StandardJsPublish.yml?label=)](https://github.com/Wandalen/wMath/actions/workflows/StandardJsPublish.yml) |
