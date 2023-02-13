@@ -1,7 +1,6 @@
 //!
 //! Implement interfaces for tuple.
 //!
-#![ allow( clippy::just_underscores_and_digits ) ]
 
 /// Internal namespace.
 pub( crate ) mod private
@@ -10,13 +9,14 @@ pub( crate ) mod private
 
   impl_interfaces!
   (
-    ( Scalar, Scalar ),
+    ( Scalar, Scalar, Scalar, Scalar ),
     .0,
     .1,
-    | _0, _1 | ( _0, _1 ),
+    .2,
+    .3,
+    | _0, _1, _2, _3 | ( _0, _1, _2, _3 ),
     | _self | unsafe { std::mem::transmute::< _, _ >( _self ) }
   );
-
 }
 
 //

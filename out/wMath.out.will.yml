@@ -161,11 +161,14 @@ module:
           - ../proto/node_modules/Tools
           - ../proto/node_modules/wmath
           - ../proto/wtools
+          - ../proto/wtools/abase
           - ../proto/wtools/amath
           - ../proto/wtools/amath/l9
           - ../proto/wtools/amath/l9/Include.s
           - ../proto/wtools/amath/l9.test
           - ../proto/wtools/amath/l9.test/Math.test.s
+          - ../proto/wtools/amid
+          - ../proto/wtools/atop
     submodule:
       wTools:
         path: 'npm:///wTools'
