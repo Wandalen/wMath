@@ -34,7 +34,34 @@ pub ( crate ) mod private
     )
     =>
     {
-      nominal!( X2NominalInterface, $_type, _0 _1, [ $first ] [ $second ] );
+      impl_vector_nominal_interface!( X2NominalInterface, $_type, _0 _1, [ $first ] [ $second ] );
+    };
+
+    //
+
+    (
+      $_type:ty,
+      [ $first:literal ],
+      [ $second:literal ],
+      [ $third:literal ]
+    )
+    =>
+    {
+      impl_vector_nominal_interface!( X3NominalInterface, $_type, _0 _1 _2, [ $first ] [ $second ] [ $third ] );
+    };
+
+    //
+
+    (
+      $_type:ty,
+      [ $first:literal ],
+      [ $second:literal ],
+      [ $third:literal ],
+      [ $fourth:literal ]
+    )
+    =>
+    {
+      impl_vector_nominal_interface!( X4NominalInterface, $_type, _0 _1 _2 _3, [ $first ] [ $second ] [ $third ] [ $fourth ] );
     };
 
     //
@@ -48,11 +75,11 @@ pub ( crate ) mod private
     )
     =>
     {
-      nominal!( X2NominalInterface, $_type, _0 _1, [ $first ] [ $second ] );
+      impl_vector_nominal_interface!( X2NominalInterface, $_type, _0 _1, [ $first ] [ $second ] );
 
-      basic!( X2BasicInterface, $_type, $make, _0 _1 );
+      impl_vector_basic_interface!( X2BasicInterface, $_type, $make, _0 _1 );
 
-      canonical!( X2CanonicalInterface, $_type, X2, $as_canonical, _0_ref _1_ref, _0_mut _1_mut, [ 0 ] [ 1 ] );
+      impl_vector_canonical_interface!( X2CanonicalInterface, $_type, X2, $as_canonical, _0_ref _1_ref, _0_mut _1_mut, [ $first ] [ $second ] );
     };
 
     //
@@ -66,24 +93,11 @@ pub ( crate ) mod private
     )
     =>
     {
-      nominal!( X2NominalInterface, $_type, _0 _1, .$first .$second );
+      impl_vector_nominal_interface!( X2NominalInterface, $_type, _0 _1, .$first .$second );
 
-      basic!( X2BasicInterface, $_type, $make, _0 _1 );
+      impl_vector_basic_interface!( X2BasicInterface, $_type, $make, _0 _1 );
 
-      canonical!( X2CanonicalInterface, $_type, X2, $as_canonical, _0_ref _1_ref, _0_mut _1_mut, .0 .1 );
-    };
-
-    //
-
-    (
-      $_type:ty,
-      [ $first:literal ],
-      [ $second:literal ],
-      [ $third:literal ]
-    )
-    =>
-    {
-      nominal!( X3NominalInterface, $_type, _0 _1 _2, [ $first ] [ $second ] [ $third ] );
+      impl_vector_canonical_interface!( X2CanonicalInterface, $_type, X2, $as_canonical, _0_ref _1_ref, _0_mut _1_mut, .$first .$second );
     };
 
     //
@@ -98,11 +112,11 @@ pub ( crate ) mod private
     )
     =>
     {
-      nominal!( X3NominalInterface, $_type, _0 _1 _2, [ $first ] [ $second ] [ $third ] );
+      impl_vector_nominal_interface!( X3NominalInterface, $_type, _0 _1 _2, [ $first ] [ $second ] [ $third ] );
 
-      basic!( X3BasicInterface, $_type, $make, _0 _1 _2 );
+      impl_vector_basic_interface!( X3BasicInterface, $_type, $make, _0 _1 _2 );
 
-      canonical!
+      impl_vector_canonical_interface!
       (
         X3CanonicalInterface,
         $_type,
@@ -110,7 +124,7 @@ pub ( crate ) mod private
         $as_canonical,
         _0_ref _1_ref _2_ref,
         _0_mut _1_mut _2_mut,
-        [ 0 ] [ 1 ] [ 2 ],
+        [ $first ] [ $second ] [ $third ]
       );
     };
 
@@ -126,11 +140,11 @@ pub ( crate ) mod private
     )
     =>
     {
-      nominal!( X3NominalInterface, $_type, _0 _1 _2, .$first .$second, .$third );
+      impl_vector_nominal_interface!( X3NominalInterface, $_type, _0 _1 _2, .$first .$second .$third );
 
-      basic!( X3BasicInterface, $_type, $make, _0 _1 _2 );
+      impl_vector_basic_interface!( X3BasicInterface, $_type, $make, _0 _1 _2 );
 
-      canonical!
+      impl_vector_canonical_interface!
       (
         X3CanonicalInterface,
         $_type,
@@ -138,22 +152,8 @@ pub ( crate ) mod private
         $as_canonical,
         _0_ref _1_ref _2_ref,
         _0_mut _1_mut _2_mut,
-        .0 .1 .2
+        .$first .$second .$third
       );
-    };
-
-    //
-
-    (
-      $_type:ty,
-      [ $first:literal ],
-      [ $second:literal ],
-      [ $third:literal ],
-      [ $fourth:literal ]
-    )
-    =>
-    {
-      nominal!( X4NominalInterface, $_type, _0 _1 _2 _3, [ $first ] [ $second ] [ $third ] [ $fourth ] );
     };
 
     //
@@ -169,11 +169,11 @@ pub ( crate ) mod private
     )
     =>
     {
-      nominal!( X4NominalInterface, $_type, _0 _1 _2 _3, [ $first ] [ $second ] [ $third ] [ $fourth ] );
+      impl_vector_nominal_interface!( X4NominalInterface, $_type, _0 _1 _2 _3, [ $first ] [ $second ] [ $third ] [ $fourth ] );
 
-      basic!( X4BasicInterface, $_type, $make, _0 _1 _2 _3 );
+      impl_vector_basic_interface!( X4BasicInterface, $_type, $make, _0 _1 _2 _3 );
 
-      canonical!
+      impl_vector_canonical_interface!
       (
         X4CanonicalInterface,
         $_type,
@@ -181,7 +181,7 @@ pub ( crate ) mod private
         $as_canonical,
         _0_ref _1_ref _2_ref _3_ref,
         _0_mut _1_mut _2_mut _3_mut,
-        [ 0 ] [ 1 ] [ 2 ] [ 3 ],
+        [ $first ] [ $second ] [ $third ] [ $fourth ]
       );
     };
 
@@ -198,19 +198,19 @@ pub ( crate ) mod private
     )
     =>
     {
-      nominal!( X4NominalInterface, $_type, _0 _1 _2 _3, .$first .$second, .$third .$fourth );
+      impl_vector_nominal_interface!( X4NominalInterface, $_type, _0 _1 _2 _3, .$first .$second .$third .$fourth );
 
-      basic!( X4BasicInterface, $_type, $make, _0 _1 _2 _3 );
+      impl_vector_basic_interface!( X4BasicInterface, $_type, $make, _0 _1 _2 _3 );
 
-      canonical!
+      impl_vector_canonical_interface!
       (
         X4CanonicalInterface,
         $_type,
         X4,
         $as_canonical,
         _0_ref _1_ref _2_ref _3_ref,
-        _0_mut _1_mut _2_mut _2_mut,
-        .0 .1 .2 .3
+        _0_mut _1_mut _2_mut _3_mut,
+        .$first .$second .$third .$fourth
       );
     };
   }
@@ -220,7 +220,7 @@ pub ( crate ) mod private
   ///
 
   #[ macro_export ]
-  macro_rules! nominal
+  macro_rules! impl_vector_nominal_interface
   {
     ( $interface:ident, $_type:ty, $( $name:ident )*, $( .$getter:tt )* )
     =>
@@ -268,7 +268,7 @@ pub ( crate ) mod private
   ///
 
   #[ macro_export ]
-  macro_rules! basic
+  macro_rules! impl_vector_basic_interface
   {
     ( $interface:ident, $_type:ty, $make:expr, $( $name:ident )* )
     =>
@@ -291,7 +291,7 @@ pub ( crate ) mod private
   ///
 
   #[ macro_export ]
-  macro_rules! canonical
+  macro_rules! impl_vector_canonical_interface
   {
     ( $interface:ident, $_type:ty, $canonical_type:ident, $as_canonical:expr, $( $ref_name:ident )*, $( $mut_name:ident )*, $( .$getter:tt )* )
     =>
@@ -367,11 +367,17 @@ pub ( crate ) mod private
   }
 
   pub use impl_interfaces;
+  pub use impl_vector_nominal_interface;
+  pub use impl_vector_basic_interface;
+  pub use impl_vector_canonical_interface;
 }
 
 //
 
 crate::mod_interface!
 {
-  exposed use impl_interfaces;
+  prelude use impl_interfaces;
+  prelude use impl_vector_nominal_interface;
+  prelude use impl_vector_basic_interface;
+  prelude use impl_vector_canonical_interface;
 }
